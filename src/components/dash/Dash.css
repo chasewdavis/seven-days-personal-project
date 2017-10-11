@@ -1,0 +1,175 @@
+COLOR {
+    background: #25A0AD;
+}
+
+button {
+    border:none;
+    color: #25A0AD;
+}
+
+.new_goal, .goals {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.contain{
+    border:1px solid black;
+}
+
+.new_goal_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    /* border: 1px solid black; */
+    width: 300px;
+    height: 60px;
+}
+
+.new_goal_header button {
+    height: 60px;
+    width: 60px;
+    font-size: 40px;
+    color:#25A0AD;
+    border: 3px solid #25A0AD;
+    background-color: whitesmoke;
+    transition: background-color .42s, color .42s;
+}
+
+.new_goal_header button:hover {
+    background-color: #25A0AD;
+    color:white;
+}
+
+.new_goal_header div {
+    width:240px;
+    font-size: 20px;
+    border-top: 3px solid #25A0AD;
+    border-right: 3px solid #25A0AD;
+    border-bottom: 3px solid #25A0AD;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    color: #25A0AD;
+}
+
+.link {
+    /* border:1px solid black; */
+    padding:0;
+    margin: 0;
+}
+
+
+.good_bad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* border:1px solid black; */
+    width:300px;
+}
+
+.good_bad button{
+    width: 300px;
+    height: 60px;
+    border-left: 3px solid #25A0AD;
+    border-right: 3px solid #25A0AD;
+    border-bottom: 3px solid #25A0AD;
+    background-color: white;
+    font-size: 20px;
+}
+
+.good_bad button{
+    transition: background-color .42s, color .42s;
+}
+
+.good_bad button:hover{
+    background-color: #25A0AD;
+    color: whitesmoke;
+}
+
+.slide_down {
+    color:green;
+}
+
+.start:hover .good_bad {
+    display: block;
+}
+
+.name_and_num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.name_and_num div{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#25A0AD;
+    font-size: 20px;
+}
+
+.name_and_num input{
+    width:300px;
+    height:60px;
+    box-shadow: inset 0 0 5px grey;
+    border:none;
+    font-size: 20px;
+}
+
+.dpw {
+    font-size: 20px;
+    color: #25A0AD;
+    /* border: 1px solid black; */
+    width: 300px;;
+    border-left: 3px solid #25A0AD;
+    border-right: 3px solid #25A0AD;
+}
+
+.inc_dec {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.inc_dec button {
+    height: 60px;
+    width: 60px;
+    font-size: 40px;
+    color:#25A0AD;
+    border: 3px solid #25A0AD;
+    background-color: white;
+    transition: background-color .42s, color .42s;
+}
+
+.inc_dec button:hover{
+    background-color: #25A0AD;
+    color: whitesmoke;
+}
+
+.inc_dec p {
+    font-size: 40px;
+    width:180px;
+}
+
+.submit{
+    border: 3px solid #25A0AD;
+    width: 300px;
+    height: 60px;
+    background-color: white;
+    font-size: 20px;
+
+}
+
+.submit:active{
+    background-color: #25A0AD;
+    color: white;
+}

@@ -1,0 +1,65 @@
+.log{
+    /* border:1px solid red; */
+}
+
+.days{
+    /* border:1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* .days :nth-child(2n-1){
+    background-color: white;
+} */
+
+.days div{
+    width:100vw;
+}
+
+.day{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    height: 60px;
+    width: 100vw;
+    padding-right: 10px;
+}
+
+.add_log{
+    height: 60px;
+    line-height: 60px;
+    text-align: middle;
+}
+
+.day input{
+    height: 50px;
+    width: 50px;
+    /* border-radius: 25px; */
+    background-color: white;
+    /* box-shadow: inset 0 0 5px black; */
+}
+
+.one{
+    background-color: rgba(37, 164, 173, 0.14);
+}
+.two{
+    background-color: rgba(37, 164, 173, 0.28);
+}
+.three{
+    background-color: rgba(37, 164, 173, 0.42);
+}
+.four{
+    background-color: rgba(37, 164, 173, 0.56);
+}
+.five{
+    background-color: rgba(37, 164, 173, 0.7);
+}
+.six{
+    background-color: rgba(37, 164, 173, 0.84);
+}
+.seven{
+    background-color: rgba(37, 164, 173, 0.98);
+}
