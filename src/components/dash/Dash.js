@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './Dash.css';
-import Goal from '../goal/Goal.js';
+// import Goal from '../goal/Goal.js';
+import axios from 'axios';
 
 export default class dashboard extends Component {
 
@@ -17,8 +18,16 @@ export default class dashboard extends Component {
         }
     }
 
+    componentDidMount(){
+        console.log('comp mounted')
+        axios.get('/api/grabgoals').then(res=>{
+            console.log(res)
+            // this.setState({goals:res})
+        })
+    }
+
     slideDown(){
-        console.log('func envoked')
+        console.log('slide down');
         document.getElementsByClassName('good_bad')
     }
 
@@ -76,10 +85,13 @@ export default class dashboard extends Component {
                 goodHabit: this.state.goodHabit
             })
 
+            axios.put('/api/setgoal', temp[temp.length-1]).then(res=> console.log(res))
+
             this.setState({
                 goals: temp
             })
 
+            // console.log(this.state.goals)
         }
     }
 

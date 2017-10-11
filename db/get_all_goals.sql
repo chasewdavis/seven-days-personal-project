@@ -1,0 +1,2 @@
+SELECT * FROM GOALS 
+WHERE userid = $1

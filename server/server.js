@@ -4,7 +4,9 @@ const express = require('express')
     , bodyParser = require('body-parser')
     , massive = require('massive')
     , passport = require('passport')
-    , Auth0Strategy = require('passport-auth0');
+    , Auth0Strategy = require('passport-auth0')
+    , controller = require('./controller.js');
+
 
 const app = express();
 
@@ -36,13 +38,15 @@ passport.use(new Auth0Strategy({
 
     db.find_user([ profile.identities[0].user_id ]).then( user => {
         if(user[0]){
-            // console.log('USER EXSISTS')
+            console.log('USER EXSISTS', user[0])
+            
             return done(null, user[0].id)
         } else {
-            // console.log('CREATING A NEW USER')
+            console.log('CREATING A NEW USER')
             const user = profile._json
             db.create_user([ user.name, user.email, user.picture, user.identities[0].user_id ])
             .then( user => {
+            
                 return done(null,user[0].id)
             })
         }
@@ -64,8 +68,9 @@ app.get('/auth/me', (req,res) => {
 })
 
 app.get('/auth/logout', (req, res) => {
+    console.log('FUNCTION SHOULD LOG ME OUT')
     req.logOut();
-    res.redirect(302, 'http://localhost:3000/#/welcome')
+    res.redirect(302, 'http://localhost:3000/#/')
 })
 
 passport.serializeUser( function( user, done ){
@@ -79,6 +84,9 @@ passport.deserializeUser( function( user, done ){
         done(null, user)
     // })
 })
+
+app.put('/api/setgoal', controller.update )
+app.get('/api/grabgoals', controller.read)
 
 const PORT = 3005;
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT} :)`))

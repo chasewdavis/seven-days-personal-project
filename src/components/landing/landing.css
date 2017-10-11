@@ -10,6 +10,11 @@
 background: #25A0AD;
 }
 
+.info {
+  background-color: white;
+  height: 66.7vh;
+}
+
 .login_page {
   /* background-color: grey; */
   height: 33.3vh;

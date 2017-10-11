@@ -1,40 +1,6 @@
 
-.nav {
-  width:100%;
-  height: 60px;
-  background-color: rgba(0,0,0,.1);
-  position: fixed;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.nav button {
-  margin-right:10px;
-  border: none;
-  background-color: rgba(0,0,0,0);
-  font-size: 20px;
-  height:40px;
-  width:100px;
-  border-radius: 20px;
-  border: 3px solid #25A0AD;
-  color: #25A0AD;
-  transition: background-color .84s, color .84s;
-  cursor: pointer;
-}
-
-.nav button:hover {
-  background-color: #25A0AD;
-  color:whitesmoke;
-}
-
 .space {
   height: 60px;
   width: 100%;
 }
 
-.info {
-  background-color: white;
-  height: 100vh;
-}
