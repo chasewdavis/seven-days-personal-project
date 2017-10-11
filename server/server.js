@@ -17,10 +17,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// massive(process.env.CONNECTION_STRING).then( db => {
-//     console.log('massive function is running')
-//     app.set('db', db);
-// })
+massive(process.env.CONNECTION_STRING).then( db => {
+    console.log('massive function is running')
+    app.set('db', db);
+})
 
 passport.use(new Auth0Strategy({
     domain: process.env.AUTH_DOMAIN,
@@ -28,21 +28,26 @@ passport.use(new Auth0Strategy({
     clientSecret: process.env.AUTH_CLIENT_SECRET,
     callbackURL: process.env.CALLBACK_URL
 }, function(accessToken, refreshToken, extraParams, profile, done){
-    //db calls
-    // const db = app.get('db');
+    // db calls
 
-    // db.find_user([ profile.identities[0].user_id ]).then( user => {
-    //     if(user[0]){
-    //         return done(null,user[0].id)
-    //     } else {
-    //         const user = profile._json
-    //         db.create_user([ user.name, user.email, user.picture, user.identities[0].user_id ])
-    //         .then( user => {
-    //             return done(null,user[0].id)
-    //         })
-    //     }
-    // })
-    done(null, profile);
+    // console.log(profile._json.identities[0])
+
+    const db = app.get('db');
+
+    db.find_user([ profile.identities[0].user_id ]).then( user => {
+        if(user[0]){
+            // console.log('USER EXSISTS')
+            return done(null, user[0].id)
+        } else {
+            // console.log('CREATING A NEW USER')
+            const user = profile._json
+            db.create_user([ user.name, user.email, user.picture, user.identities[0].user_id ])
+            .then( user => {
+                return done(null,user[0].id)
+            })
+        }
+    })
+    // done(null, profile);
 }))
 
 app.get('/auth', passport.authenticate('auth0'))
