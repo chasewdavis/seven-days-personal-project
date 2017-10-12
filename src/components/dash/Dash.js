@@ -197,7 +197,6 @@ export default class dashboard extends Component {
     render(){
 
         const goals = this.state.goals.map((e,i)=>{
-            console.log(e)
             return (
                 <Link to={`/goal/${e.id}`} key={i}>
                     <button className='squared' >{e.goalname}</button>

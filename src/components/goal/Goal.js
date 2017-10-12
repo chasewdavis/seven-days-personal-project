@@ -21,10 +21,10 @@ export default class Goal extends Component {
 
     componentDidMount(){
         axios.get(`/api/goal/${this.props.match.params.id}`).then((res)=>{
-            console.log('response is.. ' , res.data[0]);
+            // console.log('response is.. ' , res.data[0]);
             this.setState({
                 goalname: res.data[0].goalname,
-                daysoutofseven: res.data[0].goalname,
+                daysoutofseven: res.data[0].daysoutofseven,
                 userid: res.data[0].userid,
             })
         })//IT WORKS!!
@@ -38,7 +38,7 @@ export default class Goal extends Component {
 
         // console.log(this.props.match.params.id) //this will grab id on url
 
-        console.log(this.state)
+        // console.log('state of goal component is ',this.state)
 
         return (
             <div>

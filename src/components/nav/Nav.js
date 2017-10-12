@@ -11,6 +11,7 @@ export default class Nav extends Component {
         if(sidebar_right===false){
             sidebar = (
                 <div className='side_bar right'>
+                <Link to='/dashboard'><button>dashboard</button></Link>
                 <a className='logout' href='http://localhost:3005/auth/logout'><button>Log out</button></a>
                 </div>
             )
