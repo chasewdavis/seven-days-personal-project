@@ -2,17 +2,40 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './nav.css'
 import menu from '../../menu.svg'
+let sidebar = <div></div>;
+let sidebar_right = false;
 
 export default class Nav extends Component {
+
+    slideOut(){
+        if(sidebar_right===false){
+            sidebar = (
+                <div className='side_bar right'>
+                <a className='logout' href='http://localhost:3005/auth/logout'><button>Log out</button></a>
+                </div>
+            )
+            this.forceUpdate();
+            sidebar_right=true;
+        }else{
+            sidebar = (
+                <div className='side_bar left'>sidebar</div>
+            )
+            this.forceUpdate();
+            sidebar_right=false;
+        }
+    }
+
     render(){
+        // console.log(this.props.title());
         return (
             <div>
                 <div className='nav'>
-                    <img src={menu} alt='menu icon'/>
-                        {/* <a href='http://localhost:3005/auth/logout'><button>log out</button></a> */}
+                    <img onClick={()=>this.slideOut()} src={menu} alt='menu icon'/>
+                    <div className='title'>{this.props.title}</div>
                 </div>
+                {sidebar}
                 <div>
-                    {this.props.children}
+                    {/* {this.props.children} */}
                 </div>
             </div>
         )

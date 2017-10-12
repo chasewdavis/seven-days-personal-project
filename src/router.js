@@ -9,12 +9,14 @@ export default (
     <div>
     <Switch>
         <Route component={Landing} exact path='/' />
-        <Route path='/nav' render={() => (
+        <Route component={Dashboard} path='/dashboard'/>
+        <Route component={Goal} path='/goal/:id'/>
+        {/* <Route path='/nav' render={() => (
             <Nav>
                 <Route component={Dashboard} path='/nav/dashboard' />
                 <Route component={Goal} path='/nav/goal/:id'/>
             </Nav>
-        )}/>
+        )}/> */}
     </Switch>
     </div>
   )

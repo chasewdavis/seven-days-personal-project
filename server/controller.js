@@ -10,15 +10,25 @@ module.exports = {
         // console.log(req.body)
     },
 
+    unique: (req, res) => {
+        console.log(req.params.id);
+        
+        req.app.get('db').get_goal([req.params.id]).then(response=>{
+            res.send(response)
+        })
+    },
+
     update: (req,res) => {
 
         //req.user will grab the id of the user
         
-        let args = [req.body.habitName, req.body.days, req.body.goodHabit, req.user]
+        console.log('update funtion is firing')
+
+        let args = [req.body.goalname, req.body.daysoutofseven, req.body.goodHabit, req.user]
 
         req.app.get('db').create_new_habit(args).then(response=>{
-            res.json(response)
-            console.log(response)
+            // res.json(response)
+            console.log('THE RESPONSE FROM THE DATABASE IS... ' + res.json(response));
         })
 
     }

@@ -56,7 +56,7 @@ passport.use(new Auth0Strategy({
 
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0',{
-    successRedirect: 'http://localhost:3000/#/nav/dashboard',
+    successRedirect: 'http://localhost:3000/#/dashboard',
     failureRedirect: 'http://localhost:3000/#/welcome'
 }))
 app.get('/auth/me', (req,res) => {
@@ -74,9 +74,11 @@ app.get('/auth/logout', (req, res) => {
 })
 
 passport.serializeUser( function( user, done ){
+    console.log('SERIRIALIZED')
     done(null, user);
 })
 passport.deserializeUser( function( user, done ){
+    console.log('deserialized')
     //gets checked everytime (extra level of security)
     //takes the user and puts info on req.user for any endpoint
     // app.get('db').find_current_user([ id ])
@@ -87,6 +89,7 @@ passport.deserializeUser( function( user, done ){
 
 app.put('/api/setgoal', controller.update )
 app.get('/api/grabgoals', controller.read)
+app.get('/api/goal/:id', controller.unique)
 
 const PORT = 3005;
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT} :)`))

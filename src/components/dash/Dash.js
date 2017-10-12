@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import './alt.css';
 // import Goal from '../goal/Goal.js';
 import axios from 'axios';
+import Nav from '../nav/Nav.js';
 
 let form = '';
+let new_form_ready = false;
 
 export default class dashboard extends Component {
 
@@ -13,8 +15,8 @@ export default class dashboard extends Component {
         super(props)
 
         this.state = {
-            habitName: '',
-            days: 7,
+            goalname: '',
+            daysoutofseven: 0,
             prompt: '',
             goodHabit: null,
             goals: []
@@ -22,10 +24,11 @@ export default class dashboard extends Component {
     }
 
     componentDidMount(){
+        //only works AS LONG AS SERVER FILE IS NOT EDITED
         console.log('comp mounted')
         axios.get('/api/grabgoals').then(res=>{
-            console.log(res)
-            // this.setState({goals:res})
+            console.log(res.data)
+            this.setState({goals:res.data})
         })
     }
 
@@ -40,7 +43,10 @@ export default class dashboard extends Component {
             prompt: ''
         })
         form = (
-            <div className='form'>good</div>
+            <div className='form'>
+                <input onChange={(e)=>this.handleChange(e.target.value)} className='form_input' placeholder='name your habit'/>
+                <button onClick={()=>this.days()} className='next'>next</button>
+            </div>
         )
         this.forceUpdate();
     }
@@ -50,64 +56,129 @@ export default class dashboard extends Component {
             prompt:'Avoid'
         })
         form = (
-            <div className='form'>bad</div>
+            <div className='form'>
+                <input onChange={(e)=>this.handleChange(e.target.value)} className='form_input' placeholder='Avoid...'/>
+                <button onClick={()=>this.days()} className='next'>next</button>
+            </div>
         )
         this.forceUpdate();
     }
 
-    addOne(){
-        if(this.state.days<7){
-            this.setState({
-                days: this.state.days+1
-            })
-        }
+    complete(val){
+        this.setState({daysoutofseven:val})
+        form = <div className='completed'></div>
+
+        let temp = this.state.goals.slice();
+        
+                    temp.push({
+                        goalname: this.state.goalname,
+                        daysoutofseven: val,
+                        goodHabit: this.state.goodHabit
+                    })
+        
+                    axios.put('/api/setgoal', temp[temp.length-1]).then(res=> {
+                        console.log(res.data[0].id)
+                        temp[temp.length-1].id = res.data[0].id
+                    })
+        
+                    this.setState({
+                        goals: temp
+                    })
+        
     }
-    subOne(){
-        if(this.state.days>1){
-            this.setState({
-                days: this.state.days-1
-            })
-        }
+
+    days(){
+            form = (
+                <div className='form'>
+                    <div className='row_one'>
+                        <button onClick={()=>this.complete(1)}>1</button>
+                        <button onClick={()=>this.complete(2)}>2</button>
+                        <button onClick={()=>this.complete(3)}>3</button>
+                    </div>
+                    <div className='row_two'>
+                        <button onClick={()=>this.complete(4)}>4</button>
+                        <button onClick={()=>this.complete(5)}>5</button>
+                        <button onClick={()=>this.complete(6)}>6</button>
+                        <button onClick={()=>this.complete(7)}>7</button>
+                    </div>
+                    <div className='row_three'>
+                    Days Per Week
+                    </div>
+                </div>
+            )
+            new_form_ready = true;
+
+
+            // let temp = this.state.goals.slice();
+
+            // temp.push({
+            //     goalname: this.state.goalname,
+            //     days: this.state.days,
+            //     goodHabit: this.state.goodHabit
+            // })
+
+            // axios.put('/api/setgoal', temp[temp.length-1]).then(res=> console.log(res))
+
+            // this.setState({
+            //     goals: temp
+            // })
+
+            this.forceUpdate();
     }
+
+    // addOne(){
+    //     if(this.state.daysoutofseven<7){
+    //         this.setState({
+    //             daysoutofseven: this.state.daysoutofseven+1
+    //         })
+    //     }
+    // }
+    // subOne(){
+    //     if(this.state.daysoutofseven>1){
+    //         this.setState({
+    //             daysoutofseven: this.state.daysoutofseven-1
+    //         })
+    //     }
+    // }
 
     handleChange(val){
         this.setState({
-            habitName:val
+            goalname:val
         })
     }
 
-    setGoal(){
+    // setGoal(){
 
-        const availibleNames = this.state.goals.map(e=>{
-            return e.habitName; 
-        });
+    //     const availibleNames = this.state.goals.map(e=>{
+    //         return e.goalname; 
+    //     });
 
-        if(availibleNames.indexOf(this.state.habitName)!==-1){
-            alert("YOU CAN'T USE THAT NAME AGAIN")
-        }else if(this.state.goodHabit===null || this.state.habitName===''){
-            alert('FINISH THE FORM');
-        }else{
+    //     if(availibleNames.indexOf(this.state.goalname)!==-1){
+    //         alert("YOU CAN'T USE THAT NAME AGAIN")
+    //     }else if(this.state.goodHabit===null || this.state.goalname===''){
+    //         alert('FINISH THE FORM');
+    //     }else{
 
-            let temp = this.state.goals.slice();
+    //         let temp = this.state.goals.slice();
 
-            temp.push({
-                habitName: this.state.habitName,
-                days: this.state.days,
-                goodHabit: this.state.goodHabit
-            })
+    //         temp.push({
+    //             goalname: this.state.goalname,
+    //             days: this.state.days,
+    //             goodHabit: this.state.goodHabit
+    //         })
 
-            axios.put('/api/setgoal', temp[temp.length-1]).then(res=> console.log(res))
+    //         axios.put('/api/setgoal', temp[temp.length-1]).then(res=> console.log(res))
 
-            this.setState({
-                goals: temp
-            })
+    //         this.setState({
+    //             goals: temp
+    //         })
 
-            // console.log(this.state.goals)
-        }
-    }
+    //         // console.log(this.state.goals)
+    //     }
+    // }
 
     form(){
-        if(!form){
+        if(!form || new_form_ready===true){
             form = (
             <div className='form'>
                 <div className='stack left'>
@@ -125,25 +196,24 @@ export default class dashboard extends Component {
 
     render(){
 
-        console.log(this.state)
-
         const goals = this.state.goals.map((e,i)=>{
+            console.log(e)
             return (
-                <Link to={`/nav/goal/${e.habitName}`} key={i}>
-                    {e.habitName}
+                <Link to={`/goal/${e.id}`} key={i}>
+                    <button className='squared' >{e.goalname}</button>
                 </Link>
             )
         })
 
         return (
             <div>
-                <div className='space'></div>
+                <Nav title={'Dashboard'}/>
                 <div className='contain'>
 
                 <button onClick={()=>this.form()} className='start' >Start Tracking</button>
                 {form} 
 
-                <button className='squared' >Bike to Work</button> 
+                {/* <button className='squared' >Bike to Work</button> 
                 <button className='squared' >No More Dairy</button> 
                 <button className='squared' >Yoga After Work</button> 
                 <button className='squared' >Code Everything</button> 
@@ -154,7 +224,7 @@ export default class dashboard extends Component {
                 <button className='squared' >No More Dairy</button> 
                 <button className='squared' >No More Dairy</button> 
                 <button className='squared' >No More Dairy</button> 
-                <button className='squared' >No More Dairy</button> 
+                <button className='squared' >No More Dairy</button>  */}
 
 
                 {/* <div className='new_goal'>
@@ -188,7 +258,7 @@ export default class dashboard extends Component {
 
                 {/* <Link className='link' to='/nav/goal'><button>goal</button></Link> */}
                 
-                    {goals}
+                    {goals.reverse()}
 
                 </div>
             </div>
