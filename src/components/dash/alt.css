@@ -1,0 +1,78 @@
+
+.COLOR {
+    background: #26D48C;
+    background: linear-gradient(90deg, rgba(90, 177, 236, 0.65), rgba(90, 236, 229, 0.5) );
+}
+
+.start, .squared{
+    cursor: pointer;
+    outline: none;
+}
+
+.start{
+    background-color: white;
+    width:95%;
+    height: 60px;
+    border-radius: 5px;
+    border:none;
+    margin-top:10px;
+    font-size:30px;
+    color:rgba(90, 177, 236, 0.75);
+    border:5px solid rgba(90, 177, 236, 0.75);
+}
+
+.squared{
+    background: linear-gradient(60deg, rgba(90, 177, 236, 0.65), rgba(90, 236, 229, 0.5) );
+    width:95%;
+    height: 60px;
+    border-radius: 5px;
+    border:none;
+    margin-top:10px;
+    font-size:30px;
+    color:white;
+}
+
+/*********  FORM SECTION OF CSS PAGE *********/
+
+.form{
+    width:100%;
+    border-bottom:5px solid rgba(90, 177, 236, 0.75);
+    height: 275px;
+    margin-top:-275px;
+    animation: slide .84s;
+    animation-fill-mode: forwards;
+    overflow: hidden;
+    position: relative;
+    /* display: flex; */
+    /* align-items: center;
+    justify-content: center; */
+    /* flex-direction: row; */
+}
+
+
+.good, .bad {
+    width:95%;
+    height: 60px;
+    border: 5px solid rgba(90, 177, 236, 0.75);
+    margin-top:47.5px;
+    border-radius: 30px;
+    background: white;
+    font-size: 25px;
+    color: rgba(90, 177, 236, 0.75);
+    outline:none;
+}
+
+.stack {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+
+@keyframes slide {
+    to{
+        margin-top: 0px;
+    }
+}

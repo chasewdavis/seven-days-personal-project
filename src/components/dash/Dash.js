@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Dash.css';
+// import './Dash.css';
+import './alt.css';
 // import Goal from '../goal/Goal.js';
 import axios from 'axios';
+
+let form = '';
 
 export default class dashboard extends Component {
 
@@ -36,12 +39,20 @@ export default class dashboard extends Component {
             goodHabit: true,
             prompt: ''
         })
+        form = (
+            <div className='form'>good</div>
+        )
+        this.forceUpdate();
     }
     bad(){
         this.setState({
             goodHabit: false,
             prompt:'Avoid'
         })
+        form = (
+            <div className='form'>bad</div>
+        )
+        this.forceUpdate();
     }
 
     addOne(){
@@ -95,7 +106,26 @@ export default class dashboard extends Component {
         }
     }
 
+    form(){
+        if(!form){
+            form = (
+            <div className='form'>
+                <div className='stack left'>
+                <button className='good' onClick={()=>this.good()}>create new habit</button>
+                <button className='bad' onClick={()=>this.bad()}>end an old habit</button>
+                </div>
+            </div>
+            )
+            this.forceUpdate();
+        }else{
+            form = '';
+            this.forceUpdate();
+        }
+    }
+
     render(){
+
+        console.log(this.state)
 
         const goals = this.state.goals.map((e,i)=>{
             return (
@@ -109,7 +139,25 @@ export default class dashboard extends Component {
             <div>
                 <div className='space'></div>
                 <div className='contain'>
-                <div className='new_goal'>
+
+                <button onClick={()=>this.form()} className='start' >Start Tracking</button>
+                {form} 
+
+                <button className='squared' >Bike to Work</button> 
+                <button className='squared' >No More Dairy</button> 
+                <button className='squared' >Yoga After Work</button> 
+                <button className='squared' >Code Everything</button> 
+                <button className='squared' >No More Dairy</button> 
+                <button className='squared' >No More Dairy</button> 
+                <button className='squared' >No More Dairy</button> 
+                <button className='squared' >No More Dairy</button> 
+                <button className='squared' >No More Dairy</button> 
+                <button className='squared' >No More Dairy</button> 
+                <button className='squared' >No More Dairy</button> 
+                <button className='squared' >No More Dairy</button> 
+
+
+                {/* <div className='new_goal'>
                     <div className='new_goal_header'>
                     <button onClick={()=>this.slideDown()} className='start'>+</button>
                     <div>new goal</div>
@@ -133,7 +181,7 @@ export default class dashboard extends Component {
                     <button onClick={()=>this.setGoal()} className='submit'>
                         submit
                     </button>
-                </div>
+                </div> */}
 
                 </div>
                 <div className='goals'>

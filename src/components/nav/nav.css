@@ -1,12 +1,15 @@
+.COLOR {background: #5AB1EC}
+
 .nav {
     width:100%;
     height: 60px;
-    background-color: rgba(0,0,0,.1);
-    position: fixed;
+    background: linear-gradient(90deg, rgba(90, 177, 236, 0.65), rgba(90, 236, 229, 0.5) );
+    /* position: fixed; */
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
+    padding:0 10px; /*more for larger*/
   }
   
   .nav button {
@@ -26,4 +29,9 @@
   .nav button:hover {
     background-color: #25A0AD;
     color:whitesmoke;
+  }
+
+  .nav img {
+    width:40px;
+
   }
