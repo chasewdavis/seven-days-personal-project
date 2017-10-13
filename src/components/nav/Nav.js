@@ -9,14 +9,21 @@ export default class Nav extends Component {
 
     slideOut(){
         if(sidebar_right===false){
+            sidebar_right=true;
             sidebar = (
-                <div className='side_bar right'>
-                <Link to='/dashboard'><button>dashboard</button></Link>
-                <a className='logout' href='http://localhost:3005/auth/logout'><button>Log out</button></a>
+                <div className='parent_menu'>
+                    <div className='side_bar right'>
+                    <Link to='/dashboard'><button className='side_bar_btn' onClick={()=>this.slideOut()}>dashboard</button></Link>
+                    <a className='logout' href='http://localhost:3005/auth/logout'><button>Log out</button></a>
+                    </div>
+                    <div onClick={()=>this.slideOut()} className='close_menu'>
+                        {/* invisible div to make navigation easeir
+                            closes slide out menu
+                         */}
+                    </div>
                 </div>
             )
             this.forceUpdate();
-            sidebar_right=true;
         }else{
             sidebar = (
                 <div className='side_bar left'>sidebar</div>

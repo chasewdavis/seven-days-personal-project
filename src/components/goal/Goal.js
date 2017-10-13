@@ -42,10 +42,9 @@ export default class Goal extends Component {
 
         return (
             <div>
-                <div className='space'></div>
                 <Nav title={this.state.goalname}/>
                 <Log/>
-                <Streak/>
+                {/* <Streak/> */}
             </div>
         )
     }

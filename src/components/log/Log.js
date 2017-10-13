@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 // import './log.css';
 import './alt.css';
+let log_form = <div></div>;
+let hide_form = true;
 
 export default class Log extends Component {
 
@@ -24,6 +26,29 @@ export default class Log extends Component {
         console.log(this.state);    
     }
 
+    form(){
+        var d = new Date()
+        var index = d.getDay();
+        console.log('add or remove log_form')
+        if(hide_form){
+            hide_form=false;
+            log_form = (
+                <div className='log_form'>
+                    <div className='log_day'><div>{`${d.getMonth()+1} / ${d.getDate()} `} (today)</div><input type="checkbox" onClick={(prop)=>this.check(6)}/></div>    
+                    {this.provide_last_ten_days(d.getMonth()+1, d.getDate())}
+                    <button className='more'>more</button>
+                </div>
+            )
+        }else{
+            hide_form=true;
+            log_form = <div></div>;
+        }
+
+
+
+        this.forceUpdate();
+    }
+
     provide_last_ten_days(todaysMonth,todaysDate){
 
         const thirtyone = [0,1,3,5,7,8,10,12];
@@ -32,24 +57,32 @@ export default class Log extends Component {
 
             var array = [];
 
-            for(var i = 1; i < 10; i++){
+            for(var i = 1; i < 7; i++){
                 if(todaysDate-i > 0){
 
-                    array.push(<div key={i} className='log_day'>{todaysMonth} / {todaysDate-i}</div>)
+                    array.push(<div key={i} className='log_day'>{todaysMonth} / {todaysDate-i}
+                        <input className='input' type="checkbox" onClick={(prop)=>this.check(6)}/>
+                    </div>)
 
                 }else{
                     if(todaysMonth===1){todaysMonth=13}
                     if(thirtyone.indexOf(todaysMonth-1)!==-1){
 
-                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+31}</div>)
+                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+31}
+                            <input type="checkbox" onClick={(prop)=>this.check(6)}/>
+                        </div>)
 
                     }else if(thirty.indexOf(todaysMonth-1)!==-1){
 
-                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+30}</div>)
+                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+30}
+                            <input type="checkbox" onClick={(prop)=>this.check(6)}/>
+                        </div>)
 
                     }else if(twentyeight.indexOf(todaysMonth-1)!==-1){
                         
-                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+28}</div>)
+                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+28}
+                            <input type="checkbox" onClick={(prop)=>this.check(6)}/>
+                        </div>)
                     }
                 }
             }
@@ -59,27 +92,17 @@ export default class Log extends Component {
 
     render(){
 
-        var d = new Date()
-        var index = d.getDay();
-        let days = this.provide_last_ten_days(d.getMonth()+1, d.getDate())
+        
 
         return (
-            <div className='log' >
+            <div>
                 
-                <div className='add_log'>+ Log</div>
-                <div className='days'>
-                {/* American style dates */}
-                <div className='log_day'><div>{`${d.getMonth()+1} / ${d.getDate()} `} (today)</div><input type="checkbox" onClick={(prop)=>this.check(6)}/></div>
-                {days}
-                {/* <div className='day six'><div>{days[6]}</div><input type="checkbox" onClick={(prop)=>this.check(5)}/></div>
-                <div className='day five'><div>{days[5]}</div><input type="checkbox" onClick={(prop)=>this.check(4)}/></div>
-                <div className='day four'><div>{days[4]}</div><input type="checkbox" onClick={(prop)=>this.check(3)}/></div>
-                <div className='day three'><div>{days[3]}</div><input type="checkbox" onClick={(prop)=>this.check(2)}/></div>
-                <div className='day two'><div>{days[2]}</div><input type="checkbox" onClick={(prop)=>this.check(1)}/></div>
-                <div className='day one'><div>{days[1]}</div><input type="checkbox" onClick={(prop)=>this.check(0)} /></div> */}
-                <button className='more'>more</button>
+                <button onClick={()=>this.form()} className='add_log'>+ Log</button>
+
+                {log_form}
+        
+                {/* {days} */}
                 
-                </div>
             </div>
         )
     }

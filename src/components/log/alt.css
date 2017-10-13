@@ -1,0 +1,38 @@
+.add_log {
+  background-color: white;
+  width: 95%;
+  height: 60px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  font-size: 30px;
+  color: rgba(90, 177, 236, 0.75);
+  border: 5px solid rgba(90, 177, 236, 0.75);
+  outline: none; }
+
+.log_form {
+  z-index: -5;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-top: -400px;
+  animation: slide_down .84s;
+  animation-fill-mode: forwards;
+  border-bottom: 5px solid rgba(90, 177, 236, 0.75); }
+
+.log_day {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  background: linear-gradient(90deg, rgba(90, 177, 236, 0.65), rgba(90, 236, 229, 0.5));
+  margin-top: 5px;
+  border-radius: 5px; }
+
+.input {
+  background-color: red;
+  height: 100px; }
+
+@keyframes slide_down {
+  to {
+    margin-top: 0; } }
