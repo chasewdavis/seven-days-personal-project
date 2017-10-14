@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 // import './log.css';
 import './alt.css';
+// import 'pretty-checkbox/src/pretty.css';
+
 let log_form = <div></div>;
 let hide_form = true;
 
@@ -15,7 +17,7 @@ export default class Log extends Component {
     }
 
     check(day){
-        // console.log(prop)
+        console.log(day);
         var temp = this.state.last_seven
         if(temp[day]===false){
             temp[day] = true;
@@ -34,17 +36,14 @@ export default class Log extends Component {
             hide_form=false;
             log_form = (
                 <div className='log_form'>
-                    <div className='log_day'><div>{`${d.getMonth()+1} / ${d.getDate()} `} (today)</div><input type="checkbox" onClick={(prop)=>this.check(6)}/></div>    
                     {this.provide_last_ten_days(d.getMonth()+1, d.getDate())}
-                    <button className='more'>more</button>
+                    {/* <button className='more'>more</button> */}
                 </div>
             )
         }else{
             hide_form=true;
             log_form = <div></div>;
         }
-
-
 
         this.forceUpdate();
     }
@@ -57,11 +56,11 @@ export default class Log extends Component {
 
             var array = [];
 
-            for(var i = 1; i < 7; i++){
+            for(let i = 0; i < 7; i++){
                 if(todaysDate-i > 0){
 
                     array.push(<div key={i} className='log_day'>{todaysMonth} / {todaysDate-i}
-                        <input className='input' type="checkbox" onClick={(prop)=>this.check(6)}/>
+                        <input onClick={ ()=>{ this.check(i)} } type="checkbox"/> 
                     </div>)
 
                 }else{
@@ -69,19 +68,19 @@ export default class Log extends Component {
                     if(thirtyone.indexOf(todaysMonth-1)!==-1){
 
                         array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+31}
-                            <input type="checkbox" onClick={(prop)=>this.check(6)}/>
+                            <input onClick={ ()=>{ this.check(i)} } type="checkbox"/>
                         </div>)
 
                     }else if(thirty.indexOf(todaysMonth-1)!==-1){
 
                         array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+30}
-                            <input type="checkbox" onClick={(prop)=>this.check(6)}/>
+                            <input onClick={ ()=>{ this.check(i)} } type="checkbox"/>
                         </div>)
 
                     }else if(twentyeight.indexOf(todaysMonth-1)!==-1){
                         
                         array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+28}
-                            <input type="checkbox" onClick={(prop)=>this.check(6)}/>
+                            <input onClick={ ()=>{ this.check(i)} } type="checkbox"/>
                         </div>)
                     }
                 }

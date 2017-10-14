@@ -21,15 +21,29 @@ module.exports = {
     update: (req,res) => {
 
         //req.user will grab the id of the user
+
+        let goalid = null;
         
         console.log('update funtion is firing')
 
         let args = [req.body.goalname, req.body.daysoutofseven, req.body.goodHabit, req.user]
 
         req.app.get('db').create_new_habit(args).then(response=>{
-            // res.json(response)
-            console.log('THE RESPONSE FROM THE DATABASE IS... ' + res.json(response));
-        })
+            
+            res.send(response);
 
+        })  
+
+    },
+
+    createSuccesses: (req,res) => {
+
+        console.log('createSuccesses function is firing');
+
+        console.log(req.body);
+
+        req.app.get('db').create_success_logs([req.body.id])
+        res.sendStatus(200)
     }
+
 }

@@ -25,17 +25,17 @@ export default class dashboard extends Component {
 
     componentDidMount(){
         //only works AS LONG AS SERVER FILE IS NOT EDITED
-        console.log('comp mounted')
+        // console.log('comp mounted')
         axios.get('/api/grabgoals').then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             this.setState({goals:res.data})
         })
     }
 
-    slideDown(){
-        console.log('slide down');
-        document.getElementsByClassName('good_bad')
-    }
+    // slideDown(){
+    //     // console.log('slide down');
+    //     document.getElementsByClassName('good_bad')
+    // }
 
     good(){
         this.setState({
@@ -77,10 +77,17 @@ export default class dashboard extends Component {
                     })
         
                     axios.put('/api/setgoal', temp[temp.length-1]).then(res=> {
-                        console.log(res.data[0].id)
+                        console.log('respoonse is...',res.data[0].id)
                         temp[temp.length-1].id = res.data[0].id
+
+
+                        axios.put('/api/successes', {id:res.data[0].id}).then(res2=> {
+                            console.log(res2);
+                        })
                     })
         
+                    
+
                     this.setState({
                         goals: temp
                     })

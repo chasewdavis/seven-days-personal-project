@@ -88,6 +88,7 @@ passport.deserializeUser( function( user, done ){
 })
 
 app.put('/api/setgoal', controller.update )
+app.put('/api/successes', controller.createSuccesses )
 app.get('/api/grabgoals', controller.read)
 app.get('/api/goal/:id', controller.unique)
 
