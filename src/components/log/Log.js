@@ -36,7 +36,7 @@ export default class Log extends Component {
             hide_form=false;
             log_form = (
                 <div className='log_form'>
-                    {this.provide_last_ten_days(d.getMonth()+1, d.getDate())}
+                    {this.provide_last_seven_days(d.getMonth()+1, d.getDate())}
                     {/* <button className='more'>more</button> */}
                 </div>
             )
@@ -48,7 +48,7 @@ export default class Log extends Component {
         this.forceUpdate();
     }
 
-    provide_last_ten_days(todaysMonth,todaysDate){
+    provide_last_seven_days(todaysMonth,todaysDate){
 
         const thirtyone = [0,1,3,5,7,8,10,12];
         const thirty = [4,6,9,11];
@@ -59,28 +59,53 @@ export default class Log extends Component {
             for(let i = 0; i < 7; i++){
                 if(todaysDate-i > 0){
 
+                    this.state.last_seven[i]===true 
+                    ?
                     array.push(<div key={i} className='log_day'>{todaysMonth} / {todaysDate-i}
-                        <input onClick={ ()=>{ this.check(i)} } type="checkbox"/> 
+                        <input onClick={ ()=>{ this.check(i)} } type="checkbox" defaultChecked/> 
                     </div>)
-
+                    :
+                    array.push(<div key={i} className='log_day'>{todaysMonth} / {todaysDate-i}
+                    <input onClick={ ()=>{ this.check(i)} } type="checkbox" /> 
+                    </div>)
+                    ;
                 }else{
                     if(todaysMonth===1){todaysMonth=13}
                     if(thirtyone.indexOf(todaysMonth-1)!==-1){
 
+                        this.state.last_seven[i]===true 
+                        ?
                         array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+31}
-                            <input onClick={ ()=>{ this.check(i)} } type="checkbox"/>
+                            <input onClick={ ()=>{ this.check(i)} } type="checkbox" on='true' defaultChecked/>
                         </div>)
+                        :
+                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+31}
+                        <input onClick={ ()=>{ this.check(i)} } type="checkbox" /> 
+                        </div>)
+                        ;
 
                     }else if(thirty.indexOf(todaysMonth-1)!==-1){
 
+                        this.state.last_seven[i]===true 
+                        ?
                         array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+30}
-                            <input onClick={ ()=>{ this.check(i)} } type="checkbox"/>
+                            <input onClick={ ()=>{ this.check(i)} } type="checkbox" defaultChecked/>
+                        </div>)
+                        :
+                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+30}
+                        <input onClick={ ()=>{ this.check(i)} } type="checkbox"/>
                         </div>)
 
                     }else if(twentyeight.indexOf(todaysMonth-1)!==-1){
                         
+                        this.state.last_seven[i]===true 
+                        ?
                         array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+28}
-                            <input onClick={ ()=>{ this.check(i)} } type="checkbox"/>
+                            <input onClick={ ()=>{ this.check(i)} } type="checkbox" defaultChecked/>
+                        </div>)
+                        :
+                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+28}
+                        <input onClick={ ()=>{ this.check(i)} } type="checkbox" />
                         </div>)
                     }
                 }

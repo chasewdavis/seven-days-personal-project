@@ -27,7 +27,10 @@ export default class Goal extends Component {
                 daysoutofseven: res.data[0].daysoutofseven,
                 userid: res.data[0].userid,
             })
-        })//IT WORKS!!
+        });
+        axios.post(`/api/updatesuccesses/${this.props.match.params.id}`).then(res=>{
+            console.log(res);
+        })
     }
 
     returnTitle(){
