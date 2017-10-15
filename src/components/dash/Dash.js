@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import './Dash.css';
-import './alt.css';
-// import Goal from '../goal/Goal.js';
+import './dash.css';
 import axios from 'axios';
 import Nav from '../nav/Nav.js';
 

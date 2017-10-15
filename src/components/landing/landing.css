@@ -1,75 +1,60 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 * {
   box-sizing: border-box;
   font-family: 'Montserrat';
-  text-align: center;
-}
-
-.COLORS {
-background: #25A0AD;
-}
+  text-align: center; }
 
 .info {
   background-color: white;
-  height: 66.7vh;
-}
+  height: 66.7vh; }
 
 .login_page {
   /* background-color: grey; */
   height: 33.3vh;
-  background: linear-gradient(0deg, rgba(0,0,0,.3), whitesmoke);
+  background: linear-gradient(90deg, #536976, #BBD2C5);
   opacity: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
-}
+  flex-direction: row; }
 
 .login_box {
-  width:90%;
+  width: 90%;
   height: 80%;
-  border:none;
+  border: none;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   /* border:1px solid black; */
-  padding:10px;
-}
+  padding: 10px; }
 
 .login_box a {
-  background-color: rgba(0,0,0,0);
+  background-color: transparent;
   font-size: 22px;
   border-radius: 40px;
-  border: 3px solid #25A0AD;
-  color: #25A0AD;
-  width:80%;
-  height: 30%;
-  margin:14px;
+  border: 5px solid #536976;
+  color: #536976;
+  width: 80%;
+  height: 60px;
+  margin: 14px;
   outline: none;
   text-decoration: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
-}
+  flex-direction: row; }
 
-.login_box a:active{
-  background-color: #25A0AD;
-  color:whitesmoke;
-}
+.login_box a:active {
+  background-color: #536976;
+  color: whitesmoke; }
 
 @media only screen and (min-width: 450px) {
-    .login_box {
-        width: 400px; 
-    }
-    .login_box a {
-        transition:background-color .84s, color .84s;
-    }
-    .login_box a:hover{
-        background-color: #25A0AD;
-        color:whitesmoke;
-    }
-}
+  .login_box {
+    width: 400px; }
+  .login_box a {
+    transition: background-color .84s, color .84s; }
+  .login_box a:hover {
+    background-color: #536976;
+    color: whitesmoke; } }

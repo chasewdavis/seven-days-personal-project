@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-// import './log.css';
-import './alt.css';
+import './log.css';
+import './checkbox.css';
 import axios from 'axios';
 // import 'pretty-checkbox/src/pretty.css';
 
@@ -44,8 +44,7 @@ export default class Log extends Component {
 
     form(){
         var d = new Date()
-        var index = d.getDay();
-        console.log('add or remove log_form')
+        
         if(hide_form){
             hide_form=false;
             log_form = (
@@ -64,9 +63,16 @@ export default class Log extends Component {
 
     provide_last_seven_days(todaysMonth,todaysDate){
 
+        //much better way to do this, will shorten code significantly after reaching the mvp
         const thirtyone = [0,1,3,5,7,8,10,12];
         const thirty = [4,6,9,11];
         const twentyeight = [2]; //next leap day isn't until 2020
+
+        var d = new Date()
+        const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
+
+        var index = d.getDay();
+        console.log('day is ', weekdays[index])
 
             var array = [];
 
@@ -75,12 +81,26 @@ export default class Log extends Component {
 
                     this.state.last_seven[i]===true 
                     ?
-                    array.push(<div key={i} className='log_day'>{todaysMonth} / {todaysDate-i}
-                        <input onClick={ ()=>{ this.check(i)} } type="checkbox" defaultChecked/> 
+                    array.push(<div key={i} className='log_day'>
+
+                        <div className='the_day'>{weekdays[index+1]}</div>
+                        <div className='the_date'>{todaysMonth} / {todaysDate-i}</div>
+                        
+                        <div className='from_the_right'>
+                            <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
+                            <label htmlFor={i} className="check-box"></label> 
+                        </div>
                     </div>)
                     :
-                    array.push(<div key={i} className='log_day'>{todaysMonth} / {todaysDate-i}
-                    <input onClick={ ()=>{ this.check(i)} } type="checkbox" /> 
+                    array.push(<div key={i} className='log_day'>
+
+                        <div className='the_day'>{weekdays[index+i]}</div>
+                        <div className='the_date'>{todaysMonth} / {todaysDate-i}</div>
+        
+                        <div className='from_the_right'>
+                            <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
+                            <label htmlFor={i} className="check-box"></label> 
+                        </div>
                     </div>)
                     ;
                 }else{
@@ -89,12 +109,26 @@ export default class Log extends Component {
 
                         this.state.last_seven[i]===true 
                         ?
-                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+31}
-                            <input onClick={ ()=>{ this.check(i)} } type="checkbox" on='true' defaultChecked/>
+                        array.push(<div key={i} className='log_day'>
+    
+                            <div className='the_day'>{weekdays[index+1]}</div>
+                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+31}</div>
+                            
+                            <div className='from_the_right'>
+                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
+                                <label htmlFor={i} className="check-box"></label> 
+                            </div>
                         </div>)
                         :
-                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+31}
-                        <input onClick={ ()=>{ this.check(i)} } type="checkbox" /> 
+                        array.push(<div key={i} className='log_day'>
+    
+                            <div className='the_day'>{weekdays[index+i]}</div>
+                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+31}</div>
+            
+                            <div className='from_the_right'>
+                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
+                                <label htmlFor={i} className="check-box"></label> 
+                            </div>
                         </div>)
                         ;
 
@@ -102,25 +136,55 @@ export default class Log extends Component {
 
                         this.state.last_seven[i]===true 
                         ?
-                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+30}
-                            <input onClick={ ()=>{ this.check(i)} } type="checkbox" defaultChecked/>
+                        array.push(<div key={i} className='log_day'>
+    
+                            <div className='the_day'>{weekdays[index+1]}</div>
+                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+30}</div>
+                            
+                            <div className='from_the_right'>
+                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
+                                <label htmlFor={i} className="check-box"></label> 
+                            </div>
                         </div>)
                         :
-                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+30}
-                        <input onClick={ ()=>{ this.check(i)} } type="checkbox"/>
+                        array.push(<div key={i} className='log_day'>
+    
+                            <div className='the_day'>{weekdays[index+i]}</div>
+                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+30}</div>
+            
+                            <div className='from_the_right'>
+                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
+                                <label htmlFor={i} className="check-box"></label> 
+                            </div>
                         </div>)
+                        ;
 
                     }else if(twentyeight.indexOf(todaysMonth-1)!==-1){
                         
                         this.state.last_seven[i]===true 
                         ?
-                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+28}
-                            <input onClick={ ()=>{ this.check(i)} } type="checkbox" defaultChecked/>
+                        array.push(<div key={i} className='log_day'>
+    
+                            <div className='the_day'>{weekdays[index+1]}</div>
+                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+28}</div>
+                            
+                            <div className='from_the_right'>
+                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
+                                <label htmlFor={i} className="check-box"></label> 
+                            </div>
                         </div>)
                         :
-                        array.push(<div key={i} className='log_day'>{todaysMonth-1} / {todaysDate-i+28}
-                        <input onClick={ ()=>{ this.check(i)} } type="checkbox" />
+                        array.push(<div key={i} className='log_day'>
+    
+                            <div className='the_day'>{weekdays[index+i]}</div>
+                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+28}</div>
+            
+                            <div className='from_the_right'>
+                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
+                                <label htmlFor={i} className="check-box"></label> 
+                            </div>
                         </div>)
+                        ;
                     }
                 }
             }
@@ -134,7 +198,13 @@ export default class Log extends Component {
 
         return (
             <div>
-                
+
+                {/* SWITCH */}
+                {/* <label className='switch'>
+                    <input type='checkbox' />
+                    <div className='switch-btn'></div>
+                </label> */}
+
                 <button onClick={()=>this.form()} className='add_log'>+ Log</button>
 
                 {log_form}

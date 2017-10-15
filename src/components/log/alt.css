@@ -6,9 +6,13 @@
   border: none;
   margin-top: 10px;
   font-size: 30px;
-  color: rgba(90, 177, 236, 0.75);
-  border: 5px solid rgba(90, 177, 236, 0.75);
+  color: #74EBBE;
+  border: 5px solid #74EBBE;
   outline: none; }
+
+.the_day {
+  position: absolute;
+  left: 10px; }
 
 .log_form {
   z-index: -5;
@@ -17,21 +21,23 @@
   margin-top: -400px;
   animation: slide_down .84s;
   animation-fill-mode: forwards;
-  border-bottom: 5px solid rgba(90, 177, 236, 0.75);
+  border-bottom: 5px solid #74EBBE;
   padding-bottom: 5px; }
 
 .log_day {
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 50px;
-  background: white;
   margin-top: 5px;
   border-radius: 5px;
-  box-shadow: 0 0 3px #DFDFDF;
-  color: rgba(90, 177, 236, 0.75);
-  font-size: 20px; }
+  background: white;
+  padding: 0 10px;
+  color: #74EBBE;
+  font-size: 22px;
+  font-weight: bolder; }
 
 @keyframes slide_down {
   to {

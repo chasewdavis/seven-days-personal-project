@@ -1,9 +1,10 @@
-.COLOR {background: #5AB1EC}
+
+@import "../../utilities/variables.scss";
 
 .nav {
     width:100%;
     height: 60px;
-    background: linear-gradient(90deg, rgba(90, 177, 236, 0.65), rgba(90, 236, 229, 0.5) );
+    background: $gradient;
     /* position: fixed; */
     display: flex;
     flex-direction: row;
@@ -27,14 +28,14 @@
     height:40px;
     width:100px;
     border-radius: 20px;
-    border: 3px solid #25A0AD;
+    border: 3px solid $main-color;
     color: #25A0AD;
     transition: background-color .84s, color .84s;
     cursor: pointer;
   }
   
   .nav button:hover {
-    background-color: #25A0AD;
+    background-color: $main_color;
     color:whitesmoke;
   }
 
@@ -87,13 +88,13 @@
     position: absolute;
     left: 10%;
     top: 25px;
-    border:4px solid rgba(90, 177, 236, 0.75);
+    border:4px solid $main_color;
     border-radius: 5px;
     height: 60px;
     width:80%;
     box-sizing: border-box;
     background-color: white;
-    color: rgba(90, 177, 236, 0.75);
+    color: $main_color;
     font-size:25px;
   }
 
@@ -101,7 +102,7 @@
     position: absolute;
     bottom: calc(60px + 25px);
     left: 10%;
-    border:4px solid rgba(90, 177, 236, 0.75);
+    border:4px solid $main_color;
     border-radius: 30px;
     height: 60px;
     width:80%;
@@ -112,7 +113,7 @@
     height: 52px;
     /* border:1px solid black; */
     font-size: 25px;
-    color: rgba(90, 177, 236, 0.75);
+    color: $main_color;
   }
 
   @keyframes slide_right {

@@ -1,65 +1,44 @@
-.log{
-    /* border:1px solid red; */
-}
+.add_log {
+  background-color: white;
+  width: 95%;
+  height: 60px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  font-size: 30px;
+  color: #536976;
+  border: 5px solid #536976;
+  outline: none; }
 
-.days{
-    /* border:1px solid black; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
+.the_day {
+  position: absolute;
+  left: 10px; }
 
-/* .days :nth-child(2n-1){
-    background-color: white;
-} */
+.log_form {
+  z-index: -5;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-top: -400px;
+  animation: slide_down .84s;
+  animation-fill-mode: forwards;
+  border-bottom: 5px solid #536976;
+  padding-bottom: 5px; }
 
-.days div{
-    width:100vw;
-}
+.log_day {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  margin-top: 5px;
+  border-radius: 5px;
+  background: white;
+  padding: 0 10px;
+  color: #536976;
+  font-size: 22px;
+  font-weight: bolder; }
 
-.day{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: row;
-    height: 60px;
-    width: 100vw;
-    padding-right: 10px;
-}
-
-.add_log{
-    height: 60px;
-    line-height: 60px;
-    text-align: middle;
-}
-
-.day input{
-    height: 50px;
-    width: 50px;
-    /* border-radius: 25px; */
-    background-color: white;
-    /* box-shadow: inset 0 0 5px black; */
-}
-
-.one{
-    background-color: rgba(37, 164, 173, 0.14);
-}
-.two{
-    background-color: rgba(37, 164, 173, 0.28);
-}
-.three{
-    background-color: rgba(37, 164, 173, 0.42);
-}
-.four{
-    background-color: rgba(37, 164, 173, 0.56);
-}
-.five{
-    background-color: rgba(37, 164, 173, 0.7);
-}
-.six{
-    background-color: rgba(37, 164, 173, 0.84);
-}
-.seven{
-    background-color: rgba(37, 164, 173, 0.98);
-}
+@keyframes slide_down {
+  to {
+    margin-top: 0; } }
