@@ -97,10 +97,19 @@ module.exports = {
     },
 
     getbools: (req,res) => {
-        console.log('from getbools', req.params.id)
+        // console.log('from getbools', req.params.id)
         const goalid = req.params.id;
         const db = req.app.get('db');
         db.get_booleans([goalid]).then(res2=>{
+            res.send(res2)
+        })
+    },
+
+    getallbools: (req,res) => {
+        // console.log('from get all bools', req.params.id)
+        const goalid = req.params.id;
+        const db = req.app.get('db');
+        db.get_all_booleans([goalid]).then(res2=>{
             res.send(res2)
         })
     },

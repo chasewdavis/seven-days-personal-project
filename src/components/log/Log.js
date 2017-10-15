@@ -38,6 +38,7 @@ export default class Log extends Component {
         }
         this.setState({last_seven:temp})
         axios.post(`/api/changebool/${this.props.goal}`, {day})
+        // .then( console.log(this.props.updateStreak()) )
         console.log(this.state);    
     }
 
@@ -129,7 +130,7 @@ export default class Log extends Component {
 
     render(){
 
-        
+        // console.log('this.props.check is... ' , this.props.check(1))
 
         return (
             <div>
@@ -137,8 +138,6 @@ export default class Log extends Component {
                 <button onClick={()=>this.form()} className='add_log'>+ Log</button>
 
                 {log_form}
-        
-                {/* {days} */}
                 
             </div>
         )
