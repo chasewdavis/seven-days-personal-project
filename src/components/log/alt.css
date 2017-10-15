@@ -26,9 +26,12 @@
   align-items: center;
   justify-content: center;
   height: 50px;
-  background: rgba(90, 177, 236, 0.75);
+  background: white;
   margin-top: 5px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  box-shadow: 0 0 3px #DFDFDF;
+  color: rgba(90, 177, 236, 0.75);
+  font-size: 20px; }
 
 @keyframes slide_down {
   to {

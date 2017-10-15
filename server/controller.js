@@ -82,8 +82,6 @@ module.exports = {
 
             req.app.get('db').grab_last_day([goalid]).then(day=>{
 
-                console.log('the day is...' , day[0].dayof);
-
                 for(var i = day[0].dayof+1; i <= index; i++){
                     console.log(i);
                     req.app.get('db').fill_missing_days([goalid,i])
@@ -96,5 +94,42 @@ module.exports = {
         })
          
         res.sendStatus(200);
+    },
+
+    getbools: (req,res) => {
+        console.log('from getbools', req.params.id)
+        const goalid = req.params.id;
+        const db = req.app.get('db');
+        db.get_booleans([goalid]).then(res2=>{
+            res.send(res2)
+        })
+    },
+
+    changebool: (req,res) => {
+        console.log('from changebool', req.body.day) //day clicked on
+        console.log('from changebool', req.params.id) //goal id
+        const db = req.app.get('db')
+        const dayclicked = req.body.day;
+        const goalid = req.params.id;
+
+        db.grab_last_day([req.params.id]).then(res2=>{
+            console.log('from changebool', res2[0].dayof)
+            const day = res2[0].dayof - dayclicked;
+            db.update_bool([goalid, day]).then(res3=>{
+
+                res3.sendStatus(200);
+            })
+
+
+            res2.sendStatus(200);
+        })
+
+        // db.update_bool([req.params.id, req.body.day])
+
+
+
+
+        res.sendStatus(200);
     }
+
 }

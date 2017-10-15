@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 // import './log.css';
 import './alt.css';
+import axios from 'axios';
 // import 'pretty-checkbox/src/pretty.css';
 
 let log_form = <div></div>;
@@ -16,6 +17,17 @@ export default class Log extends Component {
         }
     }
 
+    componentDidMount(){
+        // console.log(this.props.goal)
+        axios.get(`api/getbools/${this.props.goal}`)
+        .then(res=>{
+            console.log('after comp mounts response is...', res.data)
+            var array = res.data.map(e=>e.success);
+            console.log(array);
+            this.setState({last_seven:array})
+        })
+    }
+
     check(day){
         console.log(day);
         var temp = this.state.last_seven
@@ -25,6 +37,7 @@ export default class Log extends Component {
             temp[day] = false;
         }
         this.setState({last_seven:temp})
+        axios.post(`/api/changebool/${this.props.goal}`, {day})
         console.log(this.state);    
     }
 

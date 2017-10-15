@@ -46,7 +46,7 @@ export default class Goal extends Component {
         return (
             <div>
                 <Nav title={this.state.goalname}/>
-                <Log/>
+                <Log goal={this.props.match.params.id}/>
                 {/* <Streak/> */}
             </div>
         )

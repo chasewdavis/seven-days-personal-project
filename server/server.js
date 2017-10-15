@@ -89,9 +89,13 @@ passport.deserializeUser( function( user, done ){
 
 app.put('/api/setgoal', controller.update )
 app.put('/api/successes', controller.createSuccesses )
+
 app.get('/api/grabgoals', controller.read)
 app.get('/api/goal/:id', controller.unique)
+app.get('/api/getbools/:id', controller.getbools)
+
 app.post('/api/updatesuccesses/:id', controller.fillmissingdays)
+app.post('/api/changebool/:id' ,controller.changebool)
 
 const PORT = 3005;
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT} :)`))
