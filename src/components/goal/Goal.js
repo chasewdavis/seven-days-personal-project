@@ -3,6 +3,11 @@ import Log from '../log/Log.js';
 import Streak from '../streak/Streak.js';
 import Nav from '../nav/Nav.js';
 import axios from 'axios';
+import Settings from '../settings/Settings.js';
+import './settings.css';
+import gear from '../../svg/gear.svg';
+let pop_up_settings = <div></div>;
+let open_pop_up = true;
 
 export default class Goal extends Component {
 
@@ -93,15 +98,41 @@ export default class Goal extends Component {
         return this.state.title;
     }
 
+    displaySettings(){
+        if(open_pop_up){
+            open_pop_up = false;
+            pop_up_settings = 
+            <div>
+                <div className='overlay'></div>
+                <div className='settings'>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}>x</button></div>
+                    <div className='settings_option'>Edit name</div>
+                    <div className='settings_option'>Edit Days Per Week</div>
+                    <div className='settings_option'>Good / Bad Habit</div>
+                    <div className='settings_option'>Challenge Friends</div>
+                    <div className='settings_option'>Remove Goal</div>
+                </div>
+            </div>
+            this.forceUpdate();
+        }else{
+            open_pop_up = true;
+            pop_up_settings = 
+            <div></div>
+            this.forceUpdate();
+        }
+    }
+
     render(){
 
         console.log(this.state.beststreak)
 
         return (
             <div>
-                <Nav title={this.state.goalname}/>
+                <Nav id={this.props.match.params.id} title={this.state.goalname}/>
                 <Log goal={this.props.match.params.id}/>
                 <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
+                <button className='open_settings_btn' onClick={()=>this.displaySettings()}><img src={gear} />Settings</button>
+                {pop_up_settings}
             </div>
         )
     }

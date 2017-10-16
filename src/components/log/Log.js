@@ -83,7 +83,7 @@ export default class Log extends Component {
                     ?
                     array.push(<div key={i} className='log_day'>
 
-                        <div className='the_day'>{weekdays[index+i]}</div>
+                        <div className='the_day'>{weekdays[index+7-i]}</div>
                         <div className='the_date'>{todaysMonth} / {todaysDate-i}</div>
                         
                         <div className='from_the_right'>
@@ -94,7 +94,7 @@ export default class Log extends Component {
                     :
                     array.push(<div key={i} className='log_day'>
 
-                        <div className='the_day'>{weekdays[index+i]}</div>
+                        <div className='the_day'>{weekdays[index+7-i]}</div>
                         <div className='the_date'>{todaysMonth} / {todaysDate-i}</div>
         
                         <div className='from_the_right'>
@@ -111,7 +111,7 @@ export default class Log extends Component {
                         ?
                         array.push(<div key={i} className='log_day'>
     
-                            <div className='the_day'>{weekdays[index+i]}</div>
+                            <div className='the_day'>{weekdays[index+7-i]}</div>
                             <div className='the_date'>{todaysMonth-1} / {todaysDate-i+31}</div>
                             
                             <div className='from_the_right'>
@@ -122,7 +122,7 @@ export default class Log extends Component {
                         :
                         array.push(<div key={i} className='log_day'>
     
-                            <div className='the_day'>{weekdays[index+i]}</div>
+                            <div className='the_day'>{weekdays[index+7-i]}</div>
                             <div className='the_date'>{todaysMonth-1} / {todaysDate-i+31}</div>
             
                             <div className='from_the_right'>
@@ -138,7 +138,7 @@ export default class Log extends Component {
                         ?
                         array.push(<div key={i} className='log_day'>
     
-                            <div className='the_day'>{weekdays[index+i]}</div>
+                            <div className='the_day'>{weekdays[index+7-i]}</div>
                             <div className='the_date'>{todaysMonth-1} / {todaysDate-i+30}</div>
                             
                             <div className='from_the_right'>
@@ -149,7 +149,7 @@ export default class Log extends Component {
                         :
                         array.push(<div key={i} className='log_day'>
     
-                            <div className='the_day'>{weekdays[index+i]}</div>
+                            <div className='the_day'>{weekdays[index+7-i]}</div>
                             <div className='the_date'>{todaysMonth-1} / {todaysDate-i+30}</div>
             
                             <div className='from_the_right'>
@@ -165,7 +165,7 @@ export default class Log extends Component {
                         ?
                         array.push(<div key={i} className='log_day'>
     
-                            <div className='the_day'>{weekdays[i]}</div>
+                            <div className='the_day'>{weekdays[index+7-i]}</div>
                             <div className='the_date'>{todaysMonth-1} / {todaysDate-i+28}</div>
                             
                             <div className='from_the_right'>
@@ -176,7 +176,7 @@ export default class Log extends Component {
                         :
                         array.push(<div key={i} className='log_day'>
     
-                            <div className='the_day'>{weekdays[index+i]}</div>
+                            <div className='the_day'>{weekdays[index+7-i]}</div>
                             <div className='the_date'>{todaysMonth-1} / {todaysDate-i+28}</div>
             
                             <div className='from_the_right'>

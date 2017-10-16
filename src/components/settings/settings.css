@@ -1,0 +1,20 @@
+.open_settings {
+  text-align: left;
+  padding: 0 10px;
+  position: relative;
+  background-color: #536976;
+  height: 60px;
+  border-radius: 5px;
+  border: none;
+  font-size: 30px;
+  color: white;
+  border: 5px solid #536976;
+  outline: none;
+  line-height: calc(60px - 10px);
+  vertical-align: middle; }
+
+.open_settings img {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 40px; }

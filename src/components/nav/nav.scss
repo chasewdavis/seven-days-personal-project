@@ -11,6 +11,7 @@
     align-items: center;
     justify-content: flex-start;
     padding:0 10px; /*more for larger*/
+    box-shadow: 0 0 10px grey;
   }
 
   .title {
@@ -85,9 +86,10 @@
   } */
 
   .side_bar_btn {
-    position: absolute;
-    left: 10%;
-    top: 25px;
+    // position: absolute;
+    // left: 10%;
+    // top: 25px;
+    margin-top:15px;
     border:4px solid $main_color;
     border-radius: 5px;
     height: 60px;

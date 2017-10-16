@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Landing from './components/landing/Landing.js';
 import Dashboard from './components/dash/Dash.js';
-// import Nav from './components/nav/Nav.js'
+import Settings from './components/settings/Settings.js'
 import Goal from './components/goal/Goal.js'
 
 export default (
@@ -10,7 +10,8 @@ export default (
     <Switch>
         <Route component={Landing} exact path='/' />
         <Route component={Dashboard} path='/dashboard'/>
-        <Route component={Goal} path='/goal/:id'/>
+        <Route component={Goal} exact path='/goal/:id'/>
+        <Route component={Settings} path='/goal/:id/settings'/>
         {/* <Route path='/nav' render={() => (
             <Nav>
                 <Route component={Dashboard} path='/nav/dashboard' />
