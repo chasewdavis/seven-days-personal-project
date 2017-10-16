@@ -68,7 +68,6 @@ app.get('/auth/me', (req,res) => {
 })
 
 app.get('/auth/logout', (req, res) => {
-    console.log('FUNCTION SHOULD LOG ME OUT')
     req.logOut();
     res.redirect(302, 'http://localhost:3000/#/')
 })

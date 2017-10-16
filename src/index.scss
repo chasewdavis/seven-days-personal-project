@@ -1,6 +1,9 @@
+@import "./utilities/variables.scss";
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   /* height: 200%; */
-  background: whitesmoke; }
+  background: $background_color;
+}

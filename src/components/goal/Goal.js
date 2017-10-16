@@ -30,15 +30,16 @@ export default class Goal extends Component {
         });
         axios.post(`/api/updatesuccesses/${this.props.match.params.id}`).then(res=>{
             console.log(res);
+        
+            axios.get(`/api/getallbools/${this.props.match.params.id}`)
+            .then(res2=>{
+                const array = res2.data.map(e=>e.success);
+                console.log(array)
+                const best = this.countBestStreak(array);
+                const current = this.countCurrentStreak(array);
+                this.setState({currentstreak:current, beststreak:best});
+            })
         });
-        axios.get(`/api/getallbools/${this.props.match.params.id}`)
-        .then(res=>{
-            const array = res.data.map(e=>e.success);
-            console.log(array)
-            const best = this.countBestStreak(array);
-            const current = this.countCurrentStreak(array);
-            this.setState({currentstreak:current, beststreak:best});
-        })
     }
 
     // check(day){
@@ -75,7 +76,14 @@ export default class Goal extends Component {
         
         let array = [], count = 0;
 
-        arr.forEach(e=>e?count++:array.push(count));
+        for(var i = 0; i < arr.length; i++){
+          if(arr[i]){
+            count++;
+          }else{
+            array.push(count);
+            count=0;
+          }
+        }
         array.push(count);
         
         return array.reduce((a,c)=>a>c?a:c);
