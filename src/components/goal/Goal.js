@@ -21,6 +21,7 @@ export default class Goal extends Component {
             currentstreak: null,
             beststreak: null,
             forceAnUpdate: null,
+            logSeven: [false,false,false,false,false,false,false]
         }
         this.returnTitle = this.returnTitle.bind(this);
     }
@@ -33,18 +34,32 @@ export default class Goal extends Component {
                 userid: res.data[0].userid,
             })
         });
+        
+        axios.get(`/api/getDaysSinceLastVisit/${this.props.match.params.id}`).then(res=>{
+            console.log('days since last visit is...' , res);
+        })
+
         axios.post(`/api/updatesuccesses/${this.props.match.params.id}`).then(res=>{
-            console.log(res);
+            console.log(res.data);
         
             axios.get(`/api/getallbools/${this.props.match.params.id}`)
             .then(res2=>{
+                console.log('array prior to mapping ', res2.data);
                 const array = res2.data.map(e=>e.success);
-                console.log(array)
+                console.log('array from get all bools after mapping', array)
                 const best = this.countBestStreak(array);
                 const current = this.countCurrentStreak(array);
-                this.setState({currentstreak:current, beststreak:best});
+                this.setState({
+                    currentstreak:current, 
+                    beststreak:best,
+                    logSeven: array.slice(0,7)
+                });
             })
-        });
+        })
+
+
+
+
     }
 
     // check(day){
@@ -124,12 +139,12 @@ export default class Goal extends Component {
 
     render(){
 
-        console.log(this.state.beststreak)
+        // console.log(this.state.beststreak)
 
         return (
             <div>
                 <Nav id={this.props.match.params.id} title={this.state.goalname}/>
-                <Log goal={this.props.match.params.id}/>
+                <Log logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
                 <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
                 <button className='open_settings_btn' onClick={()=>this.displaySettings()}><img src={gear} />Settings</button>
                 {pop_up_settings}

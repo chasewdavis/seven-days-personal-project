@@ -17,15 +17,27 @@ export default class Log extends Component {
         }
     }
 
+    componentWillReceiveProps(newProps){
+        this.setState({
+            last_seven: newProps.logSeven
+        })
+    }
+
     componentDidMount(){
         // console.log(this.props.goal)
-        axios.get(`api/getbools/${this.props.goal}`)
-        .then(res=>{
-            console.log('after comp mounts response is...', res.data)
-            var array = res.data.map(e=>e.success);
-            console.log(array);
-            this.setState({last_seven:array})
-        })
+        // TOO SOON MAN TOO SOON!
+        // axios.get(`api/getbools/${this.props.goal}`)
+        // .then(res=>{
+        //     console.log('after comp mounts response is...', res.data)
+        //     var array = res.data.map(e=>e.success);
+        //     console.log(array);
+        //     this.setState({last_seven:array})
+        // })
+
+        // this.setState({
+        //     last_seven: this.props.logSeven
+        // })
+
     }
 
     check(day){
@@ -69,9 +81,10 @@ export default class Log extends Component {
         const twentyeight = [2]; //next leap day isn't until 2020
 
         var d = new Date()
-        const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
+        const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.'];
+        const future = 4; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE
 
-        var index = d.getDay();
+        var index = d.getDay()+future;
         console.log('day is ', weekdays[index])
 
             var array = [];
@@ -84,7 +97,7 @@ export default class Log extends Component {
                     array.push(<div key={i} className='log_day'>
 
                         <div className='the_day'>{weekdays[index+7-i]}</div>
-                        <div className='the_date'>{todaysMonth} / {todaysDate-i}</div>
+                        <div className='the_date'>{todaysMonth} / {todaysDate-i+future}</div>
                         
                         <div className='from_the_right'>
                             <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
@@ -95,7 +108,7 @@ export default class Log extends Component {
                     array.push(<div key={i} className='log_day'>
 
                         <div className='the_day'>{weekdays[index+7-i]}</div>
-                        <div className='the_date'>{todaysMonth} / {todaysDate-i}</div>
+                        <div className='the_date'>{todaysMonth} / {todaysDate-i+future}</div>
         
                         <div className='from_the_right'>
                             <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
@@ -195,6 +208,9 @@ export default class Log extends Component {
     render(){
 
         // console.log('this.props.check is... ' , this.props.check(1))
+
+        // console.log('inside render... ',this.state.last_seven);
+        // console.log(this.props.logSeven)
 
         return (
             <div>

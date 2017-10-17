@@ -81,14 +81,20 @@ export default class dashboard extends Component {
 
                         axios.put('/api/successes', {id:res.data[0].id}).then(res2=> {
                             console.log(res2);
+                        }).then(res3=>{
+
+                            this.setState({
+                                goals: temp
+                            })
+
                         })
                     })
         
                     
 
-                    this.setState({
-                        goals: temp
-                    })
+                    // this.setState({
+                    //     goals: temp
+                    // })
         
     }
 
@@ -202,6 +208,7 @@ export default class dashboard extends Component {
     render(){
 
         const goals = this.state.goals.map((e,i)=>{
+            console.log(e)
             return (
                 <Link to={`/goal/${e.id}`} key={i}>
                     <button className='squared' >{e.goalname}</button>

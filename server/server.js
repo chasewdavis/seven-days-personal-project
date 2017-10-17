@@ -93,6 +93,7 @@ app.get('/api/grabgoals', controller.read)
 app.get('/api/goal/:id', controller.unique)
 app.get('/api/getbools/:id', controller.getbools)
 app.get('/api/getallbools/:id', controller.getallbools)
+app.get('/api/getDaysSinceLastVisit/:id', controller.getDaysSinceLastVisit)
 
 app.post('/api/updatesuccesses/:id', controller.fillmissingdays)
 app.post('/api/changebool/:id' ,controller.changebool)
