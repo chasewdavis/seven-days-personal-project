@@ -34,10 +34,10 @@ export default class Goal extends Component {
                 userid: res.data[0].userid,
             })
         });
-        
-        axios.get(`/api/getDaysSinceLastVisit/${this.props.match.params.id}`).then(res=>{
-            console.log('days since last visit is...' , res);
-        })
+
+        // axios.get(`/api/getDaysSinceLastVisit/${this.props.match.params.id}`).then(res=>{
+        //     console.log('days since last visit is...' , res);
+        // })
 
         axios.post(`/api/updatesuccesses/${this.props.match.params.id}`).then(res=>{
             console.log(res.data);

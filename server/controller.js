@@ -50,48 +50,47 @@ module.exports = {
         res.sendStatus(200)
     },
 
-    getDaysSinceLastVisit: (req,res) => {
+    // getDaysSinceLastVisit: (req,res) => {
 
-        function days(start,today){
+    //     function getDays(start,today){
 
-            console.log(start, today)
+    //         console.log(start, today)
             
-            const calender = [0,31,28,31,30,31,30,31,31,30,31,30,31];
+    //         const calender = [0,31,28,31,30,31,30,31,31,30,31,30,31];
               
-            start = start.split(' ').map(e=>parseInt(e));
-            today = today.split(' ').map(e=>parseInt(e));
+    //         start = start.split(' ').map(e=>parseInt(e));
+    //         today = today.split(' ').map(e=>parseInt(e));
               
-            var days = calender[start[1]];
+    //         var days = calender[start[1]];
               
-            if(start[0]===today[0] && start[1]===today[1]){
-                return today[2] - start[2];
-            }else if(start[0]===today[0]){
-                return calender.slice(start[1],today[1]).reduce((a,c)=>a+c)-start[2]+today[2];
-            }else{
-                return calender.slice(start[1]).reduce((a,c)=>a+c)-start[2] + calender.slice(0,today[1]).reduce((a,c)=>a+c)+today[2] + (today[0]-start[0]-1)*365;
-            }
-        //function will go out of sync on leap day 2020... oh well
-        }
+    //         if(start[0]===today[0] && start[1]===today[1]){
+    //             return today[2] - start[2];
+    //         }else if(start[0]===today[0]){
+    //             return calender.slice(start[1],today[1]).reduce((a,c)=>a+c)-start[2]+today[2];
+    //         }else{
+    //             return calender.slice(start[1]).reduce((a,c)=>a+c)-start[2] + calender.slice(0,today[1]).reduce((a,c)=>a+c)+today[2] + (today[0]-start[0]-1)*365;
+    //         }
+    //     //function will go out of sync on leap day 2020... oh well
+    //     }
 
-        const goalid = req.params.id;
-        const future = 4;
-        const d = new Date();
-        const today = `${d.getFullYear()} ${d.getMonth()+1} ${d.getDate()+future}`;
-        const start = null;
+    //     const goalid = req.params.id;
+    //     const future = 0;
+    //     const d = new Date();
+    //     const today = `${d.getFullYear()} ${d.getMonth()+1} ${d.getDate()+future}`;
+    //     let start = null;
 
-        req.app.get('db').get_startdate([goalid]).then(res2=> {
+    //     req.app.get('db').get_startdate([goalid]).then(res2=> {
 
             
+    //         start = res2[0].startdate
+    //         // const days = getDays(start,today);
+    //         res.send(today) //number of days since starting not quite what we want but lets test
 
-            const days_since = days(res2[0].startdate,today)
-
-            res.sendStatus(200).send(days_since) //number of days since starting not quite what we want but lets test
-
-            // res2.sendStatus(200)
+    //         // res2.sendStatus(200)
             
-        })
+    //     })
 
-    },
+    // },
 
     fillmissingdays: (req,res) => {
         function days(start,today){
@@ -126,9 +125,6 @@ module.exports = {
         req.app.get('db').get_startdate([goalid]).then( res => {
             startdate = res[0].startdate;
             let index = days(startdate,today);
-
-            ///trying this out
-            
 
             req.app.get('db').grab_last_day([goalid]).then(day=>{
 

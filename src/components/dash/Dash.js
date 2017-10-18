@@ -25,9 +25,19 @@ export default class dashboard extends Component {
         //only works AS LONG AS SERVER FILE IS NOT EDITED
         // console.log('comp mounted')
         axios.get('/api/grabgoals').then(res=>{
-            // console.log(res.data)
+            console.log(res.data)
             this.setState({goals:res.data})
+
+            res.data.map(e=>{
+                
+                axios.post(`/api/updatesuccesses/${e.id}`).then(res=>{
+                    console.log(res.data)
+                })
+
+            })
+            
         })
+
     }
 
     // slideDown(){
@@ -208,7 +218,7 @@ export default class dashboard extends Component {
     render(){
 
         const goals = this.state.goals.map((e,i)=>{
-            console.log(e)
+            // console.log(e)
             return (
                 <Link to={`/goal/${e.id}`} key={i}>
                     <button className='squared' >{e.goalname}</button>
