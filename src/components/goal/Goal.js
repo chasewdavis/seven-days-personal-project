@@ -24,43 +24,38 @@ export default class Goal extends Component {
             logSeven: [false,false,false,false,false,false,false]
         }
         this.returnTitle = this.returnTitle.bind(this);
+        this.updateStreaks = this.updateStreaks.bind(this);
     }
 
     componentDidMount(){
+        this.setGoal();
+        this.updateStreaks();
+    }
+
+    setGoal(){
         axios.get(`/api/goal/${this.props.match.params.id}`).then((res)=>{
             this.setState({
                 goalname: res.data[0].goalname,
                 daysoutofseven: res.data[0].daysoutofseven,
                 userid: res.data[0].userid,
             })
-        });
-
-        // axios.get(`/api/getDaysSinceLastVisit/${this.props.match.params.id}`).then(res=>{
-        //     console.log('days since last visit is...' , res);
-        // })
-
-        axios.post(`/api/updatesuccesses/${this.props.match.params.id}`).then(res=>{
-            console.log(res.data);
-        
-            axios.get(`/api/getallbools/${this.props.match.params.id}`)
-            .then(res2=>{
-                console.log('array prior to mapping ', res2.data);
-                const array = res2.data.map(e=>e.success);
-                console.log('array from get all bools after mapping', array)
-                const best = this.countBestStreak(array);
-                const current = this.countCurrentStreak(array);
-                this.setState({
-                    currentstreak:current, 
-                    beststreak:best,
-                    logSeven: array.slice(0,7)
-                });
-            })
-        })
-
-
-
-
+        }); 
     }
+
+    updateStreaks(){
+        axios.get(`/api/getallbools/${this.props.match.params.id}`).then(res2=>{
+            const array = res2.data.map(e=>e.successful);
+            console.log('array from get all bools after mapping', array) //this proves there is database lag time, even though we are exectuting this commandin the 'then'
+            const best = this.countBestStreak(array);
+            const current = this.countCurrentStreak(array);
+            this.setState({
+                currentstreak:current, 
+                beststreak:best,
+                logSeven: array.slice(0,7)
+            });
+        })
+    }
+
 
     // check(day){
     //     console.log(day);
@@ -141,10 +136,12 @@ export default class Goal extends Component {
 
         // console.log(this.state.beststreak)
 
+        console.log(this.state)
+
         return (
             <div>
                 <Nav id={this.props.match.params.id} title={this.state.goalname}/>
-                <Log logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
+                <Log updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
                 <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
                 <button className='open_settings_btn' onClick={()=>this.displaySettings()}><img src={gear} />Settings</button>
                 {pop_up_settings}

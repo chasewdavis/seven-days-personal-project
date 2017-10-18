@@ -23,23 +23,6 @@ export default class Log extends Component {
         })
     }
 
-    componentDidMount(){
-        // console.log(this.props.goal)
-        // TOO SOON MAN TOO SOON!
-        // axios.get(`api/getbools/${this.props.goal}`)
-        // .then(res=>{
-        //     console.log('after comp mounts response is...', res.data)
-        //     var array = res.data.map(e=>e.success);
-        //     console.log(array);
-        //     this.setState({last_seven:array})
-        // })
-
-        // this.setState({
-        //     last_seven: this.props.logSeven
-        // })
-
-    }
-
     check(day){
         console.log(day);
         var temp = this.state.last_seven
@@ -48,10 +31,16 @@ export default class Log extends Component {
         }else{
             temp[day] = false;
         }
+        
+        axios.post(`/api/changebool/${this.props.goal}`, {day}).then(res=>{
+
+                console.log(res)
+
+                this.props.updateStreaks()
+
+        })
+
         this.setState({last_seven:temp})
-        axios.post(`/api/changebool/${this.props.goal}`, {day})
-        // .then( console.log(this.props.updateStreak()) )
-        console.log(this.state);    
     }
 
     form(){
@@ -82,7 +71,7 @@ export default class Log extends Component {
 
         var d = new Date()
         const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.'];
-        const future = 4; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE
+        const future = 0; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE
 
         var index = d.getDay()+future;
         console.log('day is ', weekdays[index])
@@ -206,11 +195,6 @@ export default class Log extends Component {
     }
 
     render(){
-
-        // console.log('this.props.check is... ' , this.props.check(1))
-
-        // console.log('inside render... ',this.state.last_seven);
-        // console.log(this.props.logSeven)
 
         return (
             <div>

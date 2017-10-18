@@ -3,6 +3,13 @@ import './streak.css';
 
 export default class Streak extends Component {
 
+
+    componentWillReceiveProps(newProps){
+
+        console.log('from streaks... ', newProps)
+
+    }
+
     render(){
         return(
             <div className='streaks'>

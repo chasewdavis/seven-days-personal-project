@@ -1,4 +1,4 @@
-INSERT INTO success ( goalid, success, dayof ) VALUES 
+INSERT INTO success ( goalid, successful, dayof ) VALUES 
 ( $1, FALSE, -6 ), 
 ( $1, FALSE, -5 ),
 ( $1, FALSE, -4 ), 

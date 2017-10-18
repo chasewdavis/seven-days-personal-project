@@ -1,3 +1,3 @@
-SELECT success from success
+SELECT successful from success
 WHERE goalid = $1
 ORDER BY dayof DESC
