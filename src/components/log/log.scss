@@ -15,6 +15,10 @@ $light: rgba(90, 236, 229, 0.5);
 //^^^^ SWITCH ^^^^^
 
 .add_log {
+    //trying this out
+    // position: absolute;
+    // z-index: 10;
+
     background-color: white;
     width: 95%;
     height: 60px;
@@ -32,13 +36,28 @@ $light: rgba(90, 236, 229, 0.5);
     left: 10px;
 }
 
+.no_overflow {
+    // border: 1px solid black;
+    overflow: hidden;
+}
+
 .log_form {
-    z-index: -5; //that doest work
+    // z-index: -5; //that doest work
     // height: $height;
     width:95%;
     margin-left: 2.5%;
     margin-top:-$height;
     animation: slide_down .84s;
+    animation-fill-mode: forwards;
+    border-bottom:5px solid $main_color;
+    padding-bottom: 5px;
+}
+
+.close_log_form {
+    width:95%;
+    margin-left: 2.5%;
+    margin-top: 0;
+    animation: slide_up .84s;
     animation-fill-mode: forwards;
     border-bottom:5px solid $main_color;
     padding-bottom: 5px;
@@ -107,3 +126,8 @@ $light: rgba(90, 236, 229, 0.5);
     }
 }
 
+@keyframes slide_up {
+    to {
+        margin-top: -$height
+    }
+}

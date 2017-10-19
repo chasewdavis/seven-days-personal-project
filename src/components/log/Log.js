@@ -47,14 +47,22 @@ export default class Log extends Component {
         if(hide_form){
             hide_form=false;
             log_form = (
-                <div className='log_form'>
-                    {this.provide_last_seven_days(d.getMonth()+1, d.getDate())}
-                    {/* <button className='more'>more</button> */}
+                <div className='no_overflow'>
+                    <div className='log_form'>
+                        {this.provide_last_seven_days(d.getMonth()+1, d.getDate())}
+                        {/* <button className='more'>more</button> */}
+                    </div>
                 </div>
             )
         }else{
             hide_form=true;
-            log_form = <div></div>;
+            log_form = ( 
+                <div className='no_overflow'>
+                    <div className='close_log_form'>
+                        {this.provide_last_seven_days(d.getMonth()+1, d.getDate())}
+                    </div>
+                </div>
+            )
         }
 
         this.forceUpdate();

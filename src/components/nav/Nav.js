@@ -29,7 +29,14 @@ export default class Nav extends Component {
             this.forceUpdate();
         }else{
             sidebar = (
-                <div className='side_bar left'>sidebar</div>
+                <div className='parent_menu'>
+                    <div className='side_bar left'>
+                        <div className='space_for_nav'></div>
+                        {/* <Link to={`/goal/${this.props.id}/settings`}><button className='side_bar_btn'>Settings</button></Link> */}
+                        <Link to='/dashboard'><button className='side_bar_btn' onClick={()=>this.slideOut()}>Dashboard</button></Link>
+                        <a className='logout' href='http://localhost:3005/auth/logout'><button>Log out</button></a>
+                    </div>
+                </div>
             )
             this.forceUpdate();
             sidebar_right=false;

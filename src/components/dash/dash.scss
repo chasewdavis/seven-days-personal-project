@@ -17,6 +17,26 @@
     border:$thick solid $main_color;
 }
 
+.no_dash_overflow {
+    // border:1px solid black;
+    overflow: hidden;
+}
+
+.open_current_form {
+    // border: 5px solid green;
+
+    margin-top:-275px;
+    animation: open_current_form .84s;
+    animation-fill-mode: forwards;
+}
+
+.close_current_form {
+    // border:5px solid red;
+    margin-top: 0;
+    animation: close_current_form .84s;
+    animation-fill-mode: forwards;
+}
+
 .squared{
     background: $gradient_mild;
     opacity: 0;
@@ -38,28 +58,30 @@
     margin-left: 2.5%;
     border-bottom:$thick solid $main_color;
     height: 275px;
-    margin-top:-275px;
-    animation: slide_down .84s;
-    animation-fill-mode: forwards;
     overflow: hidden;
     position: relative;
-    /* display: flex; */
-    /* align-items: center;
-    justify-content: center; */
-    /* flex-direction: row; */
 }
 
 
 .good, .bad {
+    position: absolute;
+    left: 5%;
     width:90%;
     height: $main_height;
     border: $thick solid $main_color;
-    margin-top:47.5px;
     border-radius: 30px;
     background: white;
     font-size: 25px;
     color: $main_color;
     outline:none;
+}
+
+.good {
+    top:47.5px
+}
+
+.bad {
+    top: 150px;
 }
 
 .stack {
@@ -144,16 +166,15 @@
       animation-fill-mode: forwards;
   }
 
-@keyframes slide_down {
+@keyframes open_current_form {
     to{
         margin-top: 0px;
     }
 }
 
-@keyframes slide_up {
+@keyframes close_current_form {
     to{
-        height: 0px;
-        border: none;
+        margin-top: -275px;
     }
 }
 

@@ -13,6 +13,19 @@
   color: #536976;
   border: 4px solid #536976; }
 
+.no_dash_overflow {
+  overflow: hidden; }
+
+.open_current_form {
+  margin-top: -275px;
+  animation: open_current_form .84s;
+  animation-fill-mode: forwards; }
+
+.close_current_form {
+  margin-top: 0;
+  animation: close_current_form .84s;
+  animation-fill-mode: forwards; }
+
 .squared {
   background: linear-gradient(155deg, #647B83, #AAC1B8);
   opacity: 0;
@@ -32,26 +45,26 @@
   margin-left: 2.5%;
   border-bottom: 4px solid #536976;
   height: 275px;
-  margin-top: -275px;
-  animation: slide_down .84s;
-  animation-fill-mode: forwards;
   overflow: hidden;
-  position: relative;
-  /* display: flex; */
-  /* align-items: center;
-    justify-content: center; */
-  /* flex-direction: row; */ }
+  position: relative; }
 
 .good, .bad {
+  position: absolute;
+  left: 5%;
   width: 90%;
   height: 55px;
   border: 4px solid #536976;
-  margin-top: 47.5px;
   border-radius: 30px;
   background: white;
   font-size: 25px;
   color: #536976;
   outline: none; }
+
+.good {
+  top: 47.5px; }
+
+.bad {
+  top: 150px; }
 
 .stack {
   display: flex;
@@ -131,14 +144,13 @@
   animation: slide_up .84s;
   animation-fill-mode: forwards; }
 
-@keyframes slide_down {
+@keyframes open_current_form {
   to {
     margin-top: 0px; } }
 
-@keyframes slide_up {
+@keyframes close_current_form {
   to {
-    height: 0px;
-    border: none; } }
+    margin-top: -275px; } }
 
 @keyframes introduce {
   to {

@@ -62,7 +62,7 @@
     height: 100%;
     width:66.6%;
     background-color: white;
-    margin-left: -66.6%;
+    
   }
 
   .close_menu {
@@ -80,14 +80,17 @@
   }
 
   .right {
+    margin-left: -66.6%;
     animation: slide_right .84s;
     animation-fill-mode: forwards;
+    box-shadow: 0 0 30px rgba(0,0,0,.25)
   }
 
-  /* .left {
-    animation: slide_left .84s;
+  .left {
+    margin-left: 0;
+    animation: slide_left .62s;
     animation-fill-mode: forwards;
-  } */
+  }
 
   .side_bar_btn {
     // position: absolute;
@@ -133,13 +136,19 @@
   }
 
   @keyframes slide_right {
-    to{
+    to {
       margin-left: 0;
     }
   }
 
+  @keyframes slide_left {
+    to {
+      margin-left: -66.6%
+    }
+  }
+
   @keyframes fade_in {
-    to{
+    to {
       opacity: 1;
     }
   }

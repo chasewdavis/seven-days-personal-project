@@ -5,7 +5,8 @@ import axios from 'axios';
 import Nav from '../nav/Nav.js';
 
 let form = '';
-let new_form_ready = false;
+let new_form_ready = true;
+let stage1 = false;
 
 export default class dashboard extends Component {
 
@@ -46,6 +47,7 @@ export default class dashboard extends Component {
     // }
 
     good(){
+        stage1 = false;
         this.setState({
             goodHabit: true,
             prompt: ''
@@ -59,6 +61,7 @@ export default class dashboard extends Component {
         this.forceUpdate();
     }
     bad(){
+        stage1 = false;
         this.setState({
             goodHabit: false,
             prompt:'Avoid'
@@ -74,6 +77,7 @@ export default class dashboard extends Component {
 
     complete(val){
         this.setState({daysoutofseven:val})
+        new_form_ready = true;
         form = <div className='completed'></div>
 
         let temp = this.state.goals.slice();
@@ -127,7 +131,7 @@ export default class dashboard extends Component {
                     </div>
                 </div>
             )
-            new_form_ready = true;
+            // new_form_ready = true;  // move this to complete
 
 
             // let temp = this.state.goals.slice();
@@ -198,19 +202,37 @@ export default class dashboard extends Component {
     //     }
     // }
 
-    form(){
-        if(!form || new_form_ready===true){
+    form(){ //this function will open and close the form with a smooth css animation
+        if(new_form_ready===true){
+            stage1 = true;
             form = (
-            <div className='form'>
-                <div className='stack left'>
-                <button className='good' onClick={()=>this.good()}>create new habit</button>
-                <button className='bad' onClick={()=>this.bad()}>end an old habit</button>
+            <div className='open_current_form'>
+                <div className='form'>
+                    <div className='stack left'>
+                        <button className='good' onClick={()=>this.good()}>Create New Habit</button>
+                        <button className='bad' onClick={()=>this.bad()}>End An Old Habit</button>
+                    </div>
                 </div>
             </div>
             )
+            new_form_ready= false;
             this.forceUpdate();
-        }else{
-            form = '';
+        }else if(stage1 === true){ //this step was added to prevent form does not have the class of open_current_form and close_current_form at the same time
+            new_form_ready = true;
+            form = (
+                <div className='close_current_form'>
+                    <div className='form'>
+                        <div className='stack left'>
+                            <button className='good' onClick={()=>this.good()}>Create New Habit</button>
+                            <button className='bad' onClick={()=>this.bad()}>End An Old Habit</button>
+                        </div>
+                    </div>
+                </div>
+            )
+            this.forceUpdate();
+        }else {
+            new_form_ready = true;
+            form = <div className='close_current_form'>{form}</div>
             this.forceUpdate();
         }
     }
@@ -233,7 +255,9 @@ export default class dashboard extends Component {
                 <div className='contain'>
 
                 <button onClick={()=>this.form()} className='start' >Start Tracking</button>
-                {form} 
+                <div className='no_dash_overflow'>
+                    {form}
+                </div> 
 
                 {/* <button className='squared' >Bike to Work</button> 
                 <button className='squared' >No More Dairy</button> 
