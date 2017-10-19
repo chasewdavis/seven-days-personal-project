@@ -7,7 +7,7 @@ module.exports = {
         req.app.get('db').get_all_goals([req.user]).then(response=>{
             res.send(response); //should add 200
         })
-        // console.log(req.body)
+        
     },
 
     unique: (req, res) => {
@@ -135,13 +135,16 @@ module.exports = {
 
                 console.log('response from update_bool is... ', res3);
 
-                res3.sendStatus(200);
+                // trying this out
+                db.get_all_booleans([req.params.id]).then(updatedBooleans => res.status(200).send(updatedBooleans))
+
+                // res3.sendStatus(200);
             })
 
-            res2.sendStatus(200);
+            // res2.sendStatus(200);
         })
 
-        res.sendStatus(200);
+        // res.sendStatus(200);
     }
 
 }

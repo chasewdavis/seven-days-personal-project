@@ -8,14 +8,40 @@
 }
 
 .info {
-  background-color: white;
-  height: 66.7vh;
+  position: relative;
+  background: $gradient;
+  height: 100vh;
 }
+
+.info img {
+  position: absolute;
+  bottom:30px;
+  left: calc(50% - 50px/2);
+  width:50px;
+  animation: downwards .5s;
+  animation-timing-function: ease-in-out; 
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+.info .fade_out {
+  animation: fade_out .8s;
+  animation-fill-mode: forwards;
+}
+
+// .shadow {
+//   position: absolute;
+//   bottom: 0;
+//   box-shadow: 0 0 100px black;
+//   width: 100%;
+//   height: 0px;
+//   border:1px solid red;
+// }
 
 .login_page {
   /* background-color: grey; */
   height: 33.3vh;
-  background: $gradient;
+  background: $main_color;
   opacity: 1;
   display: flex;
   align-items: center;
@@ -32,7 +58,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* border:1px solid black; */
+  // border:1px solid black;
   padding:10px;
 }
 
@@ -40,8 +66,8 @@
   background-color: rgba(0,0,0,0);
   font-size: 22px;
   border-radius: 40px;
-  border: 5px solid $main_color;
-  color: $main_color;
+  border: 5px solid white;
+  color: white;
   width:80%;
   height: 60px;
   margin:14px;
@@ -51,22 +77,36 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
+  transition: border .4s, background-color .8s;
 }
 
-.login_box a:active{
-  background-color: $main_color;
-  color:whitesmoke;
+.login_box a:hover {
+
+  background-color: $main_light;
+  border: 5px solid $main_light;
+  color: $main_color;
+}
+
+// .login_box a:active{
+//   background-color: $main_color;
+//   color:whitesmoke;
+//   border:5px solid $main_color;
+// }
+
+@keyframes fade_out {
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes downwards {
+  100% {
+    transform: translateY(20px)
+  }
 }
 
 @media only screen and (min-width: 450px) {
     .login_box {
         width: 400px; 
-    }
-    .login_box a {
-        transition:background-color .84s, color .84s;
-    }
-    .login_box a:hover{
-        background-color: $main_color;
-        color:whitesmoke;
     }
 }

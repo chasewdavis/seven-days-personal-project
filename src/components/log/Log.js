@@ -34,13 +34,11 @@ export default class Log extends Component {
         
         axios.post(`/api/changebool/${this.props.goal}`, {day}).then(res=>{
 
-                console.log(res)
-
-                this.props.updateStreaks()
+                this.props.updateStreaks(res.data)
 
         })
 
-        this.setState({last_seven:temp})
+        // this.setState({last_seven:temp})
     }
 
     form(){
@@ -71,7 +69,7 @@ export default class Log extends Component {
 
         var d = new Date()
         const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.'];
-        const future = 0; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE
+        const future = 0; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE //Note that future won't work when past 7 days falls over 2 separate months
 
         var index = d.getDay()+future;
         console.log('day is ', weekdays[index])

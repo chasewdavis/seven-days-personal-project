@@ -29,7 +29,18 @@ export default class Goal extends Component {
 
     componentDidMount(){
         this.setGoal();
-        this.updateStreaks();
+
+        axios.get(`/api/getallbools/${this.props.match.params.id}`).then(res2=>{
+            const array = res2.data.map(e=>e.successful);
+            console.log('array from get all bools after mapping', array)
+            const best = this.countBestStreak(array);
+            const current = this.countCurrentStreak(array);
+            this.setState({
+                currentstreak:current, 
+                beststreak:best,
+                logSeven: array.slice(0,7)
+            });
+        })
     }
 
     setGoal(){
@@ -42,19 +53,21 @@ export default class Goal extends Component {
         }); 
     }
 
-    updateStreaks(){
-        axios.get(`/api/getallbools/${this.props.match.params.id}`).then(res2=>{
-            const array = res2.data.map(e=>e.successful);
-            console.log('array from get all bools after mapping', array) //this proves there is database lag time, even though we are exectuting this commandin the 'then'
-            const best = this.countBestStreak(array);
-            const current = this.countCurrentStreak(array);
-            this.setState({
-                currentstreak:current, 
-                beststreak:best,
-                logSeven: array.slice(0,7)
-            });
-        })
+    updateStreaks(booleans){
+
+        booleans = booleans.map(e=>e.successful);
+        const best = this.countBestStreak(booleans);
+        const current = this.countCurrentStreak(booleans);
+
+        this.setState({
+            currentstreak:current, 
+            beststreak:best,
+            logSeven: booleans.slice(0,7)
+        });
+
     }
+
+
 
 
     // check(day){
