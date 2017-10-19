@@ -8,9 +8,18 @@
 
 $main_color: #536976;
 $main_light: #BBD2C5;
-$gradient:linear-gradient(155deg, #536976, #BBD2C5);
+
+$gradient: linear-gradient(155deg, #536976, #BBD2C5);
+$gradient_mild: linear-gradient(155deg, #647B83, #AAC1B8); //meyerweb.com/eric/tools/color-blend/ hex colors blended 5 midpoints take 2nd and 2nd to last
+$gradient_light: linear-gradient(155deg, #879E9E, #BBD2C5); //1st and middle
+    $gradient_light_reverse: linear-gradient(245deg, #879E9E, #BBD2C5 );
+$gradient_dark: linear-gradient(155deg, #536976, #879E9E); //middle and last
 
 $background_color: whitesmoke;
+$thick: 4px; //thickness of most borders
+$main_height: 55px;
+$nav_height: 60px;
+
 // $main_color: #292e49;
 // $main_light: #536976;
 // $gradient:linear-gradient(155deg, #292e49, #536976);

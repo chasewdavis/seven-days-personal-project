@@ -48,7 +48,7 @@
   background-color: transparent;
   font-size: 22px;
   border-radius: 40px;
-  border: 5px solid white;
+  border: 3px solid white;
   color: white;
   width: 80%;
   height: 60px;
@@ -63,7 +63,7 @@
 
 .login_box a:hover {
   background-color: #BBD2C5;
-  border: 5px solid #BBD2C5;
+  border: 3px solid #BBD2C5;
   color: #536976; }
 
 @keyframes fade_out {

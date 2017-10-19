@@ -4,12 +4,12 @@
     position: relative;
     background-color: white;
     width: 95%;
-    height: 60px;
+    height: $main_height;
     border-radius: 5px;
     border: none;
     font-size: 30px;
     color: $main_color;
-    border: 5px solid $main_color;
+    border: $thick solid $main_color;
     outline: none; 
 }
 
@@ -17,7 +17,7 @@
     position: absolute;
     top:10px;
     right: 10px;
-    width: 30px;
+    width: calc( 55px / 2 ); //main height / 2
 }
 
 .overlay{
@@ -34,12 +34,12 @@
 .settings {
     position: fixed;
     top:17.5%;
-    left: 7.5%;
-    width:85%;
+    left: 6.25%;
+    width:87.5%;
     height: 65%;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 0 15px #4B4B4B;
+    box-shadow: 0 0 35px rgba(0,0,0,.7);
     opacity: 0;
     animation: fade_in .42s;
     animation-fill-mode: forwards;
@@ -47,7 +47,7 @@
 
 .settings_header {
     height: 35px;
-    background-color: $main_light;
+    background: $gradient_light;
     border-radius: 10px 10px 0 0;
     line-height: 35px;
     vertical-align: middle;
@@ -65,6 +65,15 @@
     font-size: 20px;
     background-color:$main_color;
     color:white;
+    // display: 
+}
+
+.close img {
+    width: 12px;
+}
+
+.all_settings_options .settings_option:nth-child(2n-1) {
+    background: whitesmoke;
 }
 
 .settings_option {
@@ -73,10 +82,15 @@
     justify-content: left;
     align-items: center;
     flex-direction: row;
-    height: 60px;
+    height: $nav_height;
     // border-top:1px solid black;
-    border-bottom: 1px solid black;
+    // border-bottom: 1px solid black;
     
+}
+
+.settings_option img {
+    width: 23px;
+    margin-left: auto;
 }
 
 @keyframes fade_in {

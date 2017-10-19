@@ -11,13 +11,13 @@
   margin-top: 10px;
   font-size: 30px;
   color: #536976;
-  border: 5px solid #536976; }
+  border: 4px solid #536976; }
 
 .squared {
-  background: linear-gradient(155deg, #536976, #BBD2C5);
+  background: linear-gradient(155deg, #647B83, #AAC1B8);
   opacity: 0;
   width: 95%;
-  height: 60px;
+  height: 55px;
   border-radius: 5px;
   border: none;
   margin-top: 10px;
@@ -30,7 +30,7 @@
 .form {
   width: 95%;
   margin-left: 2.5%;
-  border-bottom: 5px solid #536976;
+  border-bottom: 4px solid #536976;
   height: 275px;
   margin-top: -275px;
   animation: slide_down .84s;
@@ -43,9 +43,9 @@
   /* flex-direction: row; */ }
 
 .good, .bad {
-  width: 100%;
-  height: 60px;
-  border: 5px solid #536976;
+  width: 90%;
+  height: 55px;
+  border: 4px solid #536976;
   margin-top: 47.5px;
   border-radius: 30px;
   background: white;
@@ -65,7 +65,7 @@
 
 .form_input {
   width: 100%;
-  height: 60px;
+  height: 55px;
   border: none;
   box-shadow: inset 0 0 15px #BBBBBB;
   /* margin-top: 92.5px; */
@@ -73,7 +73,7 @@
 
 .next {
   width: 100%;
-  height: 60px;
+  height: 55px;
   font-size: 25px;
   background-color: #536976;
   border: none;
@@ -101,10 +101,10 @@
   font-size: 25px; }
 
 .row_one button, .row_two button {
-  border: 4px solid #536976;
-  width: 60px;
-  height: 60px;
-  margin-top: 22.5px;
+  border: 3px solid #536976;
+  width: 55px;
+  height: 55px;
+  margin-top: 26px;
   margin-left: 11.25px;
   margin-right: 11.25px;
   border-radius: 30px;
@@ -115,10 +115,10 @@
   outline: none; }
 
 .row_three {
-  margin-top: 22.5px;
-  height: 60px;
+  margin-top: 26px;
+  height: 55px;
   /* border:1px solid black; */
-  line-height: 60px;
+  line-height: 55px;
   vertical-align: middle;
   font-size: 35px;
   color: #536976; }
@@ -127,7 +127,7 @@
   width: 95%;
   margin-left: 2.5%;
   height: 275px;
-  border-bottom: 5px solid #536976;
+  border-bottom: 4px solid #536976;
   animation: slide_up .84s;
   animation-fill-mode: forwards; }
 

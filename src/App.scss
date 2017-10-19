@@ -1,1 +1,7 @@
+@import "./utilities/variables.scss";
 
+.space_for_nav {
+    width:100%;
+    height: $nav_height;
+    border: 1px solid red;
+}

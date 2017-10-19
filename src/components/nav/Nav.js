@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './nav.css';
-import menu from '../../menu.svg';
+import menu from '../../svg/menu2.svg';
 // import Settings from '../settings/Settings.js';
 let sidebar = <div></div>;
 let sidebar_right = false;
@@ -14,6 +14,7 @@ export default class Nav extends Component {
             sidebar = (
                 <div className='parent_menu'>
                     <div className='side_bar right'>
+                        <div className='space_for_nav'></div>
                         {/* <Link to={`/goal/${this.props.id}/settings`}><button className='side_bar_btn'>Settings</button></Link> */}
                         <Link to='/dashboard'><button className='side_bar_btn' onClick={()=>this.slideOut()}>Dashboard</button></Link>
                         <a className='logout' href='http://localhost:3005/auth/logout'><button>Log out</button></a>

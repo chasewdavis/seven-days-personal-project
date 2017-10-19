@@ -229,6 +229,7 @@ export default class dashboard extends Component {
         return (
             <div>
                 <Nav title={'Dashboard'}/>
+                <div className='space_for_nav'></div>
                 <div className='contain'>
 
                 <button onClick={()=>this.form()} className='start' >Start Tracking</button>

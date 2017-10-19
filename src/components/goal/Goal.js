@@ -6,6 +6,9 @@ import axios from 'axios';
 import Settings from '../settings/Settings.js';
 import './settings.css';
 import gear from '../../svg/gear.svg';
+import next from '../../svg/next2.svg';
+import x from '../../svg/letter-x.svg';
+
 let pop_up_settings = <div></div>;
 let open_pop_up = true;
 
@@ -128,12 +131,14 @@ export default class Goal extends Component {
             <div>
                 <div className='overlay'></div>
                 <div className='settings'>
-                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}>x</button></div>
-                    <div className='settings_option'>Edit name</div>
-                    <div className='settings_option'>Edit Days Per Week</div>
-                    <div className='settings_option'>Good / Bad Habit</div>
-                    <div className='settings_option'>Challenge Friends</div>
-                    <div className='settings_option'>Remove Goal</div>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+                    <div className='all_settings_options'>
+                        <div className='settings_option'>Edit name<img src={next} alt='next arrow'/></div>
+                        <div className='settings_option'>Edit Days Per Week<img src={next} alt='next arrow'/></div>
+                        <div className='settings_option'>Good / Bad Habit<img src={next} alt='next arrow'/></div>
+                        <div className='settings_option'>Challenge Friends<img src={next} alt='next arrow'/></div>
+                        <div className='settings_option'>Remove Goal<img src={next} alt='next arrow'/></div>
+                    </div>
                 </div>
             </div>
             this.forceUpdate();
@@ -154,6 +159,7 @@ export default class Goal extends Component {
         return (
             <div>
                 <Nav id={this.props.match.params.id} title={this.state.goalname}/>
+                <div className='space_for_nav'></div>
                 <Log updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
                 <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
                 <button className='open_settings_btn' onClick={()=>this.displaySettings()}><img src={gear} />Settings</button>

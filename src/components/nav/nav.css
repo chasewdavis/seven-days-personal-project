@@ -1,4 +1,6 @@
 .nav {
+  position: absolute;
+  z-index: 15;
   width: 100%;
   height: 60px;
   background: linear-gradient(155deg, #536976, #BBD2C5);
@@ -17,29 +19,13 @@
   color: whitesmoke;
   font-size: 45px; }
 
-.nav button {
-  margin-right: 10px;
-  border: none;
-  background-color: transparent;
-  font-size: 20px;
-  height: 40px;
-  width: 100px;
-  border-radius: 20px;
-  border: 3px solid #536976;
-  color: #25A0AD;
-  transition: background-color .84s, color .84s;
-  cursor: pointer; }
-
-.nav button:hover {
-  background-color: #536976;
-  color: whitesmoke; }
-
 .nav img {
   width: 40px; }
 
 .side_bar {
   z-index: 10;
   position: absolute;
+  top: 0;
   left: 0;
   height: 100%;
   width: 66.6%;
@@ -49,6 +35,7 @@
 .close_menu {
   z-index: 9;
   position: absolute;
+  top: 0;
   right: 0;
   height: 100%;
   width: 100%;
@@ -66,10 +53,10 @@
     animation-fill-mode: forwards;
   } */
 .side_bar_btn {
-  margin-top: 15px;
+  margin-top: 10px;
   border: 4px solid #536976;
   border-radius: 5px;
-  height: 60px;
+  height: 55px;
   width: 80%;
   box-sizing: border-box;
   background-color: white;
@@ -78,19 +65,28 @@
 
 .logout {
   position: absolute;
-  bottom: calc(60px + 25px);
+  bottom: 10px;
   left: 10%;
   border: 4px solid #536976;
   border-radius: 30px;
-  height: 60px;
+  height: 55px;
   width: 80%;
   box-sizing: border-box; }
 
-.logout button {
-  height: 52px;
+.logout {
+  height: 55px;
   /* border:1px solid black; */
-  font-size: 25px;
-  color: #536976; }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none; }
+
+.logout button {
+  border: none;
+  height: calc(var($main_height) - var($thick) - var($thick));
+  font-size: 22px;
+  color: #536976;
+  background-color: white; }
 
 @keyframes slide_right {
   to {
