@@ -17,6 +17,11 @@ export default class Log extends Component {
         }
     }
 
+    componentWillUnmount(){
+        log_form = <div></div>
+        hide_form = true;
+    }
+
     componentWillReceiveProps(newProps){
         this.setState({
             last_seven: newProps.logSeven

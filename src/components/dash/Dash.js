@@ -22,6 +22,12 @@ export default class dashboard extends Component {
         }
     }
 
+    componentWillUnmount(){
+        form = '';
+        new_form_ready = true;
+        stage1 = false;
+    }
+
     componentDidMount(){
         //only works AS LONG AS SERVER FILE IS NOT EDITED
         // console.log('comp mounted')

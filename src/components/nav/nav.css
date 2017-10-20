@@ -9,18 +9,18 @@
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: 0 10px;
+  padding: 0 12px;
   /*more for larger*/
   box-shadow: 0 0 10px grey; }
 
 .title {
   position: absolute;
-  right: 10px;
+  right: 12px;
   color: whitesmoke;
-  font-size: 45px; }
+  font-size: 35px; }
 
 .nav img {
-  width: 40px; }
+  width: 31px; }
 
 .side_bar {
   z-index: 10;

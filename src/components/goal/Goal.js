@@ -7,6 +7,7 @@ import Settings from '../settings/Settings.js';
 import './settings.css';
 import gear from '../../svg/gear.svg';
 import next from '../../svg/next2.svg';
+import back from '../../svg/next2reversed.svg';
 import x from '../../svg/letter-x.svg';
 
 let pop_up_settings = <div></div>;
@@ -28,6 +29,12 @@ export default class Goal extends Component {
         }
         this.returnTitle = this.returnTitle.bind(this);
         this.updateStreaks = this.updateStreaks.bind(this);
+        // this.forceUpdate = this.forceUpdate.bind(this);
+    }
+
+    componentWillUnmount(){
+        pop_up_settings = <div></div>
+        open_pop_up = true;
     }
 
     componentDidMount(){
@@ -124,28 +131,58 @@ export default class Goal extends Component {
         return this.state.title;
     }
 
-    displaySettings(){
-        if(open_pop_up){
-            open_pop_up = false;
-            pop_up_settings = 
+    editNameSetting(){
+        pop_up_settings = (
             <div>
                 <div className='overlay'></div>
                 <div className='settings'>
                     <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+
+                    <div className='edit_name_settings'>
+                        <div></div>
+                        <div className='current_name'><span>Current Name:</span><span>{this.state.goalname}</span></div>
+                        <div></div>
+                        <div><input placeholder='New Goal Name'></input></div>
+                        <div></div>
+
+
+                        <div className='back_or_save'>
+                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button>Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            )
+            this.forceUpdate();
+    }
+
+    displaySettings(){
+        if(open_pop_up){
+            open_pop_up = false;
+            pop_up_settings = (
+            <div>
+                <div className='overlay'></div>
+                <div className='settings'>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+
+
                     <div className='all_settings_options'>
-                        <div className='settings_option'>Edit name<img src={next} alt='next arrow'/></div>
+                        <div onClick={()=>this.editNameSetting()} className='settings_option'>Edit name<img src={next} alt='next arrow'/></div>
                         <div className='settings_option'>Edit Days Per Week<img src={next} alt='next arrow'/></div>
                         <div className='settings_option'>Good / Bad Habit<img src={next} alt='next arrow'/></div>
                         <div className='settings_option'>Challenge Friends<img src={next} alt='next arrow'/></div>
                         <div className='settings_option'>Remove Goal<img src={next} alt='next arrow'/></div>
                     </div>
+
+
                 </div>
             </div>
+            )
             this.forceUpdate();
         }else{
             open_pop_up = true;
-            pop_up_settings = 
-            <div></div>
+            pop_up_settings = <div></div>
             this.forceUpdate();
         }
     }

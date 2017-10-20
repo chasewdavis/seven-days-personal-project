@@ -8,6 +8,11 @@ let sidebar_right = false;
 
 export default class Nav extends Component {
 
+    componentWillUnmount(){
+        sidebar = <div></div>;
+        sidebar_right = false;
+    }
+
     slideOut(){
         if(sidebar_right===false){
             sidebar_right=true;
