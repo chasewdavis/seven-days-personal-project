@@ -174,6 +174,143 @@
     left: 25px;
 }
 
+
+// EDIT DAY SETTING //
+
+.edit_day_row button {
+    border: 3px solid $main_color;
+    border-radius: 50%;
+    height: $nav_height;
+    width: $nav_height;
+    background: white;
+    font-size: 25px;
+    color: $main_color;
+    margin: 0 8px;
+    outline: none;
+}
+
+// EDIT GOOD VS BAD SETTING
+
+.type_of_habit{
+    margin-left:10%;
+    width:80%;
+    // border:1px solid black;
+}
+
+.type_of_habit button{
+    height: 56px;
+    border:2px solid white;
+    // box-shadow: inset 0 0 10px rgba(0,0,0,.5);
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.type_of_habit button:nth-child(1){
+    width: 208px;
+    border-radius: 5px 0 0 5px;
+    background: $gradient_light;
+}
+
+.type_of_habit button:nth-child(2){
+    background: $main_color;
+    width: 55px;
+    border-radius: 0 5px 5px 0;
+}
+
+#textBubble {
+    position: relative;
+    background: $main_lighter;
+    height: 45px;
+    width:80%;
+    border-radius: 15px;
+}
+
+#triangle {
+    position: absolute;
+    right:calc( ( 55px / 2) - 8px);
+    top: -7px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid $main_lighter;
+    
+    // background:white;
+}
+
+// REMOVE SETTING
+
+.delete_yes_no {
+    width:80%;
+    overflow: hidden;
+    border-radius: 35px;
+}
+
+.delete_yes_no button {
+    width:50%;
+    height: 100%;
+}
+
+.delete_yes_no button:nth-child(1){
+    color: $main_color;
+    background:white;
+    border:4px solid $main_color;
+    border-radius: 35px 0 0 35px;
+}
+
+.delete_yes_no button:nth-child(2){
+    background: $main_color;
+    border:none;
+    color:white;
+}
+
+// #####    SWITCH    ##### //
+
+.delete_yes_no_switch {
+    // border: 1px solid black;
+    width:80%;
+}
+
+.switch {
+    // opacity: 0.2;
+    margin: 0 17px;
+}
+
+.switch-btn {
+    // width: 80px;
+    width:150px;
+    height: 40px;
+    background: #e5e5e5;
+    position: relative;
+    cursor: pointer;
+    border-radius: 5px;
+    // border:1px solid red;
+}
+
+.switch-btn:before {
+    content:'';
+    position: absolute;
+    height: 54px;
+    width: 54px;
+    background: white;
+    left: 3px;
+    top:3px;
+    border-radius: 5px;
+    transition: .5s;
+}
+
+input[type=checkbox]:checked + .switch-btn:before {
+    left: calc(150px - 54px - 3px);
+}
+
+input[type=checkbox]:checked + .switch-btn {
+    background: $gradient-light-reverse;
+}
+
+
+
+// SAME FOR ALL SETTINGS
 .back_or_save button:nth-child(1) {
     background: $main_color;
 }

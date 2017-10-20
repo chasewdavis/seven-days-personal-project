@@ -12,6 +12,10 @@ import x from '../../svg/letter-x.svg';
 
 let pop_up_settings = <div></div>;
 let open_pop_up = true;
+let textBubbleOne = <div></div>
+let textBubbleTwo = <div></div>
+let textBubbleOneDisplayed = false;
+let textBubbleTwoDisplayed = false;
 
 export default class Goal extends Component {
 
@@ -22,6 +26,7 @@ export default class Goal extends Component {
             goalname: '',
             daysoutofseven: null,
             userid: null,
+            goodhabit: null,
             currentstreak: null,
             beststreak: null,
             forceAnUpdate: null,
@@ -55,10 +60,12 @@ export default class Goal extends Component {
 
     setGoal(){
         axios.get(`/api/goal/${this.props.match.params.id}`).then((res)=>{
+            console.log('the res is....... ',res.data)
             this.setState({
                 goalname: res.data[0].goalname,
                 daysoutofseven: res.data[0].daysoutofseven,
                 userid: res.data[0].userid,
+                goodhabit: res.data[0].goodhabit
             })
         }); 
     }
@@ -157,6 +164,146 @@ export default class Goal extends Component {
             this.forceUpdate();
     }
 
+    daysPerWeekHandler(num){
+        //could create a variable to hold original days-per-week in case user changes mind and selects back button 
+
+        this.setState({daysoutofseven:num})
+        //axios call goes here as well!!!!
+
+        //then rerender our pop up settings
+        this.editDaysPerWeek();
+    }
+
+    editDaysPerWeek(){
+        pop_up_settings = (
+            <div>
+                <div className='overlay'></div>
+                <div className='settings'>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+
+                    <div className='edit_name_settings'>
+                        <div>Current: {this.state.daysoutofseven}</div>
+                        <div className='edit_day_row'><button onClick={()=>this.daysPerWeekHandler(1)}>1</button><button onClick={()=>this.daysPerWeekHandler(2)}>2</button></div>
+                        <div className='edit_day_row'><button onClick={()=>this.daysPerWeekHandler(3)}>3</button><button onClick={()=>this.daysPerWeekHandler(4)}>4</button><button onClick={()=>this.daysPerWeekHandler(5)}>5</button></div>
+                        <div className='edit_day_row'><button onClick={()=>this.daysPerWeekHandler(6)}>6</button><button onClick={()=>this.daysPerWeekHandler(7)}>7</button></div>
+                        <div>Days Per Week</div>
+
+
+                        <div className='back_or_save'>
+                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button>Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            )
+        this.forceUpdate();
+    }
+
+    editGoodvsBad(){
+        
+        function displayBubbleOne(){
+            //can build in a toggle
+            if(!textBubbleOneDisplayed){
+                textBubbleOneDisplayed = true;
+                textBubbleOne = (
+                    <div id='textBubble'>
+                        <div id='triangle'></div>
+                        stuff
+                    </div>
+                )
+            }else{
+                textBubbleOneDisplayed = false;
+                textBubbleOne = (
+                    <div></div>
+                )
+            }
+        }
+
+        function displayBubbleTwo(){
+            //can build in a toggle
+            if(!textBubbleTwoDisplayed){
+                textBubbleTwoDisplayed = true;
+                textBubbleTwo = (
+                    <div id='textBubble'>
+                        <div id='triangle'></div>
+                        other stuff
+                    </div>
+                )
+            }else{
+                textBubbleTwoDisplayed = false;
+                textBubbleTwo = (
+                    <div></div>
+                )
+            }
+        }
+
+        pop_up_settings = (
+            <div>
+                <div className='overlay'></div>
+                <div className='settings'>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+
+                    <div className='edit_name_settings'> {/*should change this to a more general name*/}
+                        <div></div>
+                        <div className='type_of_habit'><button>Creating a New Habit</button><button onClick={()=>{displayBubbleOne(); this.editGoodvsBad()}}>?</button></div>
+                        <div>{textBubbleOne}</div>
+                        <div className='type_of_habit'><button>Ending an Old Habit</button><button onClick={()=>{displayBubbleTwo(); this.editGoodvsBad()}}>?</button></div>
+                        <div>{textBubbleTwo}</div>
+
+                        <div className='back_or_save'>
+                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button>Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            )
+        this.forceUpdate();
+    }
+
+    editRemoveGoal(){
+        pop_up_settings = (
+            <div>
+                <div className='overlay'></div>
+                <div className='settings'>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+
+                    <div className='edit_name_settings'> {/*should change this to a more general name*/}
+                        <div></div>
+                        <div>Are you sure you would like to permanently delete your goal?</div>
+                        {/* <div>
+                            <div className='delete_yes_no'>
+                                <button>YES</button><button>NO</button>
+                            </div>
+                        </div> */}
+                        <div>
+                            {/* SWITCH */}
+                            <div className='delete_yes_no_switch'>
+                            NO
+                            <label className='switch'>
+                                <input type='checkbox' />
+                                <div className='switch-btn'></div>
+                            </label>
+                            YES
+                            </div>
+                        </div>
+                        <div>
+                            This action can not be undone.
+                        </div>
+                        <div></div>
+
+                        <div className='back_or_save'>
+                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button>Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            )
+        this.forceUpdate();
+    }
+
     displaySettings(){
         if(open_pop_up){
             open_pop_up = false;
@@ -169,10 +316,10 @@ export default class Goal extends Component {
 
                     <div className='all_settings_options'>
                         <div onClick={()=>this.editNameSetting()} className='settings_option'>Edit name<img src={next} alt='next arrow'/></div>
-                        <div className='settings_option'>Edit Days Per Week<img src={next} alt='next arrow'/></div>
-                        <div className='settings_option'>Good / Bad Habit<img src={next} alt='next arrow'/></div>
+                        <div onClick={()=>this.editDaysPerWeek()} className='settings_option'>Days Per Week<img src={next} alt='next arrow'/></div>
+                        <div onClick={()=>this.editGoodvsBad()} className='settings_option'>New / Old Habit<img src={next} alt='next arrow'/></div>
                         <div className='settings_option'>Challenge Friends<img src={next} alt='next arrow'/></div>
-                        <div className='settings_option'>Remove Goal<img src={next} alt='next arrow'/></div>
+                        <div onClick={()=>this.editRemoveGoal()} className='settings_option'>Remove Goal<img src={next} alt='next arrow'/></div>
                     </div>
 
 
@@ -188,10 +335,6 @@ export default class Goal extends Component {
     }
 
     render(){
-
-        // console.log(this.state.beststreak)
-
-        console.log(this.state)
 
         return (
             <div>

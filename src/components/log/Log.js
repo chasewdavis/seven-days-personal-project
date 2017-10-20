@@ -210,12 +210,6 @@ export default class Log extends Component {
         return (
             <div>
 
-                {/* SWITCH */}
-                {/* <label className='switch'>
-                    <input type='checkbox' />
-                    <div className='switch-btn'></div>
-                </label> */}
-
                 <button onClick={()=>this.form()} className='add_log'>+ Log</button>
 
                 {log_form}
