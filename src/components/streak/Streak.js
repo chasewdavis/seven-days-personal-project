@@ -6,8 +6,6 @@ export default class Streak extends Component {
 
     componentWillReceiveProps(newProps){
 
-        console.log('from streaks... ', newProps)
-
     }
 
     render(){

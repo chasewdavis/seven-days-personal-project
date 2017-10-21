@@ -9,6 +9,7 @@ import gear from '../../svg/gear.svg';
 import next from '../../svg/next2.svg';
 import back from '../../svg/next2reversed.svg';
 import x from '../../svg/letter-x.svg';
+import {withRouter} from 'react-router';
 
 let pop_up_settings = <div></div>;
 let open_pop_up = true;
@@ -16,14 +17,16 @@ let textBubbleOne = <div></div>
 let textBubbleTwo = <div></div>
 let textBubbleOneDisplayed = false;
 let textBubbleTwoDisplayed = false;
+let removeGoal = false;
 
-export default class Goal extends Component {
+class Goal extends Component {
 
     constructor(props){
         super(props)
 
         this.state = {
             goalname: '',
+            goalnametemp: '',
             daysoutofseven: null,
             userid: null,
             goodhabit: null,
@@ -138,6 +141,20 @@ export default class Goal extends Component {
         return this.state.title;
     }
 
+    nameSettingHandler(val){
+        this.setState({goalnametemp:val})
+    }
+
+    setNewName(){
+        console.log(this.state.goalnametemp)
+        const goal = this.state.goalnametemp;
+        axios.patch(`api/renameGoal/${this.props.match.params.id}`, { goal } )
+        .then(res => {
+            console.log('the response from database is... ', res.data[0].goalname)
+            this.setState({goalname:res.data[0].goalname})
+        });
+    }
+
     editNameSetting(){
         pop_up_settings = (
             <div>
@@ -149,13 +166,13 @@ export default class Goal extends Component {
                         <div></div>
                         <div className='current_name'><span>Current Name:</span><span>{this.state.goalname}</span></div>
                         <div></div>
-                        <div><input placeholder='New Goal Name'></input></div>
+                        <div><input onChange={(e)=>this.nameSettingHandler(e.target.value)} placeholder='New Goal Name'></input></div>
                         <div></div>
 
 
                         <div className='back_or_save'>
                             <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
-                            <button>Save</button>
+                            <button onClick={()=>{ this.setNewName(); this.displaySettings()}}>Save</button>
                         </div>
                     </div>
                 </div>
@@ -262,6 +279,27 @@ export default class Goal extends Component {
         this.forceUpdate();
     }
 
+    handleRemoveGoal(){
+        if(!removeGoal){
+            removeGoal=true;
+        }else{
+            removeGoal=false;
+        }
+    }
+
+    deleteGoal(){
+        if(removeGoal){
+            axios.delete(`api/deleteGoal/${this.props.match.params.id}`)
+            .then(res => console.log(res) )
+
+            //reroute to dashboard now!!!!!!!
+
+            this.props.history.push('/dashboard')
+
+            ////////////////////////////////
+        }
+    }
+
     editRemoveGoal(){
         pop_up_settings = (
             <div>
@@ -272,17 +310,12 @@ export default class Goal extends Component {
                     <div className='edit_name_settings'> {/*should change this to a more general name*/}
                         <div></div>
                         <div>Are you sure you would like to permanently delete your goal?</div>
-                        {/* <div>
-                            <div className='delete_yes_no'>
-                                <button>YES</button><button>NO</button>
-                            </div>
-                        </div> */}
                         <div>
                             {/* SWITCH */}
                             <div className='delete_yes_no_switch'>
                             NO
                             <label className='switch'>
-                                <input type='checkbox' />
+                                <input onChange={()=> this.handleRemoveGoal()} type='checkbox' />
                                 <div className='switch-btn'></div>
                             </label>
                             YES
@@ -294,8 +327,8 @@ export default class Goal extends Component {
                         <div></div>
 
                         <div className='back_or_save'>
-                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
-                            <button>Save</button>
+                            <button onClick={()=>{ open_pop_up = true; removeGoal = false; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button onClick={()=>{ this.deleteGoal() }}>Save</button>
                         </div>
                     </div>
                 </div>
@@ -348,3 +381,5 @@ export default class Goal extends Component {
         )
     }
 }
+
+export default withRouter(Goal);

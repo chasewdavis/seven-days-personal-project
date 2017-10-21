@@ -145,6 +145,22 @@ module.exports = {
         })
 
         // res.sendStatus(200);
+    },
+
+    renameGoal: (req, res) => {
+        db = req.app.get('db');
+        db.rename_goal([req.params.id, req.body.goal])
+        .then(newGoalName => res.status(200).send(newGoalName))
+    },
+
+    deleteGoal: (req, res) => {
+        db = req.app.get('db');
+        db.delete_successes([req.params.id]).then(res2 => {
+            db.delete_goal([req.params.id])
+            .then(gone => res.status(200).send(gone))
+            // res2.sendStatus(200)
+        })
+        
     }
 
 }

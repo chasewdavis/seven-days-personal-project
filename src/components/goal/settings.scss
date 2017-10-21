@@ -239,33 +239,8 @@
     // background:white;
 }
 
-// REMOVE SETTING
-
-.delete_yes_no {
-    width:80%;
-    overflow: hidden;
-    border-radius: 35px;
-}
-
-.delete_yes_no button {
-    width:50%;
-    height: 100%;
-}
-
-.delete_yes_no button:nth-child(1){
-    color: $main_color;
-    background:white;
-    border:4px solid $main_color;
-    border-radius: 35px 0 0 35px;
-}
-
-.delete_yes_no button:nth-child(2){
-    background: $main_color;
-    border:none;
-    color:white;
-}
-
-// #####    SWITCH    ##### //
+// REMOVE SETTING //
+// TOGGLE SWITCH  //
 
 .delete_yes_no_switch {
     // border: 1px solid black;

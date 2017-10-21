@@ -26,6 +26,7 @@ export default class dashboard extends Component {
         form = '';
         new_form_ready = true;
         stage1 = false;
+        //remove goal causes problems need to fix
     }
 
     componentDidMount(){
