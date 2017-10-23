@@ -1,0 +1,23 @@
+@import "../../utilities/variables.scss";
+
+.challenge_friends_btn{
+    position: relative;
+    // text-align: left;
+    background: $gradient_mild;
+    width: 95%;
+    height: $main_height;
+    border-radius: 5px;
+    border: none;
+    font-size: 28px;
+    color: white;
+    // border: $thick solid $main_color;
+    outline: none; 
+    margin-bottom: 10px;
+}
+
+.challenge_friends_btn img {
+    position: absolute;
+    top:15px;
+    right: 14px;
+    width: calc( 50px / 2 );
+}

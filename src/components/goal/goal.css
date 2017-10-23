@@ -1,0 +1,17 @@
+.challenge_friends_btn {
+  position: relative;
+  background: linear-gradient(155deg, #647B83, #AAC1B8);
+  width: 95%;
+  height: 55px;
+  border-radius: 5px;
+  border: none;
+  font-size: 28px;
+  color: white;
+  outline: none;
+  margin-bottom: 10px; }
+
+.challenge_friends_btn img {
+  position: absolute;
+  top: 15px;
+  right: 14px;
+  width: calc( 50px / 2); }

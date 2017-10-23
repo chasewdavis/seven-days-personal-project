@@ -7,10 +7,11 @@
     height: $main_height;
     border-radius: 5px;
     border: none;
-    font-size: 30px;
+    font-size: 28px;
     color: $main_color;
     border: $thick solid $main_color;
     outline: none; 
+    margin-bottom: 10px;
 }
 
 .open_settings_btn img {
@@ -205,10 +206,10 @@
 }
 
 .type_of_habit button{
-    height: 56px;
+    // height: 56px;
     border:2px solid white;
     // box-shadow: inset 0 0 10px rgba(0,0,0,.5);
-    color: white;
+    // color: white;
     font-size: 16px;
     outline: none;
 }
@@ -216,13 +217,28 @@
 .type_of_habit button:nth-child(1){
     width: 208px;
     border-radius: 5px 0 0 5px;
-    background: $gradient_light;
+    background: white;
+    border: 4px solid $main_color;
+    color:$main_color;
+    height: 52px;
 }
 
 .type_of_habit button:nth-child(2){
-    background: $main_color;
+    margin-left:4px;
+    height: 52px;
+    color:$main_color;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: white;
+    border: 4px solid $main_color;
     width: 55px;
     border-radius: 0 5px 5px 0;
+}
+
+.type_of_habit button.selected {
+    color:white;
+    background: $main_color;
+    border:none;
 }
 
 #textBubble {

@@ -1,0 +1,55 @@
+@import "../../utilities/variables.scss";
+
+.search_bar {
+    width: 95%;
+    height: $nav_height;
+    // border:1px solid black;
+    margin: 10px 2.5%;
+    display: flex;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.search_bar button {
+    width: $nav_height;
+    height: $nav_height;
+    border: 4px solid $main_color;
+    background: white;
+    border-radius: 5px 0 0 5px;
+}
+
+.search_bar button img {
+    width:30px;
+}
+
+.search_bar input {
+    width: 83.5%;   //calc(100% - var($nav_height));
+    box-shadow: inset 0 0 10px $main_color;
+    border-top: 4px solid $main_color;
+    border-right: 4px solid $main_color;
+    border-bottom: 4px solid $main_color;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    outline: none;
+    font-size: 20px;
+    text-align:left;
+    padding: 0 10px;
+}
+
+.search_bar input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color:#C0C0C0;
+    font-size: 20px;
+  }
+  .search_bar input::-moz-placeholder { /* Firefox 19+ */
+    color:#C0C0C0;
+    font-size: 20px;
+  }
+  .search_bar input:-ms-input-placeholder { /* IE 10+ */
+    color:#C0C0C0;
+    font-size: 20px;
+  }
+  .search_bar input:-moz-placeholder { /* Firefox 18- */
+    color:#C0C0C0;
+    font-size: 20px;
+  }
+

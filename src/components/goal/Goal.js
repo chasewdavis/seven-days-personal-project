@@ -3,12 +3,18 @@ import Log from '../log/Log.js';
 import Streak from '../streak/Streak.js';
 import Nav from '../nav/Nav.js';
 import axios from 'axios';
-import Settings from '../settings/Settings.js';
+// import Settings from '../settings/Settings.js';
+import Search from '../search/Search.js';
+import {Link} from 'react-router-dom';
+
+import './goal.css';
 import './settings.css';
+
 import gear from '../../svg/gear.svg';
 import next from '../../svg/next2.svg';
 import back from '../../svg/next2reversed.svg';
 import x from '../../svg/letter-x.svg';
+import right from'../../svg/right.svg';
 import {withRouter} from 'react-router';
 
 let pop_up_settings = <div></div>;
@@ -262,6 +268,25 @@ class Goal extends Component {
         this.forceUpdate()
     }
 
+    goodvsBadHandler(boolean){
+
+        axios.patch(`api/resetBoolType/${this.props.match.params.id}`, {boolean: boolean})
+        .then(res=>console.log(res))
+
+        document.querySelector('button.selected').classList.remove('selected')
+
+        if(boolean){
+            this.setState({goodhabit:true}, () => {
+                document.querySelector('#creatingNew').classList.add('selected');
+                }
+            )
+        }else{
+            this.setState({goodhabit:false}, () => {
+                document.querySelector('#endingOld').classList.add('selected');
+                } 
+            )
+        }
+    }
 
     editGoodvsBad(){
         
@@ -301,6 +326,18 @@ class Goal extends Component {
             }
         }
 
+        let buttons = [];
+        let boolean = this.state.goodhabit;
+        for(let i = 1; i <= 2; i++){
+            if(boolean){
+                buttons.push(<button id='creatingNew' onClick={()=>this.goodvsBadHandler(true)} className='selected'>Creating a New Habit</button>)
+                buttons.push(<button id='endingOld' onClick={()=>this.goodvsBadHandler(false)}>Ending an Old Habit</button>)
+            }else{
+                buttons.push(<button id='creatingNew' onClick={()=>this.goodvsBadHandler(true)}>Creating a New Habit</button>)
+                buttons.push(<button id='endingOld' onClick={()=>this.goodvsBadHandler(false)} className='selected'>Ending an Old Habit</button>)
+            }
+        }
+
         pop_up_settings = (
             <div>
                 <div className='overlay'></div>
@@ -309,14 +346,20 @@ class Goal extends Component {
 
                     <div className='edit_name_settings'> {/*should change this to a more general name*/}
                         <div></div>
-                        <div className='type_of_habit'><button>Creating a New Habit</button><button onClick={()=>{displayBubbleOne(); this.editGoodvsBad()}}>?</button></div>
+                        <div className='type_of_habit'>
+                            {buttons[0]}
+                            <button onClick={()=>{displayBubbleOne(); this.editGoodvsBad()}}>?</button>
+                        </div>
                         <div>{textBubbleOne}</div>
-                        <div className='type_of_habit'><button>Ending an Old Habit</button><button onClick={()=>{displayBubbleTwo(); this.editGoodvsBad()}}>?</button></div>
+                        <div className='type_of_habit'>
+                            {buttons[1]}
+                            <button onClick={()=>{displayBubbleTwo(); this.editGoodvsBad()}}>?</button>
+                        </div>
                         <div>{textBubbleTwo}</div>
 
                         <div className='back_or_save'>
                             <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
-                            <button>Save</button>
+                            <button onClick={()=>this.displaySettings()}>Save</button>
                         </div>
                     </div>
                 </div>
@@ -419,7 +462,8 @@ class Goal extends Component {
                 <div className='space_for_nav'></div>
                 <Log updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
                 <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
-                <button className='open_settings_btn' onClick={()=>this.displaySettings()}><img src={gear} />Settings</button>
+                <Link to={`/search/${this.props.match.params.id}`}><button className='challenge_friends_btn'>Challenge Friends <img src={right} alt='right arrow'/></button></Link>
+                <button className='open_settings_btn' onClick={()=>this.displaySettings()}><img src={gear} alt='gear'/>Settings</button>
                 {pop_up_settings}
             </div>
         )

@@ -159,6 +159,13 @@ module.exports = {
         .then(num => res.status(200).send(num))
     },
 
+    resetBoolType: (req, res) => {
+        db = req.app.get('db');
+        console.log(req.body);
+        db.reset_bool_type([req.params.id, req.body.boolean])
+        .then(res2 => res.status(200).send(res2))
+    },
+
     deleteGoal: (req, res) => {
         db = req.app.get('db');
         db.delete_successes([req.params.id]).then(res2 => {
