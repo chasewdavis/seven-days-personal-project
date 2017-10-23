@@ -153,6 +153,12 @@ module.exports = {
         .then(newGoalName => res.status(200).send(newGoalName))
     },
 
+    renumberGoal: (req, res) => {
+        db = req.app.get('db');
+        db.renumber_goal([req.params.id, req.body.number])
+        .then(num => res.status(200).send(num))
+    },
+
     deleteGoal: (req, res) => {
         db = req.app.get('db');
         db.delete_successes([req.params.id]).then(res2 => {

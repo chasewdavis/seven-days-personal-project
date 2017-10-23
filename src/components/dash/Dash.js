@@ -33,7 +33,7 @@ export default class dashboard extends Component {
         //only works AS LONG AS SERVER FILE IS NOT EDITED
         // console.log('comp mounted')
         axios.get('/api/grabgoals').then(res=>{
-            console.log(res.data)
+            console.log('DASH COMPONENTE MOUNTING WITH RESPONSE OF...', res.data)
             this.setState({goals:res.data})
 
             res.data.map(e=>{

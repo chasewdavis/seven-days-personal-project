@@ -158,6 +158,10 @@
   margin: 0 8px;
   outline: none; }
 
+.edit_day_row .edit_day_toggle {
+  background-color: #536976;
+  color: white; }
+
 .type_of_habit {
   margin-left: 10%;
   width: 80%; }

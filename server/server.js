@@ -90,6 +90,7 @@ app.put('/api/setgoal', controller.update )
 app.put('/api/successes', controller.createSuccesses )
 
 app.patch('/api/renameGoal/:id', controller.renameGoal )
+app.patch('/api/renumberGoal/:id', controller.renumberGoal )
 
 app.get('/api/grabgoals', controller.read)
 app.get('/api/goal/:id', controller.unique)

@@ -43,6 +43,11 @@ class Goal extends Component {
     componentWillUnmount(){
         pop_up_settings = <div></div>
         open_pop_up = true;
+        textBubbleOne = <div></div>
+        textBubbleTwo = <div></div>
+        textBubbleOneDisplayed = false;
+        textBubbleTwoDisplayed = false;
+        removeGoal = false;
     }
 
     componentDidMount(){
@@ -182,16 +187,50 @@ class Goal extends Component {
     }
 
     daysPerWeekHandler(num){
-        //could create a variable to hold original days-per-week in case user changes mind and selects back button 
+        //in case the user selects back and doesn't want to save their new selection
+        let user_selects_back = this.state.daysoutofseven;
 
-        this.setState({daysoutofseven:num})
-        //axios call goes here as well!!!!
+        this.setState({daysoutofseven:num}, () => {
 
-        //then rerender our pop up settings
-        this.editDaysPerWeek();
+            document.querySelectorAll('button.num_btn').forEach(e=>e.classList.remove('edit_day_toggle'))
+            
+                    if(num===1){       
+                        document.querySelector('#btn_1').classList.add('edit_day_toggle');
+                    }else if(num===2){
+                        document.querySelector('#btn_2').classList.add('edit_day_toggle');
+                    }else if(num===3){
+                        document.querySelector('#btn_3').classList.add('edit_day_toggle');
+                    }else if(num===4){
+                        document.querySelector('#btn_4').classList.add('edit_day_toggle');
+                    }else if(num===5){
+                        document.querySelector('#btn_5').classList.add('edit_day_toggle');
+                    }else if(num===6){
+                        document.querySelector('#btn_6').classList.add('edit_day_toggle');
+                    }else if(num===7){
+                        document.querySelector('#btn_7').classList.add('edit_day_toggle');
+                    }
+            this.editDaysPerWeek();
+        });
+        
+        axios.patch(`api/renumberGoal/${this.props.match.params.id}`, {number:num})
+        .then(res=>console.log(res))
+
     }
 
     editDaysPerWeek(){
+
+        let day = this.state.daysoutofseven;
+
+        let buttons = [];
+
+        for(let i = 1; i <= 7; i++){
+            if(day !== i){
+                buttons.push(<button key={i} className='num_btn' id={`btn_${i}`} onClick={()=>this.daysPerWeekHandler(i)}>{i}</button>)
+            }else{
+                buttons.push(<button key={i} className='num_btn edit_day_toggle' id={`btn_${i}`} onClick={()=>this.daysPerWeekHandler(i)}>{i}</button>)
+            }
+        }
+
         pop_up_settings = (
             <div>
                 <div className='overlay'></div>
@@ -200,22 +239,29 @@ class Goal extends Component {
 
                     <div className='edit_name_settings'>
                         <div>Current: {this.state.daysoutofseven}</div>
-                        <div className='edit_day_row'><button onClick={()=>this.daysPerWeekHandler(1)}>1</button><button onClick={()=>this.daysPerWeekHandler(2)}>2</button></div>
-                        <div className='edit_day_row'><button onClick={()=>this.daysPerWeekHandler(3)}>3</button><button onClick={()=>this.daysPerWeekHandler(4)}>4</button><button onClick={()=>this.daysPerWeekHandler(5)}>5</button></div>
-                        <div className='edit_day_row'><button onClick={()=>this.daysPerWeekHandler(6)}>6</button><button onClick={()=>this.daysPerWeekHandler(7)}>7</button></div>
+                        <div className='edit_day_row'>
+                            {buttons.slice(0,2)}
+                        </div>
+                        <div className='edit_day_row'>
+                            {buttons.slice(2,5)}
+                        </div>
+                        <div className='edit_day_row'>
+                            {buttons.slice(5,7)}
+                        </div>
+                        
                         <div>Days Per Week</div>
-
 
                         <div className='back_or_save'>
                             <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
-                            <button>Save</button>
+                            <button onClick={()=>{ this.displaySettings()}}>Save</button>
                         </div>
                     </div>
                 </div>
             </div>
             )
-        this.forceUpdate();
+        this.forceUpdate()
     }
+
 
     editGoodvsBad(){
         
@@ -290,13 +336,11 @@ class Goal extends Component {
     deleteGoal(){
         if(removeGoal){
             axios.delete(`api/deleteGoal/${this.props.match.params.id}`)
-            .then(res => console.log(res) )
-
-            //reroute to dashboard now!!!!!!!
-
-            this.props.history.push('/dashboard')
-
-            ////////////////////////////////
+            .then(res => {    
+                console.log(res) 
+                this.props.history.push('/dashboard')
+                }
+            )
         }
     }
 
