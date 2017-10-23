@@ -174,6 +174,14 @@ module.exports = {
             // res2.sendStatus(200)
         })
         
+    },
+
+    findFriends: (req, res) => {
+        console.log(req.params.id, req.params.input)
+        db = req.app.get('db');
+        db.find_friends([req.params.input])
+        // .then(friends=>console.log(friends))
+        .then(friends => res.status(200).send(friends))
     }
 
 }

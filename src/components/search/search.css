@@ -48,3 +48,71 @@
   /* Firefox 18- */
   color: #C0C0C0;
   font-size: 20px; }
+
+.users_found {
+  position: relative;
+  height: 26vw;
+  background: linear-gradient(155deg, #647B83, #AAC1B8);
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  width: 95%;
+  margin: 10px 2.5%;
+  border-radius: 5px;
+  overflow: hidden; }
+
+.right_box {
+  position: relative;
+  border: 1px solid black;
+  width: 70%; }
+
+.users_found button {
+  height: calc(26vw * 3 / 4);
+  width: calc(74vw - 5vw);
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  background: linear-gradient(155deg, #879E9E, #BBD2C5);
+  border-radius: 0 5px 0 0;
+  font-size: 28px;
+  color: #536976;
+  outline: none; }
+
+.users_found button img {
+  width: 29px;
+  margin-left: 20px;
+  margin-bottom: -3px; }
+
+.user_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 26vw;
+  height: 26vw;
+  background: #536976;
+  color: white;
+  font-size: 13px;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 5px 0 0 5px; }
+
+.user_img img {
+  width: 75px;
+  border-radius: 40px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); }
+
+.user_name {
+  z-index: 5;
+  position: absolute;
+  left: 26vw;
+  bottom: 0;
+  border-bottom: none;
+  border-left: none;
+  padding: 0px 5px;
+  color: white;
+  height: calc( 26vw * 1 / 4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px; }
