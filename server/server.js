@@ -98,6 +98,7 @@ app.get('/api/goal/:id', controller.unique)
 app.get('/api/getbools/:id', controller.getbools)
 app.get('/api/getallbools/:id', controller.getallbools)
 app.get('/api/findFriends/:id/:input', controller.findFriends)
+app.get('/api/getSetChallenges/:id', controller.getSetChallenges)
 app.get('/api/grabChallenges', controller.grabChallenges)
 
 app.post('/api/updatesuccesses/:id', controller.fillmissingdays)

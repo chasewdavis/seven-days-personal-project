@@ -181,7 +181,21 @@ module.exports = {
         db = req.app.get('db');
         db.find_friends([req.params.input])
         // .then(friends=>console.log(friends))
-        .then(friends => res.status(200).send(friends))
+        .then(friends => {
+            console.log('the friends are..', friends)
+            ///TEMPPPP////
+            // req.user = 4;
+            //////////////
+            friends = friends.filter(e=>e.id!==req.user)
+            res.status(200).send(friends)
+        })
+    },
+
+    getSetChallenges: (req, res) => {
+        console.log('from getSetChallenges...', req.params.id)
+        db = req.app.get('db');
+        db.get_set_challenges([req.params.id, req.user])
+        .then(challenges=>res.status(200).send(challenges))
     },
 
     challengeFriend: (req, res) => {
@@ -200,7 +214,7 @@ module.exports = {
 
         //TEMPPPPPPPP VARRRRRRIIIIIAAAAABBBBLLLLLLEEEEEEEEE
         //set back to req.user
-        db.grab_challenge([5])
+        db.grab_challenge([req.user])
         .then(challenge => res.status(200).send(challenge))
     }
 
