@@ -52,7 +52,9 @@
   font-size: 20px; }
 
 .close {
-  float: right;
+  position: absolute;
+  right: 0;
+  border-radius: 0 10px 0 0;
   border: 1px solid black;
   height: 35px;
   width: 35px;

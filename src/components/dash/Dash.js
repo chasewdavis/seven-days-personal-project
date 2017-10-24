@@ -4,9 +4,14 @@ import './dash.css';
 import axios from 'axios';
 import Nav from '../nav/Nav.js';
 
+import mail from '../../svg/mail.svg';
+import graph from '../../svg/graph2.svg';
+import x from '../../svg/letter-x.svg';
+
 let form = '';
 let new_form_ready = true;
 let stage1 = false;
+let fullInvite = <div></div>;
 
 export default class dashboard extends Component {
 
@@ -145,76 +150,15 @@ export default class dashboard extends Component {
                     </div>
                 </div>
             )
-            // new_form_ready = true;  // move this to complete
-
-
-            // let temp = this.state.goals.slice();
-
-            // temp.push({
-            //     goalname: this.state.goalname,
-            //     days: this.state.days,
-            //     goodHabit: this.state.goodHabit
-            // })
-
-            // axios.put('/api/setgoal', temp[temp.length-1]).then(res=> console.log(res))
-
-            // this.setState({
-            //     goals: temp
-            // })
 
             this.forceUpdate();
     }
-
-    // addOne(){
-    //     if(this.state.daysoutofseven<7){
-    //         this.setState({
-    //             daysoutofseven: this.state.daysoutofseven+1
-    //         })
-    //     }
-    // }
-    // subOne(){
-    //     if(this.state.daysoutofseven>1){
-    //         this.setState({
-    //             daysoutofseven: this.state.daysoutofseven-1
-    //         })
-    //     }
-    // }
 
     handleChange(val){
         this.setState({
             goalname:val
         })
     }
-
-    // setGoal(){
-
-    //     const availibleNames = this.state.goals.map(e=>{
-    //         return e.goalname; 
-    //     });
-
-    //     if(availibleNames.indexOf(this.state.goalname)!==-1){
-    //         alert("YOU CAN'T USE THAT NAME AGAIN")
-    //     }else if(this.state.goodHabit===null || this.state.goalname===''){
-    //         alert('FINISH THE FORM');
-    //     }else{
-
-    //         let temp = this.state.goals.slice();
-
-    //         temp.push({
-    //             goalname: this.state.goalname,
-    //             days: this.state.days,
-    //             goodHabit: this.state.goodHabit
-    //         })
-
-    //         axios.put('/api/setgoal', temp[temp.length-1]).then(res=> console.log(res))
-
-    //         this.setState({
-    //             goals: temp
-    //         })
-
-    //         // console.log(this.state.goals)
-    //     }
-    // }
 
     form(){ //this function will open and close the form with a smooth css animation
         if(new_form_ready===true){
@@ -251,14 +195,53 @@ export default class dashboard extends Component {
         }
     }
 
+    openInvite(val){
+        console.log(val);
+
+        const invite = this.state.challenges.filter(e=>val===e.id)[0]
+        console.log(invite)
+
+        if(val !== 'close'){
+            fullInvite = (
+                <div>
+                    <div className='overlay'></div>
+                    <div className='full_invite'>
+                        <div className='invite_content'>
+                            <div className='invite_header'>
+                            <button onClick={()=>this.openInvite('close')} className='close'><img src={x}/></button>
+                            </div>
+                            <img className='challenger_img' src={invite.img} alt='image of challenger'/>
+                            <div className='invite_msg'>
+                                {`${invite.user_name} has challenged you to ${invite.goalname} ${invite.daysoutofseven} days per week`}
+                            </div>
+                        </div>
+                        <div className='bottom_row'>
+                            <button>Decline</button>
+                            <button>Accept</button>
+                        </div>
+                    </div>
+                </div>
+            )
+        }else{
+            fullInvite = <div></div>
+        }
+        this.forceUpdate();
+    }
+
     render(){
 
         const goals = this.state.goals.map((e,i)=>{
             // console.log(e)
             return (
                 <Link to={`/goal/${e.id}`} key={i}>
-                    <button className='squared' >{e.goalname}</button>
+                    <button className='squared' >{e.goalname}<img src={graph} alt='graph'/></button>
                 </Link>
+            )
+        })
+
+        const invites = this.state.challenges.map((e,i)=>{
+            return (
+                <button className='invitation' onClick={()=>this.openInvite(e.id)} key={i}>New Challenge Invitation<img src={mail} alt='mail' /></button>
             )
         })
 
@@ -273,53 +256,15 @@ export default class dashboard extends Component {
                     {form}
                 </div> 
 
-                {/* <button className='squared' >Bike to Work</button> 
-                <button className='squared' >No More Dairy</button> 
-                <button className='squared' >Yoga After Work</button> 
-                <button className='squared' >Code Everything</button> 
-                <button className='squared' >No More Dairy</button> 
-                <button className='squared' >No More Dairy</button> 
-                <button className='squared' >No More Dairy</button> 
-                <button className='squared' >No More Dairy</button> 
-                <button className='squared' >No More Dairy</button> 
-                <button className='squared' >No More Dairy</button> 
-                <button className='squared' >No More Dairy</button> 
-                <button className='squared' >No More Dairy</button>  */}
-
-
-                {/* <div className='new_goal'>
-                    <div className='new_goal_header'>
-                    <button onClick={()=>this.slideDown()} className='start'>+</button>
-                    <div>new goal</div>
-                    </div>
-                    <div className='good_bad'>
-                    <button onClick={()=>this.good()}>create new habit</button>
-                    <button onClick={()=>this.bad()}>end an old habit</button>
-                    </div>
-                    <div className='name_and_num'>
-                    <div>{this.state.prompt}</div>
-                    <input onChange={(e)=>this.handleChange(e.target.value)}></input>
-                    <div className='inc_dec'>
-                        <button onClick={()=>this.subOne()}>-</button>
-                        <p>{this.state.days}</p>
-                        <button onClick={()=>this.addOne()}>+</button>
-                    </div>
-                    <div className='dpw'>
-                        days per week
-                    </div>
-                    </div>
-                    <button onClick={()=>this.setGoal()} className='submit'>
-                        submit
-                    </button>
-                </div> */}
-
                 </div>
                 <div className='goals'>
 
-                {/* <Link className='link' to='/nav/goal'><button>goal</button></Link> */}
-                
                     {goals.reverse()}
 
+                </div>
+                <div>
+                    {invites}
+                    {fullInvite}
                 </div>
             </div>
         )

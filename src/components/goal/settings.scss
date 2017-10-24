@@ -59,7 +59,10 @@
 }
 
 .close {
-    float: right;
+
+    position: absolute;
+    right: 0;
+    border-radius: 0 10px 0 0;
     border:1px solid black;
     height: 35px;
     width: 35px;
@@ -67,7 +70,6 @@
     font-size: 20px;
     background-color:$main_color;
     color:white;
-    // display: 
 }
 
 .close img {

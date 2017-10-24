@@ -197,7 +197,10 @@ module.exports = {
         console.log('user from grabChallenges is..', req.user)
         db = req.app.get('db');
 
-        db.grab_challenge([req.user])
+
+        //TEMPPPPPPPP VARRRRRRIIIIIAAAAABBBBLLLLLLEEEEEEEEE
+        //set back to req.user
+        db.grab_challenge([5])
         .then(challenge => res.status(200).send(challenge))
     }
 

@@ -27,6 +27,7 @@
   animation-fill-mode: forwards; }
 
 .squared {
+  position: relative;
   background: linear-gradient(155deg, #647B83, #AAC1B8);
   opacity: 0;
   width: 95%;
@@ -34,10 +35,102 @@
   border-radius: 5px;
   border: none;
   margin-top: 10px;
-  font-size: 30px;
+  font-size: 24px;
   color: white;
   animation: introduce .84s;
   animation-fill-mode: forwards; }
+
+.squared img {
+  width: 25px; }
+
+/************ INVITAION SECTION ************/
+.invitation {
+  position: relative;
+  text-align: left;
+  padding: 0 10px;
+  background: linear-gradient(155deg, #536976, #879E9E);
+  opacity: 0;
+  width: 95%;
+  height: 55px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 10px;
+  font-size: 24px;
+  color: white;
+  animation: introduce .84s;
+  animation-fill-mode: forwards;
+  box-shadow: 0 0 10px white; }
+
+.squared img, .invitation img {
+  width: 30px;
+  position: absolute;
+  right: 10px;
+  top: 12.5px; }
+
+.full_invite {
+  position: fixed;
+  z-index: 25;
+  top: 25%;
+  left: 6.25%;
+  width: 87.5%;
+  height: 50%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  animation: fade_in .42s;
+  animation-fill-mode: forwards; }
+
+.invite_header {
+  height: 35px;
+  background: linear-gradient(155deg, #879E9E, #BBD2C5);
+  border-radius: 10px 10px 0 0; }
+
+.invite_content {
+  height: 80%; }
+
+.invite_msg {
+  height: 87%;
+  line-height: 45px;
+  vertical-align: middle;
+  width: 80%;
+  margin: 0 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px; }
+
+.challenger_img {
+  position: absolute;
+  top: -35px;
+  width: 30%;
+  left: 10%;
+  border: 4px solid white;
+  border-radius: 50%; }
+
+.bottom_row {
+  height: 20%;
+  display: flex;
+  flex-direction: row; }
+
+.bottom_row button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  font-size: 20px;
+  border: none;
+  outline: none; }
+
+.bottom_row button:nth-child(2) {
+  background: linear-gradient(155deg, #879E9E, #BBD2C5);
+  color: #536976;
+  border-radius: 0 0 10px 0; }
+
+.bottom_row button:nth-child(1) {
+  background: #536976;
+  color: white;
+  border-radius: 0 0 0 10px; }
 
 /*********  FORM SECTION OF CSS PAGE *********/
 .form {

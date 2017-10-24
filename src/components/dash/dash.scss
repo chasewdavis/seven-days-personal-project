@@ -38,6 +38,7 @@
 }
 
 .squared{
+    position: relative;
     background: $gradient_mild;
     opacity: 0;
     width:95%;
@@ -45,10 +46,121 @@
     border-radius: 5px;
     border:none;
     margin-top:10px;
-    font-size:30px;
+    font-size:24px;
     color:white;
     animation: introduce .84s;
     animation-fill-mode: forwards;
+}
+
+.squared img{
+    width:25px;
+}
+
+/************ INVITAION SECTION ************/
+
+.invitation{
+    position: relative;
+    text-align: left;
+    padding: 0 10px;
+    background: $gradient_dark;
+    opacity: 0;
+    width:95%;
+    height: 55px;
+    border-radius: 5px;
+    border:none;
+    margin-top:10px;
+    font-size:24px;
+    color:white;
+    animation: introduce .84s;
+    animation-fill-mode: forwards;
+    box-shadow: 0 0 10px white;
+}
+
+.squared img, .invitation img {
+    width:30px;
+    position: absolute;
+    right:10px;
+    top:12.5px;
+}
+
+.full_invite {
+    position: fixed;
+    // overflow: hidden;
+    z-index: 25;
+    top:25%;
+    left: 6.25%;
+    width:87.5%;
+    height: 50%; // was at 395px; //header + $nav_height * 6
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 35px rgba(0,0,0,.7);
+    opacity: 0;
+    animation: fade_in .42s;
+    animation-fill-mode: forwards;
+    // border:2px solid red;
+}
+
+.invite_header {
+    height: 35px;
+    // border: 1px solid red;
+    background: $gradient_light;
+    border-radius: 10px 10px 0 0;
+}
+
+.invite_content{
+    height: 80%; 
+}
+
+.invite_msg {
+   height: 87%;
+   line-height: 45px;
+   vertical-align: middle;
+//    border:1px solid orange;
+   width:80%;
+   margin: 0 10%;
+   display: flex;
+   align-items: center;
+   justify-content: center; 
+   font-size: 20px;
+}
+
+.challenger_img {
+    position: absolute;
+    top:-35px;
+    width:30%;
+    left: 10%;
+    border:4px solid white;
+    // box-shadow: 0 0 1px grey;
+    border-radius: 50%;
+}
+
+.bottom_row {
+    // border:1px solid red;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+}
+
+.bottom_row button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    font-size: 20px;
+    border:none;
+    outline: none;
+}
+
+.bottom_row button:nth-child(2) {
+    background: $gradient_light;
+    color: $main_color;
+    border-radius: 0 0 10px 0;
+}
+
+.bottom_row button:nth-child(1) {
+    background: $main_color;
+    color:white;
+    border-radius: 0 0 0 10px;
 }
 
 /*********  FORM SECTION OF CSS PAGE *********/
