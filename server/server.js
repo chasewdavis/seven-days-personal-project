@@ -98,9 +98,11 @@ app.get('/api/goal/:id', controller.unique)
 app.get('/api/getbools/:id', controller.getbools)
 app.get('/api/getallbools/:id', controller.getallbools)
 app.get('/api/findFriends/:id/:input', controller.findFriends)
+app.get('/api/grabChallenges', controller.grabChallenges)
 
 app.post('/api/updatesuccesses/:id', controller.fillmissingdays)
-app.post('/api/changebool/:id' ,controller.changebool)
+app.post('/api/changebool/:id', controller.changebool)
+app.post('/api/challengeFriend/:id', controller.challengeFriend)
 
 app.delete('/api/deleteGoal/:id', controller.deleteGoal)
 

@@ -18,7 +18,8 @@ export default class dashboard extends Component {
             daysoutofseven: 0,
             prompt: '',
             goodHabit: null,
-            goals: []
+            goals: [],
+            challenges: []
         }
     }
 
@@ -44,6 +45,12 @@ export default class dashboard extends Component {
 
             })
             
+        })
+
+        axios.get('/api/grabChallenges').then(res=>{
+            //these are the challenges sent from other users!!!
+            console.log(res.data)
+            this.setState({challenges:res.data})
         })
 
     }

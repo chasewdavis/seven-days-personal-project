@@ -40,6 +40,12 @@ export default class Search extends Component {
         }
     }
 
+    challengeFriend(user){
+        console.log(user)
+        axios.post(`/api/challengeFriend/${this.props.match.params.id}`, { friend: user })
+        .then(res=>console.log(res))
+    }
+
     render(){
 
         let users = this.state.foundUsers.map((e,i) => {
@@ -52,7 +58,7 @@ export default class Search extends Component {
                     <div className='user_name'>
                         {e.user_name}
                     </div>
-                    <button>CHALLENGE<img src={right} alt='right arrow'/></button>
+                    <button onClick={()=>this.challengeFriend(e.id)}>Challenge<img src={right} alt='right arrow'/></button>
                 </div> 
             )
         })

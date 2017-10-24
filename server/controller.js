@@ -182,6 +182,23 @@ module.exports = {
         db.find_friends([req.params.input])
         // .then(friends=>console.log(friends))
         .then(friends => res.status(200).send(friends))
+    },
+
+    challengeFriend: (req, res) => {
+        console.log('req.user is...', req.user)
+        console.log('req.params.id is...', req.params.id)
+        console.log('req.body.friend is...', req.body.friend)
+        db = req.app.get('db');
+        db.challenge_friend([req.params.id, req.user, req.body.friend])
+        .then(res2=>res.status(200).send(res2))
+    },
+
+    grabChallenges: (req, res) => {
+        console.log('user from grabChallenges is..', req.user)
+        db = req.app.get('db');
+
+        db.grab_challenge([req.user])
+        .then(challenge => res.status(200).send(challenge))
     }
 
 }
