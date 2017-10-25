@@ -30,7 +30,7 @@ module.exports = {
         
         console.log('update funtion is firing')
 
-        let args = [req.body.goalname, req.body.daysoutofseven, req.body.goodHabit, req.user, startdate]
+        let args = [req.body.goalname, req.body.daysoutofseven, req.body.goodHabit, req.user, startdate, null]
 
         req.app.get('db').create_new_habit(args).then(response=>{
             
@@ -223,6 +223,23 @@ module.exports = {
 
         db.accept_challenge([req.params.id])
         .then(res2=>res.status(200).send(res2))
+    },
+
+    copyChallenge: (req, res) => {
+        db = req.app.get('db');
+
+        db.get_goal([req.params.id])
+        .then(goal=>{
+            console.log(goal[0])
+            
+            const d = new Date();
+            const startdate = `${d.getFullYear()} ${d.getMonth()+1} ${d.getDate()}`; 
+
+            db.create_new_habit([goal[0].goalname, goal[0].daysoutofseven, goal[0].goodhabit, req.user, startdate, goal[0].id ])
+            .then(res3=>res.status(200).send(res3))
+        })
+
+
     },
 
     declineChallenge: (req, res) => {

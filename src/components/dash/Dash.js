@@ -42,7 +42,13 @@ export default class dashboard extends Component {
         //only works AS LONG AS SERVER FILE IS NOT EDITED
         // console.log('comp mounted')
         axios.get('/api/grabgoals').then(res=>{
-            this.setState({goals:res.data})
+
+            console.log('responses from grab goals is...', res.data)
+
+            let originals = res.data.filter(e=>e.originalgoal?null:e);
+            let copys = res.data.filter(e=>e.originalgoal?e:null);
+
+            this.setState({goals:originals, acceptedGoals:copys})
 
             res.data.map(e=>{
                 
@@ -61,14 +67,14 @@ export default class dashboard extends Component {
     grabAllChallenges(){
         axios.get('/api/grabChallenges').then(res2=>{
 
-            let accepted = res2.data.filter(e=>e.confirmed?e:null)
+            // let accepted = res2.data.filter(e=>e.confirmed?e:null) // these goals need to be split
             let waiting = res2.data.filter(e=>e.confirmed?null:e)
 
-            console.log('accepted is...', accepted)
+            // console.log('accepted is...', accepted)
             console.log('waitinn is...', waiting)
 
             this.setState({
-                acceptedGoals: accepted, 
+                // acceptedGoals: accepted, 
                 challenges: waiting
             })
         })
@@ -202,6 +208,19 @@ export default class dashboard extends Component {
         console.log(cid)
         axios.patch(`/api/acceptChallenge/${cid}`)
         .then(res=>{
+            //need to also copy the goal for this user//
+                axios.post(`api/copyChallenge/${gid}`)
+                .then(res2=>{
+
+                    // const accepted_goal = res2.data[0];
+                    let temp = this.state.acceptedGoals;
+                    temp.push(res2.data[0])
+                    this.setState({acceptedGoals:temp})
+
+                    console.log(res2)
+                    
+                })
+            ////////////////////////////////////////////
             this.grabAllChallenges();
             console.log(res)
         })

@@ -105,6 +105,7 @@ app.get('/api/grabChallenges', controller.grabChallenges)
 app.post('/api/updatesuccesses/:id', controller.fillmissingdays)
 app.post('/api/changebool/:id', controller.changebool)
 app.post('/api/challengeFriend/:id', controller.challengeFriend)
+app.post('/api/copyChallenge/:id', controller.copyChallenge) 
 
 app.delete('/api/deleteGoal/:id', controller.deleteGoal)
 app.delete('/api/declineChallenge/:id', controller.declineChallenge)
