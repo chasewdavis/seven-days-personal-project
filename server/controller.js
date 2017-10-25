@@ -216,6 +216,20 @@ module.exports = {
         //set back to req.user
         db.grab_challenge([req.user])
         .then(challenge => res.status(200).send(challenge))
+    },
+
+    acceptChallenge: (req, res) => {
+        db = req.app.get('db');
+
+        db.accept_challenge([req.params.id])
+        .then(res2=>res.status(200).send(res2))
+    },
+
+    declineChallenge: (req, res) => {
+        db = req.app.get('db');
+
+        db.decline_challenge([req.params.id])
+        .then(res2=>res.status(200).send(res2))
     }
 
 }

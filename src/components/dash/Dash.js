@@ -7,6 +7,8 @@ import Nav from '../nav/Nav.js';
 import mail from '../../svg/mail.svg';
 import graph from '../../svg/graph2.svg';
 import x from '../../svg/letter-x.svg';
+import user from '../../svg/user.svg';
+import group from '../../svg/group.svg';
 
 let form = '';
 let new_form_ready = true;
@@ -24,6 +26,7 @@ export default class dashboard extends Component {
             prompt: '',
             goodHabit: null,
             goals: [],
+            acceptedGoals: [],
             challenges: []
         }
     }
@@ -39,7 +42,6 @@ export default class dashboard extends Component {
         //only works AS LONG AS SERVER FILE IS NOT EDITED
         // console.log('comp mounted')
         axios.get('/api/grabgoals').then(res=>{
-            console.log('DASH COMPONENTE MOUNTING WITH RESPONSE OF...', res.data)
             this.setState({goals:res.data})
 
             res.data.map(e=>{
@@ -52,18 +54,25 @@ export default class dashboard extends Component {
             
         })
 
-        axios.get('/api/grabChallenges').then(res=>{
-            //these are the challenges sent from other users!!!
-            console.log(res.data)
-            this.setState({challenges:res.data})
-        })
+        this.grabAllChallenges();
 
     }
 
-    // slideDown(){
-    //     // console.log('slide down');
-    //     document.getElementsByClassName('good_bad')
-    // }
+    grabAllChallenges(){
+        axios.get('/api/grabChallenges').then(res2=>{
+
+            let accepted = res2.data.filter(e=>e.confirmed?e:null)
+            let waiting = res2.data.filter(e=>e.confirmed?null:e)
+
+            console.log('accepted is...', accepted)
+            console.log('waitinn is...', waiting)
+
+            this.setState({
+                acceptedGoals: accepted, 
+                challenges: waiting
+            })
+        })
+    }
 
     good(){
         stage1 = false;
@@ -122,13 +131,7 @@ export default class dashboard extends Component {
 
                         })
                     })
-        
-                    
 
-                    // this.setState({
-                    //     goals: temp
-                    // })
-        
     }
 
     days(){
@@ -195,6 +198,23 @@ export default class dashboard extends Component {
         }
     }
 
+    acceptInvite(cid,gid){
+        console.log(cid)
+        axios.patch(`/api/acceptChallenge/${cid}`)
+        .then(res=>{
+            this.grabAllChallenges();
+            console.log(res)
+        })
+    }
+
+    declineInvite(cid){
+        axios.delete(`/api/declineChallenge/${cid}`)
+        .then(res=>{
+            this.grabAllChallenges(); 
+            console.log(res) 
+        })
+    }
+
     openInvite(val){
         console.log(val);
 
@@ -216,8 +236,8 @@ export default class dashboard extends Component {
                             </div>
                         </div>
                         <div className='bottom_row'>
-                            <button>Decline</button>
-                            <button>Accept</button>
+                            <button onClick={()=> {this.declineInvite(invite.challengeid); this.openInvite('close')}}>Decline</button>
+                            <button onClick={()=> {this.acceptInvite(invite.challengeid, invite.id); this.openInvite('close')}}>Accept</button>
                         </div>
                     </div>
                 </div>
@@ -234,7 +254,16 @@ export default class dashboard extends Component {
             // console.log(e)
             return (
                 <Link to={`/goal/${e.id}`} key={i}>
-                    <button className='squared' >{e.goalname}<img src={graph} alt='graph'/></button>
+                    <button className='squared' ><img src={user} alt='one user' />{e.goalname}<img src={graph} alt='graph'/></button>
+                </Link>
+            )
+        })
+
+        //SHOULD ALTER SOMEWHAT
+        const accepted_goals = this.state.acceptedGoals.map((e,i)=>{
+            return (
+                <Link to={`/goal/${e.id}`} key={i}>
+                    <button className='squared dark' ><img src={group} alt='multiple users'/>{e.goalname}<img src={graph} alt='graph'/></button>
                 </Link>
             )
         })
@@ -261,6 +290,9 @@ export default class dashboard extends Component {
 
                     {goals.reverse()}
 
+                </div>
+                <div className='goals'>
+                    {accepted_goals}
                 </div>
                 <div>
                     {invites}

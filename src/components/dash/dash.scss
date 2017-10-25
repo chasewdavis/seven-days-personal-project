@@ -46,14 +46,30 @@
     border-radius: 5px;
     border:none;
     margin-top:10px;
-    font-size:24px;
+    font-size:23px;
     color:white;
     animation: introduce .84s;
     animation-fill-mode: forwards;
 }
 
 .squared img{
-    width:25px;
+    width:30px;
+    position: absolute;
+    top: 12.5px;
+}
+
+.squared img:nth-child(1) {
+    top: 13.75px;
+    left: 10px;
+    width: 27.5px;
+}
+
+.squared img:nth-child(2) {
+    right: 10px;
+}
+
+.dark {
+    background: $gradient_dark;
 }
 
 /************ INVITAION SECTION ************/
@@ -62,21 +78,21 @@
     position: relative;
     text-align: left;
     padding: 0 10px;
-    background: $gradient_dark;
+    background: $main_color;
     opacity: 0;
     width:95%;
     height: 55px;
     border-radius: 5px;
     border:none;
     margin-top:10px;
-    font-size:24px;
+    font-size:23px;
     color:white;
     animation: introduce .84s;
     animation-fill-mode: forwards;
     box-shadow: 0 0 10px white;
 }
 
-.squared img, .invitation img {
+.invitation img {
     width:30px;
     position: absolute;
     right:10px;

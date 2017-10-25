@@ -35,33 +35,46 @@
   border-radius: 5px;
   border: none;
   margin-top: 10px;
-  font-size: 24px;
+  font-size: 23px;
   color: white;
   animation: introduce .84s;
   animation-fill-mode: forwards; }
 
 .squared img {
-  width: 25px; }
+  width: 30px;
+  position: absolute;
+  top: 12.5px; }
+
+.squared img:nth-child(1) {
+  top: 13.75px;
+  left: 10px;
+  width: 27.5px; }
+
+.squared img:nth-child(2) {
+  right: 10px; }
+
+.dark {
+  background: linear-gradient(155deg, #536976, #879E9E); }
 
 /************ INVITAION SECTION ************/
 .invitation {
   position: relative;
   text-align: left;
   padding: 0 10px;
-  background: linear-gradient(155deg, #536976, #879E9E);
+  background: #536976;
   opacity: 0;
   width: 95%;
   height: 55px;
   border-radius: 5px;
   border: none;
   margin-top: 10px;
-  font-size: 24px;
+  font-size: 23px;
   color: white;
   animation: introduce .84s;
   animation-fill-mode: forwards;
   box-shadow: 0 0 10px white; }
 
-.squared img, .invitation img {
+.invitation img {
   width: 30px;
   position: absolute;
   right: 10px;

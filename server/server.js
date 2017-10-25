@@ -92,6 +92,7 @@ app.put('/api/successes', controller.createSuccesses)
 app.patch('/api/renameGoal/:id', controller.renameGoal)
 app.patch('/api/renumberGoal/:id', controller.renumberGoal)
 app.patch('/api/resetBoolType/:id', controller.resetBoolType)
+app.patch(`/api/acceptChallenge/:id`, controller.acceptChallenge)
 
 app.get('/api/grabgoals', controller.read)
 app.get('/api/goal/:id', controller.unique)
@@ -106,6 +107,7 @@ app.post('/api/changebool/:id', controller.changebool)
 app.post('/api/challengeFriend/:id', controller.challengeFriend)
 
 app.delete('/api/deleteGoal/:id', controller.deleteGoal)
+app.delete('/api/declineChallenge/:id', controller.declineChallenge)
 
 const PORT = 3005;
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT} :)`))
