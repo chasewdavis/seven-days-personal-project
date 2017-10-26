@@ -53,9 +53,7 @@
 }
 
 .squared img{
-    width:30px;
     position: absolute;
-    top: 12.5px;
 }
 
 .squared img:nth-child(1) {
@@ -64,15 +62,23 @@
     width: 27.5px;
 }
 
-.squared img:nth-child(2) {
+.shared_img {
+    top: 13.75px;
+    left: 45px;
+    width: 27.5px;
+}
+
+.squared img:nth-last-child(1) {
+    top: 12.5px;
     right: 10px;
+    width: 30px;
 }
 
 .dark {
     background: $gradient_dark;
 }
 
-/************ INVITAION SECTION ************/
+/************ INVITATION SECTION ************/
 
 .invitation{
     position: relative;

@@ -1,0 +1,30 @@
+.open_description {
+  position: relative;
+  background-color: white;
+  width: 95%;
+  height: 55px;
+  border-radius: 5px;
+  border: none;
+  font-size: 28px;
+  color: #536976;
+  border: 4px solid #536976;
+  outline: none;
+  margin-bottom: 10px; }
+
+.open_description img {
+  width: 50px;
+  position: absolute;
+  right: -3px;
+  top: -5px; }
+
+.settings_option {
+  position: relative; }
+
+.settings_option div {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center; }

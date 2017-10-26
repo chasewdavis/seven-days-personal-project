@@ -41,22 +41,27 @@
   animation-fill-mode: forwards; }
 
 .squared img {
-  width: 30px;
-  position: absolute;
-  top: 12.5px; }
+  position: absolute; }
 
 .squared img:nth-child(1) {
   top: 13.75px;
   left: 10px;
   width: 27.5px; }
 
-.squared img:nth-child(2) {
-  right: 10px; }
+.shared_img {
+  top: 13.75px;
+  left: 45px;
+  width: 27.5px; }
+
+.squared img:nth-last-child(1) {
+  top: 12.5px;
+  right: 10px;
+  width: 30px; }
 
 .dark {
   background: linear-gradient(155deg, #536976, #879E9E); }
 
-/************ INVITAION SECTION ************/
+/************ INVITATION SECTION ************/
 .invitation {
   position: relative;
   text-align: left;

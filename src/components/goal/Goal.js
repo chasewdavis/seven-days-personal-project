@@ -4,8 +4,10 @@ import Streak from '../streak/Streak.js';
 import Nav from '../nav/Nav.js';
 import axios from 'axios';
 // import Settings from '../settings/Settings.js';
+import Challengers from '../challengers/Challengers.js';
 import Search from '../search/Search.js';
 import {Link} from 'react-router-dom';
+import Description from '../description/Description.js';
 
 import './goal.css';
 import './settings.css';
@@ -19,11 +21,13 @@ import {withRouter} from 'react-router';
 
 let pop_up_settings = <div></div>;
 let open_pop_up = true;
-let textBubbleOne = <div></div>
-let textBubbleTwo = <div></div>
+let textBubbleOne = <div></div>;
+let textBubbleTwo = <div></div>;
 let textBubbleOneDisplayed = false;
 let textBubbleTwoDisplayed = false;
 let removeGoal = false;
+let pop_up_description = <div></div>;
+let open_description = true;
 
 class Goal extends Component {
 
@@ -39,10 +43,14 @@ class Goal extends Component {
             currentstreak: null,
             beststreak: null,
             forceAnUpdate: null,
-            logSeven: [false,false,false,false,false,false,false]
+            logSeven: [false,false,false,false,false,false,false],
+            sent: null,
+            originalgoal: null
         }
         this.returnTitle = this.returnTitle.bind(this);
         this.updateStreaks = this.updateStreaks.bind(this);
+        this.deleteGoal = this.deleteGoal.bind(this);
+        this.handleRemoveGoal = this.handleRemoveGoal.bind(this);
         // this.forceUpdate = this.forceUpdate.bind(this);
     }
 
@@ -79,7 +87,9 @@ class Goal extends Component {
                 goalname: res.data[0].goalname,
                 daysoutofseven: res.data[0].daysoutofseven,
                 userid: res.data[0].userid,
-                goodhabit: res.data[0].goodhabit
+                goodhabit: res.data[0].goodhabit,
+                sent: res.data[0].sent,
+                originalgoal: res.data[0].originalgoal
             })
         }); 
     }
@@ -454,7 +464,30 @@ class Goal extends Component {
         }
     }
 
+    // displayDescription(){
+    //     pop_up_description = (
+    //         <div>
+    //             displayed if already sent or received from other user
+    //         </div>
+    //     )
+    //     this.forceUpdate();
+    // }
+
     render(){
+
+        const settings = (
+            <div>
+                <button className='open_settings_btn' onClick={()=>this.displaySettings()}><img src={gear} alt='gear'/>Settings</button>
+                {pop_up_settings}
+            </div>
+        )
+
+        const description = (
+            <div>
+                <button className='open_description' onClick={()=>this.displayDescription()}>Description / Settings</button>
+                {pop_up_description}
+            </div>
+        )
 
         return (
             <div>
@@ -463,8 +496,16 @@ class Goal extends Component {
                 <Log updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
                 <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
                 <Link to={`/search/${this.props.match.params.id}`}><button className='challenge_friends_btn'>Challenge Friends <img src={right} alt='right arrow'/></button></Link>
-                <button className='open_settings_btn' onClick={()=>this.displaySettings()}><img src={gear} alt='gear'/>Settings</button>
-                {pop_up_settings}
+
+                <Challengers original={this.state.originalgoal} id={this.props.match.params.id}/>
+
+                {this.state.sent || this.state.originalgoal
+                ? 
+                <Description deleteGoal={this.deleteGoal} handleRemoveGoal={this.handleRemoveGoal} name={this.state.goalname} days={this.state.daysoutofseven} type={this.state.goodhabit}/> 
+                : 
+                settings } 
+                {/* will make settings it's own component in the future */}
+
             </div>
         )
     }

@@ -1,0 +1,37 @@
+@import "../../utilities/variables.scss";
+
+.open_description{
+    position: relative;
+    background-color: white;
+    width: 95%;
+    height: $main_height;
+    border-radius: 5px;
+    border: none;
+    font-size: 28px;
+    color: $main_color;
+    border: $thick solid $main_color;
+    outline: none; 
+    margin-bottom: 10px;
+}
+
+.open_description img {
+    width: 50px;
+    position: absolute;
+    right: -3px;
+    top: -5px;
+}
+
+.settings_option {
+    position: relative;
+}
+
+.settings_option div {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    height: $nav_height;
+    // border: 1px solid green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

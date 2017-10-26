@@ -11,7 +11,6 @@ module.exports = {
     },
 
     unique: (req, res) => {
-        console.log(req.params.id);
         
         req.app.get('db').get_goal([req.params.id]).then(response=>{
             res.send(response)
@@ -203,6 +202,10 @@ module.exports = {
         console.log('req.params.id is...', req.params.id)
         console.log('req.body.friend is...', req.body.friend)
         db = req.app.get('db');
+
+        db.sent_bool_true([req.params.id])
+        .then(finished=>console.log(finished))
+
         db.challenge_friend([req.params.id, req.user, req.body.friend])
         .then(res2=>res.status(200).send(res2))
     },
@@ -253,6 +256,45 @@ module.exports = {
 
         db.decline_challenge([req.params.id])
         .then(res2=>res.status(200).send(res2))
+    },
+
+    getChallengers: (req, res) => {
+        db = req.app.get('db');
+
+        // ------TEMP-------//
+            req.user = 5;
+        // -----------------//
+
+        db.get_challengers([req.user, req.params.id])
+        .then(res2=>{
+
+
+            db.get_all_booleans([req.params.id])
+            .then(booleans=> {
+                res2[0].bools = booleans
+                res.status(200).send(res2)
+            })
+        })
+    },
+
+    getChallengees: (req, res) => {
+        db = req.app.get('db');
+
+        // ------TEMP-------//
+        req.user = 5;
+        // -----------------//
+
+        //get challengees info if confirmed is true
+
+        db.get_challengees([req.user, req.params.id])
+        .then(res2=>{
+
+            db.get_all_booleans([req.params.id])
+            .then(booleans=> {
+                res2[0].bools = booleans
+                res.status(200).send(res2)
+            })
+        })
     }
 
 }

@@ -9,6 +9,7 @@ import graph from '../../svg/graph2.svg';
 import x from '../../svg/letter-x.svg';
 import user from '../../svg/user.svg';
 import group from '../../svg/group.svg';
+import shared from '../../svg/share2.svg';
 
 let form = '';
 let new_form_ready = true;
@@ -274,7 +275,7 @@ export default class dashboard extends Component {
             // console.log(e)
             return (
                 <Link to={`/goal/${e.id}`} key={i}>
-                    <button className='squared' ><img src={user} alt='one user' />{e.goalname}<img src={graph} alt='graph'/></button>
+                    <button className='squared' ><img src={user} alt='one user' />{this.state.goals[i].sent?<img className='shared_img' src={shared} alt='shared' />:''}{e.goalname}<img src={graph} alt='graph'/></button>
                 </Link>
             )
         })

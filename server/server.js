@@ -101,6 +101,8 @@ app.get('/api/getallbools/:id', controller.getallbools)
 app.get('/api/findFriends/:id/:input', controller.findFriends)
 app.get('/api/getSetChallenges/:id', controller.getSetChallenges)
 app.get('/api/grabChallenges', controller.grabChallenges)
+app.get('/api/getChallengers/:id', controller.getChallengers)
+app.get('/api/getChallengees/:id', controller.getChallengees)
 
 app.post('/api/updatesuccesses/:id', controller.fillmissingdays)
 app.post('/api/changebool/:id', controller.changebool)
