@@ -236,9 +236,15 @@ module.exports = {
             const startdate = `${d.getFullYear()} ${d.getMonth()+1} ${d.getDate()}`; 
 
             db.create_new_habit([goal[0].goalname, goal[0].daysoutofseven, goal[0].goodhabit, req.user, startdate, goal[0].id ])
-            .then(res3=>res.status(200).send(res3))
-        })
+            .then(newGoal=>{
+                //THIS PART ONLY FIRES ONE TIME. NO BUG HERE
+                console.log('the new goal\'s id is...', newGoal[0].id)
+                db.create_success_logs([newGoal[0].id])
+                .then(res3=>res.status(200).send(newGoal))
+                
+            })
 
+        })
 
     },
 

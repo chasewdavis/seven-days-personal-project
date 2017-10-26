@@ -205,24 +205,25 @@ export default class dashboard extends Component {
     }
 
     acceptInvite(cid,gid){
-        console.log(cid)
+        console.log('ACCEPT INVITE FIRED')
         axios.patch(`/api/acceptChallenge/${cid}`)
         .then(res=>{
+            console.log('RESPONSE FROM ACCEPT CHALLANGE RECIEVED')
             //need to also copy the goal for this user//
                 axios.post(`api/copyChallenge/${gid}`)
                 .then(res2=>{
-
+                    console.log('RESPONSE FROM COPY CHALLENGE RECEIVED')
                     // const accepted_goal = res2.data[0];
                     let temp = this.state.acceptedGoals;
                     temp.push(res2.data[0])
                     this.setState({acceptedGoals:temp})
 
-                    console.log(res2)
+                    // console.log(res2)   ///also update successess!!!!!!!!
                     
                 })
             ////////////////////////////////////////////
             this.grabAllChallenges();
-            console.log(res)
+            // console.log(res)
         })
     }
 
