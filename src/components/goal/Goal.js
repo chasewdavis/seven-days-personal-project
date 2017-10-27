@@ -497,7 +497,7 @@ class Goal extends Component {
                 <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
                 <Link to={`/search/${this.props.match.params.id}`}><button className='challenge_friends_btn'>Challenge Friends <img src={right} alt='right arrow'/></button></Link>
 
-                <Challengers original={this.state.originalgoal} id={this.props.match.params.id}/>
+                <Challengers sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
 
                 {this.state.sent || this.state.originalgoal
                 ? 

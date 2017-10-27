@@ -1,3 +1,3 @@
 UPDATE goals
-SET sent = NOT sent
+SET sent = TRUE
 WHERE id = $1

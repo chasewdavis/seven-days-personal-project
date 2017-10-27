@@ -262,7 +262,7 @@ module.exports = {
         db = req.app.get('db');
 
         // ------TEMP-------//
-            req.user = 5;
+            // req.user = 4;
         // -----------------//
 
         db.get_challengers([req.user, req.params.id])
@@ -280,20 +280,21 @@ module.exports = {
     getChallengees: (req, res) => {
         db = req.app.get('db');
 
+        
         // ------TEMP-------//
-        req.user = 5;
+            // req.user = 4;
         // -----------------//
-
+        console.log('get challengees function fired params are...', req.user, req.params.id)
         //get challengees info if confirmed is true
 
-        db.get_challengees([req.user, req.params.id])
+        db.get_children_goals([req.params.id])
         .then(res2=>{
 
-            db.get_all_booleans([req.params.id])
-            .then(booleans=> {
-                res2[0].bools = booleans
-                res.status(200).send(res2)
-            })
+            console.log('res2 from get_children_goals is...', res2)
+            
+            res.status(200).send(res2)
+
+
         })
     }
 
