@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
+import './challenger.css'
+
 let limit = 1;
 
 export default class Challengers extends Component {
@@ -24,8 +26,8 @@ export default class Challengers extends Component {
 
     componentWillReceiveProps(newProps){
         console.log('new props are,', newProps)
-        // if(limit){
-        //     limit--;
+        if(limit){
+            limit--;
         //the person who challenged you
         
         if(newProps.original){
@@ -60,32 +62,83 @@ export default class Challengers extends Component {
                 })
             })
         }
-        
 
-        // axios.get(`/api/getallbools/${this.props.match.params.id}`).then(res2=>{
-        //     const array = res2.data.map(e=>e.successful);
-        //     console.log('array from get all bools after mapping', array)
-        //     const best = this.props.countBestStreak(array);
-        //     const current = this.props.countCurrentStreak(array);
-        //     this.setState({
-        //         currentstreak:current, 
-        //         beststreak:best,
-        //     });
-        // })
-
-        // }
+        }
     }
 
     render(){
-        console.log('challengers /ees from state are now...',this.state)
+        console.log(this.state)
+
+        let challengers = this.state.challengers.map((e,i)=>{
+            return (
+                <div className='challengers_parent'>
+                    <div key={i} className='challengers'>
+                        <div>
+                            <img src={e.img} />
+                        </div>
+                        <div>
+                            <span>Current</span>
+                            <span>7</span>
+                            <span>Days</span>
+                        </div>
+                        <div>
+                            <span>Best</span>
+                            <span>18</span>
+                            <span>Days</span>
+                        </div>
+                    </div>
+                    <div className='name_div_parent'>
+                        <div className='name_div'>
+                            name
+                        </div>
+                        <div className='started_on'>
+                            started on:
+                        </div>
+                        <div>
+                            some date
+                        </div>
+                    </div>
+                </div>
+            )
+        })
+
+        let challengees = this.state.challengees.map((e,i)=>{
+            return (
+                <div className='challengers_parent'>
+                    <div key={i} className='challengers'>
+                        <div>
+                            <img src={e.img} />
+                        </div>
+                        <div>
+                            <span>Current</span>
+                            <span>7</span>
+                            <span>Days</span>
+                        </div>
+                        <div>
+                            <span>Best</span>
+                            <span>8</span>
+                            <span>Days</span>
+                        </div>
+                    </div>
+                    <div className='name_div_parent'>
+                        <div className='name_div'>
+                            name
+                        </div>
+                        <div className='started_on'>
+                            started on:
+                        </div>
+                        <div>
+                            some date
+                        </div>
+                    </div>
+                </div>
+            )
+        })
+
         return (
             <div>
-                Challengers
-                <br/>
-                og: {this.props.original}
-                <br/>
-                goal: {this.props.id}
-                <br/>
+                {challengers}
+                {challengees}
             </div>
         )
     }

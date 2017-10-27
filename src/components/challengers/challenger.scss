@@ -1,0 +1,90 @@
+@import "../../utilities/variables.scss";
+
+.challengers_parent{
+    margin: 0 2.5%;
+    border-radius: 5px;
+    background: $gradient_mild;
+    margin-bottom:10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+.challengers{
+    // border: 1px solid green;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    // background: white;
+    border-radius: 5px;
+    // background: $gradient_mild;
+}
+
+.challengers div:nth-child(1){
+    // border: 1px solid green;
+    // margin: 0;
+    background: $main_color;
+}
+
+.challengers div:nth-child(3){
+    background: $gradient_light;
+}
+
+.challengers div{
+    width: calc( 100% / 3);
+    // margin: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    // border: 1px solid red;
+    color: white;
+    position: relative;
+}
+
+.challengers img{
+    width: 100%;
+    border-radius: 50%;
+    // border: 3px solid white;
+    // margin:10px;
+}
+
+.name_div_parent {
+    width: 100%;
+    // border: 1px solid green;
+    display: flex;
+    flex-direction: row;
+    color: $main_color;
+    background: $main_light;
+    height: 23px;
+}
+
+.name_div_parent div {
+    width: calc(100% / 3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.name_div {
+    width: calc(100% / 3);
+    // border: 1px solid red;
+}
+
+.challengers span:nth-child(3){
+    position: absolute;
+    bottom: 10px;
+}
+
+.challengers span:nth-child(2){
+    position: absolute;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    top: 0px;
+    height: 100%;
+    font-size: 45px;
+    // border: 1px solid red;
+}
