@@ -66,36 +66,51 @@ export default class Challengers extends Component {
         }
     }
 
+    readDate(date){
+        date = date.split(' ')
+        date.push(date[0])
+        date = date.slice(1)
+        date.splice(1,0,'/')
+        date.splice(3,0,'/')
+        return date.join(' ')
+    }
+
     render(){
         console.log(this.state)
 
         let challengers = this.state.challengers.map((e,i)=>{
+
+            let booleans = [];
+            if(e.bools){
+              booleans = e.bools.map(e => e.successful)
+            }
+
             return (
-                <div className='challengers_parent'>
-                    <div key={i} className='challengers'>
+                <div key={i} className='challengers_parent'>
+                    <div className='challengers'>
                         <div>
                             <img src={e.img} />
                         </div>
                         <div>
                             <span>Current</span>
-                            <span>7</span>
+                            <span>{this.props.current(booleans)}</span>
                             <span>Days</span>
                         </div>
                         <div>
                             <span>Best</span>
-                            <span>18</span>
+                            <span>{this.props.best(booleans)}</span>
                             <span>Days</span>
                         </div>
                     </div>
                     <div className='name_div_parent'>
                         <div className='name_div'>
-                            name
+                            {e.user_name}
                         </div>
                         <div className='started_on'>
-                            started on:
+                             started:
                         </div>
                         <div>
-                            some date
+                            {this.readDate(e.startdate)}
                         </div>
                     </div>
                 </div>
@@ -103,32 +118,38 @@ export default class Challengers extends Component {
         })
 
         let challengees = this.state.challengees.map((e,i)=>{
+
+            let booleans = [];
+            if(e.bools){
+              booleans = e.bools.map(e => e.successful)
+            }
+
             return (
-                <div className='challengers_parent'>
-                    <div key={i} className='challengers'>
+                <div key={i} className='challengers_parent'>
+                    <div className='challengers'>
                         <div>
                             <img src={e.img} />
                         </div>
                         <div>
                             <span>Current</span>
-                            <span>7</span>
+                            <span>{this.props.current(booleans)}</span>
                             <span>Days</span>
                         </div>
                         <div>
                             <span>Best</span>
-                            <span>8</span>
+                            <span>{this.props.best(booleans)}</span>
                             <span>Days</span>
                         </div>
                     </div>
                     <div className='name_div_parent'>
                         <div className='name_div'>
-                            name
+                            {e.user_name}
                         </div>
                         <div className='started_on'>
-                            started on:
+                            accepted:
                         </div>
                         <div>
-                            some date
+                            {this.readDate(e.startdate)}
                         </div>
                     </div>
                 </div>

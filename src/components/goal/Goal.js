@@ -51,6 +51,8 @@ class Goal extends Component {
         this.updateStreaks = this.updateStreaks.bind(this);
         this.deleteGoal = this.deleteGoal.bind(this);
         this.handleRemoveGoal = this.handleRemoveGoal.bind(this);
+        this.countCurrentStreak = this.countCurrentStreak.bind(this);
+        this.countBestStreak = this.countBestStreak.bind(this);
         // this.forceUpdate = this.forceUpdate.bind(this);
     }
 
@@ -497,7 +499,7 @@ class Goal extends Component {
                 <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
                 <Link to={`/search/${this.props.match.params.id}`}><button className='challenge_friends_btn'>Challenge Friends <img src={right} alt='right arrow'/></button></Link>
 
-                <Challengers sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
+                <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
 
                 {this.state.sent || this.state.originalgoal
                 ? 
