@@ -25,7 +25,7 @@ export default class Challengers extends Component {
     }
 
     componentWillReceiveProps(newProps){
-        console.log('new props are,', newProps)
+        console.log('THE NEW PROPS ARE,', newProps)
         if(limit){
             limit--;
         //the person who challenged you
@@ -76,7 +76,7 @@ export default class Challengers extends Component {
     }
 
     render(){
-        console.log(this.state)
+        console.log('THE PROPS ARE', this.props)
 
         let challengers = this.state.challengers.map((e,i)=>{
 
