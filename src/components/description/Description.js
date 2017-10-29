@@ -46,7 +46,7 @@ export default class Description extends Component {
                         <div></div>
 
                         <div className='back_or_save'>
-                            <button onClick={()=>{ open_description = true; this.props.removeGoal = false; this.displayDescription()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button onClick={()=>{ open_description = true; this.props.removeGoalFalse(); this.displayDescription()}}><img src={back} alt='back arrow'/>Back</button>
                             <button onClick={()=>{ this.props.deleteGoal() }}>Save</button>
                         </div>
                     </div>

@@ -93,6 +93,7 @@ app.patch('/api/renameGoal/:id', controller.renameGoal)
 app.patch('/api/renumberGoal/:id', controller.renumberGoal)
 app.patch('/api/resetBoolType/:id', controller.resetBoolType)
 app.patch(`/api/acceptChallenge/:id`, controller.acceptChallenge)
+app.patch(`/api/addNewDescription/:id`, controller.addNewDescription)
 
 app.get('/api/grabgoals', controller.read)
 app.get('/api/goal/:id', controller.unique)

@@ -19,6 +19,8 @@ import x from '../../svg/letter-x.svg';
 import right from'../../svg/right.svg';
 import {withRouter} from 'react-router';
 
+// import editAddDescription from '../settings/Description.js' 
+
 let pop_up_settings = <div></div>;
 let open_pop_up = true;
 let textBubbleOne = <div></div>;
@@ -45,7 +47,8 @@ class Goal extends Component {
             forceAnUpdate: null,
             logSeven: [false,false,false,false,false,false,false],
             sent: null,
-            originalgoal: null
+            originalgoal: null,
+            description: ''
         }
         this.returnTitle = this.returnTitle.bind(this);
         this.updateStreaks = this.updateStreaks.bind(this);
@@ -53,6 +56,7 @@ class Goal extends Component {
         this.handleRemoveGoal = this.handleRemoveGoal.bind(this);
         this.countCurrentStreak = this.countCurrentStreak.bind(this);
         this.countBestStreak = this.countBestStreak.bind(this);
+        this.removeGoalFalse = this.removeGoalFalse.bind(this);
         // this.forceUpdate = this.forceUpdate.bind(this);
     }
 
@@ -91,7 +95,8 @@ class Goal extends Component {
                 userid: res.data[0].userid,
                 goodhabit: res.data[0].goodhabit,
                 sent: res.data[0].sent,
-                originalgoal: res.data[0].originalgoal
+                originalgoal: res.data[0].originalgoal,
+                description: res.data[0].description
             })
         }); 
     }
@@ -109,23 +114,6 @@ class Goal extends Component {
         });
 
     }
-
-
-
-
-    // check(day){
-    //     console.log(day);
-    //     var temp = this.state.last_seven
-    //     if(temp[day]===false){
-    //         temp[day] = true;
-    //     }else{
-    //         temp[day] = false;
-    //     }
-    //     this.setState({last_seven:temp})
-    //     // axios.post(`/api/changebool/${this.props.goal}`, {day})
-    //     // .then( console.log(this.props.updateStreak()) )
-    //     console.log(this.state);    
-    // }
 
     countCurrentStreak(arr){
         
@@ -388,6 +376,10 @@ class Goal extends Component {
         }
     }
 
+    removeGoalFalse(){
+        removeGoal = false;
+    }
+
     deleteGoal(){
         if(removeGoal){
             axios.delete(`api/deleteGoal/${this.props.match.params.id}`)
@@ -397,6 +389,40 @@ class Goal extends Component {
                 }
             )
         }
+    }
+
+    handleDescriptionChange(val){
+        console.log(val)
+        this.setState({description:val})
+    }
+
+    changeDescription(){
+        if(this.state.description){
+            axios.patch(`/api/addNewDescription/${this.props.match.params.id}`, {description: this.state.description})
+            .then(res=>console.log(res))
+        }
+    }
+
+    editAddDescription(){
+        pop_up_settings = (
+            <div>
+                <div className='overlay'></div>
+                <div className='settings'>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+
+                    <div>
+                        <div className='edit_description_settings'>
+                            <textarea onChange={(e)=>this.handleDescriptionChange(e.target.value)} maxLength='280' rows='10' cols='35' placeholder='add a description...' defaultValue={this.state.description}></textarea>
+                        </div>
+                        <div className='back_or_save'>
+                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button onClick={()=>{this.displaySettings();this.changeDescription()}}>Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            )
+        this.forceUpdate();
     }
 
     editRemoveGoal(){
@@ -451,6 +477,7 @@ class Goal extends Component {
                         <div onClick={()=>this.editDaysPerWeek()} className='settings_option'>Days Per Week<img src={next} alt='next arrow'/></div>
                         <div onClick={()=>this.editGoodvsBad()} className='settings_option'>New / Old Habit<img src={next} alt='next arrow'/></div>
                         <div className='settings_option'>Challenge Friends<img src={next} alt='next arrow'/></div>
+                        <div onClick={()=>this.editAddDescription()} className='settings_option'>Add Description<img src={next} alt='next arrow'/></div>
                         <div onClick={()=>this.editRemoveGoal()} className='settings_option'>Remove Goal<img src={next} alt='next arrow'/></div>
                     </div>
 
@@ -465,15 +492,6 @@ class Goal extends Component {
             this.forceUpdate();
         }
     }
-
-    // displayDescription(){
-    //     pop_up_description = (
-    //         <div>
-    //             displayed if already sent or received from other user
-    //         </div>
-    //     )
-    //     this.forceUpdate();
-    // }
 
     render(){
 
@@ -503,7 +521,7 @@ class Goal extends Component {
 
                 {this.state.sent || this.state.originalgoal
                 ? 
-                <Description deleteGoal={this.deleteGoal} handleRemoveGoal={this.handleRemoveGoal} name={this.state.goalname} days={this.state.daysoutofseven} type={this.state.goodhabit}/> 
+                <Description deleteGoal={this.deleteGoal} handleRemoveGoal={this.handleRemoveGoal} removeGoalFalse={this.removeGoalFalse} name={this.state.goalname} days={this.state.daysoutofseven} type={this.state.goodhabit}/> 
                 : 
                 settings } 
                 {/* will make settings it's own component in the future */}

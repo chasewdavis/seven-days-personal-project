@@ -296,6 +296,13 @@ module.exports = {
 
 
         })
+    },
+
+    addNewDescription: (req, res) => {
+        db = req.app.get('db');
+
+        db.add_description([req.params.id, req.body.description])
+        .then(res2=>res.status(200).send(res2));
     }
 
 }

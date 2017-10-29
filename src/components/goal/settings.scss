@@ -148,6 +148,34 @@
     background: whitesmoke;
 }
 
+.edit_description_settings {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10%
+    // border: 1px solid green;
+}
+
+.edit_description_settings textarea {
+    display: block;
+    border: none;
+    box-shadow: inset 0 0 6px $main_light;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    font-size: 17px;
+    outline:none;
+    resize: none;
+    // overflow: none;
+    padding: 6px;
+    text-align: left;
+}
+
+.description_btns button{
+    height: 60px;
+}
+
 .back_or_save {
     display: flex;
     flex-direction: row;
@@ -161,7 +189,7 @@
     justify-content: center;
     position: relative;
     width: 50%;
-    height: 100%;
+    height: $nav_height;
     border: none;
     color: white;
     font-size: 18px;
@@ -177,7 +205,6 @@
     left: 25px;
 }
 
-
 // EDIT DAY SETTING //
 
 .edit_day_row button {
@@ -192,12 +219,10 @@
     outline: none;
 }
 
-
 .edit_day_row .edit_day_toggle {
     background-color: $main_color;
     color: white;
 }
-
 
 // EDIT GOOD VS BAD SETTING
 
