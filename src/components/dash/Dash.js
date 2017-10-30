@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './dash.css';
 import axios from 'axios';
 import Nav from '../nav/Nav.js';
+import StartTrackingFull from '../tracking/StartTrackingFull.js';
 
 import mail from '../../svg/mail.svg';
 import graph from '../../svg/graph2.svg';
@@ -28,8 +29,15 @@ export default class dashboard extends Component {
             goodHabit: null,
             goals: [],
             acceptedGoals: [],
-            challenges: []
+            challenges: [],
+            openStartTracking: false
         }
+
+        this.openStartTracking = this.openStartTracking.bind(this);
+        this.goodorbad = this.goodorbad.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.daysPerWeekFull = this.daysPerWeekFull.bind(this);
+        this.complete = this.complete.bind(this);
     }
 
     componentWillUnmount(){
@@ -111,7 +119,7 @@ export default class dashboard extends Component {
     }
 
     complete(val){
-        this.setState({daysoutofseven:val})
+        this.setState({daysoutofseven:val, openStartTracking: false})
         new_form_ready = true;
         form = <div className='completed'></div>
 
@@ -269,7 +277,24 @@ export default class dashboard extends Component {
         this.forceUpdate();
     }
 
+    //full screen tracking menu
+
+    openStartTracking(){
+        this.setState({openStartTracking:true})
+    }
+
+    goodorbad(boolean){
+        this.setState({goodHabit:boolean},()=>console.log(this.state))
+    }
+
+    daysPerWeekFull(val){
+        console.log('value is...', val)
+        this.setState({daysoutofseven:val})
+    }
+
     render(){
+
+        console.log(this.state.daysoutofseven)
 
         const goals = this.state.goals.map((e,i)=>{
             // console.log(e)
@@ -291,34 +316,46 @@ export default class dashboard extends Component {
 
         const invites = this.state.challenges.map((e,i)=>{
             return (
+
                 <button className='invitation' onClick={()=>this.openInvite(e.id)} key={i}>New Challenge Invitation<img src={mail} alt='mail' /></button>
+
             )
         })
 
         return (
             <div>
-                <Nav title={'Dashboard'}/>
+                <Nav openStartTracking={this.openStartTracking} title={'Dashboard'}/>
                 <div className='space_for_nav'></div>
+
+                <StartTrackingFull complete={this.complete} daysoutofseven={this.state.daysoutofseven} daysPerWeekFull={this.daysPerWeekFull} goalname={this.state.goalname} handleChange={this.handleChange} goodorbad={this.goodorbad} openStartTracking={this.state.openStartTracking}/>
+
                 <div className='contain'>
 
-                <button onClick={()=>this.form()} className='start' >Start Tracking</button>
-                <div className='no_dash_overflow'>
-                    {form}
-                </div> 
+                    <button onClick={()=>this.form()} className='start' >Start Tracking</button>
+                    <div className='no_dash_overflow'>
+                        {form}
+                    </div> 
+
+                    
+                    <div className='goals'>
+
+                        {goals.reverse()}
+
+                    {/* </div>
+                    <div className='goals'> */}
+                        {accepted_goals}
+                    {/* </div>
+                    <div> */}
+                        {invites}
+                        
+                    </div>
 
                 </div>
-                <div className='goals'>
+                
+                {fullInvite}
 
-                    {goals.reverse()}
+                
 
-                </div>
-                <div className='goals'>
-                    {accepted_goals}
-                </div>
-                <div>
-                    {invites}
-                    {fullInvite}
-                </div>
             </div>
         )
     }

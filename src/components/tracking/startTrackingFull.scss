@@ -1,0 +1,186 @@
+@import "../../utilities/variables.scss";
+
+.overlay_grand {
+    z-index: 55;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.2);
+}
+
+.tracking_parent_div {
+    margin-top:-30px;
+    position: fixed;
+    height: 600px;
+    width: 600px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 45px rgba(0,0,0,.3);
+    overflow: hidden;
+}
+
+.tracking_header {
+    height: 40px;
+    position: relative;
+    background: $main_light;
+}
+
+.close_tracking {
+    position: absolute;
+    right: 0;
+    background: $main_color;
+    width:40px;
+    height: 40px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    img {
+        width: 18px;
+    }
+}
+
+.tracking_content {
+    // border:1px solid magenta;
+    height: calc(600px - 40px - 110px);
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // flex-direction: column;
+}
+
+//GOOOOD VS BBAAAAAD
+
+.type_of_habit_full {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    // border: 1px solid orange;
+    height: 90px; // 1/5 the size of parent div
+    color:$main_color;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.type_of_habit_full button {
+
+    margin-top:5px;
+    margin-bottom: 5px;
+    color: $main_color;
+}
+
+.type_of_habit_full button:nth-child(1) {
+    border: 3px solid $main_color;
+    width: 300px;
+    height: 80px;
+    border-radius:5px 0 0 5px;
+    background: white;
+    font-size: 22px;
+}
+
+.type_of_habit_full button:nth-child(2) {
+    border: 3px solid $main_color;
+    width: 80px;
+    height: 80px;
+    margin-left:3px;
+    border-radius:0 5px 5px 0;
+    font-size: 30px;
+    color: $main_color;
+    background: white;
+}
+
+#fill_btn {
+    background: $main_color;
+    color: white;
+}
+
+// input section
+
+.type_of_habit_full input {
+    height: 80%;
+    width: 50%;
+    border-radius: 5px;
+    border: none;
+    box-shadow: inset 0 0 10px $main_light;
+    outline:none;
+    text-align: left;
+    padding: 20px;
+    font-size: 22px;
+}
+
+.type_of_habit_full {
+    input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        font-size: 22px;
+        color: #B3B3B3;
+    }
+    input::-moz-placeholder { /* Firefox 19+ */
+        font-size: 22px;
+        color: #B3B3B3;
+    }
+    input:-ms-input-placeholder { /* IE 10+ */
+        font-size: 22px;
+        color: #B3B3B3;
+    }
+    input:-moz-placeholder { /* Firefox 18- */
+        font-size: 22px;
+        color: #B3B3B3;
+    }
+}
+
+//days per week section
+
+#number_button_open {
+    width: 85px;
+    height: 85px;
+    border: 3px solid $main_color;
+    background: white;
+    border-radius: 42.5px;
+    font-size: 30px;
+    margin:0 11px;
+}
+
+#number_button_fill {
+    width: 85px;
+    height: 85px;
+    border: 3px solid $main_color;
+    background: $main_color;
+    color:white;
+    border-radius: 42.5px;
+    font-size: 30px;
+    margin:0 11px;
+}
+
+//bottom of tracking div
+
+.next_or_back {
+    position: absolute;
+    width: 100%;
+    bottom:0;
+    // border: 1px solid green;
+    border-radius: 0 0 10px 10px;
+    height: 110px;
+}
+
+.next_or_back button {
+    width: 50%;
+    height: 100%;
+    border:none;
+    color:white;
+    font-size: 25px;
+    outline: none;
+    cursor: pointer;
+}
+
+.next_or_back button:nth-child(1){
+    border-radius: 0 0 0 10px;
+    background: $main_color;
+}
+
+.next_or_back button:nth-child(2){
+    border-radius: 0 0 10px 0;
+    background: $gradient_light;
+}

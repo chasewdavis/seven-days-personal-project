@@ -1,7 +1,12 @@
 
 @import "../../utilities/variables.scss";
 
+.start_or_log {
+  display: none;
+}
+
 .nav {
+    overflow: hidden;
     position: absolute;
     z-index: 15;
     width:100%;
@@ -95,7 +100,7 @@
     // position: absolute;
     // left: 10%;
     // top: 25px;
-    margin-top: 10px;
+    margin-top: 15px;
     border:4px solid $main_color;
     border-radius: 5px;
     height: $main_height;
@@ -103,12 +108,12 @@
     box-sizing: border-box;
     background-color: white;
     color: $main_color;
-    font-size:25px;
+    font-size:23px;
   }
 
   .logout {
     position: absolute;
-    bottom: 10px; 
+    bottom: 15px; 
     left: 10%;
     border:4px solid $main_color;
     border-radius: 30px;
@@ -149,5 +154,57 @@
   @keyframes fade_in {
     to {
       opacity: 1;
+    }
+  }
+
+  @media only screen and (min-width:1024px) {
+    .title {
+      position: absolute;
+      right: 35vw;
+      color: whitesmoke;
+      width: 30vw;
+      // border: 3px solid magenta;
+      font-size: 35px;
+    }
+
+    .start_or_log {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      right: 0;
+      height: 100%;
+      // width: 150px;
+      background: none;
+      border: none;
+      color: white;
+      transition: background-color .8s;
+      text-align: right;
+      padding: 0 0 0 15px;
+      font-size: 30px;
+      // border: 1px solid blue;
+      outline:none;
+      
+      img {
+        // display: none;
+        margin-left: 10px;
+        margin-right: -38px; 
+        // border: 1px solid red;
+        width: 38px;
+        // height: 50px;
+        transition: margin-right .8s;
+      }
+    }
+
+    .start_or_log:hover {
+      background-color: $main_mild;
+      // border-left:3px solid white;
+      // border-right: 3px solid white;
+      
+      img {
+        display: inline;
+        margin-right: 10px;
+      }
     }
   }
