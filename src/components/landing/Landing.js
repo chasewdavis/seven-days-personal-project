@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './landing.css'
 import scroll_down from '../../svg/down.svg';
-let down = <img src={scroll_down} alt='scroll down to sign in'/>
-let fade = true;
+// let down = <img src={scroll_down} alt='scroll down to sign in'/>
+// let fade = true;
 
 export default class Landing extends Component {
 

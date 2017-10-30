@@ -22,8 +22,6 @@ export default class StartTrackingFull extends Component {
 
     render(){
 
-        console.log(this.state.display)
-
         let textBubbleOne = <div></div>
 
         let textBubbleTwo = <div></div>

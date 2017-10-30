@@ -52,8 +52,6 @@ export default class dashboard extends Component {
         // console.log('comp mounted')
         axios.get('/api/grabgoals').then(res=>{
 
-            console.log('responses from grab goals is...', res.data)
-
             let originals = res.data.filter(e=>e.originalgoal?null:e);
             let copys = res.data.filter(e=>e.originalgoal?e:null);
 
@@ -76,14 +74,9 @@ export default class dashboard extends Component {
     grabAllChallenges(){
         axios.get('/api/grabChallenges').then(res2=>{
 
-            // let accepted = res2.data.filter(e=>e.confirmed?e:null) // these goals need to be split
             let waiting = res2.data.filter(e=>e.confirmed?null:e)
 
-            // console.log('accepted is...', accepted)
-            console.log('waitinn is...', waiting)
-
             this.setState({
-                // acceptedGoals: accepted, 
                 challenges: waiting
             })
         })

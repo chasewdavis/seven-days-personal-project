@@ -23,7 +23,7 @@ export default class Nav extends Component {
                         <div className='space_for_nav'></div>
                         {/* <Link to={`/goal/${this.props.id}/settings`}><button className='side_bar_btn'>Settings</button></Link> */}
                         <Link to='/dashboard'><button className='side_bar_btn' onClick={()=>this.slideOut()}>Dashboard</button></Link>
-                        <a className='logout' href='http://localhost:3005/auth/logout'><button>Log out</button></a>
+                        <a className='logout' href={process.env.REACT_APP_LOGOUT}><button>Log out</button></a>
                     </div>
                     <div onClick={()=>this.slideOut()} className='close_menu'>
                         {/* invisible div to make navigation easeir
@@ -40,7 +40,7 @@ export default class Nav extends Component {
                         <div className='space_for_nav'></div>
                         {/* <Link to={`/goal/${this.props.id}/settings`}><button className='side_bar_btn'>Settings</button></Link> */}
                         <Link to='/dashboard'><button className='side_bar_btn' onClick={()=>this.slideOut()}>Dashboard</button></Link>
-                        <a className='logout' href='http://localhost:3005/auth/logout'><button>Log out</button></a>
+                        <a className='logout' href={process.env.REACT_APP_LOGOUT}><button>Log out</button></a>
                     </div>
                 </div>
             )

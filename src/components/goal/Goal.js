@@ -382,7 +382,7 @@ class Goal extends Component {
 
     deleteGoal(){
         if(removeGoal){
-            axios.delete(`api/deleteGoal/${this.props.match.params.id}`)
+            axios.delete(`/api/deleteGoal/${this.props.match.params.id}`)
             .then(res => {    
                 console.log(res) 
                 this.props.history.push('/dashboard')
