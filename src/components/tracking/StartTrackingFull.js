@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import './startTrackingFull.css';
 
 import x from '../../svg/letter-x.svg';
+import X from '../../svg/letter-x.js';
 
 export default class StartTrackingFull extends Component {
 
@@ -92,7 +93,7 @@ export default class StartTrackingFull extends Component {
             return (
                 <div className='overlay_grand'>
                     <div className='tracking_parent_div'>
-                        <div className='tracking_header'><button onClick={()=>this.setState({display:false})} className='close_tracking'><img src={x}/></button></div>
+                        <div className='tracking_header'><button onClick={()=>this.setState({display:false})} className='close_tracking'><X/></button></div>
 
                         <div className='tracking_content'>
                             {trackingContent}

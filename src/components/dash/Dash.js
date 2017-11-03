@@ -6,17 +6,17 @@ import Nav from '../nav/Nav.js';
 import StartTrackingFull from '../tracking/StartTrackingFull.js';
 
 // dynamic svg images
-import mail from '../../svg/mail.svg';
+// import mail from '../../svg/mail.svg';
 import Mail from '../../svg/mail.js';
-import graph from '../../svg/graph2.svg';
+// import graph from '../../svg/graph2.svg';
 import Graph from '../../svg/graph2.js';
-import x from '../../svg/letter-x.svg';
+// import x from '../../svg/letter-x.svg';
 import X from '../../svg/letter-x.js';
-import user from '../../svg/user.svg';
+// import user from '../../svg/user.svg';
 import User from '../../svg/user.js';
-import group from '../../svg/group.svg';
+// import group from '../../svg/group.svg';
 import Group from '../../svg/group.js';
-import shared from '../../svg/share2.svg';
+// import shared from '../../svg/share2.svg';
 import Shared from '../../svg/share2.js';
 
 let form = '';
