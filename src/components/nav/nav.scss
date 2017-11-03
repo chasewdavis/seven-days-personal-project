@@ -1,6 +1,10 @@
 
 @import "../../utilities/variables.scss";
 
+// .svg_color_one {
+//   fill:white;
+// }
+
 .start_or_log {
   display: none;
 }
@@ -47,9 +51,11 @@
   //   color:whitesmoke;
   // }
 
-  .nav img {
+  .nav svg {
     width:31px;
+    fill:black;
   }
+
 
   // .parent_menu{
   //   display: flex;

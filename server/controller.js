@@ -2,6 +2,10 @@ module.exports = {
 
     read: (req,res) => {
 
+        // -----TEMP-----//
+            req.user=4
+        // --------------//
+
         console.log('req.user is...',req.user);
 
         req.app.get('db').get_all_goals([req.user]).then(response=>{

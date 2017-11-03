@@ -23,8 +23,9 @@
   color: whitesmoke;
   font-size: 35px; }
 
-.nav img {
-  width: 31px; }
+.nav svg {
+  width: 31px;
+  fill: black; }
 
 .side_bar {
   z-index: 10;

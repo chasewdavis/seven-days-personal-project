@@ -5,12 +5,19 @@ import axios from 'axios';
 import Nav from '../nav/Nav.js';
 import StartTrackingFull from '../tracking/StartTrackingFull.js';
 
+// dynamic svg images
 import mail from '../../svg/mail.svg';
+import Mail from '../../svg/mail.js';
 import graph from '../../svg/graph2.svg';
+import Graph from '../../svg/graph2.js';
 import x from '../../svg/letter-x.svg';
+import X from '../../svg/letter-x.js';
 import user from '../../svg/user.svg';
+import User from '../../svg/user.js';
 import group from '../../svg/group.svg';
+import Group from '../../svg/group.js';
 import shared from '../../svg/share2.svg';
+import Shared from '../../svg/share2.js';
 
 let form = '';
 let new_form_ready = true;
@@ -250,7 +257,7 @@ export default class dashboard extends Component {
                     <div className='full_invite'>
                         <div className='invite_content'>
                             <div className='invite_header'>
-                            <button onClick={()=>this.openInvite('close')} className='close'><img src={x}/></button>
+                            <button onClick={()=>this.openInvite('close')} className='close'><div id='x'><X/></div></button>
                             </div>
                             <img className='challenger_img' src={invite.img} alt='image of challenger'/>
                             <div className='invite_msg'>
@@ -293,7 +300,18 @@ export default class dashboard extends Component {
             // console.log(e)
             return (
                 <Link to={`/goal/${e.id}`} key={i}>
-                    <button className='squared' ><img src={user} alt='one user' />{this.state.goals[i].sent?<img className='shared_img' src={shared} alt='shared' />:''}{e.goalname}<img src={graph} alt='graph'/></button>
+                    <button className='squared' >
+                        <div id='user'>
+                            <User/>
+                        </div>
+                        {this.state.goals[i].sent
+                        ?
+                        <div id='shared'><Shared/></div>
+                        
+                        :''}
+                        {e.goalname}
+                        <div id="graph"><Graph/></div>
+                    </button>
                 </Link>
             )
         })
@@ -302,7 +320,7 @@ export default class dashboard extends Component {
         const accepted_goals = this.state.acceptedGoals.map((e,i)=>{
             return (
                 <Link to={`/goal/${e.id}`} key={i}>
-                    <button className='squared dark' ><img src={group} alt='multiple users'/>{e.goalname}<img src={graph} alt='graph'/></button>
+                    <button className='squared dark' ><div id='group'><Group/></div>{e.goalname}<div id="graph"><Graph/></div></button>
                 </Link>
             )
         })
@@ -310,7 +328,7 @@ export default class dashboard extends Component {
         const invites = this.state.challenges.map((e,i)=>{
             return (
 
-                <button className='invitation' onClick={()=>this.openInvite(e.id)} key={i}>New Challenge Invitation<img src={mail} alt='mail' /></button>
+                <button className='invitation' onClick={()=>this.openInvite(e.id)} key={i}>New Challenge Invitation<div id='mail'><Mail/></div></button>
 
             )
         })
@@ -319,7 +337,6 @@ export default class dashboard extends Component {
             <div>
                 <Nav openStartTracking={this.openStartTracking} title={'Dashboard'}/>
                 <div className='space_for_nav'></div>
-
                 <StartTrackingFull complete={this.complete} daysoutofseven={this.state.daysoutofseven} daysPerWeekFull={this.daysPerWeekFull} goalname={this.state.goalname} handleChange={this.handleChange} goodorbad={this.goodorbad} openStartTracking={this.state.openStartTracking}/>
 
                 <div className='contain'>

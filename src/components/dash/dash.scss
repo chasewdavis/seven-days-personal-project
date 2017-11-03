@@ -52,8 +52,50 @@
     animation-fill-mode: forwards;
 }
 
+#user, #group{
+    position: absolute;
+    top: 13.75px;
+    left: 10px;
+    //width is found inside the styleing for svg
+}
+#shared {
+    position: absolute;
+    top: 13.75px;
+    left: 46.5px;
+}
+
+#graph {
+    position: absolute;
+    top: 12px;
+    right:40px;
+}
+
+#mail {
+ position: absolute;
+ top: 12px;
+ right:10px;
+}
+
+#x {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    // border: 1px solid black;
+}
+
+.squared svg{
+    position: absolute;
+    fill:black;
+}
+
 .squared img{
     position: absolute;
+    fill:orange;
 }
 
 .squared img:nth-child(1) {
@@ -349,7 +391,7 @@
         width: 19vw;
         height: 19vw;
         margin: .5vw .5vw;
-        transform: translateY(-14px);
+        // transform: translateY(-14px);
         text-align: center;
         // border: 10px solid saddlebrown;
     }

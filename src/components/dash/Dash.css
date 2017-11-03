@@ -40,8 +40,43 @@
   animation: introduce .84s;
   animation-fill-mode: forwards; }
 
+#user, #group {
+  position: absolute;
+  top: 13.75px;
+  left: 10px; }
+
+#shared {
+  position: absolute;
+  top: 13.75px;
+  left: 46.5px; }
+
+#graph {
+  position: absolute;
+  top: 12px;
+  right: 40px; }
+
+#mail {
+  position: absolute;
+  top: 12px;
+  right: 10px; }
+
+#x {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%; }
+
+.squared svg {
+  position: absolute;
+  fill: black; }
+
 .squared img {
-  position: absolute; }
+  position: absolute;
+  fill: orange; }
 
 .squared img:nth-child(1) {
   top: 13.75px;
@@ -288,7 +323,6 @@
     width: 19vw;
     height: 19vw;
     margin: .5vw .5vw;
-    transform: translateY(-14px);
     text-align: center; }
   .goals {
     text-align: left;
