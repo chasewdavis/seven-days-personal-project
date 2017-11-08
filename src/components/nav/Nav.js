@@ -4,7 +4,8 @@ import './nav.css';
 import menu from '../../svg/menu2.svg';
 import graph from '../../svg/graph2.svg';
 // import Settings from '../settings/Settings.js';
-import Svg from '../../svg/example.js';
+// import Svg from '../../svg/example.js';
+import Graph from '../../svg/graph2.js';
 
 let sidebar = <div></div>;
 let sidebar_right = false;
@@ -68,7 +69,7 @@ export default class Nav extends Component {
                         {/* <Svg/> */}
 
                     <div className='title'>{this.props.title}</div>
-                    <button onClick={()=>this.props.openStartTracking()} className='start_or_log'>{this.props.title==='Dashboard'?'start tracking': 'Log'}<img className='nav_start_tracking' src={graph} alt='start new goal'/></button>
+                    <button onClick={()=>this.props.openStartTracking()} className='start_or_log'>{this.props.title==='Dashboard'?'start tracking': 'Log'}<Graph style={"nav_graph_img"}/></button>
                 </div>
                 {sidebar}
                 <div>

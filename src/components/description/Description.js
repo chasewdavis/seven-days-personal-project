@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './description.css';
-import notes from '../../svg/notes.svg';
+// import notes from '../../svg/notes.svg';
+import Notes from '../../svg/notes.js';
 import x from '../../svg/letter-x.svg';
+import X from '../../svg/letter-x.js';
 import next from '../../svg/next2.svg';
 import back from '../../svg/next2reversed.svg';
 
@@ -64,7 +66,7 @@ export default class Description extends Component {
             <div>
                 <div className='overlay'></div>
                 <div className='settings'>
-                    <div className='settings_header'>{this.props.name}<button className='close' onClick={()=>this.displayDescription()}><img src={x} alt='x'/></button></div>
+                    <div className='settings_header'>{this.props.name}<button className='close' onClick={()=>this.displayDescription()}><div><X discription={true}/></div></button></div>
 
 
                     <div className='all_settings_options'>
@@ -96,7 +98,7 @@ export default class Description extends Component {
 
         return (
             <div>
-                <button className='open_description' onClick={()=>this.displayDescription()}>Description<img src={notes} alt='notes' /></button>
+                <button className='open_description' onClick={()=>this.displayDescription()}>Description<div id='notes'><Notes/></div></button>
                 {pop_up_description}
             </div>
         )

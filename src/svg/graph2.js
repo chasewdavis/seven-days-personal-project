@@ -5,7 +5,7 @@ export default class svg extends Component{
     render(){
         return (
             
-            <svg className="width2" xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47 47" >
+            <svg className={this.props.style ? "width3" :"width2"} xmlns="http://www.w3.org/2000/svg" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 47 47" >
             <g>
                 <g>
                     <g>

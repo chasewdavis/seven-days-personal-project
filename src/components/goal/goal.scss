@@ -21,3 +21,13 @@
     right: 14px;
     width: calc( 50px / 2 );
 }
+
+#right {
+    position: absolute;
+    right: 10px;
+    top:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}

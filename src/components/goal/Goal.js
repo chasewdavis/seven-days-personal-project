@@ -16,7 +16,9 @@ import gear from '../../svg/gear.svg';
 import next from '../../svg/next2.svg';
 import back from '../../svg/next2reversed.svg';
 import x from '../../svg/letter-x.svg';
-import right from'../../svg/right.svg';
+// import right from'../../svg/right.svg';
+import Right from '../../svg/right.js';
+
 import {withRouter} from 'react-router';
 
 // import editAddDescription from '../settings/Description.js' 
@@ -515,7 +517,7 @@ class Goal extends Component {
                 <div className='space_for_nav'></div>
                 <Log updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
                 <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
-                <Link to={`/search/${this.props.match.params.id}`}><button className='challenge_friends_btn'>Challenge Friends <img src={right} alt='right arrow'/></button></Link>
+                <Link to={`/search/${this.props.match.params.id}`}><button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button></Link>
 
                 <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
 
