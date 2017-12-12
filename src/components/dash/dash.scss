@@ -85,6 +85,11 @@
     justify-content: center;
     height: 100%;
     width: 100%;
+    svg{
+        path{
+            fill:white;
+        }
+    }
     // border: 1px solid black;
 }
 
@@ -138,6 +143,8 @@
     animation: introduce .84s;
     animation-fill-mode: forwards;
     box-shadow: 0 0 10px white;
+    // border: 2px solid red;
+    transform: translateY(-12.5px)
 }
 
 .invitation img {

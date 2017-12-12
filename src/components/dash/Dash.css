@@ -69,6 +69,8 @@
   justify-content: center;
   height: 100%;
   width: 100%; }
+  #x svg path {
+    fill: white; }
 
 .squared svg {
   position: absolute;
@@ -112,7 +114,8 @@
   color: white;
   animation: introduce .84s;
   animation-fill-mode: forwards;
-  box-shadow: 0 0 10px white; }
+  box-shadow: 0 0 10px white;
+  transform: translateY(-12.5px); }
 
 .invitation img {
   width: 30px;

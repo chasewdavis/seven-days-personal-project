@@ -257,7 +257,7 @@ export default class dashboard extends Component {
                     <div className='full_invite'>
                         <div className='invite_content'>
                             <div className='invite_header'>
-                            <button onClick={()=>this.openInvite('close')} className='close'><div id='x'><X/></div></button>
+                            <button onClick={()=>this.openInvite('close')} className='close'><div id='x'><X width={16}/></div></button>
                             </div>
                             <img className='challenger_img' src={invite.img} alt='image of challenger'/>
                             <div className='invite_msg'>
