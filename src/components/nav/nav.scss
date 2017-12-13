@@ -69,10 +69,18 @@
     position: absolute;
     top:0;
     left: 0;
-    height: 100%;
+    height: calc(100% + 60px);
     width:66.6%;
     background-color: white;
-    
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+  }
+
+  .stop-scrolling {
+    height: 100%;
+    overflow: hidden;
   }
 
   .close_menu {
@@ -80,7 +88,7 @@
     position: absolute;
     top:0;
     right: 0;
-    height: 100%;
+    height: calc( 100% + 60px);
     width: 100%;
     background-color: rgba(0,0,0,.1);
     opacity: 0;
@@ -93,7 +101,7 @@
     margin-left: -66.6%;
     animation: slide_right .84s;
     animation-fill-mode: forwards;
-    box-shadow: 0 0 30px rgba(0,0,0,.25)
+    box-shadow: 0 0 30px rgba(0,0,0,.25);
   }
 
   .left {
@@ -106,7 +114,7 @@
     // position: absolute;
     // left: 10%;
     // top: 25px;
-    margin-top: 15px;
+    margin-top: 75px;
     border:4px solid $main_color;
     border-radius: 5px;
     height: $main_height;
@@ -119,13 +127,15 @@
 
   .logout {
     position: absolute;
-    bottom: 15px; 
+    bottom: 75px; 
     left: 10%;
     border:4px solid $main_color;
     border-radius: 30px;
     height: $main_height;
     width:80%;
     box-sizing: border-box;
+    display: flex;
+    justify-self: flex-end;
   }
 
   .logout {
@@ -164,6 +174,11 @@
   }
 
   @media only screen and (min-width:1024px) {
+
+    .side_bar {
+      width: 20%;
+    }
+
     .title {
       position: absolute;
       right: 35vw;

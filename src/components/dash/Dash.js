@@ -294,8 +294,8 @@ export default class dashboard extends Component {
         const goals = this.state.goals.map((e,i)=>{
             // console.log(e)
             return (
-                <Link to={`/goal/${e.id}`} key={i}>
-                    <button className='squared' >
+                <Link className='squared' to={`/goal/${e.id}`} key={i}>
+                    <button>
                         <div id='user'>
                             <User/>
                         </div>
@@ -314,8 +314,8 @@ export default class dashboard extends Component {
         //SHOULD ALTER SOMEWHAT
         const accepted_goals = this.state.acceptedGoals.map((e,i)=>{
             return (
-                <Link to={`/goal/${e.id}`} key={i}>
-                    <button className='squared dark' ><div id='group'><Group/></div>{e.goalname}<div id="graph"><Graph/></div></button>
+                <Link className='squared dark' to={`/goal/${e.id}`} key={i}>
+                    <button ><div id='group'><Group/></div>{e.goalname}<div id="graph"><Graph/></div></button>
                 </Link>
             )
         })
@@ -323,7 +323,7 @@ export default class dashboard extends Component {
         const invites = this.state.challenges.map((e,i)=>{
             return (
 
-                <button className='invitation' onClick={()=>this.openInvite(e.id)} key={i}>New Challenge Invitation<div id='mail'><Mail/></div></button>
+                <button className='squared darker' onClick={()=>this.openInvite(e.id)} key={i}>New Challenge Invitation<div id='mail'><Mail/></div></button>
 
             )
         })
@@ -345,11 +345,8 @@ export default class dashboard extends Component {
 
                         {goals.reverse()}
 
-                    {/* </div>
-                    <div className='goals'> */}
                         {accepted_goals}
-                    {/* </div>
-                    <div> */}
+                    
                         {invites}
                         
                     </div>
