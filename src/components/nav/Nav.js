@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 import './nav.css';
-import menu from '../../svg/menu2.svg';
-import graph from '../../svg/graph2.svg';
-// import Settings from '../settings/Settings.js';
-// import Svg from '../../svg/example.js';
 import Graph from '../../svg/graph2.js';
 
 let sidebar = <div></div>;

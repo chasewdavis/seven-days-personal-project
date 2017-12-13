@@ -12,18 +12,11 @@ import Description from '../description/Description.js';
 import './goal.css';
 import './settings.css';
 
-// import gear from '../../svg/gear.svg';
+// dynamic svgs 
 import Gear from '../../svg/gear.js';
-
-import next from '../../svg/next2.svg';
 import Next from '../../svg/next2.js';
-
-import back from '../../svg/next2reversed.svg';
 import Back from '../../svg/next2reversed.js';
-
-import x from '../../svg/letter-x.svg';
 import X from '../../svg/letter-x.js';
-// import right from'../../svg/right.svg';
 import Right from '../../svg/right.js';
 
 import {withRouter} from 'react-router';
@@ -84,7 +77,7 @@ class Goal extends Component {
 
         axios.get(`/api/getallbools/${this.props.match.params.id}`).then(res2=>{
             const array = res2.data.map(e=>e.successful);
-            console.log('array from get all bools after mapping', array)
+            // console.log('array from get all bools after mapping', array)
             const best = this.countBestStreak(array);
             const current = this.countCurrentStreak(array);
             this.setState({
@@ -97,7 +90,7 @@ class Goal extends Component {
 
     setGoal(){
         axios.get(`/api/goal/${this.props.match.params.id}`).then((res)=>{
-            console.log('the res is....... ',res.data)
+            // console.log('the res is....... ',res.data)
             this.setState({
                 goalname: res.data[0].goalname,
                 daysoutofseven: res.data[0].daysoutofseven,
@@ -166,11 +159,11 @@ class Goal extends Component {
     }
 
     setNewName(){
-        console.log(this.state.goalnametemp)
+        // console.log(this.state.goalnametemp)
         const goal = this.state.goalnametemp;
         axios.patch(`api/renameGoal/${this.props.match.params.id}`, { goal } )
         .then(res => {
-            console.log('the response from database is... ', res.data[0].goalname)
+            // console.log('the response from database is... ', res.data[0].goalname)
             this.setState({goalname:res.data[0].goalname})
         });
     }
@@ -228,7 +221,7 @@ class Goal extends Component {
         });
         
         axios.patch(`api/renumberGoal/${this.props.match.params.id}`, {number:num})
-        .then(res=>console.log(res))
+        // .then(res=>console.log(res))
 
     }
 
@@ -280,7 +273,7 @@ class Goal extends Component {
     goodvsBadHandler(boolean){
 
         axios.patch(`api/resetBoolType/${this.props.match.params.id}`, {boolean: boolean})
-        .then(res=>console.log(res))
+        // .then(res=>console.log(res))
 
         document.querySelector('button.selected').classList.remove('selected')
 
@@ -393,7 +386,7 @@ class Goal extends Component {
         if(removeGoal){
             axios.delete(`/api/deleteGoal/${this.props.match.params.id}`)
             .then(res => {    
-                console.log(res) 
+                // console.log(res) 
                 this.props.history.push('/dashboard')
                 }
             )
@@ -401,14 +394,14 @@ class Goal extends Component {
     }
 
     handleDescriptionChange(val){
-        console.log(val)
+        // console.log(val)
         this.setState({description:val})
     }
 
     changeDescription(){
         if(this.state.description){
             axios.patch(`/api/addNewDescription/${this.props.match.params.id}`, {description: this.state.description})
-            .then(res=>console.log(res))
+            // .then(res=>console.log(res))
         }
     }
 

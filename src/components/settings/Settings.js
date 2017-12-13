@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
-// import axios from 'axios';
 import './settings.css';
-import gear from '../../svg/settings.svg';
-// let form = <div></div>;
-// let open_form = true;
+import Gear from '../../svg/gear.js';
 
 export default class Settings extends Component {
 
@@ -29,7 +26,7 @@ export default class Settings extends Component {
                 <div id='form'></div>
                 <div className='open_settings'>
                     <a href='#form'>
-                    <img src={gear} alt='gear' />
+                    <Gear />
                     Settings
                     </a>
                 </div>

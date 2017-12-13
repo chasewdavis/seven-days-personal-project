@@ -3,10 +3,10 @@ module.exports = {
     read: (req,res) => {
 
         // -----TEMP-----//
-            req.user=4
+            // req.user=4
         // --------------//
 
-        console.log('req.user is...',req.user);
+        // console.log('req.user is...',req.user);
 
         req.app.get('db').get_all_goals([req.user]).then(response=>{
             res.send(response); //should add 200
@@ -33,7 +33,7 @@ module.exports = {
 
         let goalid = null;
         
-        console.log('update funtion is firing')
+        // console.log('update funtion is firing')
 
         let args = [req.body.goalname, req.body.daysoutofseven, req.body.goodHabit, req.user, startdate, null]
 
@@ -47,12 +47,13 @@ module.exports = {
 
     createSuccesses: (req,res) => {
 
-        console.log('createSuccesses function is firing');
+        // console.log('createSuccesses function is firing');
 
-        console.log(req.body);
+        // console.log(req.body);
 
         req.app.get('db').create_success_logs([req.body.id])
-        res.sendStatus(200)
+        // res.sendStatus(200)
+        res.status(200).end();
     },
 
     fillmissingdays: (req,res) => {
@@ -75,7 +76,7 @@ module.exports = {
         //function will go out of sync on leap day 2020... oh well
         }
 
-        console.log('fillmissingdays function fired');
+        // console.log('fillmissingdays function fired');
 
         const future = 0; // THIS IF FOR TESTING PURPOSES ONLY, SET BACK TO 0 OTHERWISE
         const goalid = req.params.id;
@@ -83,29 +84,26 @@ module.exports = {
         d = new Date();
         const today = `${d.getFullYear()} ${d.getMonth()+1} ${d.getDate()+future}`;
         let startdate = null;
-        req.app.get('db').get_startdate([goalid]).then( res => {
-            startdate = res[0].startdate;
+        req.app.get('db').get_startdate([goalid]).then( start => {
+            startdate = start[0].startdate;
             let index = days(startdate,today);
 
             req.app.get('db').grab_last_day([goalid]).then(day=>{
 
                 for(var i = day[0].dayof+1; i <= index; i++){
-                    console.log(i);
+                    // console.log(i);
                     req.app.get('db').fill_missing_days([goalid,i])
                     .then(theResponse=>{
-                        theResponse.sendStatus(200)
+                        res.status(200).end();
                     });
                 }
 
-            }).then(anotherOne=>{
-
-                anotherOne.sendStatus(200)
             })
 
-            console.log('number of days since goal began... ', days(startdate,today))//number of rows to insert into success for this goal
+            // console.log('number of days since goal began... ', days(startdate,today))//number of rows to insert into success for this goal
         })
          
-        res.sendStatus(200);
+        res.status(200).end();
     },
 
     getbools: (req,res) => {
@@ -127,18 +125,18 @@ module.exports = {
     },
 
     changebool: (req,res) => {
-        console.log('from changebool', req.body.day) //day clicked on
-        console.log('from changebool', req.params.id) //goal id
+        // console.log('from changebool', req.body.day) //day clicked on
+        // console.log('from changebool', req.params.id) //goal id
         const db = req.app.get('db')
         const dayclicked = req.body.day;
         const goalid = req.params.id;
 
         db.grab_last_day([req.params.id]).then(res2=>{
-            console.log('from changebool', res2[0].dayof)
+            // console.log('from changebool', res2[0].dayof)
             const day = res2[0].dayof - dayclicked;
             db.update_bool([goalid, day]).then(res3=>{
 
-                console.log('response from update_bool is... ', res3);
+                // console.log('response from update_bool is... ', res3);
 
                 // trying this out
                 db.get_all_booleans([req.params.id]).then(updatedBooleans => res.status(200).send(updatedBooleans))
@@ -166,7 +164,7 @@ module.exports = {
 
     resetBoolType: (req, res) => {
         db = req.app.get('db');
-        console.log(req.body);
+        // console.log(req.body);
         db.reset_bool_type([req.params.id, req.body.boolean])
         .then(res2 => res.status(200).send(res2))
     },
@@ -182,12 +180,11 @@ module.exports = {
     },
 
     findFriends: (req, res) => {
-        console.log(req.params.id, req.params.input)
+        // console.log(req.params.id, req.params.input)
         db = req.app.get('db');
         db.find_friends([req.params.input])
-        // .then(friends=>console.log(friends))
         .then(friends => {
-            console.log('the friends are..', friends)
+            // console.log('the friends are..', friends)
             ///TEMPPPP////
             // req.user = 4;
             //////////////
@@ -197,29 +194,28 @@ module.exports = {
     },
 
     getSetChallenges: (req, res) => {
-        console.log('from getSetChallenges...', req.params.id)
+        // console.log('from getSetChallenges...', req.params.id)
         db = req.app.get('db');
         db.get_set_challenges([req.params.id, req.user])
         .then(challenges=>res.status(200).send(challenges))
     },
 
     challengeFriend: (req, res) => {
-        console.log('req.user is...', req.user)
-        console.log('req.params.id is...', req.params.id)
-        console.log('req.body.friend is...', req.body.friend)
+        // console.log('req.user is...', req.user)
+        // console.log('req.params.id is...', req.params.id)
+        // console.log('req.body.friend is...', req.body.friend)
         db = req.app.get('db');
 
         db.sent_bool_true([req.params.id])
-        .then(finished=>console.log(finished))
+        // .then(finished=>res.status(200).end())
 
         db.challenge_friend([req.params.id, req.user, req.body.friend])
         .then(res2=>res.status(200).send(res2))
     },
 
     grabChallenges: (req, res) => {
-        console.log('user from grabChallenges is..', req.user)
+        // console.log('user from grabChallenges is..', req.user)
         db = req.app.get('db');
-
 
         //TEMPPPPPPPP VARRRRRRIIIIIAAAAABBBBLLLLLLEEEEEEEEE
         //set back to req.user
@@ -239,7 +235,7 @@ module.exports = {
 
         db.get_goal([req.params.id])
         .then(goal=>{
-            console.log(goal[0])
+            // console.log(goal[0])
             
             const d = new Date();
             const startdate = `${d.getFullYear()} ${d.getMonth()+1} ${d.getDate()}`; 
@@ -247,7 +243,7 @@ module.exports = {
             db.create_new_habit([goal[0].goalname, goal[0].daysoutofseven, goal[0].goodhabit, req.user, startdate, goal[0].id ])
             .then(newGoal=>{
                 //THIS PART ONLY FIRES ONE TIME. NO BUG HERE
-                console.log('the new goal\'s id is...', newGoal[0].id)
+                // console.log('the new goal\'s id is...', newGoal[0].id)
                 db.create_success_logs([newGoal[0].id])
                 .then(res3=>res.status(200).send(newGoal))
                 
@@ -290,13 +286,13 @@ module.exports = {
         // ------TEMP-------//
             // req.user = 4;
         // -----------------//
-        console.log('get challengees function fired params are...', req.user, req.params.id)
+        // console.log('get challengees function fired params are...', req.user, req.params.id)
         //get challengees info if confirmed is true
 
         db.get_children_goals([req.params.id])
         .then(res2=>{
 
-            console.log('res2 from get_children_goals is...', res2)
+            // console.log('res2 from get_children_goals is...', res2)
             
             res.status(200).send(res2)
 

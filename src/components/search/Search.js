@@ -59,7 +59,7 @@ export default class Search extends Component {
         if(this.state.searchInput){
             axios.get(`/api/findFriends/${this.props.match.params.id}/${this.state.searchInput}`)
             .then(friends=>{
-                console.log('the friends you are searching for...', friends.data);
+                // console.log('the friends you are searching for...', friends.data);
 
                 let mappedFriends = friends.data.map(e=>e.id)
                 let mappedChallenges = this.state.sentChallenges.map(e=>e.userid)
@@ -98,9 +98,8 @@ export default class Search extends Component {
 
                 this.setState({foundUsers:friends.data, matches:matchesFound})
             })
-        }else{
-            console.log('Input field is blank')
         }
+
     }
 
     challengeFriend(user){
@@ -110,11 +109,11 @@ export default class Search extends Component {
             temp.push(user)
             this.setState({justSent:temp})
 
-            console.log(user)
+            // console.log(user)
             axios.post(`/api/challengeFriend/${this.props.match.params.id}`, { friend: user })
             .then(res=>{
                 this.findFriends();
-                console.log('friend has been challenged', res) 
+                // console.log('friend has been challenged', res) 
             })
         }
     }

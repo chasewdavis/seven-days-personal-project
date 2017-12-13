@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import './startTrackingFull.css';
 
-// import x from '../../svg/letter-x.svg';
 import X from '../../svg/letter-x.js';
 
 export default class StartTrackingFull extends Component {
@@ -14,6 +13,7 @@ export default class StartTrackingFull extends Component {
             display: false,
             step: 1,
             goodorbad: null
+            
         }
     }
 
@@ -99,9 +99,8 @@ export default class StartTrackingFull extends Component {
                         </div>
 
                         <div className='next_or_back'>
-                            <button onClick={()=>this.state.step > 1 ? this.setState({step: --this.state.step}): console.log('all the way back')}>Back</button>
+                            <button onClick={()=> {if( this.state.step > 1 ) this.setState({step: --this.state.step})}}>Back</button>
                             <button onClick={()=>{
-
                                 this.setState({step: ++this.state.step})}
                             }>{this.state.step!==3?'Next':'Create Goal'}</button>
                         </div>

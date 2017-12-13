@@ -6,17 +6,12 @@ import Nav from '../nav/Nav.js';
 import StartTrackingFull from '../tracking/StartTrackingFull.js';
 
 // dynamic svg images
-// import mail from '../../svg/mail.svg';
+
 import Mail from '../../svg/mail.js';
-// import graph from '../../svg/graph2.svg';
 import Graph from '../../svg/graph2.js';
-// import x from '../../svg/letter-x.svg';
 import X from '../../svg/letter-x.js';
-// import user from '../../svg/user.svg';
 import User from '../../svg/user.js';
-// import group from '../../svg/group.svg';
 import Group from '../../svg/group.js';
-// import shared from '../../svg/share2.svg';
 import Shared from '../../svg/share2.js';
 
 let form = '';
@@ -67,7 +62,7 @@ export default class dashboard extends Component {
             res.data.map(e=>{
                 
                 axios.post(`/api/updatesuccesses/${e.id}`).then(res=>{
-                    console.log(res.data)
+                    // console.log(res.data)
                 })
 
             })
@@ -132,12 +127,12 @@ export default class dashboard extends Component {
                     })
         
                     axios.put('/api/setgoal', temp[temp.length-1]).then(res=> {
-                        console.log('respoonse is...',res.data[0].id)
+                        // console.log('respoonse is...',res.data[0].id)
                         temp[temp.length-1].id = res.data[0].id
 
 
                         axios.put('/api/successes', {id:res.data[0].id}).then(res2=> {
-                            console.log(res2);
+                            // console.log(res2);
                         }).then(res3=>{
 
                             this.setState({
@@ -214,14 +209,14 @@ export default class dashboard extends Component {
     }
 
     acceptInvite(cid,gid){
-        console.log('ACCEPT INVITE FIRED')
+        // console.log('ACCEPT INVITE FIRED')
         axios.patch(`/api/acceptChallenge/${cid}`)
         .then(res=>{
-            console.log('RESPONSE FROM ACCEPT CHALLANGE RECIEVED')
+            // console.log('RESPONSE FROM ACCEPT CHALLANGE RECIEVED')
             //need to also copy the goal for this user//
                 axios.post(`api/copyChallenge/${gid}`)
                 .then(res2=>{
-                    console.log('RESPONSE FROM COPY CHALLENGE RECEIVED')
+                    // console.log('RESPONSE FROM COPY CHALLENGE RECEIVED')
                     // const accepted_goal = res2.data[0];
                     let temp = this.state.acceptedGoals;
                     temp.push(res2.data[0])
@@ -240,15 +235,15 @@ export default class dashboard extends Component {
         axios.delete(`/api/declineChallenge/${cid}`)
         .then(res=>{
             this.grabAllChallenges(); 
-            console.log(res) 
+            // console.log(res) 
         })
     }
 
     openInvite(val){
-        console.log(val);
+        // console.log(val);
 
         const invite = this.state.challenges.filter(e=>val===e.id)[0]
-        console.log(invite)
+        // console.log(invite)
 
         if(val !== 'close'){
             fullInvite = (
@@ -284,17 +279,17 @@ export default class dashboard extends Component {
     }
 
     goodorbad(boolean){
-        this.setState({goodHabit:boolean},()=>console.log(this.state))
+        this.setState({goodHabit:boolean})
     }
 
     daysPerWeekFull(val){
-        console.log('value is...', val)
+        // console.log('value is...', val)
         this.setState({daysoutofseven:val})
     }
 
     render(){
 
-        console.log(this.state.daysoutofseven)
+        // console.log(this.state.daysoutofseven)
 
         const goals = this.state.goals.map((e,i)=>{
             // console.log(e)
@@ -345,7 +340,6 @@ export default class dashboard extends Component {
                     <div className='no_dash_overflow'>
                         {form}
                     </div> 
-
                     
                     <div className='goals'>
 
@@ -363,8 +357,6 @@ export default class dashboard extends Component {
                 </div>
                 
                 {fullInvite}
-
-                
 
             </div>
         )

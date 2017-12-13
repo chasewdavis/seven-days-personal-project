@@ -25,7 +25,7 @@ export default class Challengers extends Component {
     }
 
     componentWillReceiveProps(newProps){
-        console.log('THE NEW PROPS ARE,', newProps)
+        // console.log('THE NEW PROPS ARE,', newProps)
         if(limit){
             limit--;
         //the person who challenged you
@@ -34,7 +34,7 @@ export default class Challengers extends Component {
 
             axios.get(`/api/getChallengers/${newProps.original}`)
             .then(res=>{
-                console.log(res.data[0])
+                // console.log(res.data[0])
                 let temp = this.state.challengers.slice()
                 temp.push(res.data[0])
                 this.setState({challengers:temp})
@@ -76,7 +76,7 @@ export default class Challengers extends Component {
     }
 
     render(){
-        console.log('THE PROPS ARE', this.props)
+        // console.log('THE PROPS ARE', this.props)
 
         let challengers = this.state.challengers.map((e,i)=>{
 

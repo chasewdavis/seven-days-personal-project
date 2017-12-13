@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import './description.css';
-// import notes from '../../svg/notes.svg';
+
+// dynamic svg images
 import Notes from '../../svg/notes.js';
-// import x from '../../svg/letter-x.svg';
 import X from '../../svg/letter-x.js';
-import next from '../../svg/next2.svg';
 import Next from '../../svg/next2.js';
-import back from '../../svg/next2reversed.svg';
 import Back from '../../svg/next2reversed.js';
 
 let pop_up_description = <div></div>;

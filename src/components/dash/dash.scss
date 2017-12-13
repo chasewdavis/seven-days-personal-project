@@ -138,7 +138,7 @@
     animation-fill-mode: forwards;
     box-shadow: 0 0 10px white;
     // border: 2px solid red;
-    transform: translateY(-12.5px)
+    // transform: translateY(-12.5px)
 }
 
 .invitation img {
@@ -238,7 +238,6 @@
     overflow: hidden;
     position: relative;
 }
-
 
 .good, .bad {
     position: absolute;
@@ -391,7 +390,7 @@
         cursor: pointer;
         width: 19vw;
         height: 19vw;
-        margin: .5vw .5vw;
+        margin: 1vw .5vw 0 .5vw;
         // transform: translateY(-14px);
         text-align: center;
         // border: 10px solid saddlebrown;

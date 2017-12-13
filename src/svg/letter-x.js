@@ -3,7 +3,6 @@ import './colors.css'
 
 export default class svg extends Component{
     render(){
-        console.log('letter x props are ', this.props.width)
         return (
             
             <svg width={this.props.width} height={this.props.width} version="1.1" x="0px" y="0px" viewBox="0 0 339.75 339.75">
