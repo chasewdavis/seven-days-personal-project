@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 import './description.css';
 // import notes from '../../svg/notes.svg';
 import Notes from '../../svg/notes.js';
-import x from '../../svg/letter-x.svg';
+// import x from '../../svg/letter-x.svg';
 import X from '../../svg/letter-x.js';
 import next from '../../svg/next2.svg';
+import Next from '../../svg/next2.js';
 import back from '../../svg/next2reversed.svg';
+import Back from '../../svg/next2reversed.js';
 
 let pop_up_description = <div></div>;
 let open_description = true;
@@ -26,7 +28,7 @@ export default class Description extends Component {
             <div>
                 <div className='overlay'></div>
                 <div className='settings'>
-                    <div className='settings_header'>{this.props.name}<button className='close' onClick={()=>this.displayDescription()}><img src={x} alt='x'/></button></div>
+                    <div className='settings_header'>{this.props.name}<button className='close' onClick={()=>this.displayDescription()}><X width='18px'/></button></div>
 
                     <div className='edit_name_settings'> {/*should change this to a more general name*/}
                         <div></div>
@@ -48,7 +50,7 @@ export default class Description extends Component {
                         <div></div>
 
                         <div className='back_or_save'>
-                            <button onClick={()=>{ open_description = true; this.props.removeGoalFalse(); this.displayDescription()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button onClick={()=>{ open_description = true; this.props.removeGoalFalse(); this.displayDescription()}}><Back/>Back</button>
                             <button onClick={()=>{ this.props.deleteGoal() }}>Save</button>
                         </div>
                     </div>
@@ -66,16 +68,15 @@ export default class Description extends Component {
             <div>
                 <div className='overlay'></div>
                 <div className='settings'>
-                    <div className='settings_header'>{this.props.name}<button className='close' onClick={()=>this.displayDescription()}><div><X discription={true}/></div></button></div>
-
+                    <div className='settings_header'>{this.props.name}<button className='close' onClick={()=>this.displayDescription()}><X width='18px'/></button></div>
 
                     <div className='all_settings_options'>
                         <div className='settings_option'>Name<div>{this.props.name}</div></div>
                         <div className='settings_option'>Days Per Week<div>{this.props.days}</div></div>
                         <div className='settings_option'>New / Old Habit<div>{this.props.type?'New':'Old'}</div></div>
-                        <div className='settings_option'>Shared With<img src={next} alt='next arrow'/></div>
-                        <div onClick={()=>this.openDescription()} className='settings_option'>Description<img src={next} alt='next arrow'/></div>
-                        <div onClick={()=>this.editRemoveGoal()} className='settings_option'>Remove Goal<img src={next} alt='next arrow'/></div>
+                        <div className='settings_option'>Shared With<Next width='25px'/></div>
+                        <div onClick={()=>this.openDescription()} className='settings_option'>Description<Next width='25px'/></div>
+                        <div onClick={()=>this.editRemoveGoal()} className='settings_option'>Remove Goal<Next width='25px'/></div>
                     </div>
 
 

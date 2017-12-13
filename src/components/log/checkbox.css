@@ -53,7 +53,7 @@ input[type=checkbox] {
   height: 35px;
   width: 35px;
   background-color: transparent;
-  border: 3.5px solid #536976;
+  border: 3.5px solid #556270;
   border-radius: 5px;
   position: relative;
   display: inline-block;
@@ -72,7 +72,7 @@ input[type=checkbox] {
     position: absolute;
     height: 0;
     width: 7px;
-    background-color: #536976;
+    background-color: #556270;
     display: inline-block;
     -moz-transform-origin: left top;
     -ms-transform-origin: left top;
@@ -104,7 +104,7 @@ input[type=checkbox] {
 
 input[type=checkbox]:checked + .check-box,
 .check-box.checked {
-  border-color: #536976; }
+  border-color: #556270; }
   input[type=checkbox]:checked + .check-box::after,
   .check-box.checked::after {
     height: 17.5px;

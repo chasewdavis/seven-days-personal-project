@@ -7,7 +7,7 @@
   z-index: 15;
   width: 100%;
   height: 60px;
-  background: linear-gradient(155deg, #536976, #BBD2C5);
+  background: linear-gradient(155deg, #556270, #93B1BC);
   /* position: fixed; */
   display: flex;
   flex-direction: row;
@@ -61,20 +61,20 @@
 
 .side_bar_btn {
   margin-top: 15px;
-  border: 4px solid #536976;
+  border: 4px solid #556270;
   border-radius: 5px;
   height: 55px;
   width: 80%;
   box-sizing: border-box;
   background-color: white;
-  color: #536976;
+  color: #556270;
   font-size: 23px; }
 
 .logout {
   position: absolute;
   bottom: 15px;
   left: 10%;
-  border: 4px solid #536976;
+  border: 4px solid #556270;
   border-radius: 30px;
   height: 55px;
   width: 80%;
@@ -92,7 +92,7 @@
   border: none;
   height: calc(var($main_height) - var($thick) - var($thick));
   font-size: 22px;
-  color: #536976;
+  color: #556270;
   background-color: white; }
 
 @keyframes slide_right {
@@ -136,7 +136,7 @@
       width: 38px;
       transition: margin-right .8s; }
   .start_or_log:hover {
-    background-color: #879E9E; }
+    background-color: #7F97A2; }
     .start_or_log:hover img {
       display: inline;
       margin-right: 10px; } }

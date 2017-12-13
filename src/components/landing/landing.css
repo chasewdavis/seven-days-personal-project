@@ -5,7 +5,7 @@
   text-align: center; }
 
 .landing_backdrop {
-  background: linear-gradient(155deg, #647B83, #AAC1B8);
+  background: linear-gradient(155deg, #6A7C89, #A8CCD5);
   height: 100vh;
   display: flex;
   align-items: center;
@@ -14,7 +14,7 @@
 
 .info {
   position: relative;
-  background: linear-gradient(155deg, #536976, #BBD2C5);
+  background: linear-gradient(155deg, #556270, #93B1BC);
   height: 100vh;
   border: 1px solid orange; }
 
@@ -36,7 +36,7 @@
   /* background-color: grey; */
   height: 33.3vh;
   width: 85vw;
-  background: #536976;
+  background: #556270;
   opacity: 1;
   display: flex;
   align-items: center;
@@ -76,7 +76,7 @@
 .login_box a:hover {
   background-color: white;
   border: 3px solid white;
-  color: #536976;
+  color: #556270;
   box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.3); }
 
 @keyframes fade_out {

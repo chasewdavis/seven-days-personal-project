@@ -1,28 +1,38 @@
-// $main_color: #314755;
-// $main_light: #BCFAE1;
-// $gradient:linear-gradient(90deg, #314755, #26a0da);
 
-// $main_color: #2b5876;
-// $main_light: #BCFAE1;
-// $gradient:linear-gradient(90deg, #2b5876, #4e4376);
+// $main_color: #536976;
+// $main_mild_2: #647B83;
+// $main_mild: #879E9E;
+// $main_light: #BBD2C5;
+// $main_light_2: #AAC1B8;
+// $main_lighter: #D5E3DB;
+// $white: white;
+
+//darker to lighter using meyerweb.com with 4 midpoints
+// $main_color: #283048;
+// $main_mild_2: #3B4458;
+// $main_mild: #4D5868;
+// $main_light: #606B78;
+// $main_light_2: #727F88;
+// $main_lighter: #859398;
+// $white: white;
+
+$main_color: #556270;
+$main_mild_2: #6A7C89;
+$main_mild: #7F97A2;
+$main_light: #93B1BC;
+$main_light_2: #A8CCD5;
+$main_lighter: #BDE6EE;
 $white: white;
 
-$main_color: #536976;
-$main_mild: #879E9E;
-$main_light: #BBD2C5;
-$main_lighter: #D5E3DB;
+$gradient: linear-gradient(155deg, $main_color, $main_light);
+$gradient_mild: linear-gradient(155deg, $main_mild_2, $main_light_2); //meyerweb.com/eric/tools/color-blend/ hex colors blended 5 midpoints take 2nd and 2nd to last
+$gradient_light: linear-gradient(155deg, $main_mild, $main_light); //1st and middle
+    $gradient_light_reverse: linear-gradient(245deg, $main_mild, $main_light );
+$gradient_dark: linear-gradient(155deg, $main_color, $main_mild); //middle and last
 
-$gradient: linear-gradient(155deg, #536976, #BBD2C5);
-$gradient_mild: linear-gradient(155deg, #647B83, #AAC1B8); //meyerweb.com/eric/tools/color-blend/ hex colors blended 5 midpoints take 2nd and 2nd to last
-$gradient_light: linear-gradient(155deg, #879E9E, #BBD2C5); //1st and middle
-    $gradient_light_reverse: linear-gradient(245deg, #879E9E, #BBD2C5 );
-$gradient_dark: linear-gradient(155deg, #536976, #879E9E); //middle and last
+$background_color: white;
 
-$background_color: whitesmoke;
 $thick: 4px; //thickness of most borders
 $main_height: 55px;
 $nav_height: 60px;
 
-// $main_color: #292e49;
-// $main_light: #536976;
-// $gradient:linear-gradient(155deg, #292e49, #536976);

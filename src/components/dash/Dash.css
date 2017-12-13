@@ -10,8 +10,8 @@
   border: none;
   margin-top: 10px;
   font-size: 30px;
-  color: #536976;
-  border: 4px solid #536976; }
+  color: #556270;
+  border: 4px solid #556270; }
 
 .no_dash_overflow {
   overflow: hidden; }
@@ -28,7 +28,7 @@
 
 .squared {
   position: relative;
-  background: linear-gradient(155deg, #647B83, #AAC1B8);
+  background: linear-gradient(155deg, #6A7C89, #A8CCD5);
   opacity: 0;
   width: 95%;
   height: 55px;
@@ -69,8 +69,6 @@
   justify-content: center;
   height: 100%;
   width: 100%; }
-  #x svg path {
-    fill: white; }
 
 .squared svg {
   position: absolute;
@@ -96,14 +94,14 @@
   width: 30px; }
 
 .dark {
-  background: linear-gradient(155deg, #536976, #879E9E); }
+  background: linear-gradient(155deg, #556270, #7F97A2); }
 
 /************ INVITATION SECTION ************/
 .invitation {
   position: relative;
   text-align: left;
   padding: 0 10px;
-  background: #536976;
+  background: #556270;
   opacity: 0;
   width: 95%;
   height: 55px;
@@ -139,7 +137,7 @@
 
 .invite_header {
   height: 35px;
-  background: linear-gradient(155deg, #879E9E, #BBD2C5);
+  background: linear-gradient(155deg, #7F97A2, #93B1BC);
   border-radius: 10px 10px 0 0; }
 
 .invite_content {
@@ -179,12 +177,12 @@
   outline: none; }
 
 .bottom_row button:nth-child(2) {
-  background: linear-gradient(155deg, #879E9E, #BBD2C5);
-  color: #536976;
+  background: linear-gradient(155deg, #7F97A2, #93B1BC);
+  color: #556270;
   border-radius: 0 0 10px 0; }
 
 .bottom_row button:nth-child(1) {
-  background: #536976;
+  background: #556270;
   color: white;
   border-radius: 0 0 0 10px; }
 
@@ -192,7 +190,7 @@
 .form {
   width: 95%;
   margin-left: 2.5%;
-  border-bottom: 4px solid #536976;
+  border-bottom: 4px solid #556270;
   height: 275px;
   overflow: hidden;
   position: relative; }
@@ -202,11 +200,11 @@
   left: 5%;
   width: 90%;
   height: 55px;
-  border: 4px solid #536976;
+  border: 4px solid #556270;
   border-radius: 30px;
   background: white;
   font-size: 25px;
-  color: #536976;
+  color: #556270;
   outline: none; }
 
 .good {
@@ -237,7 +235,7 @@
   width: 100%;
   height: 55px;
   font-size: 25px;
-  background-color: #536976;
+  background-color: #556270;
   border: none;
   border-radius: 5px;
   color: white; }
@@ -263,14 +261,14 @@
   font-size: 25px; }
 
 .row_one button, .row_two button {
-  border: 3px solid #536976;
+  border: 3px solid #556270;
   width: 55px;
   height: 55px;
   margin-top: 26px;
   margin-left: 11.25px;
   margin-right: 11.25px;
   border-radius: 30px;
-  color: #536976;
+  color: #556270;
   font-size: 35px;
   background-color: white;
   cursor: pointer;
@@ -283,13 +281,13 @@
   line-height: 55px;
   vertical-align: middle;
   font-size: 35px;
-  color: #536976; }
+  color: #556270; }
 
 .completed {
   width: 95%;
   margin-left: 2.5%;
   height: 275px;
-  border-bottom: 4px solid #536976;
+  border-bottom: 4px solid #556270;
   animation: slide_up .84s;
   animation-fill-mode: forwards; }
 

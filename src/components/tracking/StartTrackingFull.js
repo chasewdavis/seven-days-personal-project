@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import './startTrackingFull.css';
 
-import x from '../../svg/letter-x.svg';
+// import x from '../../svg/letter-x.svg';
 import X from '../../svg/letter-x.js';
 
 export default class StartTrackingFull extends Component {
@@ -89,7 +89,6 @@ export default class StartTrackingFull extends Component {
         }
 
         if(this.state.display){
-
             return (
                 <div className='overlay_grand'>
                     <div className='tracking_parent_div'>

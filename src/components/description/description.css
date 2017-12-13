@@ -6,8 +6,8 @@
   border-radius: 5px;
   border: none;
   font-size: 28px;
-  color: #536976;
-  border: 4px solid #536976;
+  color: #556270;
+  border: 4px solid #556270;
   outline: none;
   margin-bottom: 10px; }
 
@@ -19,6 +19,9 @@
 
 .settings_option {
   position: relative; }
+  .settings_option svg {
+    position: absolute;
+    right: 10px; }
 
 .settings_option div {
   position: absolute;

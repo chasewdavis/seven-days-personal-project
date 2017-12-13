@@ -6,8 +6,8 @@
   border: none;
   margin-top: 10px;
   font-size: 30px;
-  color: #536976;
-  border: 5px solid #536976;
+  color: #556270;
+  border: 5px solid #556270;
   outline: none; }
 
 .the_day {
@@ -23,7 +23,7 @@
   margin-top: -400px;
   animation: slide_down .84s;
   animation-fill-mode: forwards;
-  border-bottom: 5px solid #536976;
+  border-bottom: 5px solid #556270;
   padding-bottom: 5px; }
 
 .close_log_form {
@@ -32,7 +32,7 @@
   margin-top: 0;
   animation: slide_up .84s;
   animation-fill-mode: forwards;
-  border-bottom: 5px solid #536976;
+  border-bottom: 5px solid #556270;
   padding-bottom: 5px; }
 
 .log_day {
@@ -46,7 +46,7 @@
   border-radius: 5px;
   background: white;
   padding: 0 10px;
-  color: #536976;
+  color: #556270;
   font-size: 22px;
   font-weight: bolder; }
 

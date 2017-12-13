@@ -12,10 +12,17 @@ import Description from '../description/Description.js';
 import './goal.css';
 import './settings.css';
 
-import gear from '../../svg/gear.svg';
+// import gear from '../../svg/gear.svg';
+import Gear from '../../svg/gear.js';
+
 import next from '../../svg/next2.svg';
+import Next from '../../svg/next2.js';
+
 import back from '../../svg/next2reversed.svg';
+import Back from '../../svg/next2reversed.js';
+
 import x from '../../svg/letter-x.svg';
+import X from '../../svg/letter-x.js';
 // import right from'../../svg/right.svg';
 import Right from '../../svg/right.js';
 
@@ -173,7 +180,7 @@ class Goal extends Component {
             <div>
                 <div className='overlay'></div>
                 <div className='settings'>
-                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><X width='18px'/></button></div>
 
                     <div className='edit_name_settings'>
                         <div></div>
@@ -184,7 +191,7 @@ class Goal extends Component {
 
 
                         <div className='back_or_save'>
-                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><Back/>Back</button>
                             <button onClick={()=>{ this.setNewName(); this.displaySettings()}}>Save</button>
                         </div>
                     </div>
@@ -243,7 +250,7 @@ class Goal extends Component {
             <div>
                 <div className='overlay'></div>
                 <div className='settings'>
-                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><X width='18px'/></button></div>
 
                     <div className='edit_name_settings'>
                         <div>Current: {this.state.daysoutofseven}</div>
@@ -260,7 +267,7 @@ class Goal extends Component {
                         <div>Days Per Week</div>
 
                         <div className='back_or_save'>
-                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><Back/>Back</button>
                             <button onClick={()=>{ this.displaySettings()}}>Save</button>
                         </div>
                     </div>
@@ -344,7 +351,7 @@ class Goal extends Component {
             <div>
                 <div className='overlay'></div>
                 <div className='settings'>
-                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><X width='18px'/></button></div>
 
                     <div className='edit_name_settings'> {/*should change this to a more general name*/}
                         <div></div>
@@ -360,7 +367,7 @@ class Goal extends Component {
                         <div>{textBubbleTwo}</div>
 
                         <div className='back_or_save'>
-                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><Back/>Back</button>
                             <button onClick={()=>this.displaySettings()}>Save</button>
                         </div>
                     </div>
@@ -410,14 +417,14 @@ class Goal extends Component {
             <div>
                 <div className='overlay'></div>
                 <div className='settings'>
-                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><X width='18px'/></button></div>
 
                     <div>
                         <div className='edit_description_settings'>
                             <textarea onChange={(e)=>this.handleDescriptionChange(e.target.value)} maxLength='280' rows='10' cols='35' placeholder='add a description...' defaultValue={this.state.description}></textarea>
                         </div>
                         <div className='back_or_save'>
-                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button onClick={()=>{ open_pop_up = true; this.displaySettings()}}><Back/>Back</button>
                             <button onClick={()=>{this.displaySettings();this.changeDescription()}}>Save</button>
                         </div>
                     </div>
@@ -432,7 +439,7 @@ class Goal extends Component {
             <div>
                 <div className='overlay'></div>
                 <div className='settings'>
-                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><X width='18px'/></button></div>
 
                     <div className='edit_name_settings'> {/*should change this to a more general name*/}
                         <div></div>
@@ -454,7 +461,7 @@ class Goal extends Component {
                         <div></div>
 
                         <div className='back_or_save'>
-                            <button onClick={()=>{ open_pop_up = true; removeGoal = false; this.displaySettings()}}><img src={back} alt='back arrow'/>Back</button>
+                            <button onClick={()=>{ open_pop_up = true; removeGoal = false; this.displaySettings()}}><Back/>Back</button>
                             <button onClick={()=>{ this.deleteGoal() }}>Save</button>
                         </div>
                     </div>
@@ -471,16 +478,16 @@ class Goal extends Component {
             <div>
                 <div className='overlay'></div>
                 <div className='settings'>
-                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><img src={x} alt='x'/></button></div>
+                    <div className='settings_header'>{this.state.goalname}<button className='close' onClick={()=>this.displaySettings()}><X width='18px'/></button></div>
 
 
                     <div className='all_settings_options'>
-                        <div onClick={()=>this.editNameSetting()} className='settings_option'>Edit name<img src={next} alt='next arrow'/></div>
-                        <div onClick={()=>this.editDaysPerWeek()} className='settings_option'>Days Per Week<img src={next} alt='next arrow'/></div>
-                        <div onClick={()=>this.editGoodvsBad()} className='settings_option'>New / Old Habit<img src={next} alt='next arrow'/></div>
-                        <div className='settings_option'>Challenge Friends<img src={next} alt='next arrow'/></div>
-                        <div onClick={()=>this.editAddDescription()} className='settings_option'>Add Description<img src={next} alt='next arrow'/></div>
-                        <div onClick={()=>this.editRemoveGoal()} className='settings_option'>Remove Goal<img src={next} alt='next arrow'/></div>
+                        <div onClick={()=>this.editNameSetting()} className='settings_option'>Edit name<Next/></div>
+                        <div onClick={()=>this.editDaysPerWeek()} className='settings_option'>Days Per Week<Next/></div>
+                        <div onClick={()=>this.editGoodvsBad()} className='settings_option'>New / Old Habit<Next/></div>
+                        <div className='settings_option'>Challenge Friends<Next/></div>
+                        <div onClick={()=>this.editAddDescription()} className='settings_option'>Add Description<Next/></div>
+                        <div onClick={()=>this.editRemoveGoal()} className='settings_option'>Remove Goal<Next/></div>
                     </div>
 
 
@@ -499,7 +506,7 @@ class Goal extends Component {
 
         const settings = (
             <div>
-                <button className='open_settings_btn' onClick={()=>this.displaySettings()}><img src={gear} alt='gear'/>Settings</button>
+                <button className='open_settings_btn' onClick={()=>this.displaySettings()}><Gear/>Settings</button>
                 {pop_up_settings}
             </div>
         )

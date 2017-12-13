@@ -89,7 +89,7 @@ export default class Challengers extends Component {
                 <div key={i} className='challengers_parent'>
                     <div className='challengers'>
                         <div>
-                            <img src={e.img} />
+                            <img src={e.img} alt='challenger'/>
                         </div>
                         <div>
                             <span>Current</span>
@@ -128,7 +128,7 @@ export default class Challengers extends Component {
                 <div key={i} className='challengers_parent'>
                     <div className='challengers'>
                         <div>
-                            <img src={e.img} />
+                            <img src={e.img} alt='challenger'/>
                         </div>
                         <div>
                             <span>Current</span>

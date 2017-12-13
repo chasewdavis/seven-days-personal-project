@@ -6,12 +6,12 @@
   border-radius: 5px;
   border: none;
   font-size: 28px;
-  color: #536976;
-  border: 4px solid #536976;
+  color: #556270;
+  border: 4px solid #556270;
   outline: none;
   margin-bottom: 10px; }
 
-.open_settings_btn img {
+.open_settings_btn svg {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -45,7 +45,7 @@
 
 .settings_header {
   height: 35px;
-  background: linear-gradient(155deg, #879E9E, #BBD2C5);
+  background: linear-gradient(155deg, #7F97A2, #93B1BC);
   line-height: 35px;
   vertical-align: middle;
   color: white;
@@ -55,16 +55,16 @@
   position: absolute;
   right: 0;
   border-radius: 0 10px 0 0;
-  border: 1px solid black;
   height: 35px;
   width: 35px;
-  border: none;
-  font-size: 20px;
-  background-color: #536976;
-  color: white; }
-
-.close img {
-  width: 12px; }
+  border: 1px solid red;
+  border: hidden;
+  background-color: #556270;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  z-index: 10; }
 
 .all_settings_options .settings_option:nth-child(2n-1) {
   background: whitesmoke; }
@@ -77,12 +77,12 @@
   flex-direction: row;
   height: 60px; }
 
-.settings_option img {
+.settings_option svg {
   width: 23px;
   margin-left: auto; }
 
 .edit_name_settings div {
-  color: #536976;
+  color: #556270;
   height: 60px;
   display: flex;
   justify-content: center;
@@ -135,7 +135,7 @@
 .edit_description_settings textarea {
   display: block;
   border: none;
-  box-shadow: inset 0 0 6px #BBD2C5;
+  box-shadow: inset 0 0 6px #93B1BC;
   border-radius: 5px;
   height: 100%;
   width: 100%;
@@ -165,7 +165,7 @@
   color: white;
   font-size: 18px; }
 
-.back_or_save button img {
+.back_or_save button svg {
   transform: rotate(180deg);
   margin-right: auto;
   height: 20px;
@@ -174,18 +174,18 @@
   left: 25px; }
 
 .edit_day_row button {
-  border: 3px solid #536976;
+  border: 3px solid #556270;
   border-radius: 50%;
   height: 60px;
   width: 60px;
   background: white;
   font-size: 25px;
-  color: #536976;
+  color: #556270;
   margin: 0 8px;
   outline: none; }
 
 .edit_day_row .edit_day_toggle {
-  background-color: #536976;
+  background-color: #556270;
   color: white; }
 
 .type_of_habit {
@@ -201,29 +201,29 @@
   width: 208px;
   border-radius: 5px 0 0 5px;
   background: white;
-  border: 4px solid #536976;
-  color: #536976;
+  border: 4px solid #556270;
+  color: #556270;
   height: 52px; }
 
 .type_of_habit button:nth-child(2) {
   margin-left: 4px;
   height: 52px;
-  color: #536976;
+  color: #556270;
   font-size: 20px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background: white;
-  border: 4px solid #536976;
+  border: 4px solid #556270;
   width: 55px;
   border-radius: 0 5px 5px 0; }
 
 .type_of_habit button.selected {
   color: white;
-  background: #536976;
+  background: #556270;
   border: none; }
 
 #textBubble {
   position: relative;
-  background: #D5E3DB;
+  background: #BDE6EE;
   height: 45px;
   width: 80%;
   border-radius: 15px; }
@@ -236,7 +236,7 @@
   height: 0;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-bottom: 7px solid #D5E3DB; }
+  border-bottom: 7px solid #BDE6EE; }
 
 .delete_yes_no_switch {
   width: 80%; }
@@ -267,13 +267,13 @@ input[type=checkbox]:checked + .switch-btn:before {
   left: calc(150px - 54px - 3px); }
 
 input[type=checkbox]:checked + .switch-btn {
-  background: linear-gradient(245deg, #879E9E, #BBD2C5); }
+  background: linear-gradient(245deg, #7F97A2, #93B1BC); }
 
 .back_or_save button:nth-child(1) {
-  background: #536976; }
+  background: #556270; }
 
 .back_or_save button:nth-child(2) {
-  background: linear-gradient(155deg, #879E9E, #BBD2C5); }
+  background: linear-gradient(155deg, #7F97A2, #93B1BC); }
 
 @keyframes fade_in {
   to {

@@ -3,7 +3,7 @@
 $checkbox-height: 35px;
 $background-color:white;
 $duration: .4s;
-
+ 
 @-moz-keyframes dothabottomcheck{
     0% { height: 0; }
     100% { height: $checkbox-height/2; }

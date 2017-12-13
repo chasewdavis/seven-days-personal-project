@@ -16,6 +16,8 @@ module.exports = {
 
     unique: (req, res) => {
         
+        // should create a way to prevent random users from accessing anyone's goal
+
         req.app.get('db').get_goal([req.params.id]).then(response=>{
             res.send(response)
         })

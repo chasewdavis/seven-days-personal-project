@@ -1,7 +1,7 @@
 .challengers_parent {
   margin: 0 2.5%;
   border-radius: 5px;
-  background: linear-gradient(155deg, #647B83, #AAC1B8);
+  background: linear-gradient(155deg, #6A7C89, #A8CCD5);
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
@@ -15,10 +15,10 @@
   border-radius: 5px; }
 
 .challengers div:nth-child(1) {
-  background: #536976; }
+  background: #556270; }
 
 .challengers div:nth-child(3) {
-  background: linear-gradient(155deg, #879E9E, #BBD2C5); }
+  background: linear-gradient(155deg, #7F97A2, #93B1BC); }
 
 .challengers div {
   width: calc( 100% / 3);
@@ -37,8 +37,8 @@
   width: 100%;
   display: flex;
   flex-direction: row;
-  color: #536976;
-  background: #BBD2C5;
+  color: #556270;
+  background: #93B1BC;
   height: 23px; }
 
 .name_div_parent div {

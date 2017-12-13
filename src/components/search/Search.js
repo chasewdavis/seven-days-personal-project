@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import Nav from '../nav/Nav.js';
 import axios from 'axios';
-import search from '../../svg/search.svg';
+
 import './search.css';
-import right from '../../svg/send2.svg';
+
+import Magnify from '../../svg/magnify.js';
 
 let challengeButton = <button></button>;
 let users = <div></div>;
@@ -130,7 +131,7 @@ export default class Search extends Component {
                 <Nav title={this.state.goalname} />
                 <div className='space_for_nav'></div>
                 <div className='search_bar'>
-                    <button onClick={()=>this.findFriends()}><img src={search} alt='search' /></button>
+                    <button onClick={()=>this.findFriends()}><Magnify /></button>
                     <input onChange={(e)=>this.inputHandler(e.target.value)} placeholder='Find Friends...'></input>
                 </div>
                 {users}

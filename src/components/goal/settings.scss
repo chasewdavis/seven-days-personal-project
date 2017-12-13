@@ -14,7 +14,7 @@
     margin-bottom: 10px;
 }
 
-.open_settings_btn img {
+.open_settings_btn svg {
     position: absolute;
     top:10px;
     right: 10px;
@@ -63,18 +63,25 @@
     position: absolute;
     right: 0;
     border-radius: 0 10px 0 0;
-    border:1px solid black;
     height: 35px;
     width: 35px;
-    border:none;
-    font-size: 20px;
+    border:1px solid red;
+    border:hidden;
+    // font-size: 20px;
     background-color:$main_color;
-    color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top:0;
+    z-index: 10;
+    svg{
+        // transform: translateY(2px);
+    }
 }
 
-.close img {
-    width: 12px;
-}
+// .close img {
+//     width: 12px;
+// }
 
 .all_settings_options .settings_option:nth-child(2n-1) {
     background: whitesmoke;
@@ -92,7 +99,7 @@
     
 }
 
-.settings_option img {
+.settings_option svg {
     width: 23px;
     margin-left: auto;
 }
@@ -195,7 +202,7 @@
     font-size: 18px;
 }
 
-.back_or_save button img {
+.back_or_save button svg {
     transform: rotate(180deg);
     margin-right: auto;
     // width: 20px;
