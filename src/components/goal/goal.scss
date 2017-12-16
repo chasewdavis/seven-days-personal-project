@@ -1,8 +1,6 @@
 @import "../../utilities/variables.scss";
 
 .challenge_friends_btn{
-    position: relative;
-    // text-align: left;
     background: $gradient_mild;
     width: 95%;
     height: $main_height;
@@ -10,7 +8,6 @@
     border: none;
     font-size: 28px;
     color: white;
-    // border: $thick solid $main_color;
     outline: none; 
     margin-bottom: 10px;
 }
