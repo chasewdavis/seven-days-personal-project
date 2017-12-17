@@ -515,19 +515,20 @@ class Goal extends Component {
             <div>
                 <Nav id={this.props.match.params.id} title={this.state.goalname}/>
                 <div className='space_for_nav'></div>
-                <Log updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
-                <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
-                <Link to={`/search/${this.props.match.params.id}`}><button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button></Link>
+                <div className='contain_goal'>
+                    <Log updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
+                    <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
+                    <Link to={`/search/${this.props.match.params.id}`}><button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button></Link>
 
-                <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
+                    <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
 
-                {this.state.sent || this.state.originalgoal
-                ? 
-                <Description deleteGoal={this.deleteGoal} handleRemoveGoal={this.handleRemoveGoal} removeGoalFalse={this.removeGoalFalse} name={this.state.goalname} days={this.state.daysoutofseven} type={this.state.goodhabit}/> 
-                : 
-                settings } 
-                {/* will make settings it's own component in the future */}
-
+                    {this.state.sent || this.state.originalgoal
+                    ? 
+                    <Description deleteGoal={this.deleteGoal} handleRemoveGoal={this.handleRemoveGoal} removeGoalFalse={this.removeGoalFalse} name={this.state.goalname} days={this.state.daysoutofseven} type={this.state.goodhabit}/> 
+                    : 
+                    settings } 
+                    {/* will make settings it's own component in the future */}
+                </div>
             </div>
         )
     }
