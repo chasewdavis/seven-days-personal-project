@@ -7,22 +7,19 @@
   font-size: 28px;
   color: white;
   outline: none;
-  margin-bottom: 10px; }
-
-.challenge_friends_btn img {
-  position: absolute;
-  top: 15px;
-  right: 14px;
-  width: calc( 50px / 2); }
+  margin-bottom: 10px;
+  position: relative; }
 
 #right {
   position: absolute;
-  right: 10px;
+  right: 8px;
   top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%; }
+  #right svg {
+    width: 26px; }
 
 @media only screen and (min-width: 1024px) {
   .contain_goal {
