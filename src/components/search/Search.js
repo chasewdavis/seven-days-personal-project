@@ -129,11 +129,15 @@ export default class Search extends Component {
             <div>
                 <Nav title={this.state.goalname} />
                 <div className='space_for_nav'></div>
-                <div className='search_bar'>
-                    <button onClick={()=>this.findFriends()}><Magnify /></button>
-                    <input onChange={(e)=>this.inputHandler(e.target.value)} placeholder='Find Friends...'></input>
+                <div className='contain_search'>
+                    <div className='search_bar'>
+                        <button onClick={()=>this.findFriends()}><Magnify /></button>
+                        <input onChange={(e)=>this.inputHandler(e.target.value)} placeholder='Find Friends...'></input>
+                    </div>
+                    <div className='users_contain'>
+                    {users}
+                    </div>
                 </div>
-                {users}
             </div>
         )
     }

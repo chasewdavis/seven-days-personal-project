@@ -1,9 +1,8 @@
 .add_log {
   background-color: white;
-  width: 95%;
+  width: calc(100% - 20px);
   height: 60px;
   border-radius: 5px;
-  border: none;
   margin-top: 10px;
   font-size: 30px;
   color: #556270;

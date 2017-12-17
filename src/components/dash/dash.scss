@@ -399,14 +399,14 @@
         display: none;
     }
 
-    .contain {
-        // border:1px solid red;
-        width: 70%;
-        margin-left: 15%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+    // .contain {
+    //     border:1px solid red;
+    //     width: 70%;
+    //     margin-left: 15%;
+    //     display: flex;
+    //     flex-direction: column;
+    //     align-items: center;
+    // }
 
     .start {
         width: 59vw;
@@ -452,18 +452,19 @@
         // margin-top: 45px;
         // margin-bottom: 45px;
         margin-bottom: 0;
-        // border: 2px solid blue;
+        // border: 10px solid blue;
         box-sizing: content-box;
         border: hidden;
         text-align: left;
         width: 60vw;
+        margin-left: 20vw;
         padding-bottom: 1.5vw;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         box-shadow: 0 0 45px rgba(0,0,0,.15);
     }
-    
+
     .inline_block {
         display: inline-block;
     }

@@ -1,19 +1,20 @@
 @import "../../utilities/variables.scss";
 
 .search_bar {
-    width: 95%;
+    width: calc(100% - 20px);
     height: $nav_height;
-    // border:1px solid black;
-    margin: 10px 2.5%;
+    // border:1px solid red;
+    margin: 10px;
     display: flex;
-    overflow: hidden;
-    border-radius: 5px;
+    // overflow: hidden;
+    // border-radius: 5px;
 }
 
 .search_bar button {
     width: $nav_height;
     height: $nav_height;
     border: 4px solid $main_color;
+    // border: 1px solid red;
     background: white;
     border-radius: 5px 0 0 5px;
 }
@@ -23,7 +24,7 @@
 }
 
 .search_bar input {
-    width: 83.5%;   //calc(100% - var($nav_height));
+    width: calc( 100% - 60px );
     box-shadow: inset 0 0 10px $main_color;
     border-top: 4px solid $main_color;
     border-right: 4px solid $main_color;
@@ -57,28 +58,21 @@
 
 .users_found {
     position: relative;
-      height: 26vw;
-    //   border: 1px solid black;
+      height: 96px;
       background: $gradient_mild;
       display: flex;
       align-items: center;
       flex-direction: row;
-      width:95%;
-      margin:10px 2.5%;
+      width: calc(100% - 20px);
+      margin-bottom: 10px;
+      margin-left: 10px;
       border-radius: 5px;
       overflow: hidden;
 }
 
-.right_box {
-    position: relative;
-    border: 1px solid black;
-    width: 70%;
-}
-
 .users_found button {
-    // margin: -10px 0;
-    height: calc(26vw * 3 / 4 );
-    width: calc(74vw - 5vw);
+    height: 72px;
+    width: calc(100% - 96px);
     position: absolute;
     top:0;
     right: 0;
@@ -90,52 +84,73 @@
     outline: none;
 }
 
-.users_found button img {
-    width:29px;
-    margin-left:20px;
-    margin-bottom: -3px;
-    // transform: rotate(14deg);
-}
+// .users_found button img {
+//     width:29px;
+//     margin-left:20px;
+//     margin-bottom: -3px;
+//     border:1px solid fuchsia;
+//     // transform: rotate(14deg);
+// }
 
 .user_img {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    // border: 3px solid $main_light;
-    width:26vw;
-    height: 26vw;
     background: $main_color;
     color: white;
     font-size: 13px;
     box-shadow: inset 0 0 15px rgba(0,0,0,.2);
     border-radius: 5px 0 0 5px;
+    height: 96px;
+    width: 96px;
 }
 
 .user_img img {
-    // margin-bottom: 5px;
-    width:19vw;
+    width:72px;
     border-radius: 40px;
-    // border:2px solid white;
     box-shadow: 0 0 20px rgba(0,0,0,.2);
 }
 
 .user_name {
     z-index: 5;
     position: absolute;
-    left: 26vw;
+    left: 96px;
     bottom:0;
-    // border:1px solid white;
     border-bottom: none;
     border-left: none;
     padding: 0px 5px;
     color: white;
-    // background: rgba(0,0,0,.5);
-    // border-radius: 0 5px 0 0;
-    height: calc( 26vw * 1 / 4 );
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 15px;
 }
 
+@media (min-width: 1024px) {
+    .contain_search {
+        box-shadow: 0 0 45px rgba(0,0,0,.15);
+        width: 60%;
+        margin-left: 20%;
+        min-height: calc(100vh - 60px);
+        position: absolute;
+        top:60px;
+    }
+
+    .users_found {
+        width:calc(50% - 15px);
+        button{
+            transition: color .6s;
+            &:hover{
+                color: $white;
+            }
+        }
+    }
+
+    .users_contain{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}

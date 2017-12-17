@@ -3,7 +3,7 @@
 .open_description{
     position: relative;
     background-color: white;
-    width: 95%;
+    width: calc(100% - 20px);
     height: $main_height;
     border-radius: 5px;
     border: none;
@@ -11,7 +11,7 @@
     color: $main_color;
     border: $thick solid $main_color;
     outline: none; 
-    margin-bottom: 10px;
+    margin: 10px;
 }
 
 .open_description img {

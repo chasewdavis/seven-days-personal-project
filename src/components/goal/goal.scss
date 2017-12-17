@@ -2,14 +2,15 @@
 
 .challenge_friends_btn{
     background: $gradient_mild;
-    width: 95%;
+    width: calc(100% - 20px);
     height: $main_height;
     border-radius: 5px;
     border: none;
     font-size: 28px;
     color: white;
     outline: none; 
-    margin-bottom: 10px;
+    margin-top: 10px;
+    // margin-left: 10px;
     position: relative;
 }
 
@@ -29,8 +30,8 @@
 @media only screen and (min-width:1024px) {
     .contain_goal {
         box-shadow: 0 0 45px rgba(0,0,0,.15);
-        width: 70%;
-        margin-left: 15%;
+        width: 60%;
+        margin-left: 20%;
         min-height: calc(100vh - 60px);
     }
 }

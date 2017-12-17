@@ -1,6 +1,7 @@
 .streaks {
-  width: 95%;
-  margin: 10px 2.5%;
+  width: calc(100% - 20px);
+  margin-top: 10px;
+  margin-left: 10px;
   height: 200px;
   border: 5px solid #556270;
   border-radius: 5px;

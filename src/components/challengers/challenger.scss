@@ -1,14 +1,16 @@
 @import "../../utilities/variables.scss";
 
 .challengers_parent{
-    margin: 0 2.5%;
+    width: calc(100% - 20px);
     border-radius: 5px;
     background: $gradient_mild;
-    margin-bottom:10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    margin-top:10px;
+    margin-left: 10px;
+    // display: flex;
+    // flex-direction: column;
+    // align-items: flex-start;
     overflow: hidden;
+    // border:1px solid fuchsia;
 }
 
 .challengers{

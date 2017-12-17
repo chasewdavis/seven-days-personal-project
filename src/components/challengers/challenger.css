@@ -1,11 +1,9 @@
 .challengers_parent {
-  margin: 0 2.5%;
+  width: calc(100% - 20px);
   border-radius: 5px;
   background: linear-gradient(155deg, #6A7C89, #A8CCD5);
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  margin-top: 10px;
+  margin-left: 10px;
   overflow: hidden; }
 
 .challengers {
