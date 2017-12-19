@@ -29,7 +29,7 @@ export default class Log extends Component {
     }
 
     check(day){
-        console.log(day);
+        // console.log(day);
         var temp = this.state.last_seven
         if(temp[day]===false){
             temp[day] = true;
@@ -85,7 +85,7 @@ export default class Log extends Component {
         const future = 0; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE //Note that future won't work when past 7 days falls over 2 separate months
 
         var index = d.getDay()+future;
-        console.log('day is ', weekdays[index])
+        // console.log('day is ', weekdays[index])
 
             var array = [];
 

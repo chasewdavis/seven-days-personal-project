@@ -422,7 +422,6 @@
         transition: transform .5s, border-radius .5s, box-shadow .5s;
         
             &:hover{
-                // border: 2px solid fuchsia;
                 transform: scale(1.05);
                 border-radius: 5px;
                 box-shadow: 0 0 30px rgba(0,0,0,.2);
@@ -452,11 +451,10 @@
         // margin-top: 45px;
         // margin-bottom: 45px;
         margin-bottom: 0;
-        // border: 10px solid blue;
         box-sizing: content-box;
-        border: hidden;
         text-align: left;
         width: 60vw;
+        
         margin-left: 20vw;
         padding-bottom: 1.5vw;
         display: flex;

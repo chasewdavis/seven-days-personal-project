@@ -145,6 +145,13 @@
                 color: $white;
             }
         }
+        transition: transform .5s, box-shadow .5s;
+        
+            &:hover{
+                transform: scale(1.025);
+                box-shadow: 0 0 30px rgba(0,0,0,.2);
+                z-index: 5;
+            }
     }
 
     .users_contain{

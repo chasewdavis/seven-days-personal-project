@@ -114,11 +114,16 @@
     position: absolute;
     top: 60px; }
   .users_found {
-    width: calc(50% - 15px); }
+    width: calc(50% - 15px);
+    transition: transform .5s, box-shadow .5s; }
     .users_found button {
       transition: color .6s; }
       .users_found button:hover {
         color: white; }
+    .users_found:hover {
+      transform: scale(1.025);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+      z-index: 5; }
   .users_contain {
     display: flex;
     justify-content: flex-start;

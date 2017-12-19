@@ -17,8 +17,8 @@
   overflow: hidden; }
 
 .log_form {
-  width: 95%;
-  margin-left: 2.5%;
+  width: calc(100% - 20px);
+  margin-left: 10px;
   margin-top: -400px;
   animation: slide_down .84s;
   animation-fill-mode: forwards;
@@ -26,8 +26,8 @@
   padding-bottom: 5px; }
 
 .close_log_form {
-  width: 95%;
-  margin-left: 2.5%;
+  width: calc(100% - 20px);
+  margin-left: 10px;
   margin-top: 0;
   animation: slide_up .84s;
   animation-fill-mode: forwards;

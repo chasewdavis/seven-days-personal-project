@@ -143,6 +143,8 @@
       margin-right: -38px;
       width: 38px;
       transition: margin-right .8s; }
+    .start_or_log span {
+      margin-right: 10px; }
   .start_or_log:hover {
     background-color: #7F97A2; }
     .start_or_log:hover img {

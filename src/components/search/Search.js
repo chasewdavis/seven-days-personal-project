@@ -127,12 +127,12 @@ export default class Search extends Component {
 
         return (
             <div>
-                <Nav title={this.state.goalname} />
+                <Nav title={this.state.goalname} searching={true} />
                 <div className='space_for_nav'></div>
                 <div className='contain_search'>
                     <div className='search_bar'>
                         <button onClick={()=>this.findFriends()}><Magnify /></button>
-                        <input onChange={(e)=>this.inputHandler(e.target.value)} placeholder='Find Friends...'></input>
+                        <input onKeyPress={(e) => e.key === 'Enter' ? this.findFriends() : null} onChange={(e)=>this.inputHandler(e.target.value)} placeholder='Find Friends...'></input>
                     </div>
                     <div className='users_contain'>
                     {users}

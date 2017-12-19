@@ -66,7 +66,14 @@ export default class Nav extends Component {
                         </svg>
 
                     <div className='title'>{this.props.title}</div>
-                    <button onClick={()=>this.props.openStartTracking()} className='start_or_log'>{this.props.title==='Dashboard'?'start tracking': 'Log'}<Graph style={"nav_graph_img"}/></button>
+
+                    <button 
+                        onClick={()=>this.props.openStartTracking()} 
+                        className='start_or_log'>
+                        {this.props.title==='Dashboard'?'start tracking': this.props.searching ? '' : 'Log'}
+                        {this.props.searching?<span>Challenge</span>:<Graph style={"nav_graph_img"}/>}
+                    </button>
+
                 </div>
                 {sidebar}
                 <div>

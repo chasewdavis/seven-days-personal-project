@@ -34,8 +34,9 @@ $light: rgba(90, 236, 229, 0.5);
 .log_form {
     // z-index: -5; //that doest work
     // height: $height;
-    width:95%;
-    margin-left: 2.5%;
+    // border:1px solid fuchsia;
+    width: calc(100% - 20px);
+    margin-left: 10px;
     margin-top:-$height;
     animation: slide_down .84s;
     animation-fill-mode: forwards;
@@ -44,8 +45,8 @@ $light: rgba(90, 236, 229, 0.5);
 }
 
 .close_log_form {
-    width:95%;
-    margin-left: 2.5%;
+    width: calc(100% - 20px);
+    margin-left: 10px;
     margin-top: 0;
     animation: slide_up .84s;
     animation-fill-mode: forwards;
