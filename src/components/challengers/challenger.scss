@@ -46,9 +46,9 @@
 }
 
 .challengers img{
-    width: 100%;
+    width: 95px;
     border-radius: 50%;
-    // border: 3px solid white;
+    // border: 1px solid white;
     // margin:10px;
 }
 
@@ -90,4 +90,11 @@
     height: 100%;
     font-size: 45px;
     // border: 1px solid red;
+}
+
+@media only screen and (min-width:1024px) {
+    .challengers_parent{
+        width: calc(50% - 15px);
+    }
+    
 }

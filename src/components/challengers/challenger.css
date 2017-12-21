@@ -28,7 +28,7 @@
   position: relative; }
 
 .challengers img {
-  width: 100%;
+  width: 95px;
   border-radius: 50%; }
 
 .name_div_parent {
@@ -61,3 +61,7 @@
   top: 0px;
   height: 100%;
   font-size: 45px; }
+
+@media only screen and (min-width: 1024px) {
+  .challengers_parent {
+    width: calc(50% - 15px); } }

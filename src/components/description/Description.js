@@ -96,7 +96,7 @@ export default class Description extends Component {
     render(){
 
         return (
-            <div>
+            <div className='parent_open_description'>
                 <button className='open_description' onClick={()=>this.displayDescription()}>Description<div id='notes'><Notes/></div></button>
                 {pop_up_description}
             </div>

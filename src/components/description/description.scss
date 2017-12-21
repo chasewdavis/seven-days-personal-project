@@ -56,3 +56,18 @@
 //     height: 100%;
 //     width: 100%;
 // }
+
+@media (min-width:1024px) {
+    .parent_open_description{
+        // display: inline-block;
+        // border: 1px solid fuchsia;
+        // width: calc(50% - 15px);
+        // margin-top: 10px;
+        // margin-left: 10px;
+
+    }
+    .open_description{
+        width:100%;
+        margin: 0;
+    }
+}

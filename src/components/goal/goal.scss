@@ -1,16 +1,27 @@
 @import "../../utilities/variables.scss";
 
+.parent_link{
+    // border:10px solid fuchsia;
+    display: flex;
+    align-items: flex-start;
+    text-decoration: none;
+    width: calc(100% - 20px);
+    margin-top:10px;
+    margin-left: 10px;
+    height: $main_height;
+
+}
+
 .challenge_friends_btn{
     background: $gradient_mild;
-    width: calc(100% - 20px);
+    width: 100%;
     height: $main_height;
     border-radius: 5px;
     border: none;
     font-size: 28px;
     color: white;
     outline: none; 
-    margin-top: 10px;
-    // margin-left: 10px;
+    // margin-top: 10px;
     position: relative;
 }
 
@@ -22,9 +33,14 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    // border:1px solid fuchsia;
     svg{
         width:26px;
     }
+}
+
+.full_screen_show{
+    display: none;
 }
 
 @media only screen and (min-width:1024px) {
@@ -33,5 +49,36 @@
         width: 60%;
         margin-left: 20%;
         min-height: calc(100vh - 60px);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+    .media_options{
+        // border:1px solid fuchsia;
+        // display: flex;
+        // flex-direction: row;
+    }
+    .parent_link {
+        width: calc(50% - 15px);
+        margin-left: 0;
+        margin-right: 5px;
+        display: inline-block;
+        // border: 1px solid purple;
+    }
+    .full_screen_show{
+        width: calc(50% - 15px);
+        // height: $main_height;
+        display: inline-block;
+        margin-left: 5px;
+        // border: 1px solid blue;
+    }
+
+    .full_screen_hide{
+        display: none;
+    }
+    .challenge_friends_btn{
+    //     text-align: left;
+    //     padding-left: 10px;
+    // border:1px solid red;
     }
 }
