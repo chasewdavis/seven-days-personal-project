@@ -358,7 +358,7 @@ input[type=checkbox]:checked + .switch-btn {
         // height: 40vw;
         left: 0;
         margin-left: 30vw;
-        top: 0;
-        margin-top: 8vw;
+        top: 50%;
+        transform: translateY(-197.5px)
     }
 }

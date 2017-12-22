@@ -498,14 +498,16 @@ class Goal extends Component {
     }
 
     openLogForm(){
-        console.log(this.state)
+
+        console.log('from open log form', this.state.logSeven)
+
         if(open_pop_up){
             open_pop_up = false;
             full_screen_log_form = (
             <div>
                 <div onClick={() => this.openLogForm()} className='overlay'></div>
                 <div className='full_screen_log_form'>
-                    <div className='settings_header'> Log Last Seven Days</div>
+                    <div className='settings_header'>Log Last Seven Days</div>
                     <div className='log_form_padding'>
                     <Log fullScreen={true} updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
                     </div>

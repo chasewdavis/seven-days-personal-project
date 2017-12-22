@@ -57,11 +57,12 @@
     position: fixed;
     width: 40%;
     left: 30%;
-    top: 200px;
+    top: 50%;
+    transform: translateY(-217.5px);
     display: block;
     background: #ECEEEE;
-    border-radius: 5px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 0 45px grey; }
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.7); }
     .full_screen_log_form .log_form_padding {
       padding: 5px 10px 10px 10px; } }

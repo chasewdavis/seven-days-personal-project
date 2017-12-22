@@ -5,7 +5,9 @@ import axios from 'axios';
 // import 'pretty-checkbox/src/pretty.css';
 
 let log_form = <div></div>;
+let log_form_full = <div></div>;
 let hide_form = true;
+const d = new Date();
 
 export default class Log extends Component {
 
@@ -23,10 +25,10 @@ export default class Log extends Component {
     }
 
     componentWillReceiveProps(newProps){
-        console.log('new props from log ', newProps)
+        console.log('new props from log ', newProps.logSeven)
         this.setState({
             last_seven: newProps.logSeven
-        })
+        }, console.log('state after component receives props',this.state))
     }
 
     check(day){
@@ -48,7 +50,7 @@ export default class Log extends Component {
     }
 
     form(){
-        var d = new Date()
+        // var d = new Date()
         
         if(hide_form){
             hide_form=false;
@@ -92,7 +94,8 @@ export default class Log extends Component {
 
             for(let i = 0; i < 7; i++){
                 if(todaysDate-i > 0){
-
+                    // console.log(this.check(i))
+                    console.log(this.state.last_seven[i])
                     this.state.last_seven[i]===true 
                     ?
                     array.push(<div key={i} className='log_day'>
@@ -202,18 +205,25 @@ export default class Log extends Component {
                     }
                 }
             }
-
+        
         return array;
     }
 
+    closure(){
+        console.log('from closure, state is...', this.state)
+        log_form_full = (
+            this.provide_last_seven_days(d.getMonth()+1, d.getDate())
+        )
+    }
+
     render(){
-
-        var d = new Date();
-
+        console.log('state from render is...', this.state)
         if(this.props.fullScreen){
+            console.log('fullscreen mode')
             return (
                 <div>
-                    {this.provide_last_seven_days(d.getMonth()+1, d.getDate())}
+                    {this.closure()}
+                    {log_form_full}
                 </div>
             )
         }else{
