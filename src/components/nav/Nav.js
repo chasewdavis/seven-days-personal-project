@@ -68,7 +68,12 @@ export default class Nav extends Component {
                     <div className='title'>{this.props.title}</div>
 
                     <button 
-                        onClick={()=>this.props.openStartTracking()} 
+                        onClick={()=>{
+                            this.props.title==='Dashboard'?
+                            this.props.openStartTracking()
+                            :
+                            this.props.searching ? console.log('searching') : this.props.openLogForm()
+                        }} 
                         className='start_or_log'>
                         {this.props.title==='Dashboard'?'start tracking': this.props.searching ? '' : 'Log'}
                         {this.props.searching?<span>Challenge</span>:<Graph style={"nav_graph_img"}/>}

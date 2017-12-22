@@ -32,6 +32,7 @@ let textBubbleTwoDisplayed = false;
 let removeGoal = false;
 let pop_up_description = <div></div>;
 let open_description = true;
+let full_screen_log_form = <div></div>;
 
 class Goal extends Component {
 
@@ -59,6 +60,7 @@ class Goal extends Component {
         this.countCurrentStreak = this.countCurrentStreak.bind(this);
         this.countBestStreak = this.countBestStreak.bind(this);
         this.removeGoalFalse = this.removeGoalFalse.bind(this);
+        this.openLogForm = this.openLogForm.bind(this);
         // this.forceUpdate = this.forceUpdate.bind(this);
     }
 
@@ -495,6 +497,30 @@ class Goal extends Component {
         }
     }
 
+    openLogForm(){
+        console.log(this.state)
+        if(open_pop_up){
+            open_pop_up = false;
+            full_screen_log_form = (
+            <div>
+                <div onClick={() => this.openLogForm()} className='overlay'></div>
+                <div className='full_screen_log_form'>
+                    <div className='settings_header'> Log Last Seven Days</div>
+                    <div className='log_form_padding'>
+                    <Log fullScreen={true} updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
+                    </div>
+                </div>
+            </div>
+        )
+        }else{
+            open_pop_up = true;
+            full_screen_log_form = (
+            <div></div>
+            )
+        }
+        this.forceUpdate();
+    }
+
     render(){
 
         const settings = (
@@ -513,10 +539,10 @@ class Goal extends Component {
 
         return (
             <div>
-                <Nav id={this.props.match.params.id} title={this.state.goalname}/>
+                <Nav openLogForm={() => this.openLogForm()} id={this.props.match.params.id} title={this.state.goalname}/>
                 <div className='space_for_nav'></div>
                 <div className='contain_goal'>
-                    <Log updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
+                    <div className='full_screen_hide'><Log updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/></div>
                     <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
 
                     <div className='media_options'>
@@ -543,6 +569,7 @@ class Goal extends Component {
                             settings 
                         } 
                     </div>
+                    {full_screen_log_form}
                 </div>
             </div>
         )

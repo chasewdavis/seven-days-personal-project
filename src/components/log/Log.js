@@ -23,6 +23,7 @@ export default class Log extends Component {
     }
 
     componentWillReceiveProps(newProps){
+        console.log('new props from log ', newProps)
         this.setState({
             last_seven: newProps.logSeven
         })
@@ -207,14 +208,21 @@ export default class Log extends Component {
 
     render(){
 
-        return (
-            <div>
+        var d = new Date();
 
-                <button onClick={()=>this.form()} className='add_log'>+ Log</button>
-
-                {log_form}
-                
-            </div>
-        )
+        if(this.props.fullScreen){
+            return (
+                <div>
+                    {this.provide_last_seven_days(d.getMonth()+1, d.getDate())}
+                </div>
+            )
+        }else{
+            return (
+                <div>
+                    <button onClick={()=>this.form()} className='add_log'>+ Log</button>
+                    {log_form}      
+                </div>
+            )
+        }
     }
 }

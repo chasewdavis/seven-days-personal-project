@@ -95,9 +95,10 @@
   font-size: 19px; }
 
 .goals {
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column; }
+  margin-bottom: 10px; }
+  .goals .contain_goals {
+    display: flex;
+    flex-direction: column; }
 
 /************ INVITATION SECTION ************/
 .invitation {
@@ -337,11 +338,12 @@
     width: 60vw;
     margin-left: 20vw;
     padding-bottom: 1.5vw;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-    flex-wrap: wrap;
     box-shadow: 0 0 45px rgba(0, 0, 0, 0.15); }
+    .goals .contain_goals {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: row;
+      flex-wrap: wrap; }
   .full_invite {
     width: 40vw;
     height: 40vw;

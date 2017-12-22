@@ -29,7 +29,7 @@
   #right svg {
     width: 26px; }
 
-.full_screen_show {
+.full_screen_show, .full_screen_log_form {
   display: none; }
 
 @media only screen and (min-width: 1024px) {
@@ -51,4 +51,17 @@
     display: inline-block;
     margin-left: 5px; }
   .full_screen_hide {
-    display: none; } }
+    display: none; }
+  .full_screen_log_form {
+    z-index: 30;
+    position: fixed;
+    width: 40%;
+    left: 30%;
+    top: 200px;
+    display: block;
+    background: #ECEEEE;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 45px grey; }
+    .full_screen_log_form .log_form_padding {
+      padding: 5px 10px 10px 10px; } }

@@ -342,13 +342,13 @@ export default class dashboard extends Component {
                     </div> 
                     
                     <div className='goals'>
+                        <div className='contain_goals'>
+                            {goals.reverse()}
 
-                        {goals.reverse()}
-
-                        {accepted_goals}
-                    
-                        {invites}
+                            {accepted_goals}
                         
+                            {invites}
+                        </div>          
                     </div>
 
                 </div>

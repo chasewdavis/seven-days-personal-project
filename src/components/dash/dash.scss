@@ -141,14 +141,11 @@
 }
 
 .goals {
-    // border: 2px solid fuchsia;
     margin-bottom: 10px;
-    // box-sizing: content-box;
-    display: flex;
-    flex-direction: column;
-    // width: 100%;
-    // flex-wrap: wrap;
-
+    .contain_goals{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 /************ INVITATION SECTION ************/
@@ -453,20 +450,19 @@
 
     .goals {
         min-height: calc( 100vh - 60px );
-        // margin-top: 45px;
-        // margin-bottom: 45px;
         margin-bottom: 0;
-        // box-sizing: content-box;
         text-align: left;
         width: 60vw;
         margin-left: 20vw;
         padding-bottom: 1.5vw;
-        display: flex;
-        align-items: flex-start;
-        flex-direction: row;
-        flex-wrap: wrap;
         box-shadow: 0 0 45px rgba(0,0,0,.15);
 
+        .contain_goals{
+            display: flex;
+            align-items: flex-start;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
     }
     //-----invite section-----//
 

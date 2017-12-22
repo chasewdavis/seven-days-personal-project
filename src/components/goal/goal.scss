@@ -39,7 +39,7 @@
     }
 }
 
-.full_screen_show{
+.full_screen_show, .full_screen_log_form{
     display: none;
 }
 
@@ -80,5 +80,21 @@
     //     text-align: left;
     //     padding-left: 10px;
     // border:1px solid red;
+    }
+    .full_screen_log_form {
+        z-index: 30;
+        position: fixed;
+        width:40%;
+        left: 30%;
+        top: 200px;
+        display: block;
+        // border: 1px solid fuchsia;
+        background: $off_white;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 0 45px grey;
+        .log_form_padding{
+            padding: 5px 10px 10px 10px;
+        }
     }
 }
