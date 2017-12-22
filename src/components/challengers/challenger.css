@@ -63,5 +63,9 @@
   font-size: 45px; }
 
 @media only screen and (min-width: 1024px) {
+  .challengers_grand_parent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; }
   .challengers_parent {
     width: calc(50% - 15px); } }

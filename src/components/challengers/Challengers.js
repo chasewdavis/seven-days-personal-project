@@ -157,7 +157,7 @@ export default class Challengers extends Component {
         })
 
         return (
-            <div>
+            <div className='challengers_grand_parent'>
                 {challengers}
                 {challengees}
             </div>

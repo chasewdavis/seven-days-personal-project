@@ -93,6 +93,12 @@
 }
 
 @media only screen and (min-width:1024px) {
+    .challengers_grand_parent{
+        // border: 1px solid fuchsia;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
     .challengers_parent{
         width: calc(50% - 15px);
     }
