@@ -8,6 +8,7 @@ import Challengers from '../challengers/Challengers.js';
 import Search from '../search/Search.js';
 import {Link} from 'react-router-dom';
 import Description from '../description/Description.js';
+import SuccessRate from '../successRate/SuccessRate.js';
 
 import './goal.css';
 import './settings.css';
@@ -47,6 +48,9 @@ class Goal extends Component {
             goodhabit: null,
             currentstreak: null,
             beststreak: null,
+            successRateTotal:null,
+            successRateMonth:null,
+            successRateWeek:null,
             forceAnUpdate: null,
             logSeven: [false,false,false,false,false,false,false],
             sent: null,
@@ -83,6 +87,7 @@ class Goal extends Component {
             // console.log('array from get all bools after mapping', array)
             const best = this.countBestStreak(array);
             const current = this.countCurrentStreak(array);
+            const successRateTotal = this.successRateTotal(array);
             this.setState({
                 currentstreak:current, 
                 beststreak:best,
@@ -109,13 +114,22 @@ class Goal extends Component {
     updateStreaks(booleans){
 
         booleans = booleans.map(e=>e.successful);
+
+        // for success rate
+        let num = 0;
+        let den = 0;
+        booleans.forEach( e => e ? num++ : den++ )
+        let rate = num/(num+den);
+
+        // for streaks
         const best = this.countBestStreak(booleans);
         const current = this.countCurrentStreak(booleans);
 
         this.setState({
             currentstreak:current, 
             beststreak:best,
-            logSeven: booleans.slice(0,7)
+            logSeven: booleans.slice(0,7),
+            successRateTotal: rate
         });
 
     }
@@ -151,6 +165,14 @@ class Goal extends Component {
         array.push(count);
         
         return array.reduce((a,c)=>a>c?a:c);
+    }
+
+    successRateTotal(arr){
+        let num = 0;
+        let den = 0;
+        arr.forEach( e => e ? num++ : den++ )
+        let rate = num/(num+den);
+        this.setState({successRateTotal:rate})
     }
 
     returnTitle(){
@@ -500,16 +522,21 @@ class Goal extends Component {
 
     openLogForm(){
 
-        console.log('from open log form', this.state.logSeven)
+        // console.log('from open log form', this.state.logSeven)
 
         if(open_pop_up){
-            console.log('open_pop_up is TRUE')
+            // console.log('open_pop_up is TRUE')
             open_pop_up = false;
             full_screen_log_form = (
             <div>
                 <div onClick={() => this.openLogForm()} className='overlay'></div>
                 <div className='full_screen_log_form'>
-                    <div className='settings_header'>Log Last Seven Days</div>
+                    <div className='settings_header'>
+                        Log Last Seven Days
+                        <button onClick={() => this.openLogForm()} className='close'>
+                        <X width='18px'/>
+                        </button>
+                    </div>
                     <div className='log_form_padding'>
                     <Log fullScreen={true} updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
                     </div>
@@ -517,7 +544,7 @@ class Goal extends Component {
             </div>
         )
         }else{
-            console.log('open_pop_up is FALSE')
+            // console.log('open_pop_up is FALSE')
             open_pop_up = true;
             full_screen_log_form = (
             <div></div>
@@ -548,8 +575,10 @@ class Goal extends Component {
                 <div className='space_for_nav'></div>
                 <div className='contain_goal'>
                     <div className='full_screen_hide'><Log fullScreen={false} updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/></div>
+                    <div className='full_screen_side_by_side'>
                     <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
-
+                    <SuccessRate total={this.state.successRateTotal} month={true} week={true}/>
+                    </div>
                     <div className='media_options'>
                         <Link className='parent_link' to={`/search/${this.props.match.params.id}`}><button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button></Link>
                         <div className='full_screen_show'>

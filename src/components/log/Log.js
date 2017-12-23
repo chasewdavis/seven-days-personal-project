@@ -25,17 +25,17 @@ export default class Log extends Component {
     }
 
     componentDidMount(){
-        console.log('component did mount,', this.props)
+        // console.log('component did mount,', this.props)
         this.setState({
             last_seven: this.props.logSeven
         })
     }
 
     componentWillReceiveProps(newProps){
-        console.log('new props from log ', newProps)
+        // console.log('new props from log ', newProps)
         this.setState({
             last_seven: newProps.logSeven
-        }, console.log('state after component receives props',this.state))
+        })
     }
 
     check(day){
@@ -217,14 +217,14 @@ export default class Log extends Component {
     }
 
     closure(){
-        console.log('from closure, state is...', this.state)
+        // console.log('from closure, state is...', this.state)
         log_form_full = (
             this.provide_last_seven_days(d.getMonth()+1, d.getDate())
         )
     }
 
     render(){
-        console.log('state from render is...', this.state)
+        // console.log('state from render is...', this.state)
         if(this.props.fullScreen){
             console.log('fullscreen mode')
             return (
@@ -234,7 +234,7 @@ export default class Log extends Component {
                 </div>
             )
         }else{
-            console.log('mobile view mode')
+            // console.log('mobile view mode')
             return (
                 <div>
                     <button onClick={()=>this.form()} className='add_log'>+ Log</button>

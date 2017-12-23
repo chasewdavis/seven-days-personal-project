@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Mono");
 .parent_link {
   display: flex;
   align-items: flex-start;
@@ -65,4 +66,7 @@
     overflow: hidden;
     box-shadow: 0 0 35px rgba(0, 0, 0, 0.7); }
     .full_screen_log_form .log_form_padding {
-      padding: 5px 10px 10px 10px; } }
+      padding: 5px 10px 10px 10px; }
+  .full_screen_side_by_side {
+    display: flex;
+    flex-direction: row; } }

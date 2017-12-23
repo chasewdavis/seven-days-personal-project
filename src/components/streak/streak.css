@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Mono");
 .streaks {
   width: calc(100% - 20px);
   margin-top: 10px;
@@ -45,4 +46,9 @@
   vertical-align: middle;
   font-size: 65px;
   color: #556270;
-  background-color: white; }
+  background-color: white;
+  font-family: "PT Mono"; }
+
+@media only screen and (min-width: 1024px) {
+  .streaks {
+    width: calc(50% - 15px); } }

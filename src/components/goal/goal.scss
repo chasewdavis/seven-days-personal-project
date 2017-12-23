@@ -97,4 +97,8 @@
             padding: 5px 10px 10px 10px;
         }
     }
+    .full_screen_side_by_side {
+        display: flex;
+        flex-direction: row;
+    }
 }
