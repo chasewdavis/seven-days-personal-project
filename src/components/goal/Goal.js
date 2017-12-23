@@ -51,7 +51,8 @@ class Goal extends Component {
             logSeven: [false,false,false,false,false,false,false],
             sent: null,
             originalgoal: null,
-            description: ''
+            description: '',
+            fullScreen:true
         }
         this.returnTitle = this.returnTitle.bind(this);
         this.updateStreaks = this.updateStreaks.bind(this);
@@ -502,6 +503,7 @@ class Goal extends Component {
         console.log('from open log form', this.state.logSeven)
 
         if(open_pop_up){
+            console.log('open_pop_up is TRUE')
             open_pop_up = false;
             full_screen_log_form = (
             <div>
@@ -515,6 +517,7 @@ class Goal extends Component {
             </div>
         )
         }else{
+            console.log('open_pop_up is FALSE')
             open_pop_up = true;
             full_screen_log_form = (
             <div></div>
@@ -544,7 +547,7 @@ class Goal extends Component {
                 <Nav openLogForm={() => this.openLogForm()} id={this.props.match.params.id} title={this.state.goalname}/>
                 <div className='space_for_nav'></div>
                 <div className='contain_goal'>
-                    <div className='full_screen_hide'><Log updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/></div>
+                    <div className='full_screen_hide'><Log fullScreen={false} updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/></div>
                     <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
 
                     <div className='media_options'>

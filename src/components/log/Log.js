@@ -24,8 +24,15 @@ export default class Log extends Component {
         hide_form = true;
     }
 
+    componentDidMount(){
+        console.log('component did mount,', this.props)
+        this.setState({
+            last_seven: this.props.logSeven
+        })
+    }
+
     componentWillReceiveProps(newProps){
-        console.log('new props from log ', newProps.logSeven)
+        console.log('new props from log ', newProps)
         this.setState({
             last_seven: newProps.logSeven
         }, console.log('state after component receives props',this.state))
@@ -227,6 +234,7 @@ export default class Log extends Component {
                 </div>
             )
         }else{
+            console.log('mobile view mode')
             return (
                 <div>
                     <button onClick={()=>this.form()} className='add_log'>+ Log</button>
