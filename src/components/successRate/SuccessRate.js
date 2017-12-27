@@ -12,21 +12,28 @@ export default class SuccessRate extends Component {
         }
     }
 
-    closure(current){
-        console.log(current)
-        this.setState({current:current})
-    }
+    //experimenting with an upward moving percentage that stops at desired percentage
+
+    // closure(current){
+    //     console.log(current)
+    //     this.setState({current:current})
+    // }
 
     componentWillReceiveProps(newProps){
-        console.log('newProps are...', newProps)
-        const stopAt = Math.round(newProps.total * 100);
-        this.setState({stopAt:stopAt})
+        // console.log('newProps are...', newProps)
 
-        const half = Math.floor(stopAt * .6);
+        const current = Math.floor(newProps.total * 100)
 
-        for(let i = half ; i <= stopAt; i++ ){
-            setTimeout( () => this.closure(i), (i - half) * 50)
-        }
+        this.setState({current:current})
+
+        // const stopAt = Math.round(newProps.total * 100);
+        // this.setState({stopAt:stopAt})
+
+        // const half = Math.floor(stopAt * .6);
+
+        // for(let i = half ; i <= stopAt; i++ ){
+        //     setTimeout( () => this.closure(i), (i - half) * 50)
+        // }
     }
 
     render(){
