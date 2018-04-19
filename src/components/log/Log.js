@@ -7,7 +7,6 @@ import axios from 'axios';
 let log_form = <div></div>;
 let log_form_full = <div></div>;
 let hide_form = true;
-const d = new Date();
 
 export default class Log extends Component {
 
@@ -25,10 +24,10 @@ export default class Log extends Component {
     }
 
     componentDidMount(){
-        // console.log('component did mount,', this.props)
         this.setState({
             last_seven: this.props.logSeven
         })
+        console.log('state after component mounts', this.props);
     }
 
     componentWillReceiveProps(newProps){
@@ -57,15 +56,14 @@ export default class Log extends Component {
     }
 
     form(){
-        // var d = new Date()
         
         if(hide_form){
             hide_form=false;
             log_form = (
                 <div className='no_overflow'>
                     <div className='log_form'>
-                        {this.provide_last_seven_days(d.getMonth()+1, d.getDate())}
-                        {/* <button className='more'>more</button> */}
+                        {this.provide_last_seven_days()}
+                        <button className='more'>more</button>
                     </div>
                 </div>
             )
@@ -74,7 +72,7 @@ export default class Log extends Component {
             log_form = ( 
                 <div className='no_overflow'>
                     <div className='close_log_form'>
-                        {this.provide_last_seven_days(d.getMonth()+1, d.getDate())}
+                        {this.provide_last_seven_days()}
                     </div>
                 </div>
             )
@@ -83,153 +81,58 @@ export default class Log extends Component {
         this.forceUpdate();
     }
 
-    provide_last_seven_days(todaysMonth,todaysDate){
+    // provide_last_seven_days(todaysMonth,todaysDate){
 
-        //much better way to do this, will shorten code significantly after reaching the mvp
-        const thirtyone = [0,1,3,5,7,8,10,12];
-        const thirty = [4,6,9,11];
-        const twentyeight = [2]; //next leap day isn't until 2020
-
-        var d = new Date()
-        const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.'];
-        const future = 0; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE //Note that future won't work when past 7 days falls over 2 separate months
-
-        var index = d.getDay()+future;
-        // console.log('day is ', weekdays[index])
-
-            var array = [];
-
-            for(let i = 0; i < 7; i++){
-                if(todaysDate-i > 0){
-                    // console.log(this.check(i))
-                    console.log(this.state.last_seven[i])
-                    this.state.last_seven[i]===true 
-                    ?
-                    array.push(<div key={i} className='log_day'>
-
-                        <div className='the_day'>{weekdays[index+7-i]}</div>
-                        <div className='the_date'>{todaysMonth} / {todaysDate-i+future}</div>
-                        
-                        <div className='from_the_right'>
-                            <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
-                            <label htmlFor={i} className="check-box"></label> 
-                        </div>
-                    </div>)
-                    :
-                    array.push(<div key={i} className='log_day'>
-
-                        <div className='the_day'>{weekdays[index+7-i]}</div>
-                        <div className='the_date'>{todaysMonth} / {todaysDate-i+future}</div>
-        
-                        <div className='from_the_right'>
-                            <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
-                            <label htmlFor={i} className="check-box"></label> 
-                        </div>
-                    </div>)
-                    ;
-                }else{
-                    if(todaysMonth===1){todaysMonth=13}
-                    if(thirtyone.indexOf(todaysMonth-1)!==-1){
-
-                        this.state.last_seven[i]===true 
-                        ?
-                        array.push(<div key={i} className='log_day'>
+    provide_last_seven_days(){
     
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+31}</div>
+        var time = new Date().getTime();
+        const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
+
+        // future time in days converted to milliseconds;
+        let future = 0; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE
+        future *= (1000 * 60 * 60 * 24);
+
+        return this.state.last_seven.map( (e, i) => {
+
+            let offset_milliseconds = i * (1000 * 60 * 60 * 24);
+
+            let date = new Date(time - offset_milliseconds + future);
+
+            return (
+                <div key={i} className='log_day'>
+
+                    <div className='the_day'>{weekdays[date.getDay()]}</div>
+                    <div className='the_date'>{date.getMonth()} / {date.getDate()} / {date.getFullYear()%100}</div>
                             
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        :
-                        array.push(<div key={i} className='log_day'>
-    
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+31}</div>
-            
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        ;
+                    <div className='from_the_right'>
+                        <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked={this.state.last_seven[i]}/>
+                        <label htmlFor={i} className="check-box"></label> 
+                    </div>
+                </div>
+            )
+        })
 
-                    }else if(thirty.indexOf(todaysMonth-1)!==-1){
-
-                        this.state.last_seven[i]===true 
-                        ?
-                        array.push(<div key={i} className='log_day'>
-    
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+30}</div>
-                            
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        :
-                        array.push(<div key={i} className='log_day'>
-    
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+30}</div>
-            
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        ;
-
-                    }else if(twentyeight.indexOf(todaysMonth-1)!==-1){
-                        
-                        this.state.last_seven[i]===true 
-                        ?
-                        array.push(<div key={i} className='log_day'>
-    
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+28}</div>
-                            
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        :
-                        array.push(<div key={i} className='log_day'>
-    
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+28}</div>
-            
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        ;
-                    }
-                }
-            }
-        
-        return array;
     }
 
     closure(){
         // console.log('from closure, state is...', this.state)
+        console.log('closure function fired');
         log_form_full = (
-            this.provide_last_seven_days(d.getMonth()+1, d.getDate())
+            this.provide_last_seven_days()
         )
+        console.log('log_form_full is... ', log_form_full[1].props.children[2].props.children[0].props.defaultChecked);
     }
 
     render(){
         // console.log('state from render is...', this.state)
         if(this.props.fullScreen){
-            console.log('fullscreen mode')
+            // console.log('fullscreen mode')
+
+            this.closure();
+
             return (
                 <div>
-                    {this.closure()}
+                    {/* {this.closure()} */}
                     {log_form_full}
                 </div>
             )
