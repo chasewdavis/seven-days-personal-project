@@ -8,6 +8,19 @@
   margin-left: 10px;
   height: 55px; }
 
+.log_container {
+  position: relative;
+  width: calc(100% - 20px);
+  margin-left: 10px; }
+  .log_container .log_header {
+    height: 35px;
+    background: linear-gradient(155deg, #7F97A2, #93B1BC);
+    line-height: 35px;
+    vertical-align: middle;
+    color: white;
+    font-size: 20px;
+    display: none; }
+
 .challenge_friends_btn {
   background: linear-gradient(155deg, #6A7C89, #A8CCD5);
   width: 100%;
@@ -30,10 +43,19 @@
   #right svg {
     width: 26px; }
 
-.full_screen_show, .full_screen_log_form {
-  display: none; }
-
 @media only screen and (min-width: 1024px) {
+  .log_container {
+    position: fixed;
+    background: whitesmoke;
+    width: 500px;
+    left: calc(50% - 250px);
+    top: 200px;
+    z-index: 5;
+    overflow: hidden;
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.15);
+    border-radius: 10px; }
+    .log_container .log_header {
+      display: block; }
   .contain_goal {
     box-shadow: 0 0 45px rgba(0, 0, 0, 0.15);
     width: 60%;

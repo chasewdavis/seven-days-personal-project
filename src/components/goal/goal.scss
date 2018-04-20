@@ -12,6 +12,22 @@
 
 }
 
+.log_container {
+    position: relative;
+    // border: 1px solid fuchsia;
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    .log_header {
+        height: 35px;
+        background: $gradient_light;
+        line-height: 35px;
+        vertical-align: middle;
+        color:white;
+        font-size: 20px;
+        display: none;
+    }
+}
+
 .challenge_friends_btn{
     background: $gradient_mild;
     width: 100%;
@@ -39,11 +55,24 @@
     }
 }
 
-.full_screen_show, .full_screen_log_form{
-    display: none;
-}
 
 @media only screen and (min-width:1024px) {
+
+    .log_container {
+        position: fixed;
+        background: whitesmoke;
+        width: 500px;
+        left: calc(50% - 250px);
+        top: 200px;
+        z-index: 5;
+        overflow: hidden;
+        box-shadow: 0 0 45px rgba(0,0,0,.15);
+        border-radius: 10px;
+        .log_header {
+            display: block;
+        }
+    }
+
     .contain_goal {
         box-shadow: 0 0 45px rgba(0,0,0,.15);
         width: 60%;
@@ -53,11 +82,7 @@
         flex-direction: column;
         position: relative;
     }
-    .media_options{
-        // border:1px solid fuchsia;
-        // display: flex;
-        // flex-direction: row;
-    }
+ 
     .parent_link {
         width: calc(50% - 15px);
         margin-left: 0;
@@ -76,11 +101,11 @@
     .full_screen_hide{
         display: none;
     }
-    .challenge_friends_btn{
+    // .challenge_friends_btn{
     //     text-align: left;
     //     padding-left: 10px;
     // border:1px solid red;
-    }
+    // }
     .full_screen_log_form {
         z-index: 30;
         position: fixed;

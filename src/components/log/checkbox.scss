@@ -35,10 +35,9 @@ $duration: .4s;
     100% { height: $checkbox-height * 1; }
 }
 
-.from_the_right{
+.check-box-parent {
     position: absolute;
-    right:10px;
-    top:7.5px;
+    right: 10px;
     height: $checkbox-height;
 }
 

@@ -3,7 +3,7 @@ module.exports = {
     read: (req,res) => {
 
         // -----TEMP-----//
-            // req.user=4
+            req.user=4
         // --------------//
 
         // console.log('req.user is...',req.user);
@@ -33,7 +33,7 @@ module.exports = {
 
         let goalid = null;
         
-        // console.log('update funtion is firing')
+        console.log('update function is firing');
 
         let args = [req.body.goalname, req.body.daysoutofseven, req.body.goodHabit, req.user, startdate, null]
 
@@ -57,8 +57,13 @@ module.exports = {
     },
 
     fillmissingdays: (req,res) => {
+
+        console.log('fillmissingdays', req.body);
+
         function days(start,today){
             
+            console.log(start, today);
+
             const calender = [0,31,28,31,30,31,30,31,31,30,31,30,31];
               
             start = start.split(' ').map(e=>parseInt(e));
@@ -125,7 +130,7 @@ module.exports = {
     },
 
     changebool: (req,res) => {
-        // console.log('from changebool', req.body.day) //day clicked on
+        console.log('from changebool', req.body.day) //day clicked on
         // console.log('from changebool', req.params.id) //goal id
         const db = req.app.get('db')
         const dayclicked = req.body.day;
