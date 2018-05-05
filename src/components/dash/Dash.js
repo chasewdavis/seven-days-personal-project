@@ -289,7 +289,7 @@ export default class dashboard extends Component {
 
     render(){
 
-        console.log('number of goals is', this.state.goals.length)
+        // console.log('number of goals is', this.state.goals.length)
 
         const goals = this.state.goals.map((e,i)=>{
             // console.log(e)

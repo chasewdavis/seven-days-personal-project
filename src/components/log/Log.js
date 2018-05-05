@@ -2,245 +2,53 @@ import React, {Component} from 'react';
 import './log.css';
 import './checkbox.css';
 import axios from 'axios';
-// import 'pretty-checkbox/src/pretty.css';
 
-let log_form = <div></div>;
-let log_form_full = <div></div>;
-let hide_form = true;
-const d = new Date();
+export default ({ check, logSeven, logOpen}) => {
 
-export default class Log extends Component {
+    // use logOpen to provide correct class to open or close
+    // the way it opens and closes just depends on the screen width
+    console.log('logSeven is...', logSeven);
 
-    constructor(props){
-        super(props)
+    var time = new Date().getTime();
+    const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
 
-        this.state = {
-            last_seven: [false, false, false, false, false, false, false]
-        }
-    }
+    // future time in days converted to milliseconds;
+    let future = 0; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE
+    future *= (1000 * 60 * 60 * 24);      
 
-    componentWillUnmount(){
-        log_form = <div></div>
-        hide_form = true;
-    }
+    if(Array.isArray(logSeven)){    
+        return logSeven.map( (e, i, arr) => {
 
-    componentDidMount(){
-        // console.log('component did mount,', this.props)
-        this.setState({
-            last_seven: this.props.logSeven
-        })
-    }
+            let offset_milliseconds = i * (1000 * 60 * 60 * 24);
 
-    componentWillReceiveProps(newProps){
-        // console.log('new props from log ', newProps)
-        this.setState({
-            last_seven: newProps.logSeven
-        })
-    }
+            let date = new Date(time - offset_milliseconds + future);
 
-    check(day){
-        // console.log(day);
-        var temp = this.state.last_seven
-        if(temp[day]===false){
-            temp[day] = true;
-        }else{
-            temp[day] = false;
-        }
-        
-        axios.post(`/api/changebool/${this.props.goal}`, {day}).then(res=>{
+            return (
+                <div key={i} className='log_day'>
 
-                this.props.updateStreaks(res.data)
+                    <div className='the_day'>{weekdays[date.getDay()]}</div>
 
-        })
-
-        // this.setState({last_seven:temp})
-    }
-
-    form(){
-        // var d = new Date()
-        
-        if(hide_form){
-            hide_form=false;
-            log_form = (
-                <div className='no_overflow'>
-                    <div className='log_form'>
-                        {this.provide_last_seven_days(d.getMonth()+1, d.getDate())}
-                        {/* <button className='more'>more</button> */}
+                    <div className='the_date'>{date.getMonth()} / {date.getDate()} / {date.getFullYear()%100}</div>
+                    
+                    <div className='check-box-parent'>
+                        <input onChange={()=>{ check(i)}} type="checkbox" id={i} defaultChecked={arr[i]}/>
+                        <label htmlFor={i} className="check-box"></label> 
                     </div>
+
                 </div>
             )
-        }else{
-            hide_form=true;
-            log_form = ( 
-                <div className='no_overflow'>
-                    <div className='close_log_form'>
-                        {this.provide_last_seven_days(d.getMonth()+1, d.getDate())}
-                    </div>
-                </div>
-            )
-        }
-
-        this.forceUpdate();
-    }
-
-    provide_last_seven_days(todaysMonth,todaysDate){
-
-        //much better way to do this, will shorten code significantly after reaching the mvp
-        const thirtyone = [0,1,3,5,7,8,10,12];
-        const thirty = [4,6,9,11];
-        const twentyeight = [2]; //next leap day isn't until 2020
-
-        var d = new Date()
-        const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.','Sun.','Mon.','Tue.'];
-        const future = 0; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE //Note that future won't work when past 7 days falls over 2 separate months
-
-        var index = d.getDay()+future;
-        // console.log('day is ', weekdays[index])
-
-            var array = [];
-
-            for(let i = 0; i < 7; i++){
-                if(todaysDate-i > 0){
-                    // console.log(this.check(i))
-                    console.log(this.state.last_seven[i])
-                    this.state.last_seven[i]===true 
-                    ?
-                    array.push(<div key={i} className='log_day'>
-
-                        <div className='the_day'>{weekdays[index+7-i]}</div>
-                        <div className='the_date'>{todaysMonth} / {todaysDate-i+future}</div>
-                        
-                        <div className='from_the_right'>
-                            <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
-                            <label htmlFor={i} className="check-box"></label> 
-                        </div>
-                    </div>)
-                    :
-                    array.push(<div key={i} className='log_day'>
-
-                        <div className='the_day'>{weekdays[index+7-i]}</div>
-                        <div className='the_date'>{todaysMonth} / {todaysDate-i+future}</div>
-        
-                        <div className='from_the_right'>
-                            <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
-                            <label htmlFor={i} className="check-box"></label> 
-                        </div>
-                    </div>)
-                    ;
-                }else{
-                    if(todaysMonth===1){todaysMonth=13}
-                    if(thirtyone.indexOf(todaysMonth-1)!==-1){
-
-                        this.state.last_seven[i]===true 
-                        ?
-                        array.push(<div key={i} className='log_day'>
-    
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+31}</div>
-                            
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        :
-                        array.push(<div key={i} className='log_day'>
-    
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+31}</div>
-            
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        ;
-
-                    }else if(thirty.indexOf(todaysMonth-1)!==-1){
-
-                        this.state.last_seven[i]===true 
-                        ?
-                        array.push(<div key={i} className='log_day'>
-    
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+30}</div>
-                            
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        :
-                        array.push(<div key={i} className='log_day'>
-    
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+30}</div>
-            
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        ;
-
-                    }else if(twentyeight.indexOf(todaysMonth-1)!==-1){
-                        
-                        this.state.last_seven[i]===true 
-                        ?
-                        array.push(<div key={i} className='log_day'>
-    
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+28}</div>
-                            
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} defaultChecked/>
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        :
-                        array.push(<div key={i} className='log_day'>
-    
-                            <div className='the_day'>{weekdays[index+7-i]}</div>
-                            <div className='the_date'>{todaysMonth-1} / {todaysDate-i+28}</div>
-            
-                            <div className='from_the_right'>
-                                <input onClick={()=>{ this.check(i)}} type="checkbox" id={i} />
-                                <label htmlFor={i} className="check-box"></label> 
-                            </div>
-                        </div>)
-                        ;
-                    }
-                }
-            }
-        
-        return array;
-    }
-
-    closure(){
-        // console.log('from closure, state is...', this.state)
-        log_form_full = (
-            this.provide_last_seven_days(d.getMonth()+1, d.getDate())
+        })
+    }else{
+        return (
+            <div></div>
         )
     }
-
-    render(){
-        // console.log('state from render is...', this.state)
-        if(this.props.fullScreen){
-            console.log('fullscreen mode')
-            return (
-                <div>
-                    {this.closure()}
-                    {log_form_full}
-                </div>
-            )
-        }else{
-            // console.log('mobile view mode')
-            return (
-                <div>
-                    <button onClick={()=>this.form()} className='add_log'>+ Log</button>
-                    {log_form}      
-                </div>
-            )
-        }
-    }
+        
 }
+
+// why is there a conditional return statement?
+// defaultChecked does not change after multiple rerenders (multiple rerenders is bad and I'm working on that as well)
+// defaultChecked only accepts the first boolean, then refuses to update even after arr[i] is a new value
+// temporary work around: parent logSeven prop has a default value set to null,
+// when the values are retrieved from database, logSeven is turned into an array.
+// the alternative solution was to avoid using a functional component and make use of ComponentWillRecieveProps to update state / rerender correct boolean array

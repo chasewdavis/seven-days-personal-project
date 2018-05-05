@@ -1,15 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Mono");
-.add_log {
-  background-color: white;
-  width: calc(100% - 20px);
-  height: 60px;
-  border-radius: 5px;
-  margin-top: 10px;
-  font-size: 30px;
-  color: #556270;
-  border: 5px solid #556270;
-  outline: none; }
-
 .the_day {
   position: absolute;
   left: 10px; }
@@ -57,3 +46,10 @@
 @keyframes slide_up {
   to {
     margin-top: -400px; } }
+
+@media only screen and (min-width: 1024px) {
+  .add_log {
+    display: none; }
+  .log_day {
+    width: calc(100% - 10px);
+    margin-left: 5px; } }

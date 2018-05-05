@@ -8,6 +8,48 @@
   margin-left: 10px;
   height: 55px; }
 
+.add_log {
+  background-color: white;
+  width: calc(100% - 20px);
+  height: 60px;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 30px;
+  color: #556270;
+  border: 5px solid #556270;
+  outline: none; }
+
+.log_container {
+  position: relative;
+  width: calc(100% - 20px);
+  margin-left: 10px; }
+  .log_container .log_header {
+    height: 35px;
+    background: linear-gradient(155deg, #7F97A2, #93B1BC);
+    line-height: 35px;
+    vertical-align: middle;
+    color: white;
+    font-size: 20px;
+    display: none; }
+
+.appear {
+  animation-name: slide_down;
+  animation-duration: .8s;
+  animation-fill-mode: forwards;
+  opacity: 1;
+  height: 0;
+  overflow: hidden; }
+
+.close_me {
+  animation-name: slide_up;
+  animation-duration: .8s;
+  animation-fill-mode: forwards;
+  height: 385px;
+  overflow: hidden; }
+
+.hide_me {
+  display: none; }
+
 .challenge_friends_btn {
   background: linear-gradient(155deg, #6A7C89, #A8CCD5);
   width: 100%;
@@ -30,10 +72,33 @@
   #right svg {
     width: 26px; }
 
-.full_screen_show, .full_screen_log_form {
-  display: none; }
-
 @media only screen and (min-width: 1024px) {
+  .log_container {
+    position: fixed;
+    background: whitesmoke;
+    width: 500px;
+    left: calc(50% - 250px);
+    top: 200px;
+    z-index: 5;
+    overflow: hidden;
+    box-shadow: 0 0 45px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    padding-bottom: 5px; }
+    .log_container .log_header {
+      display: block; }
+  .appear {
+    animation-name: appear;
+    animation-duration: .25s;
+    animation-fill-mode: forwards;
+    height: auto;
+    opacity: .3;
+    margin-top: 0; }
+  .close_me {
+    animation-name: disappear;
+    animation-duration: .25s;
+    animation-fill-mode: forwards;
+    opacity: 1;
+    height: auto; }
   .contain_goal {
     box-shadow: 0 0 45px rgba(0, 0, 0, 0.15);
     width: 60%;
@@ -70,3 +135,19 @@
   .full_screen_side_by_side {
     display: flex;
     flex-direction: row; } }
+
+@keyframes appear {
+  100% {
+    opacity: 1; } }
+
+@keyframes disappear {
+  100% {
+    opacity: 0; } }
+
+@keyframes slide_down {
+  100% {
+    height: 385px; } }
+
+@keyframes slide_up {
+  100% {
+    height: 0; } }
