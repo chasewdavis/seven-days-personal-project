@@ -130,7 +130,6 @@ module.exports = {
     },
 
     changebool: (req,res) => {
-        console.log('from changebool', req.body.day) //day clicked on
         // console.log('from changebool', req.params.id) //goal id
         const db = req.app.get('db')
         const dayclicked = req.body.day;
@@ -219,11 +218,9 @@ module.exports = {
     },
 
     grabChallenges: (req, res) => {
-        // console.log('user from grabChallenges is..', req.user)
+        
         db = req.app.get('db');
 
-        //TEMPPPPPPPP VARRRRRRIIIIIAAAAABBBBLLLLLLEEEEEEEEE
-        //set back to req.user
         db.grab_challenge([req.user])
         .then(challenge => res.status(200).send(challenge))
     },

@@ -12,11 +12,23 @@
 
 }
 
+.add_log {
+    background-color: white;
+    width: calc(100% - 20px);
+    height: 60px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-size: 30px;
+    color: $main_color;
+    border: 5px solid $main_color;
+    outline: none; 
+}
+
 .log_container {
     position: relative;
-    // border: 1px solid fuchsia;
     width: calc(100% - 20px);
     margin-left: 10px;
+
     .log_header {
         height: 35px;
         background: $gradient_light;
@@ -26,6 +38,29 @@
         font-size: 20px;
         display: none;
     }
+}
+
+// small screen
+.appear {
+    animation-name: slide_down;
+    animation-duration: .8s; // javascript cares about this value too!
+    animation-fill-mode: forwards; 
+    opacity: 1;
+    height: 0;
+    overflow: hidden;
+}
+
+// small screen
+.close_me {
+    animation-name: slide_up;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+    height: 385px;
+    overflow: hidden;
+}
+
+.hide_me {
+    display: none;
 }
 
 .challenge_friends_btn{
@@ -55,7 +90,6 @@
     }
 }
 
-
 @media only screen and (min-width:1024px) {
 
     .log_container {
@@ -68,9 +102,29 @@
         overflow: hidden;
         box-shadow: 0 0 45px rgba(0,0,0,.15);
         border-radius: 10px;
+        padding-bottom: 5px;
         .log_header {
             display: block;
         }
+    }
+
+    // large screens
+    .appear {
+        animation-name: appear;
+        animation-duration: .25s; // javascript cares about this value too!
+        animation-fill-mode: forwards;
+        height: auto;
+        opacity: .3;
+        margin-top: 0;
+    }
+
+    // large screens
+    .close_me {
+        animation-name: disappear;
+        animation-duration: .25s;
+        animation-fill-mode: forwards;
+        opacity: 1;
+        height: auto;
     }
 
     .contain_goal {
@@ -125,5 +179,30 @@
     .full_screen_side_by_side {
         display: flex;
         flex-direction: row;
+    }
+}
+
+// same class different animation on different sized screen
+@keyframes appear { 
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes disappear {
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slide_down {
+    100% {
+        height: 385px;
+    }
+}
+
+@keyframes slide_up {
+    100% {
+        height: 0;
     }
 }

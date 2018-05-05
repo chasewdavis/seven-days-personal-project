@@ -24,6 +24,7 @@ import {withRouter} from 'react-router';
 
 // import editAddDescription from '../settings/Description.js' 
 
+// empty divs be can eliminated by giving a class that contains display:none;
 let pop_up_settings = <div></div>;
 let open_pop_up = true;
 let textBubbleOne = <div></div>;
@@ -52,11 +53,13 @@ class Goal extends Component {
             successRateMonth:null,
             successRateWeek:null,
             forceAnUpdate: null,
-            logSeven: [false,false,false,false,false,false,false],
+            logSeven: null,
             logOpen:false,
             sent: null,
             originalgoal: null,
             description: '',
+            logFormIsClosing: false,
+            disableLogButton: false
         }
         this.returnTitle = this.returnTitle.bind(this);
         this.updateStreaks = this.updateStreaks.bind(this);
@@ -66,6 +69,7 @@ class Goal extends Component {
         this.countBestStreak = this.countBestStreak.bind(this);
         this.removeGoalFalse = this.removeGoalFalse.bind(this);
         this.openLogForm = this.openLogForm.bind(this);
+        this.check = this.check.bind(this);
     }
 
     componentWillUnmount(){
@@ -79,19 +83,24 @@ class Goal extends Component {
     }
 
     componentDidMount(){
-        this.setGoal();
+
+        // updating state is expesive, do it sparingly
+
+        this.setGoal(); //updates state
 
         axios.get(`/api/getallbools/${this.props.match.params.id}`).then(res2=>{
             const array = res2.data.map(e=>e.successful);
             // console.log('array from get all bools after mapping', array)
-            const best = this.countBestStreak(array);
+            const best = this.countBestStreak(array); 
             const current = this.countCurrentStreak(array);
-            const successRateTotal = this.successRateTotal(array);
+            const rate = this.successRateTotal(array);
+            console.log('rate is... ',rate);
             this.setState({
                 currentstreak:current, 
                 beststreak:best,
-                logSeven: array.slice(0,7)
-            });
+                logSeven: array.slice(0,7),
+                successRateTotal: rate
+            }); //updates state
         })
     }
 
@@ -115,10 +124,7 @@ class Goal extends Component {
         booleans = booleans.map(e=>e.successful);
 
         // for success rate
-        let num = 0;
-        let den = 0;
-        booleans.forEach( e => e ? num++ : den++ )
-        let rate = num/(num+den);
+        let rate = this.successRateTotal(booleans);
 
         // for streaks
         const best = this.countBestStreak(booleans);
@@ -171,7 +177,8 @@ class Goal extends Component {
         let den = 0;
         arr.forEach( e => e ? num++ : den++ )
         let rate = num/(num+den);
-        this.setState({successRateTotal:rate})
+        // this.setState({successRateTotal:rate})
+        return rate;
     }
 
     returnTitle(){
@@ -521,10 +528,35 @@ class Goal extends Component {
 
     openLogForm(){
 
+        let exitTime = 800; // tied to css animation duration time
+        if( window.innerWidth >= 1024 ) {
+            exitTime = 250;
+        }
+
         if(this.state.logOpen){
-            this.setState({logOpen: false})
+            // run closing animation first
+            // closing animation length varies depending on screen width
+            // breakpoint is at 1024px
+            // what if user double clicks? must NOT have multiple timeout functions going at the same time
+            if( !this.state.logFormIsClosing ){
+                this.setState({logFormIsClosing: true});
+                setTimeout(() => {
+                    this.setState({
+                        logOpen: false,
+                        logFormIsClosing: false
+                    })
+                }, exitTime);
+            }
         } else {
-            this.setState({logOpen: true})
+            this.setState({
+                logOpen: true,
+                disableLogButton: true
+            })
+            setTimeout(() => {
+                this.setState({
+                    disableLogButton: false
+                })
+            }, exitTime)
         }
         
 
@@ -559,6 +591,21 @@ class Goal extends Component {
         // this.forceUpdate();
     }
 
+    check(day){
+    
+        var temp = this.state.logSeven;
+        if(temp[day]){
+            temp[day] = false;
+        }else{
+            temp[day] = true;
+        }
+        
+        axios.post(`/api/changebool/${this.props.match.params.id}`, {day}).then(res=>{
+            this.updateStreaks(res.data);
+        })
+
+    }
+
     render(){
 
         const settings = (
@@ -581,8 +628,16 @@ class Goal extends Component {
                 <div className='space_for_nav'></div>
                 <div className='contain_goal'>
 
+                    {/* small screen only */}
+                    <button disabled={this.state.disableLogButton} onClick={()=>this.openLogForm()} className='add_log'>+ Log</button>
+
                     {/* changes significantly based on screen width */}
-                    <div className='log_container'>
+                    {/* <div className='log_container'> */}
+                    <div className={
+                        this.state.logOpen ? 
+                        this.state.logFormIsClosing ? 'log_container close_me' : 'log_container appear' :
+                        'hide_me log_container'
+                    }>
 
                         {/* large screen  only */}
                         <div className='log_header'>
@@ -593,10 +648,10 @@ class Goal extends Component {
                         </div>
 
                         {/* small screen only */}
-                        <button onClick={()=>this.openLogForm()} className='add_log'>+ Log</button>
+                        {/* <button onClick={()=>this.openLogForm()} className='add_log'>+ Log</button> */}
 
                         {/* functional component creates list based on logSeven */}
-                        <Log logOpen={this.state.logOpen} updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
+                        <Log check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} />
 
                     </div>
 
