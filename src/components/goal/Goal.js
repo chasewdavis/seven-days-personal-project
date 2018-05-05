@@ -673,7 +673,8 @@ class Goal extends Component {
                     </div>
                     
                     <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
-                    
+
+                    {/* this needs fixing next */}
                     <div className='full_screen_hide'>
                         {
                             this.state.sent || this.state.originalgoal
