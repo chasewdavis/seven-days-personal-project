@@ -6,15 +6,6 @@
 .no_overflow {
   overflow: hidden; }
 
-.log_form {
-  width: calc(100% - 20px);
-  margin-left: 10px;
-  margin-top: -400px;
-  animation: slide_down .84s;
-  animation-fill-mode: forwards;
-  border-bottom: 5px solid #556270;
-  padding-bottom: 5px; }
-
 .close_log_form {
   width: calc(100% - 20px);
   margin-left: 10px;
@@ -31,13 +22,13 @@
   align-items: center;
   justify-content: center;
   height: 50px;
-  margin-top: 5px;
   border-radius: 5px;
   background: white;
   padding: 0 10px;
   color: #556270;
   font-size: 22px;
-  font-weight: bolder; }
+  font-weight: bolder;
+  margin-top: 5px; }
 
 @keyframes slide_down {
   to {

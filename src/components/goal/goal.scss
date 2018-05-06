@@ -1,42 +1,67 @@
 @import "../../utilities/variables.scss";
 
-.parent_link{
-    // border:10px solid fuchsia;
+// small screens
+.contain_goal {
+    box-shadow: none;
+    width: 100%;
+    margin-left: 0%;
+    height: auto;
+    position: relative;
+    // background: rgba(255, 0, 255, 0.288);
+    display: grid;
+    padding: 10px;
+    grid-gap: 10px;
+}
+
+.challenge_friends_link {
     display: flex;
     align-items: flex-start;
     text-decoration: none;
-    width: calc(100% - 20px);
-    margin-top:10px;
-    margin-left: 10px;
+    // width: calc(100% - 20px);
+    // margin-top:10px;
     height: $main_height;
-
+    .challenge_friends_btn{
+        background: $gradient_mild;
+        width: 100%;
+        height: $main_height;
+        border-radius: 5px;
+        border: none;
+        font-size: 28px;
+        color: white;
+        outline: none; 
+        // margin-top: 10px;
+        position: relative;
+    }
 }
 
-.add_log {
-    background-color: white;
-    width: calc(100% - 20px);
-    height: 60px;
-    border-radius: 5px;
-    margin-top: 10px;
-    font-size: 30px;
-    color: $main_color;
-    border: 5px solid $main_color;
-    outline: none; 
-}
-
-.log_container {
-    position: relative;
-    width: calc(100% - 20px);
-    margin-left: 10px;
-
-    .log_header {
-        height: 35px;
-        background: $gradient_light;
-        line-height: 35px;
-        vertical-align: middle;
-        color:white;
-        font-size: 20px;
-        display: none;
+.log_container_parent{
+    overflow: hidden;
+    .add_log {
+        position: relative;
+        background-color: white;
+        width: 100%;
+        height: 60px;
+        border-radius: 5px;
+        // margin-top: 10px;
+        font-size: 30px;
+        color: $main_color;
+        border: 5px solid $main_color;
+        outline: none;
+        z-index: 1; 
+    }
+    .log_container {
+        position: relative;
+        z-index: 0;
+    
+        .log_header {
+            height: 35px;
+            background: $gradient_light;
+            line-height: 35px;
+            vertical-align: middle;
+            color:white;
+            font-size: 20px;
+            display: none;
+        }
     }
 }
 
@@ -46,8 +71,9 @@
     animation-duration: .8s; // javascript cares about this value too!
     animation-fill-mode: forwards; 
     opacity: 1;
-    height: 0;
     overflow: hidden;
+    height: auto;
+    margin-top: -385px;
 }
 
 // small screen
@@ -55,25 +81,12 @@
     animation-name: slide_up;
     animation-duration: .8s;
     animation-fill-mode: forwards;
-    height: 385px;
     overflow: hidden;
+    height: 385px;
 }
 
 .hide_me {
     display: none;
-}
-
-.challenge_friends_btn{
-    background: $gradient_mild;
-    width: 100%;
-    height: $main_height;
-    border-radius: 5px;
-    border: none;
-    font-size: 28px;
-    color: white;
-    outline: none; 
-    // margin-top: 10px;
-    position: relative;
 }
 
 #right {
@@ -92,6 +105,7 @@
 
 @media only screen and (min-width:1024px) {
 
+.log_container_parent{
     .log_container {
         position: fixed;
         background: whitesmoke;
@@ -102,11 +116,12 @@
         overflow: hidden;
         box-shadow: 0 0 45px rgba(0,0,0,.15);
         border-radius: 10px;
-        padding-bottom: 5px;
+        padding: 0 0 5px 0;
         .log_header {
             display: block;
         }
     }
+}
 
     // large screens
     .appear {
@@ -132,54 +147,11 @@
         width: 60%;
         margin-left: 20%;
         min-height: calc(100vh - 60px);
-        display: flex;
-        flex-direction: column;
         position: relative;
-    }
- 
-    .parent_link {
-        width: calc(50% - 15px);
-        margin-left: 0;
-        margin-right: 5px;
-        display: inline-block;
-        // border: 1px solid purple;
-    }
-    .full_screen_show{
-        width: calc(50% - 15px);
-        // height: $main_height;
-        display: inline-block;
-        margin-left: 5px;
-        // border: 1px solid blue;
+        // background: rgba(255, 0, 255, 0.288);
+        padding: 0 10px 10px 10px;
     }
 
-    .full_screen_hide{
-        display: none;
-    }
-    // .challenge_friends_btn{
-    //     text-align: left;
-    //     padding-left: 10px;
-    // border:1px solid red;
-    // }
-    .full_screen_log_form {
-        z-index: 30;
-        position: fixed;
-        width:40%;
-        left: 30%;
-        top: 50%;
-        transform: translateY(-217.5px);
-        display: block;
-        background: $off_white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 0 35px rgba(0,0,0,.7);
-        .log_form_padding{
-            padding: 5px 10px 10px 10px;
-        }
-    }
-    .full_screen_side_by_side {
-        display: flex;
-        flex-direction: row;
-    }
 }
 
 // same class different animation on different sized screen
@@ -197,12 +169,12 @@
 
 @keyframes slide_down {
     100% {
-        height: 385px;
+        margin-top: 0;
     }
 }
 
 @keyframes slide_up {
     100% {
-        height: 0;
+        margin-top: -385px;
     }
 }

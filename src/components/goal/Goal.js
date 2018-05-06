@@ -34,7 +34,6 @@ let textBubbleTwoDisplayed = false;
 let removeGoal = false;
 let pop_up_description = <div></div>;
 let open_description = true;
-let log_form = <div></div>;
 
 class Goal extends Component {
 
@@ -559,36 +558,6 @@ class Goal extends Component {
             }, exitTime)
         }
         
-
-        // console.log('from open log form', this.state.logSeven)
-
-        // if(open_pop_up){
-        //     console.log('open_pop_up is TRUE')
-        //     open_pop_up = false;
-        //     log_form = (
-        //     <div>
-        //         <div onClick={() => this.openLogForm()} className='overlay'></div>
-        //         <div className='full_screen_log_form'>
-                    // <div className='settings_header'>
-                    //     Log Last Seven Days
-                    //     <button onClick={() => this.openLogForm()} className='close'>
-                    //     <X width='18px'/>
-                    //     </button>
-                    // </div>
-        //             <div className='log_form_padding'>
-        //             <Log fullScreen={true} updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
-        //             </div>
-        //         </div>
-        //     </div>
-        // )
-        // }else{
-        //     // console.log('open_pop_up is FALSE')
-        //     open_pop_up = true;
-        //     log_form = (
-        //     <div></div>
-        //     )
-        // }
-        // this.forceUpdate();
     }
 
     check(day){
@@ -628,53 +597,48 @@ class Goal extends Component {
                 <div className='space_for_nav'></div>
                 <div className='contain_goal'>
 
-                    {/* small screen only */}
-                    <button disabled={this.state.disableLogButton} onClick={()=>this.openLogForm()} className='add_log'>+ Log</button>
-
-                    {/* changes significantly based on screen width */}
-                    {/* <div className='log_container'> */}
-                    <div className={
-                        this.state.logOpen ? 
-                        this.state.logFormIsClosing ? 'log_container close_me' : 'log_container appear' :
-                        'hide_me log_container'
-                    }>
-
-                        {/* large screen  only */}
-                        <div className='log_header'>
-                            Log Last Seven Days
-                            <button onClick={() => this.openLogForm()} className='close'>
-                            <X width='18px'/>
-                            </button>
-                        </div>
-
+                    <div className='log_container_parent'>
                         {/* small screen only */}
-                        {/* <button onClick={()=>this.openLogForm()} className='add_log'>+ Log</button> */}
+                        <button disabled={this.state.disableLogButton} onClick={()=>this.openLogForm()} className='add_log'>+ Log</button>
 
-                        {/* functional component creates list based on logSeven */}
-                        <Log check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} />
+                        {/* changes significantly based on screen width */}
+                        <div className={
+                            this.state.logOpen ? 
+                            this.state.logFormIsClosing ? 'log_container close_me' : 'log_container appear' :
+                            'hide_me log_container'
+                        }>
 
-                    </div>
+                            {/* large screen  only */}
+                            <div className='log_header'>
+                                Log Last Seven Days
+                                <button onClick={() => this.openLogForm()} className='close'>
+                                <X width='18px'/>
+                                </button>
+                            </div>
 
-                    <div className='full_screen_side_by_side'>
-                    <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
-                    <SuccessRate total={this.state.successRateTotal} month={true} week={true}/>
-                    </div>
-                    <div className='media_options'>
-                        <Link className='parent_link' to={`/search/${this.props.match.params.id}`}><button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button></Link>
-                        <div className='full_screen_show'>
-                        {
-                            this.state.sent || this.state.originalgoal
-                        ? 
-                            <Description deleteGoal={this.deleteGoal} handleRemoveGoal={this.handleRemoveGoal} removeGoalFalse={this.removeGoalFalse} name={this.state.goalname} days={this.state.daysoutofseven} type={this.state.goodhabit}/> 
-                        : 
-                            settings 
-                        }
+                            {/* small screen only */}
+                            {/* <button onClick={()=>this.openLogForm()} className='add_log'>+ Log</button> */}
+
+                            {/* functional component creates list based on logSeven */}
+                            <Log check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} />
+
                         </div>
                     </div>
+                    
+                    <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
+
+                    <SuccessRate total={this.state.successRateTotal} month={true} week={true}/>
+
+                    {/* flexbox or grid can eliminate the need for extra markup */}
+
+                    
+                    <Link className='challenge_friends_link' to={`/search/${this.props.match.params.id}`}>
+                        <button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button>
+                    </Link>
                     
                     <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
                     
-                    <div className='full_screen_hide'>
+                    <div>
                         {
                             this.state.sent || this.state.originalgoal
                         ? 
@@ -683,7 +647,6 @@ class Goal extends Component {
                             settings 
                         } 
                     </div>
-                    {/* {log_form} */}
                 </div>
             </div>
         )

@@ -11,7 +11,45 @@ export default class Challengers extends Component {
         super(props);
 
         this.state = {
-            challengers: [],
+            challengers: [
+                { 
+                    bools:[{successful:true},{successful:true},{successful:true},{successful:true},{successful:false},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true}],
+                    id: 3308,
+                    img: "https://yt3.ggpht.com/a-/AJLlDp0oE1v5gLNPmxlZfgDKJfdZXc58GgyJN60Iqg=s900-mo-c-c0xffffffff-rj-k-no",
+                    startdate : "2017 12 21",
+                    user_name : "Bob Ross",
+                    user_id: 5
+
+                },
+                { 
+                    bools:[{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:false},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true}],
+                    id: 3308,
+                    img: "https://yt3.ggpht.com/a-/AJLlDp0oE1v5gLNPmxlZfgDKJfdZXc58GgyJN60Iqg=s900-mo-c-c0xffffffff-rj-k-no",
+                    startdate : "2017 12 21",
+                    user_name : "Bob Ross",
+                    user_id: 5
+
+                },
+                { 
+                    bools:[{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:false},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true}],
+                    id: 3308,
+                    img: "https://yt3.ggpht.com/a-/AJLlDp0oE1v5gLNPmxlZfgDKJfdZXc58GgyJN60Iqg=s900-mo-c-c0xffffffff-rj-k-no",
+                    startdate : "2017 12 21",
+                    user_name : "Bob Ross",
+                    user_id: 5
+
+                },
+                { 
+                    bools:[{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true}],
+                    id: 3308,
+                    img: "https://yt3.ggpht.com/a-/AJLlDp0oE1v5gLNPmxlZfgDKJfdZXc58GgyJN60Iqg=s900-mo-c-c0xffffffff-rj-k-no",
+                    startdate : "2017 12 21",
+                    user_name : "Bob Ross",
+                    user_id: 5
+
+                },
+
+            ],
             challengees: []
         }
     }
@@ -34,7 +72,6 @@ export default class Challengers extends Component {
 
             axios.get(`/api/getChallengers/${newProps.original}`)
             .then(res=>{
-                // console.log(res.data[0])
                 let temp = this.state.challengers.slice()
                 temp.push(res.data[0])
                 this.setState({challengers:temp})
@@ -43,7 +80,7 @@ export default class Challengers extends Component {
         if(newProps.sent){    
             axios.get(`/api/getChallengees/${newProps.id}`)
             .then(res=>{
-                
+                console.log('res from getChallengers', res.data)
                 this.setState({challengees:res.data}, ()=>{
                     res.data.forEach((e,i)=>{
                         axios.get(`api/getallbools/${e.id}`)
@@ -76,7 +113,6 @@ export default class Challengers extends Component {
     }
 
     render(){
-        // console.log('THE PROPS ARE', this.props)
 
         let challengers = this.state.challengers.map((e,i)=>{
 

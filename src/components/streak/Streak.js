@@ -29,7 +29,7 @@ export default class Streak extends Component {
                     <div className='number'>
                         {this.props.best}
                     </div>
-            </div>
+                </div>
             </div>
         )
     }
