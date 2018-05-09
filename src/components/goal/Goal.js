@@ -60,7 +60,6 @@ class Goal extends Component {
             logFormIsClosing: false,
             disableLogButton: false,
             weeksBack: 0,
-            tripleCheck: 0
         }
         this.returnTitle = this.returnTitle.bind(this);
         this.updateStreaks = this.updateStreaks.bind(this);
@@ -640,19 +639,6 @@ class Goal extends Component {
 
                             {/* functional component creates list based on logSeven */}
                             <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} />
-                            
-                            <div className="temp_contain">
-                                <button 
-                                    onClick={() => this.handleTripleCheck()} 
-                                    readOnly={true} 
-                                    type="text" 
-                                    className={this.state.tripleCheck ? this.state.tripleCheck > 0 ? 'one triple_check' : 'neg triple_check' : 'zero triple_check'}
-                                >
-                                
-                                
-
-                                </button>
-                            </div>
 
                             <div className='log_prior_weeks'>
                                 <button onClick={() => this.changeWeek(1)}>previous week</button>

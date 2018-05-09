@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Mono");
-.temp_contain .triple_check {
+.triple_check {
   cursor: pointer;
-  position: relative;
+  position: absolute;
+  right: 10px;
   border: none;
   width: 35px;
   height: 35px;
@@ -10,27 +11,26 @@
   border-style: solid;
   background: whitesmoke;
   transition: all .5s;
-  margin: 10px;
   font-family: 'Expletus Sans', cursive;
   letter-spacing: -6px;
   font-size: 25px;
   color: transparent;
   box-sizing: border-box; }
 
-.temp_contain .zero {
+.zero {
   border-radius: 5px; }
 
-.temp_contain .one {
-  position: relative;
+.one {
+  position: absolute;
   border-radius: 5px; }
-  .temp_contain .one::before, .temp_contain .one::after {
+  .one::before, .one::after {
     content: '';
     position: absolute;
     background: #556270;
     bottom: 3px;
     width: 6px;
     border-radius: 4px; }
-  .temp_contain .one::before {
+  .one::before {
     box-sizing: content-box;
     height: 35px;
     left: 10.5px;
@@ -42,7 +42,7 @@
     animation-duration: .2s;
     animation-delay: .2s;
     clip-path: polygon(0 100%, 100% 100%, 0 100%, 100% 100%); }
-  .temp_contain .one::after {
+  .one::after {
     height: 17.5px;
     left: 13.5px;
     transform: rotate(-45deg);
@@ -52,7 +52,7 @@
     animation-duration: .2s;
     clip-path: polygon(0 0, 100% 0, 0 0, 100% 0); }
 
-.temp_contain .neg {
+.neg {
   border-color: #ffb30f;
   border-radius: 50%;
   display: flex;

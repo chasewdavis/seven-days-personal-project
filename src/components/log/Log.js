@@ -35,10 +35,17 @@ export default ({ check, logSeven, logOpen, weeksBack}) => {
 
                     <div className='the_date'>{date.getMonth()+1} / {date.getDate()} / {date.getFullYear()%100}</div>
                     
-                    <div className='check-box-parent'>
+                    {/* <div className='check-box-parent'>
                         <input onChange={()=>{ check(i)}} type="checkbox" id={i} defaultChecked={arr[i]}/>
                         <label htmlFor={i} className="check-box"></label> 
-                    </div>
+                    </div> */}
+
+                    <button 
+                        onClick={()=>check(i)} 
+                        readOnly={true} 
+                        type="text" 
+                        className={arr[i] ? arr[i] > 0 ? 'one triple_check' : 'neg triple_check' : 'zero triple_check'}
+                    />
 
                 </div>
             )
