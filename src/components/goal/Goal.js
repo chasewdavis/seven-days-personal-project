@@ -58,7 +58,9 @@ class Goal extends Component {
             originalgoal: null,
             description: '',
             logFormIsClosing: false,
-            disableLogButton: false
+            disableLogButton: false,
+            weeksBack: 0,
+            tripleCheck: 0
         }
         this.returnTitle = this.returnTitle.bind(this);
         this.updateStreaks = this.updateStreaks.bind(this);
@@ -575,6 +577,23 @@ class Goal extends Component {
 
     }
 
+    changeWeek(val){
+        let temp = this.state.weeksBack + val;
+        this.setState({weeksBack: temp});
+    }
+
+    handleTripleCheck(){
+        let temp = this.state.tripleCheck;
+        if(temp===0){
+            temp = 1;
+        }else if (temp===1){
+            temp = -1;
+        }else if (temp===-1){
+            temp = 0;
+        }
+        this.setState({tripleCheck:temp});
+    }
+
     render(){
 
         const settings = (
@@ -620,7 +639,27 @@ class Goal extends Component {
                             {/* <button onClick={()=>this.openLogForm()} className='add_log'>+ Log</button> */}
 
                             {/* functional component creates list based on logSeven */}
-                            <Log check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} />
+                            <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} />
+                            
+                            <div className="temp_contain">
+                                <button 
+                                    onClick={() => this.handleTripleCheck()} 
+                                    readOnly={true} 
+                                    type="text" 
+                                    className={this.state.tripleCheck ? this.state.tripleCheck > 0 ? 'one triple_check' : 'neg triple_check' : 'zero triple_check'}
+                                >
+                                
+                                
+
+                                </button>
+                            </div>
+
+                            <div className='log_prior_weeks'>
+                                <button onClick={() => this.changeWeek(1)}>previous week</button>
+                                <button onClick={() => this.changeWeek(-1) } disabled={this.state.weeksBack===0}>
+                                    {this.state.weeksBack > 1 ? 'next week' : 'this week'}
+                                </button>
+                            </div>
 
                         </div>
                     </div>
@@ -629,9 +668,6 @@ class Goal extends Component {
 
                     <SuccessRate total={this.state.successRateTotal} month={true} week={true}/>
 
-                    {/* flexbox or grid can eliminate the need for extra markup */}
-
-                    
                     <Link className='challenge_friends_link' to={`/search/${this.props.match.params.id}`}>
                         <button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button>
                     </Link>

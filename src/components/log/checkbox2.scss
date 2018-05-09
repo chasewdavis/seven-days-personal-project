@@ -1,0 +1,98 @@
+@import "../../utilities/variables.scss";
+
+$checkbox-height: 35px;
+$checkbox-width: 6px;
+
+.temp_contain {
+
+    .triple_check {
+        cursor: pointer;
+        position: relative;
+        border: none;
+        width: $checkbox-height;
+        height: $checkbox-height;
+        border-color: $main_color;
+        border-width: 4px;
+        border-style: solid;
+        background: whitesmoke;
+        transition: all .5s;
+        margin: 10px;
+        font-family: 'Expletus Sans', cursive;
+        letter-spacing: -6px;
+        font-size: 25px;
+        color: rgba(0,0,0,0);
+        box-sizing: border-box;
+    }
+
+    .zero {
+        
+        border-radius: 5px;
+
+    }
+
+    .one {
+        position: relative;
+        border-radius: 5px;
+
+        &::before, &::after{
+            content:'';
+            position: absolute;
+            background: $main_color;
+            bottom:3px;
+            
+            width: $checkbox-width;
+            border-radius: 4px;
+
+            
+        }
+
+        // long line
+        &::before{
+            box-sizing: content-box;
+            height: $checkbox-height;
+            left: $checkbox-height * .5 - $checkbox-width - 1px;
+            transform: rotate(45deg);
+            transform-origin: 3px $checkbox-height;
+            border: 2px solid whitesmoke;
+
+            animation-name: mark_up;
+            animation-fill-mode: forwards;
+            animation-duration: .2s;
+            animation-delay: .2s;
+            clip-path: polygon(0 100%, 100% 100%, 0 100%, 100% 100%);
+        }
+
+        // short line
+        &::after{
+            height: $checkbox-height * .5;
+            left: $checkbox-height * .5 - $checkbox-width + 2px;
+            transform: rotate(-45deg);
+            transform-origin:bottom center;
+
+            animation-name: mark_down;
+            animation-fill-mode: forwards;
+            animation-duration: .2s;
+            clip-path: polygon(0 0, 100% 0, 0 0, 100% 0);
+        }
+
+    }
+
+    .neg {
+        // color:rgb(255, 179, 15);
+        border-color: rgb(255, 179, 15);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-shadow: 
+            -2px 2px 0 whitesmoke, 
+            0 2px 0 whitesmoke, 
+            2px 2px 0 whitesmoke,
+            1px 0 0 whitesmoke,
+            2px -2px 0 whitesmoke,
+            0 -2px 0 whitesmoke,
+            -2px -2px 0 whitesmoke,
+            -2px 0 0 whitesmoke;
+    }
+
+}

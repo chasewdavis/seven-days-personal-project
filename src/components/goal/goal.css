@@ -49,6 +49,33 @@
       color: white;
       font-size: 20px;
       display: none; }
+    .log_container_parent .log_container .temp_contain {
+      height: 80px;
+      border: 2px solid #556270;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .log_container_parent .log_container .log_prior_weeks {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between; }
+      .log_container_parent .log_container .log_prior_weeks button {
+        height: 50px;
+        background-color: white;
+        border: none;
+        cursor: pointer;
+        width: calc(50% - 2.5px);
+        margin-top: 5px;
+        border: none;
+        color: #556270;
+        font-size: 1.1rem; }
+        .log_container_parent .log_container .log_prior_weeks button:nth-child(1) {
+          border-radius: 5px 0 0 5px; }
+        .log_container_parent .log_container .log_prior_weeks button:nth-child(2) {
+          border-radius: 0 5px 5px 0; }
+        .log_container_parent .log_container .log_prior_weeks button:disabled {
+          opacity: .45;
+          cursor: default; }
 
 .appear {
   animation-name: slide_down;
@@ -94,13 +121,16 @@
     padding: 0 0 5px 0; }
     .log_container_parent .log_container .log_header {
       display: block; }
+    .log_container_parent .log_container .log_prior_weeks {
+      padding: 0 5px; }
   .appear {
     animation-name: appear;
     animation-duration: .25s;
     animation-fill-mode: forwards;
     height: auto;
     opacity: .3;
-    margin-top: 0; }
+    margin-top: 0;
+    transform: translateY(-15px); }
   .close_me {
     animation-name: disappear;
     animation-duration: .25s;
@@ -117,10 +147,12 @@
 
 @keyframes appear {
   100% {
+    transform: translateY(0);
     opacity: 1; } }
 
 @keyframes disappear {
   100% {
+    transform: translateY(-30px);
     opacity: 0; } }
 
 @keyframes slide_down {
@@ -130,3 +162,11 @@
 @keyframes slide_up {
   100% {
     margin-top: -385px; } }
+
+@keyframes mark_down {
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } }
+
+@keyframes mark_up {
+  100% {
+    clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0); } }

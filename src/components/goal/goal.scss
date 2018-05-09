@@ -62,6 +62,133 @@
             font-size: 20px;
             display: none;
         }
+
+        .temp_contain{
+            height: 80px;
+            border: 2px solid $main_color;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        //     .triple_check {
+        //         cursor: pointer;
+        //         position: relative;
+        //         border: none;
+        //         width: $checkbox-height;
+        //         height: $checkbox-height;
+        //         border-color: $main_color;
+        //         border-width: 4px;
+        //         border-style: solid;
+        //         background: whitesmoke;
+        //         transition: all .5s;
+        //         margin: 10px;
+        //         font-family: 'Expletus Sans', cursive;
+        //         letter-spacing: -6px;
+        //         font-size: 25px;
+        //         color: rgba(0,0,0,0);
+        //         box-sizing: border-box;
+        //     }
+    
+        //     .zero {
+                
+        //         border-radius: 5px;
+            
+        //     }
+    
+        //     .one {
+        //         position: relative;
+        //         border-radius: 5px;
+
+        //         &::before, &::after{
+        //             content:'';
+        //             position: absolute;
+        //             background: $main_color;
+        //             bottom:3px;
+                    
+        //             width: $checkbox-width;
+        //             border-radius: 4px;
+
+                    
+        //         }
+
+        //         // long line
+        //         &::before{
+        //             box-sizing: content-box;
+        //             height: $checkbox-height;
+        //             left: $checkbox-height * .5 - $checkbox-width - 1px;
+        //             transform: rotate(45deg);
+        //             transform-origin: 3px $checkbox-height;
+        //             border: 2px solid whitesmoke;
+
+        //             animation-name: mark_up;
+        //             animation-fill-mode: forwards;
+        //             animation-duration: .2s;
+        //             animation-delay: .2s;
+        //             clip-path: polygon(0 100%, 100% 100%, 0 100%, 100% 100%);
+        //         }
+
+        //         // short line
+        //         &::after{
+        //             height: $checkbox-height * .5;
+        //             left: $checkbox-height * .5 - $checkbox-width + 2px;
+        //             transform: rotate(-45deg);
+        //             transform-origin:bottom center;
+
+        //             animation-name: mark_down;
+        //             animation-fill-mode: forwards;
+        //             animation-duration: .2s;
+        //             clip-path: polygon(0 0, 100% 0, 0 0, 100% 0);
+        //         }
+
+        //     }
+    
+            // .neg {
+            //     // color:rgb(255, 179, 15);
+            //     border-color: rgb(255, 179, 15);
+            //     border-radius: 50%;
+            //     display: flex;
+            //     justify-content: center;
+            //     align-items: center;
+            //     text-shadow: 
+            //         -2px 2px 0 whitesmoke, 
+            //         0 2px 0 whitesmoke, 
+            //         2px 2px 0 whitesmoke,
+            //         1px 0 0 whitesmoke,
+            //         2px -2px 0 whitesmoke,
+            //         0 -2px 0 whitesmoke,
+            //         -2px -2px 0 whitesmoke,
+            //         -2px 0 0 whitesmoke;
+            // }
+        // }
+
+        }
+
+        .log_prior_weeks {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            button {
+                height: 50px;
+                background-color: white;
+                border: none;
+                cursor: pointer;
+                width: calc(50% - 2.5px);
+                margin-top: 5px;
+                border: none;
+                color: $main_color;
+                font-size: 1.1rem;
+                &:nth-child(1){
+                    border-radius: 5px 0 0 5px;
+                }
+                &:nth-child(2){
+                    border-radius: 0 5px 5px 0;
+                }
+                &:disabled{
+                    opacity: .45;
+                    cursor: default;
+                }
+            }
+        }
     }
 }
 
@@ -120,6 +247,9 @@
         .log_header {
             display: block;
         }
+        .log_prior_weeks {
+            padding: 0 5px;
+        }
     }
 }
 
@@ -131,6 +261,7 @@
         height: auto;
         opacity: .3;
         margin-top: 0;
+        transform: translateY(-15px);
     }
 
     // large screens
@@ -155,26 +286,47 @@
 }
 
 // same class different animation on different sized screen
+// large screen
 @keyframes appear { 
     100% {
+        transform: translateY(0);
         opacity: 1;
     }
 }
 
+// large screen
 @keyframes disappear {
     100% {
+        transform: translateY(-30px);
         opacity: 0;
     }
 }
 
+// small screen
 @keyframes slide_down {
     100% {
         margin-top: 0;
     }
 }
 
+// small screen
 @keyframes slide_up {
     100% {
         margin-top: -385px;
+    }
+}
+
+
+// for check mark
+
+@keyframes mark_down {
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100% );
+    }
+}
+
+@keyframes mark_up {
+    100% {
+        clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
     }
 }

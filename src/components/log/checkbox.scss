@@ -35,6 +35,10 @@ $duration: .4s;
     100% { height: $checkbox-height * 1; }
 }
 
+input[type=checkbox]{
+    display:none;
+}
+
 .check-box-parent {
     position: absolute;
     right: 10px;

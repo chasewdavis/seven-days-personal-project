@@ -1,7 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Mono");
-.start_or_log {
-  display: none; }
-
 .nav {
   overflow: hidden;
   position: absolute;
@@ -10,23 +7,27 @@
   height: 60px;
   background: linear-gradient(155deg, #556270, #93B1BC);
   /* position: fixed; */
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
   padding: 0 12px;
   /*more for larger*/
   box-shadow: 0 0 10px grey; }
-
-.title {
-  position: absolute;
-  right: 12px;
-  color: whitesmoke;
-  font-size: 35px; }
-
-.nav svg {
-  width: 31px;
-  fill: black; }
+  .nav .nav_container {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; }
+    .nav .nav_container svg {
+      width: 31px;
+      height: 31px;
+      fill: black; }
+    .nav .nav_container .title {
+      color: whitesmoke;
+      font-size: 35px; }
+    .nav .nav_container .start_or_log {
+      display: none;
+      background: rgba(255, 0, 255, 0.335); }
 
 .side_bar {
   z-index: 10;
@@ -117,35 +118,33 @@
 @media only screen and (min-width: 1024px) {
   .side_bar {
     width: 20%; }
-  .title {
-    position: absolute;
-    right: 35vw;
-    color: whitesmoke;
-    width: 30vw;
-    font-size: 35px; }
-  .start_or_log {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    right: 0;
-    height: 100%;
-    background: none;
-    border: none;
-    color: white;
-    transition: background-color .8s;
-    text-align: right;
-    padding: 0 0 0 15px;
-    font-size: 30px;
-    outline: none; }
-    .start_or_log img {
-      margin-left: 10px;
-      margin-right: -38px;
-      width: 38px;
-      transition: margin-right .8s; }
-    .start_or_log span {
-      margin-right: 10px; }
+  .nav {
+    padding: 0; }
+    .nav .nav_container {
+      width: 60%;
+      margin-left: 20%;
+      position: relative; }
+      .nav .nav_container .title {
+        position: absolute;
+        color: whitesmoke;
+        font-size: 35px;
+        width: 50%;
+        left: 25%;
+        text-align: center; }
+      .nav .nav_container .start_or_log {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        background: none;
+        border: none;
+        color: white;
+        transition: background-color .8s;
+        text-align: right;
+        padding: 0 0 0 15px;
+        font-size: 30px;
+        outline: none; }
   .start_or_log:hover {
     background-color: #7F97A2; }
     .start_or_log:hover img {

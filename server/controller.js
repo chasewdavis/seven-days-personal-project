@@ -3,10 +3,12 @@ module.exports = {
     read: (req,res) => {
 
         // -----TEMP-----//
-            req.user=4
+            // req.user=4
         // --------------//
 
-        // console.log('req.user is...',req.user);
+        console.log('req.user is...',req.user);
+
+        console.log('req.session is...', req.session);
 
         req.app.get('db').get_all_goals([req.user]).then(response=>{
             res.send(response); //should add 200
