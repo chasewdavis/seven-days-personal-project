@@ -21,16 +21,23 @@ export default ({ check, logSeven, allBooleans, logOpen, weeksBack}) => {
 
     if(Array.isArray(allBooleans)){
 
-        // console.log('all Booleans: ', allBooleans);
-
         let start = 0 + weeksBack * 7;
         let stop = 7 + weeksBack * 7;
     
         showSevenDays = allBooleans.slice(start, stop);
+
+        // quickly adds new days
+        while(showSevenDays.length < 7){
+            showSevenDays.push(0);
+        }
     }
 
     if(Array.isArray(showSevenDays)){    
-        return showSevenDays.map( (e, i, arr) => {
+        return ( 
+
+            <div className='contain_seven'>
+            
+            { showSevenDays.map( (e, i, arr) => {
 
             let week = weeksBack * 1000 * 60 * 60 * 24 * 7; //covert weeks into milliseconds
 
@@ -56,10 +63,15 @@ export default ({ check, logSeven, allBooleans, logOpen, weeksBack}) => {
                         type="text" 
                         className={arr[i] ? arr[i] > 0 ? 'one triple_check' : 'neg triple_check' : 'zero triple_check'}
                     />
-
                 </div>
             )
-        })
+
+        })}
+
+        </div>
+    
+        )
+
     }else{
         return (
             <div></div>

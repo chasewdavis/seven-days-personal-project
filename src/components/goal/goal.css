@@ -5,9 +5,7 @@
   margin-left: 0%;
   height: auto;
   position: relative;
-  display: grid;
-  padding: 10px;
-  grid-gap: 10px; }
+  display: grid; }
 
 .challenge_friends_link {
   display: flex;
@@ -93,6 +91,23 @@
   overflow: hidden;
   height: 440px; }
 
+.animate_log {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 390px;
+  width: calc(100% * 3);
+  overflow: hidden;
+  margin-left: -100%; }
+
+.slide_left {
+  transition: all .5s;
+  margin-left: -200%; }
+
+.slide_right {
+  transition: all .5s;
+  margin-left: 0; }
+
 .hide_me {
   display: none; }
 
@@ -141,7 +156,6 @@
     box-shadow: 0 0 45px rgba(0, 0, 0, 0.15);
     width: 60%;
     margin-left: 20%;
-    min-height: calc(100vh - 60px);
     position: relative;
     padding: 0 10px 10px 10px; } }
 

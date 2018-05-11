@@ -7,10 +7,9 @@
     margin-left: 0%;
     height: auto;
     position: relative;
-    // background: rgba(255, 0, 255, 0.288);
     display: grid;
-    padding: 10px;
-    grid-gap: 10px;
+    // padding: 10px;
+    // grid-gap: 10px;
 }
 
 .challenge_friends_link {
@@ -120,6 +119,37 @@
     height: 440px;
 }
 
+//small screens
+.animate_log {
+    // background: rgba(255, 0, 255, 0.5);
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 390px;
+    width: calc(100% * 3);
+    overflow: hidden;
+    margin-left: -100%;
+    // three divs inside animate log in order to display 
+    // last week 
+    // this week and 
+    // next week
+}
+
+.slide_left {
+    transition: all .5s;
+    margin-left: -200%;
+    // transform: translate(0vw);
+}
+.slide_right {
+    transition: all .5s;
+    margin-left: 0;
+    // border: 2px solid fuchsia;
+    // transform: translateX(-100vw);
+}
+// .center {
+//     border: 2px solid black; 
+// }
+
 .hide_me {
     display: none;
 }
@@ -185,7 +215,7 @@
         box-shadow: 0 0 45px rgba(0,0,0,.15);
         width: 60%;
         margin-left: 20%;
-        min-height: calc(100vh - 60px);
+        // min-height: calc(100vh - 60px);
         position: relative;
         // background: rgba(255, 0, 255, 0.288);
         padding: 0 10px 10px 10px;

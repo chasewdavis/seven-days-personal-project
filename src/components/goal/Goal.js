@@ -64,6 +64,8 @@ class Goal extends Component {
             logFormIsClosing: false,
             disableLogButton: false,
             weeksBack: 0,
+            slide_log: 'center',
+            in_transition: false
         }
         this.returnTitle = this.returnTitle.bind(this);
         this.updateStreaks = this.updateStreaks.bind(this);
@@ -604,16 +606,26 @@ class Goal extends Component {
     }
 
     changeWeek(val){
-        let temp = this.state.weeksBack + val;
-        this.setState({weeksBack: temp});
-        // console.log('all booleans are: ', this.state.allBooleans);
-        let daysToAdd = 7 + (( this.state.weeksBack + val ) * 7 ) - this.state.allBooleans.length;
 
-        console.log('days to add, ', daysToAdd);
-        if(daysToAdd > 0){
-            axios.post(`/api/addPreviousDays/${this.props.match.params.id}`, {daysToAdd}).then(res => {
-                this.updateStreaks(res.data);
-            })
+        // no double clicking
+        if(!this.state.in_transition){
+
+            let temp = this.state.weeksBack + val;
+            // console.log('all booleans are: ', this.state.allBooleans);
+            let daysToAdd = 7 + (( this.state.weeksBack + val ) * 7 ) - this.state.allBooleans.length;
+
+            // quickly animate logs
+            this.setState(
+                { slide_log: val > 0 ? 'right' : 'left' , in_transition: true },
+                () => setTimeout( () => this.setState({weeksBack: temp, in_transition: false, slide_log:'center'}), 500 ) // connected with css animation time
+            ); 
+
+            if(daysToAdd > 0){
+                axios.post(`/api/addPreviousDays/${this.props.match.params.id}`, {daysToAdd}).then(res => {
+                    this.updateStreaks(res.data);
+                })
+            }
+
         }
     }
 
@@ -663,7 +675,11 @@ class Goal extends Component {
 
                             {/* functional component creates list based on logSeven */}
                             {/* <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} /> */}
-                            <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} />
+                            <div className={this.state.slide_log === 'right' ? 'slide_right animate_log' : this.state.slide_log === 'left' ? 'slide_left animate_log' : 'center animate_log'}>
+                                <Log weeksBack={this.state.weeksBack + 1} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} />
+                                <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} />
+                                <Log weeksBack={this.state.weeksBack - 1} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} />
+                            </div>
 
                             <div className='log_prior_weeks'>
                                 <button onClick={() => this.changeWeek(1)}>previous week</button>
@@ -683,13 +699,27 @@ class Goal extends Component {
                         <button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button>
                     </Link>
                     
-                    <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
+                    <Challengers 
+                        best={this.countBestStreak} 
+                        current={this.countCurrentStreak} 
+                        sent={this.state.sent} 
+                        original={this.state.originalgoal} 
+                        id={this.props.match.params.id}
+                    />
                     
+                    {/* Combine Descripton and Settings into single component in future refactors */}
                     <div>
                         {
                             this.state.sent || this.state.originalgoal
                         ? 
-                            <Description deleteGoal={this.deleteGoal} handleRemoveGoal={this.handleRemoveGoal} removeGoalFalse={this.removeGoalFalse} name={this.state.goalname} days={this.state.daysoutofseven} type={this.state.goodhabit}/> 
+                            <Description 
+                                deleteGoal={this.deleteGoal} 
+                                handleRemoveGoal={this.handleRemoveGoal} 
+                                removeGoalFalse={this.removeGoalFalse} 
+                                name={this.state.goalname} 
+                                days={this.state.daysoutofseven} 
+                                type={this.state.goodhabit}
+                            /> 
                         : 
                             settings 
                         } 

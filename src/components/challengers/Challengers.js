@@ -155,7 +155,8 @@ export default class Challengers extends Component {
         })
 
         return (
-            <div className='challengers_grand_parent'>
+            // <div className='challengers_grand_parent'>
+            <div className={!challengers.length && !challengees.length ? 'display_none' : 'challengers_grand_parent'}>
                 {challengers}
                 {challengees}
             </div>

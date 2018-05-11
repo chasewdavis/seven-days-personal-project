@@ -17,6 +17,13 @@ $light: rgba(90, 236, 229, 0.5);
 //     outline: none; 
 // }
 
+// small screens
+.contain_seven {
+    width: calc(100vw - 20px);
+    width: 100vw;
+    padding: 0 5px;
+}
+
 .the_day{
     position: absolute;
     left: 10px;
@@ -52,6 +59,10 @@ $light: rgba(90, 236, 229, 0.5);
     font-size: 22px;
     font-weight: bolder;
     margin-top: 5px;
+
+    // small screens
+    // width: calc(100vw - 20px);
+    width: 100%;
 }
 
 @keyframes slide_down {
@@ -71,7 +82,8 @@ $light: rgba(90, 236, 229, 0.5);
         display: none;
     }
     .log_day {
-        width: calc(100% - 10px);
+        // width: calc(500px - 10px);
+        width: 100%; 
         margin-left: 5px;
     }
 }
