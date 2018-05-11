@@ -1,39 +1,61 @@
 import React, {Component} from 'react';
 import './log.css';
 import './checkbox.css';
+import './checkbox2.css';
 import axios from 'axios';
 
-export default ({ check, logSeven, logOpen}) => {
+export default ({ check, logSeven, allBooleans, logOpen, weeksBack}) => {
 
     // use logOpen to provide correct class to open or close
     // the way it opens and closes just depends on the screen width
-    console.log('logSeven is...', logSeven);
+    // console.log('logSeven is...', logSeven);
 
-    var time = new Date().getTime();
+    var time = new Date().getTime(); // todays time in milliseconds
     const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
 
     // future time in days converted to milliseconds;
     let future = 0; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE
     future *= (1000 * 60 * 60 * 24);      
 
-    if(Array.isArray(logSeven)){    
-        return logSeven.map( (e, i, arr) => {
+    let showSevenDays = null;
+
+    if(Array.isArray(allBooleans)){
+
+        // console.log('all Booleans: ', allBooleans);
+
+        let start = 0 + weeksBack * 7;
+        let stop = 7 + weeksBack * 7;
+    
+        showSevenDays = allBooleans.slice(start, stop);
+    }
+
+    if(Array.isArray(showSevenDays)){    
+        return showSevenDays.map( (e, i, arr) => {
+
+            let week = weeksBack * 1000 * 60 * 60 * 24 * 7; //covert weeks into milliseconds
 
             let offset_milliseconds = i * (1000 * 60 * 60 * 24);
 
-            let date = new Date(time - offset_milliseconds + future);
+            let date = new Date(time - offset_milliseconds + future - week);
 
             return (
                 <div key={i} className='log_day'>
 
                     <div className='the_day'>{weekdays[date.getDay()]}</div>
 
-                    <div className='the_date'>{date.getMonth()} / {date.getDate()} / {date.getFullYear()%100}</div>
+                    <div className='the_date'>{date.getMonth()+1} / {date.getDate()} / {date.getFullYear()%100}</div>
                     
-                    <div className='check-box-parent'>
+                    {/* <div className='check-box-parent'>
                         <input onChange={()=>{ check(i)}} type="checkbox" id={i} defaultChecked={arr[i]}/>
                         <label htmlFor={i} className="check-box"></label> 
-                    </div>
+                    </div> */}
+
+                    <button 
+                        onClick={()=>check(i)} 
+                        readOnly={true} 
+                        type="text" 
+                        className={arr[i] ? arr[i] > 0 ? 'one triple_check' : 'neg triple_check' : 'zero triple_check'}
+                    />
 
                 </div>
             )

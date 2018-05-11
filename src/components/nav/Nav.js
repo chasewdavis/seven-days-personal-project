@@ -57,6 +57,8 @@ export default class Nav extends Component {
             <div>
                 <div className='nav'>
 
+                    <div className='nav_container'>
+
                         <svg onClick={()=>this.slideOut()} viewBox="0 0 24 24" enableBackground="new 0 0 24 24" width="512px" height="512px">
                             <g>
                                 <path className='svg_color_two' d="M24,3c0-0.6-0.4-1-1-1H1C0.4,2,0,2.4,0,3v2c0,0.6,0.4,1,1,1h22c0.6,0,1-0.4,1-1V3z" />
@@ -65,19 +67,21 @@ export default class Nav extends Component {
                             </g>
                         </svg>
 
-                    <div className='title'>{this.props.title}</div>
+                        <div className='title'>{this.props.title}</div>
 
-                    <button 
-                        onClick={()=>{
-                            this.props.title==='Dashboard'?
-                            this.props.openStartTracking()
-                            :
-                            this.props.searching ? console.log('searching') : this.props.openLogForm()
-                        }} 
-                        className='start_or_log'>
-                        {this.props.title==='Dashboard'?'start tracking': this.props.searching ? '' : 'Log'}
-                        {this.props.searching?<span>Challenge</span>:<Graph style={"nav_graph_img"}/>}
-                    </button>
+                        <button 
+                            onClick={()=>{
+                                this.props.title==='Dashboard'?
+                                this.props.openStartTracking()
+                                :
+                                this.props.searching ? console.log('searching') : this.props.openLogForm()
+                            }} 
+                            className='start_or_log'>
+                            {this.props.title==='Dashboard'?'start tracking': this.props.searching ? '' : 'Log'}
+                            {this.props.searching?<span>Challenge</span>:<Graph style={"nav_graph_img"}/>}
+                        </button>
+
+                    </div>
 
                 </div>
                 {sidebar}

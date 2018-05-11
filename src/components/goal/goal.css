@@ -1,65 +1,100 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Mono");
-.parent_link {
+.contain_goal {
+  box-shadow: none;
+  width: 100%;
+  margin-left: 0%;
+  height: auto;
+  position: relative;
+  display: grid;
+  padding: 10px;
+  grid-gap: 10px; }
+
+.challenge_friends_link {
   display: flex;
   align-items: flex-start;
   text-decoration: none;
-  width: calc(100% - 20px);
-  margin-top: 10px;
-  margin-left: 10px;
   height: 55px; }
-
-.add_log {
-  background-color: white;
-  width: calc(100% - 20px);
-  height: 60px;
-  border-radius: 5px;
-  margin-top: 10px;
-  font-size: 30px;
-  color: #556270;
-  border: 5px solid #556270;
-  outline: none; }
-
-.log_container {
-  position: relative;
-  width: calc(100% - 20px);
-  margin-left: 10px; }
-  .log_container .log_header {
-    height: 35px;
-    background: linear-gradient(155deg, #7F97A2, #93B1BC);
-    line-height: 35px;
-    vertical-align: middle;
+  .challenge_friends_link .challenge_friends_btn {
+    background: linear-gradient(155deg, #6A7C89, #A8CCD5);
+    width: 100%;
+    height: 55px;
+    border-radius: 5px;
+    border: none;
+    font-size: 28px;
     color: white;
-    font-size: 20px;
-    display: none; }
+    outline: none;
+    position: relative; }
+
+.log_container_parent {
+  overflow: hidden; }
+  .log_container_parent .add_log {
+    position: relative;
+    background-color: white;
+    width: 100%;
+    height: 60px;
+    border-radius: 5px;
+    font-size: 30px;
+    color: #556270;
+    border: 5px solid #556270;
+    outline: none;
+    z-index: 1; }
+  .log_container_parent .log_container {
+    position: relative;
+    z-index: 0; }
+    .log_container_parent .log_container .log_header {
+      height: 35px;
+      background: linear-gradient(155deg, #7F97A2, #93B1BC);
+      line-height: 35px;
+      vertical-align: middle;
+      color: white;
+      font-size: 20px;
+      display: none; }
+    .log_container_parent .log_container .temp_contain {
+      height: 80px;
+      border: 2px solid #556270;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .log_container_parent .log_container .log_prior_weeks {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between; }
+      .log_container_parent .log_container .log_prior_weeks button {
+        height: 50px;
+        background-color: white;
+        border: none;
+        cursor: pointer;
+        width: calc(50% - 2.5px);
+        margin-top: 5px;
+        border: none;
+        color: #556270;
+        font-size: 1.1rem; }
+        .log_container_parent .log_container .log_prior_weeks button:nth-child(1) {
+          border-radius: 5px 0 0 5px; }
+        .log_container_parent .log_container .log_prior_weeks button:nth-child(2) {
+          border-radius: 0 5px 5px 0; }
+        .log_container_parent .log_container .log_prior_weeks button:disabled {
+          opacity: .45;
+          cursor: default; }
 
 .appear {
   animation-name: slide_down;
   animation-duration: .8s;
   animation-fill-mode: forwards;
   opacity: 1;
-  height: 0;
-  overflow: hidden; }
+  overflow: hidden;
+  height: auto;
+  margin-top: -440px; }
 
 .close_me {
   animation-name: slide_up;
   animation-duration: .8s;
   animation-fill-mode: forwards;
-  height: 385px;
-  overflow: hidden; }
+  overflow: hidden;
+  height: 440px; }
 
 .hide_me {
   display: none; }
-
-.challenge_friends_btn {
-  background: linear-gradient(155deg, #6A7C89, #A8CCD5);
-  width: 100%;
-  height: 55px;
-  border-radius: 5px;
-  border: none;
-  font-size: 28px;
-  color: white;
-  outline: none;
-  position: relative; }
 
 #right {
   position: absolute;
@@ -73,7 +108,7 @@
     width: 26px; }
 
 @media only screen and (min-width: 1024px) {
-  .log_container {
+  .log_container_parent .log_container {
     position: fixed;
     background: whitesmoke;
     width: 500px;
@@ -83,16 +118,19 @@
     overflow: hidden;
     box-shadow: 0 0 45px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
-    padding-bottom: 5px; }
-    .log_container .log_header {
+    padding: 0 0 5px 0; }
+    .log_container_parent .log_container .log_header {
       display: block; }
+    .log_container_parent .log_container .log_prior_weeks {
+      padding: 0 5px; }
   .appear {
     animation-name: appear;
     animation-duration: .25s;
     animation-fill-mode: forwards;
     height: auto;
     opacity: .3;
-    margin-top: 0; }
+    margin-top: 0;
+    transform: translateY(-15px); }
   .close_me {
     animation-name: disappear;
     animation-duration: .25s;
@@ -104,50 +142,23 @@
     width: 60%;
     margin-left: 20%;
     min-height: calc(100vh - 60px);
-    display: flex;
-    flex-direction: column;
-    position: relative; }
-  .parent_link {
-    width: calc(50% - 15px);
-    margin-left: 0;
-    margin-right: 5px;
-    display: inline-block; }
-  .full_screen_show {
-    width: calc(50% - 15px);
-    display: inline-block;
-    margin-left: 5px; }
-  .full_screen_hide {
-    display: none; }
-  .full_screen_log_form {
-    z-index: 30;
-    position: fixed;
-    width: 40%;
-    left: 30%;
-    top: 50%;
-    transform: translateY(-217.5px);
-    display: block;
-    background: #ECEEEE;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 35px rgba(0, 0, 0, 0.7); }
-    .full_screen_log_form .log_form_padding {
-      padding: 5px 10px 10px 10px; }
-  .full_screen_side_by_side {
-    display: flex;
-    flex-direction: row; } }
+    position: relative;
+    padding: 0 10px 10px 10px; } }
 
 @keyframes appear {
   100% {
+    transform: translateY(0);
     opacity: 1; } }
 
 @keyframes disappear {
   100% {
+    transform: translateY(-30px);
     opacity: 0; } }
 
 @keyframes slide_down {
   100% {
-    height: 385px; } }
+    margin-top: 0; } }
 
 @keyframes slide_up {
   100% {
-    height: 0; } }
+    margin-top: -440px; } }

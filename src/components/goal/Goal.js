@@ -34,7 +34,6 @@ let textBubbleTwoDisplayed = false;
 let removeGoal = false;
 let pop_up_description = <div></div>;
 let open_description = true;
-let log_form = <div></div>;
 
 class Goal extends Component {
 
@@ -53,13 +52,18 @@ class Goal extends Component {
             successRateMonth:null,
             successRateWeek:null,
             forceAnUpdate: null,
-            logSeven: null,
+
+            logSeven: null, 
+            //should just store all boolean not just last 7
+            allBooleans: null,
+
             logOpen:false,
             sent: null,
             originalgoal: null,
             description: '',
             logFormIsClosing: false,
-            disableLogButton: false
+            disableLogButton: false,
+            weeksBack: 0,
         }
         this.returnTitle = this.returnTitle.bind(this);
         this.updateStreaks = this.updateStreaks.bind(this);
@@ -98,7 +102,10 @@ class Goal extends Component {
             this.setState({
                 currentstreak:current, 
                 beststreak:best,
+
                 logSeven: array.slice(0,7),
+                allBooleans: array, // will be replacing logSeven w/ allBooleans
+
                 successRateTotal: rate
             }); //updates state
         })
@@ -134,6 +141,7 @@ class Goal extends Component {
             currentstreak:current, 
             beststreak:best,
             logSeven: booleans.slice(0,7),
+            allBooleans: booleans,
             successRateTotal: rate
         });
 
@@ -559,51 +567,54 @@ class Goal extends Component {
             }, exitTime)
         }
         
-
-        // console.log('from open log form', this.state.logSeven)
-
-        // if(open_pop_up){
-        //     console.log('open_pop_up is TRUE')
-        //     open_pop_up = false;
-        //     log_form = (
-        //     <div>
-        //         <div onClick={() => this.openLogForm()} className='overlay'></div>
-        //         <div className='full_screen_log_form'>
-                    // <div className='settings_header'>
-                    //     Log Last Seven Days
-                    //     <button onClick={() => this.openLogForm()} className='close'>
-                    //     <X width='18px'/>
-                    //     </button>
-                    // </div>
-        //             <div className='log_form_padding'>
-        //             <Log fullScreen={true} updateStreaks={this.updateStreaks} logSeven={this.state.logSeven} goal={this.props.match.params.id}/>
-        //             </div>
-        //         </div>
-        //     </div>
-        // )
-        // }else{
-        //     // console.log('open_pop_up is FALSE')
-        //     open_pop_up = true;
-        //     log_form = (
-        //     <div></div>
-        //     )
-        // }
-        // this.forceUpdate();
     }
 
     check(day){
     
-        var temp = this.state.logSeven;
-        if(temp[day]){
-            temp[day] = false;
-        }else{
-            temp[day] = true;
-        }
+        // var temp = this.state.logSeven;
+        // consider how many weeks back
+
+        let start = 0 + 7 * this.state.weeksBack;
+        let stop = 7 + 7 * this.state.weeksBack;
+        let temp = this.state.allBooleans.slice(start, stop);
         
-        axios.post(`/api/changebool/${this.props.match.params.id}`, {day}).then(res=>{
+        // sure there are less verbose ways to say this but this is very easy to read
+        if(temp[day]===0){
+            temp[day] = 1;
+        }else if (temp[day]===1){
+            temp[day] = -1;
+        }else if (temp[day]===-1){
+            temp[day] = 0;
+        }
+
+        // this.setState({logSeven:temp});
+
+        let begin = this.state.allBooleans.slice(0, start);
+        let end = this.state.allBooleans.slice(stop);
+
+        let merged = [ ...begin, ...temp, ...end];
+
+        // for immediate feedback
+        this.setState({allBooleans:merged});
+
+        axios.post(`/api/changebool/${this.props.match.params.id}`, {day:day,weeksBack:this.state.weeksBack}).then(res=>{
             this.updateStreaks(res.data);
         })
 
+    }
+
+    changeWeek(val){
+        let temp = this.state.weeksBack + val;
+        this.setState({weeksBack: temp});
+        // console.log('all booleans are: ', this.state.allBooleans);
+        let daysToAdd = 7 + (( this.state.weeksBack + val ) * 7 ) - this.state.allBooleans.length;
+
+        console.log('days to add, ', daysToAdd);
+        if(daysToAdd > 0){
+            axios.post(`/api/addPreviousDays/${this.props.match.params.id}`, {daysToAdd}).then(res => {
+                this.updateStreaks(res.data);
+            })
+        }
     }
 
     render(){
@@ -628,54 +639,54 @@ class Goal extends Component {
                 <div className='space_for_nav'></div>
                 <div className='contain_goal'>
 
-                    {/* small screen only */}
-                    <button disabled={this.state.disableLogButton} onClick={()=>this.openLogForm()} className='add_log'>+ Log</button>
-
-                    {/* changes significantly based on screen width */}
-                    {/* <div className='log_container'> */}
-                    <div className={
-                        this.state.logOpen ? 
-                        this.state.logFormIsClosing ? 'log_container close_me' : 'log_container appear' :
-                        'hide_me log_container'
-                    }>
-
-                        {/* large screen  only */}
-                        <div className='log_header'>
-                            Log Last Seven Days
-                            <button onClick={() => this.openLogForm()} className='close'>
-                            <X width='18px'/>
-                            </button>
-                        </div>
-
+                    <div className='log_container_parent'>
                         {/* small screen only */}
-                        {/* <button onClick={()=>this.openLogForm()} className='add_log'>+ Log</button> */}
+                        <button disabled={this.state.disableLogButton} onClick={()=>this.openLogForm()} className='add_log'>+ Log</button>
 
-                        {/* functional component creates list based on logSeven */}
-                        <Log check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} />
+                        {/* changes significantly based on screen width */}
+                        <div className={
+                            this.state.logOpen ? 
+                            this.state.logFormIsClosing ? 'log_container close_me' : 'log_container appear' :
+                            'hide_me log_container'
+                        }>
 
-                    </div>
+                            {/* large screen  only */}
+                            <div className='log_header'>
+                                Log Last Seven Days
+                                <button onClick={() => this.openLogForm()} className='close'>
+                                <X width='18px'/>
+                                </button>
+                            </div>
 
-                    <div className='full_screen_side_by_side'>
-                    <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
-                    <SuccessRate total={this.state.successRateTotal} month={true} week={true}/>
-                    </div>
-                    <div className='media_options'>
-                        <Link className='parent_link' to={`/search/${this.props.match.params.id}`}><button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button></Link>
-                        <div className='full_screen_show'>
-                        {
-                            this.state.sent || this.state.originalgoal
-                        ? 
-                            <Description deleteGoal={this.deleteGoal} handleRemoveGoal={this.handleRemoveGoal} removeGoalFalse={this.removeGoalFalse} name={this.state.goalname} days={this.state.daysoutofseven} type={this.state.goodhabit}/> 
-                        : 
-                            settings 
-                        }
+                            {/* small screen only */}
+                            {/* <button onClick={()=>this.openLogForm()} className='add_log'>+ Log</button> */}
+
+                            {/* functional component creates list based on logSeven */}
+                            {/* <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} /> */}
+                            <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} />
+
+                            <div className='log_prior_weeks'>
+                                <button onClick={() => this.changeWeek(1)}>previous week</button>
+                                <button onClick={() => this.changeWeek(-1) } disabled={this.state.weeksBack===0}>
+                                    {this.state.weeksBack > 1 ? 'next week' : 'this week'}
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                     
-                    <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
+                    <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
 
-                    {/* this needs fixing next */}
-                    <div className='full_screen_hide'>
+                    <SuccessRate total={this.state.successRateTotal} month={true} week={true}/>
+
+                    <Link className='challenge_friends_link' to={`/search/${this.props.match.params.id}`}>
+                        <button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button>
+                    </Link>
+                    
+                    <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
+        
+                    <div>
+
                         {
                             this.state.sent || this.state.originalgoal
                         ? 
@@ -684,7 +695,6 @@ class Goal extends Component {
                             settings 
                         } 
                     </div>
-                    {/* {log_form} */}
                 </div>
             </div>
         )

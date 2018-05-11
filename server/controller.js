@@ -3,10 +3,12 @@ module.exports = {
     read: (req,res) => {
 
         // -----TEMP-----//
-            req.user=4
+            // req.user=4
         // --------------//
 
         // console.log('req.user is...',req.user);
+
+        // console.log('req.session is...', req.session);
 
         req.app.get('db').get_all_goals([req.user]).then(response=>{
             res.send(response); //should add 200
@@ -33,7 +35,7 @@ module.exports = {
 
         let goalid = null;
         
-        console.log('update function is firing');
+        // console.log('update function is firing');
 
         let args = [req.body.goalname, req.body.daysoutofseven, req.body.goodHabit, req.user, startdate, null]
 
@@ -58,11 +60,11 @@ module.exports = {
 
     fillmissingdays: (req,res) => {
 
-        console.log('fillmissingdays', req.body);
+        // console.log('fillmissingdays', req.body);
 
         function days(start,today){
             
-            console.log(start, today);
+            // console.log(start, today);
 
             const calender = [0,31,28,31,30,31,30,31,31,30,31,30,31];
               
@@ -111,6 +113,39 @@ module.exports = {
         res.status(200).end();
     },
 
+    addPreviousDays : (req, res) => {
+        const goalid = req.params.id;
+        const daysToAdd = req.body.daysToAdd; // 7
+        const db = req.app.get('db');
+
+        // console.log(goalid);
+        // console.log(req.body);
+
+        // more to learn in sql to make more efficient
+        db.find_earliest_day([goalid]).then( day => {
+            // console.log(day[0].dayof); // -6
+
+            for(let i = 1; i <= daysToAdd; i++){
+                 
+                let val = day[0].dayof - i;
+
+
+                if(i === daysToAdd ){
+                    db.fill_missing_days([goalid, val]).then( res2 => {
+                        db.get_all_booleans([goalid]).then( booleans => {
+                            res.status(200).send(booleans);
+                        })
+                    })
+                }else {
+                    db.fill_missing_days([goalid, val])
+                }
+            
+            }
+            
+        })
+        
+    },
+
     getbools: (req,res) => {
         // console.log('from getbools', req.params.id)
         const goalid = req.params.id;
@@ -134,10 +169,14 @@ module.exports = {
         const db = req.app.get('db')
         const dayclicked = req.body.day;
         const goalid = req.params.id;
+        const weeksBack = req.body.weeksBack;
+
+        // console.log('weeks Back from changebool: ', req.body.weeksBack);
+        // console.log('dayclicked: ', dayclicked);
 
         db.grab_last_day([req.params.id]).then(res2=>{
             // console.log('from changebool', res2[0].dayof)
-            const day = res2[0].dayof - dayclicked;
+            const day = res2[0].dayof - dayclicked - 7 * weeksBack;
             db.update_bool([goalid, day]).then(res3=>{
 
                 // console.log('response from update_bool is... ', res3);

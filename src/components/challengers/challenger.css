@@ -1,10 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Mono");
+.challengers_grand_parent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 10px; }
+
 .challengers_parent {
-  width: calc(100% - 20px);
   border-radius: 5px;
   background: linear-gradient(155deg, #6A7C89, #A8CCD5);
-  margin-top: 10px;
-  margin-left: 10px;
   overflow: hidden; }
 
 .challengers {
@@ -62,11 +64,3 @@
   top: 0px;
   height: 100%;
   font-size: 45px; }
-
-@media only screen and (min-width: 1024px) {
-  .challengers_grand_parent {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; }
-  .challengers_parent {
-    width: calc(50% - 15px); } }
