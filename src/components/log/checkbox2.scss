@@ -3,97 +3,138 @@
 $checkbox-height: 35px;
 $checkbox-width: 6px;
 
-// .temp_contain {
 
-    .triple_check {
-        cursor: pointer;
-        // position: relative;
+.triple_check {
+    cursor: pointer;
+    // position: relative;
+    position: absolute;
+    right: 10px;
+    border: none;
+    width: $checkbox-height;
+    height: $checkbox-height;
+    border-color: $main_color;
+    border-width: 4px;
+    border-style: solid;
+    background: transparent;
+    transition: all .5s;
+    font-family: 'Expletus Sans', cursive;
+    letter-spacing: -6px;
+    font-size: 25px;
+    color: rgba(0,0,0,0);
+    box-sizing: border-box;
+}
+
+.zero {
+    
+    border-radius: 5px;
+
+}
+
+.one {
+    position: absolute;
+    border-radius: 5px;
+
+    &::before, &::after{
+        content:'';
         position: absolute;
-        right: 10px;
-        border: none;
-        width: $checkbox-height;
-        height: $checkbox-height;
-        border-color: $main_color;
-        border-width: 4px;
-        border-style: solid;
-        background: whitesmoke;
-        transition: all .5s;
-        font-family: 'Expletus Sans', cursive;
-        letter-spacing: -6px;
-        font-size: 25px;
-        color: rgba(0,0,0,0);
-        box-sizing: border-box;
-    }
-
-    .zero {
+        background: $main_color;
+        bottom:3px;
         
-        border-radius: 5px;
+        width: $checkbox-width;
+        border-radius: 4px;
 
+        
     }
 
-    .one {
+    // long line
+    &::before{
+        box-sizing: content-box;
+        height: $checkbox-height;
+        left: $checkbox-height * .5 - $checkbox-width - 1px;
+        transform: rotate(45deg);
+        transform-origin: 3px $checkbox-height;
+        border: 2px solid white;
+
+        animation-name: mark_up;
+        animation-fill-mode: forwards;
+        animation-duration: .2s;
+        animation-delay: .2s;
+        clip-path: polygon(0 100%, 100% 100%, 0 100%, 100% 100%);
+    }
+
+    // short line
+    &::after{
+        height: $checkbox-height * .5;
+        left: $checkbox-height * .5 - $checkbox-width + 2px;
+        transform: rotate(-45deg);
+        transform-origin:bottom center;
+
+        animation-name: mark_down;
+        animation-fill-mode: forwards;
+        animation-duration: .2s;
+        clip-path: polygon(0 0, 100% 0, 0 0, 100% 0);
+    }
+
+}
+
+.neg {
+    border-color: rgb(255, 179, 15);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::before, &::after{
+        content:'';
         position: absolute;
-        border-radius: 5px;
+        background: $main_color;
+        bottom:3px;
+        
+        width: $checkbox-width;
+        border-radius: 4px;
 
-        &::before, &::after{
-            content:'';
-            position: absolute;
-            background: $main_color;
-            bottom:3px;
-            
-            width: $checkbox-width;
-            border-radius: 4px;
+        opacity: 1;
+        animation-name: mark_fade;
+        animation-fill-mode: forwards;
+        animation-duration: .2s;    
+    }
 
-            
-        }
-
-        // long line
-        &::before{
-            box-sizing: content-box;
-            height: $checkbox-height;
-            left: $checkbox-height * .5 - $checkbox-width - 1px;
-            transform: rotate(45deg);
-            transform-origin: 3px $checkbox-height;
-            border: 2px solid whitesmoke;
-
-            animation-name: mark_up;
-            animation-fill-mode: forwards;
-            animation-duration: .2s;
-            animation-delay: .2s;
-            clip-path: polygon(0 100%, 100% 100%, 0 100%, 100% 100%);
-        }
-
-        // short line
-        &::after{
-            height: $checkbox-height * .5;
-            left: $checkbox-height * .5 - $checkbox-width + 2px;
-            transform: rotate(-45deg);
-            transform-origin:bottom center;
-
-            animation-name: mark_down;
-            animation-fill-mode: forwards;
-            animation-duration: .2s;
-            clip-path: polygon(0 0, 100% 0, 0 0, 100% 0);
-        }
+    &::before{
+        box-sizing: content-box;
+        height: $checkbox-height;
+        left: $checkbox-height * .5 - $checkbox-width - 1px;
+        transform: rotate(45deg);
+        transform-origin: 3px $checkbox-height;
+        border: 2px solid white;
 
     }
 
-    .neg {
-        // color:rgb(255, 179, 15);
-        border-color: rgb(255, 179, 15);
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-shadow: 
-            -2px 2px 0 whitesmoke, 
-            0 2px 0 whitesmoke, 
-            2px 2px 0 whitesmoke,
-            1px 0 0 whitesmoke,
-            2px -2px 0 whitesmoke,
-            0 -2px 0 whitesmoke,
-            -2px -2px 0 whitesmoke,
-            -2px 0 0 whitesmoke;
-    }
+    // short line
+    &::after{
+        height: $checkbox-height * .5;
+        left: $checkbox-height * .5 - $checkbox-width + 2px;
+        transform: rotate(-45deg);
+        transform-origin:bottom center;
 
-// }
+    }
+}
+
+// for check mark
+
+@keyframes mark_down {
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100% );
+    }
+}
+
+@keyframes mark_up {
+    100% {
+        clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0);
+    }
+}
+
+@keyframes mark_fade {
+    100% {
+        opacity: 0;
+    }
+}

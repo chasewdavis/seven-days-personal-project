@@ -52,7 +52,11 @@ class Goal extends Component {
             successRateMonth:null,
             successRateWeek:null,
             forceAnUpdate: null,
-            logSeven: null,
+
+            logSeven: null, 
+            //should just store all boolean not just last 7
+            allBooleans: null,
+
             logOpen:false,
             sent: null,
             originalgoal: null,
@@ -98,7 +102,10 @@ class Goal extends Component {
             this.setState({
                 currentstreak:current, 
                 beststreak:best,
+
                 logSeven: array.slice(0,7),
+                allBooleans: array, // will be replacing logSeven w/ allBooleans
+
                 successRateTotal: rate
             }); //updates state
         })
@@ -134,6 +141,7 @@ class Goal extends Component {
             currentstreak:current, 
             beststreak:best,
             logSeven: booleans.slice(0,7),
+            allBooleans: booleans,
             successRateTotal: rate
         });
 
@@ -563,14 +571,33 @@ class Goal extends Component {
 
     check(day){
     
-        var temp = this.state.logSeven;
-        if(temp[day]){
-            temp[day] = false;
-        }else{
-            temp[day] = true;
-        }
+        // var temp = this.state.logSeven;
+        // consider how many weeks back
+
+        let start = 0 + 7 * this.state.weeksBack;
+        let stop = 7 + 7 * this.state.weeksBack;
+        let temp = this.state.allBooleans.slice(start, stop);
         
-        axios.post(`/api/changebool/${this.props.match.params.id}`, {day}).then(res=>{
+        // sure there are less verbose ways to say this but this is very easy to read
+        if(temp[day]===0){
+            temp[day] = 1;
+        }else if (temp[day]===1){
+            temp[day] = -1;
+        }else if (temp[day]===-1){
+            temp[day] = 0;
+        }
+
+        // this.setState({logSeven:temp});
+
+        let begin = this.state.allBooleans.slice(0, start);
+        let end = this.state.allBooleans.slice(stop);
+
+        let merged = [ ...begin, ...temp, ...end];
+
+        // for immediate feedback
+        this.setState({allBooleans:merged});
+
+        axios.post(`/api/changebool/${this.props.match.params.id}`, {day:day,weeksBack:this.state.weeksBack}).then(res=>{
             this.updateStreaks(res.data);
         })
 
@@ -579,18 +606,15 @@ class Goal extends Component {
     changeWeek(val){
         let temp = this.state.weeksBack + val;
         this.setState({weeksBack: temp});
-    }
+        // console.log('all booleans are: ', this.state.allBooleans);
+        let daysToAdd = 7 + (( this.state.weeksBack + val ) * 7 ) - this.state.allBooleans.length;
 
-    handleTripleCheck(){
-        let temp = this.state.tripleCheck;
-        if(temp===0){
-            temp = 1;
-        }else if (temp===1){
-            temp = -1;
-        }else if (temp===-1){
-            temp = 0;
+        console.log('days to add, ', daysToAdd);
+        if(daysToAdd > 0){
+            axios.post(`/api/addPreviousDays/${this.props.match.params.id}`, {daysToAdd}).then(res => {
+                this.updateStreaks(res.data);
+            })
         }
-        this.setState({tripleCheck:temp});
     }
 
     render(){
@@ -638,7 +662,8 @@ class Goal extends Component {
                             {/* <button onClick={()=>this.openLogForm()} className='add_log'>+ Log</button> */}
 
                             {/* functional component creates list based on logSeven */}
-                            <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} />
+                            {/* <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} /> */}
+                            <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} />
 
                             <div className='log_prior_weeks'>
                                 <button onClick={() => this.changeWeek(1)}>previous week</button>

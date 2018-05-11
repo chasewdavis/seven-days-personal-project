@@ -84,14 +84,14 @@
   opacity: 1;
   overflow: hidden;
   height: auto;
-  margin-top: -385px; }
+  margin-top: -440px; }
 
 .close_me {
   animation-name: slide_up;
   animation-duration: .8s;
   animation-fill-mode: forwards;
   overflow: hidden;
-  height: 385px; }
+  height: 440px; }
 
 .hide_me {
   display: none; }
@@ -161,12 +161,4 @@
 
 @keyframes slide_up {
   100% {
-    margin-top: -385px; } }
-
-@keyframes mark_down {
-  100% {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); } }
-
-@keyframes mark_up {
-  100% {
-    clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 0); } }
+    margin-top: -440px; } }

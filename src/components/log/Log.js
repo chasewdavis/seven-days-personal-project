@@ -4,11 +4,11 @@ import './checkbox.css';
 import './checkbox2.css';
 import axios from 'axios';
 
-export default ({ check, logSeven, logOpen, weeksBack}) => {
+export default ({ check, logSeven, allBooleans, logOpen, weeksBack}) => {
 
     // use logOpen to provide correct class to open or close
     // the way it opens and closes just depends on the screen width
-    console.log('logSeven is...', logSeven);
+    // console.log('logSeven is...', logSeven);
 
     var time = new Date().getTime(); // todays time in milliseconds
     const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
@@ -17,12 +17,22 @@ export default ({ check, logSeven, logOpen, weeksBack}) => {
     let future = 0; // THIS IS FOR TESTING PUROPOSES ONLY, SET BACK TO 0 OTHERWISE
     future *= (1000 * 60 * 60 * 24);      
 
-    if(Array.isArray(logSeven)){    
-        return logSeven.map( (e, i, arr) => {
+    let showSevenDays = null;
+
+    if(Array.isArray(allBooleans)){
+
+        // console.log('all Booleans: ', allBooleans);
+
+        let start = 0 + weeksBack * 7;
+        let stop = 7 + weeksBack * 7;
+    
+        showSevenDays = allBooleans.slice(start, stop);
+    }
+
+    if(Array.isArray(showSevenDays)){    
+        return showSevenDays.map( (e, i, arr) => {
 
             let week = weeksBack * 1000 * 60 * 60 * 24 * 7; //covert weeks into milliseconds
-
-            console.log(week);
 
             let offset_milliseconds = i * (1000 * 60 * 60 * 24);
 

@@ -11,45 +11,7 @@ export default class Challengers extends Component {
         super(props);
 
         this.state = {
-            challengers: [
-                { 
-                    bools:[{successful:true},{successful:true},{successful:true},{successful:true},{successful:false},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true}],
-                    id: 3308,
-                    img: "https://yt3.ggpht.com/a-/AJLlDp0oE1v5gLNPmxlZfgDKJfdZXc58GgyJN60Iqg=s900-mo-c-c0xffffffff-rj-k-no",
-                    startdate : "2017 12 21",
-                    user_name : "Bob Ross",
-                    user_id: 5
-
-                },
-                { 
-                    bools:[{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:false},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true}],
-                    id: 3308,
-                    img: "https://yt3.ggpht.com/a-/AJLlDp0oE1v5gLNPmxlZfgDKJfdZXc58GgyJN60Iqg=s900-mo-c-c0xffffffff-rj-k-no",
-                    startdate : "2017 12 21",
-                    user_name : "Bob Ross",
-                    user_id: 5
-
-                },
-                { 
-                    bools:[{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:false},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true}],
-                    id: 3308,
-                    img: "https://yt3.ggpht.com/a-/AJLlDp0oE1v5gLNPmxlZfgDKJfdZXc58GgyJN60Iqg=s900-mo-c-c0xffffffff-rj-k-no",
-                    startdate : "2017 12 21",
-                    user_name : "Bob Ross",
-                    user_id: 5
-
-                },
-                { 
-                    bools:[{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true},{successful:true}],
-                    id: 3308,
-                    img: "https://yt3.ggpht.com/a-/AJLlDp0oE1v5gLNPmxlZfgDKJfdZXc58GgyJN60Iqg=s900-mo-c-c0xffffffff-rj-k-no",
-                    startdate : "2017 12 21",
-                    user_name : "Bob Ross",
-                    user_id: 5
-
-                },
-
-            ],
+            challengers: [],
             challengees: []
         }
     }
