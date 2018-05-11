@@ -684,8 +684,9 @@ class Goal extends Component {
                     </Link>
                     
                     <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
-                    
+        
                     <div>
+
                         {
                             this.state.sent || this.state.originalgoal
                         ? 
