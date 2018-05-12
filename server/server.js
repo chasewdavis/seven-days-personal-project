@@ -125,8 +125,9 @@ app.delete('/api/deleteGoal/:id', controller.deleteGoal)
 app.delete('/api/declineChallenge/:id', controller.declineChallenge)
 
 const path = require('path');
+
 app.get('*', (req, res)=>{
-  res.sendFile(path.join(__dirname, '..','build','index.html'));
+  res.sendFile(path.join(__dirname, '../build/index.html'));
 })
 
 const PORT = 8010;
