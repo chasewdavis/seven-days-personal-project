@@ -723,7 +723,6 @@ class Goal extends Component {
                         <button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button>
                     </Link>
                     
-<<<<<<< HEAD
                     <Challengers 
                         best={this.countBestStreak} 
                         current={this.countCurrentStreak} 
@@ -733,10 +732,6 @@ class Goal extends Component {
                     />
                     
                     {/* Combine Descripton and Settings into single component in future refactors */}
-=======
-                    <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
-        
->>>>>>> a3d0c500865c6e13874226016846b925ae86b8a3
                     <div>
 
                         {
