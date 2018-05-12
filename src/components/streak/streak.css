@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Mono");
 .streaks {
+  width: calc(100% - 20px);
+  margin-top: 10px;
+  margin-left: 10px;
   height: 200px;
   border: 5px solid #556270;
   border-radius: 5px;

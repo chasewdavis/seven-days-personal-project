@@ -16,7 +16,7 @@ $checkbox-width: 6px;
     border-width: 4px;
     border-style: solid;
     background: transparent;
-    transition: all .5s;
+    // transition: all .5s;
     font-family: 'Expletus Sans', cursive;
     letter-spacing: -6px;
     font-size: 25px;
@@ -25,9 +25,52 @@ $checkbox-width: 6px;
 }
 
 .zero {
-    
     border-radius: 5px;
+}
 
+.zero_to_one {
+    border-radius: 5px;
+    border-color: $main_color;
+
+    &::before, &::after{
+        content:'';
+        position: absolute;
+        background: $main_color;
+        bottom:3px;
+        
+        width: $checkbox-width;
+        border-radius: 4px;
+
+    }
+
+    // long line
+    &::before{
+        box-sizing: content-box;
+        height: $checkbox-height;
+        left: $checkbox-height * .5 - $checkbox-width - 1px;
+        transform: rotate(45deg);
+        transform-origin: 3px $checkbox-height;
+        border: 2px solid white;
+
+        animation-name: mark_up;
+        animation-fill-mode: forwards;
+        animation-duration: .325s;
+        animation-delay: .325s;
+        clip-path: polygon(0 100%, 100% 100%, 0 100%, 100% 100%);
+    }
+
+    // short line
+    &::after{
+        height: $checkbox-height * .5;
+        left: $checkbox-height * .5 - $checkbox-width + 2px;
+        transform: rotate(-45deg);
+        transform-origin:bottom center;
+
+        animation-name: mark_down;
+        animation-fill-mode: forwards;
+        animation-duration: .325s;
+        clip-path: polygon(0 0, 100% 0, 0 0, 100% 0);
+    }
 }
 
 .one {
@@ -43,7 +86,6 @@ $checkbox-width: 6px;
         width: $checkbox-width;
         border-radius: 4px;
 
-        
     }
 
     // long line
@@ -55,11 +97,6 @@ $checkbox-width: 6px;
         transform-origin: 3px $checkbox-height;
         border: 2px solid white;
 
-        animation-name: mark_up;
-        animation-fill-mode: forwards;
-        animation-duration: .2s;
-        animation-delay: .2s;
-        clip-path: polygon(0 100%, 100% 100%, 0 100%, 100% 100%);
     }
 
     // short line
@@ -69,20 +106,16 @@ $checkbox-width: 6px;
         transform: rotate(-45deg);
         transform-origin:bottom center;
 
-        animation-name: mark_down;
-        animation-fill-mode: forwards;
-        animation-duration: .2s;
-        clip-path: polygon(0 0, 100% 0, 0 0, 100% 0);
     }
 
 }
 
-.neg {
-    border-color: rgb(255, 179, 15);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.one_to_neg {
+    border-color: $main_color;
+    border-radius: 5px;
+    animation-name: square_to_circle;
+    animation-duration: .65s;
+    animation-fill-mode: forwards;
 
     &::before, &::after{
         content:'';
@@ -96,7 +129,7 @@ $checkbox-width: 6px;
         opacity: 1;
         animation-name: mark_fade;
         animation-fill-mode: forwards;
-        animation-duration: .2s;    
+        animation-duration: .325s;    
     }
 
     &::before{
@@ -117,6 +150,26 @@ $checkbox-width: 6px;
         transform-origin:bottom center;
 
     }
+
+}
+
+.neg {
+
+    border-color: rgb(255, 179, 15);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+}
+
+.neg_to_zero {
+    border-radius: 50%;
+    border-color: rgb(255, 179, 15);
+
+    animation-name: circle_to_square;
+    animation-duration: .65s;
+    animation-fill-mode: forwards;
 }
 
 // for check mark
@@ -136,5 +189,19 @@ $checkbox-width: 6px;
 @keyframes mark_fade {
     100% {
         opacity: 0;
+    }
+}
+
+@keyframes square_to_circle {
+    100% {
+        border-radius: 50%;
+        border-color: rgb(255, 179, 15);
+    }
+}
+
+@keyframes circle_to_square {
+    100% {
+        border-radius: 5px;
+        border-color: $main_color;
     }
 }

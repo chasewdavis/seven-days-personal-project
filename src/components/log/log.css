@@ -34,7 +34,8 @@
   font-size: 22px;
   font-weight: bolder;
   margin-top: 5px;
-  width: 100%; }
+  width: calc(100% - 10px);
+  margin-left: 5px; }
 
 @keyframes slide_down {
   to {
@@ -48,5 +49,7 @@
   .add_log {
     display: none; }
   .log_day {
-    width: 100%;
-    margin-left: 5px; } }
+    width: calc(100% - 5px);
+    margin-left: 2.5px; }
+  .contain_seven {
+    padding: 0 5px; } }

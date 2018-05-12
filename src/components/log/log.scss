@@ -62,7 +62,8 @@ $light: rgba(90, 236, 229, 0.5);
 
     // small screens
     // width: calc(100vw - 20px);
-    width: 100%;
+    width: calc(100% - 10px);
+    margin-left: 5px;
 }
 
 @keyframes slide_down {
@@ -83,7 +84,10 @@ $light: rgba(90, 236, 229, 0.5);
     }
     .log_day {
         // width: calc(500px - 10px);
-        width: 100%; 
-        margin-left: 5px;
+        width: calc(100% - 5px); 
+        margin-left: 2.5px;
+    }
+    .contain_seven {
+        padding: 0 5px;
     }
 }

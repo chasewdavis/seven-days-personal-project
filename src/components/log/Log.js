@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './log.css';
-import './checkbox.css';
+// import './checkbox.css';
 import './checkbox2.css';
 import axios from 'axios';
 
-export default ({ check, logSeven, allBooleans, logOpen, weeksBack}) => {
+export default ({ check, logSeven, allBooleans, logOpen, weeksBack, check_in_transition, determineCheckClass}) => {
 
     // use logOpen to provide correct class to open or close
     // the way it opens and closes just depends on the screen width
@@ -61,7 +61,7 @@ export default ({ check, logSeven, allBooleans, logOpen, weeksBack}) => {
                         onClick={()=>check(i)} 
                         readOnly={true} 
                         type="text" 
-                        className={arr[i] ? arr[i] > 0 ? 'one triple_check' : 'neg triple_check' : 'zero triple_check'}
+                        className = {determineCheckClass(arr[i], check_in_transition, i)}
                     />
                 </div>
             )
