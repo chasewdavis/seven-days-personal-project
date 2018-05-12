@@ -282,8 +282,6 @@ input[type=checkbox]:checked + .switch-btn {
     opacity: 1; } }
 
 @media only screen and (min-width: 1024px) {
-  .open_settings_btn {
-    width: 100%; }
   .settings {
     width: 40vw;
     left: 0;

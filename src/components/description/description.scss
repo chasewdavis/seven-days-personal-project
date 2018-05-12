@@ -12,6 +12,9 @@
     border: $thick solid $main_color;
     outline: none; 
     // margin: 10px;
+    width: calc(100% - 20px);
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .open_description img {
@@ -58,12 +61,5 @@
 // }
 
 @media (min-width:1024px) {
-    .parent_open_description{
-    
-    }
-    .open_description{
-        width:100%;
-        margin: 0;
-        
-    }
+
 }

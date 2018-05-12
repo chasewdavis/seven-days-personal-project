@@ -4,8 +4,7 @@
   width: 100%;
   margin-left: 0%;
   height: auto;
-  position: relative;
-  display: grid; }
+  position: relative; }
 
 .challenge_friends_link {
   display: flex;
@@ -136,7 +135,6 @@
     top: 200px;
     z-index: 5;
     overflow: hidden;
-    box-shadow: 0 0 45px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
     padding: 0 0 5px 0; }
     .log_container_parent .log_container .log_header {
@@ -159,8 +157,9 @@
     box-shadow: 0 0 45px rgba(0, 0, 0, 0.15);
     width: 60%;
     margin-left: 20%;
+    min-height: calc(100vh - 60px);
     position: relative;
-    padding: 0 10px 10px 10px; } }
+    margin-top: -10px; } }
 
 @keyframes appear {
   100% {
