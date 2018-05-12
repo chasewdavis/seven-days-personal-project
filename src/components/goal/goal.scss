@@ -7,18 +7,18 @@
     margin-left: 0%;
     height: auto;
     position: relative;
-    // background: rgba(255, 0, 255, 0.288);
-    display: grid;
-    padding: 10px;
-    grid-gap: 10px;
+    // display: grid;
+    // padding: 10px;
+    // grid-gap: 10px;
 }
 
 .challenge_friends_link {
     display: flex;
     align-items: flex-start;
     text-decoration: none;
-    // width: calc(100% - 20px);
-    // margin-top:10px;
+    width: calc(100% - 20px);
+    margin-top:10px;
+    margin-left: 10px;
     height: $main_height;
     .challenge_friends_btn{
         background: $gradient_mild;
@@ -29,20 +29,19 @@
         font-size: 28px;
         color: white;
         outline: none; 
-        // margin-top: 10px;
         position: relative;
     }
 }
 
 .log_container_parent{
-    overflow: hidden;
+    margin-top: 10px;
+    overflow:hidden;
     .add_log {
         position: relative;
         background-color: white;
-        width: 100%;
+        width: calc(100% - 20px);
         height: 60px;
         border-radius: 5px;
-        // margin-top: 10px;
         font-size: 30px;
         color: $main_color;
         border: 5px solid $main_color;
@@ -75,13 +74,14 @@
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            width: calc(100% - 20px);
+            margin-left: 10px;
             button {
                 height: 50px;
                 background-color: white;
                 border: none;
                 cursor: pointer;
-                width: calc(50% - 2.5px);
-                margin-top: 5px;
+                width: calc(50% - 2.5px);      
                 border: none;
                 color: $main_color;
                 font-size: 1.1rem;
@@ -120,6 +120,37 @@
     height: 440px;
 }
 
+//small screens
+.animate_log {
+    // background: rgba(255, 0, 255, 0.5);
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 390px;
+    width: calc(100% * 3);
+    overflow: hidden;
+    margin-left: -100%;
+    // three divs inside animate log in order to display 
+    // last week 
+    // this week and 
+    // next week
+}
+
+.slide_left {
+    transition: all .5s;
+    margin-left: -200%;
+    // transform: translate(0vw);
+}
+.slide_right {
+    transition: all .5s;
+    margin-left: 0;
+    // border: 2px solid fuchsia;
+    // transform: translateX(-100vw);
+}
+// .center {
+//     border: 2px solid black; 
+// }
+
 .hide_me {
     display: none;
 }
@@ -149,14 +180,10 @@
         top: 200px;
         z-index: 5;
         overflow: hidden;
-        box-shadow: 0 0 45px rgba(0,0,0,.15);
         border-radius: 10px;
         padding: 0 0 5px 0;
         .log_header {
             display: block;
-        }
-        .log_prior_weeks {
-            padding: 0 5px;
         }
     }
 }
@@ -188,7 +215,8 @@
         min-height: calc(100vh - 60px);
         position: relative;
         // background: rgba(255, 0, 255, 0.288);
-        padding: 0 10px 10px 10px;
+        margin-top: -10px;
+        // padding: 0 10px 10px 10px;
     }
 
 }

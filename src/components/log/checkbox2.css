@@ -10,7 +10,6 @@
   border-width: 4px;
   border-style: solid;
   background: transparent;
-  transition: all .5s;
   font-family: 'Expletus Sans', cursive;
   letter-spacing: -6px;
   font-size: 25px;
@@ -19,6 +18,38 @@
 
 .zero {
   border-radius: 5px; }
+
+.zero_to_one {
+  border-radius: 5px;
+  border-color: #556270; }
+  .zero_to_one::before, .zero_to_one::after {
+    content: '';
+    position: absolute;
+    background: #556270;
+    bottom: 3px;
+    width: 6px;
+    border-radius: 4px; }
+  .zero_to_one::before {
+    box-sizing: content-box;
+    height: 35px;
+    left: 10.5px;
+    transform: rotate(45deg);
+    transform-origin: 3px 35px;
+    border: 2px solid white;
+    animation-name: mark_up;
+    animation-fill-mode: forwards;
+    animation-duration: .325s;
+    animation-delay: .325s;
+    clip-path: polygon(0 100%, 100% 100%, 0 100%, 100% 100%); }
+  .zero_to_one::after {
+    height: 17.5px;
+    left: 13.5px;
+    transform: rotate(-45deg);
+    transform-origin: bottom center;
+    animation-name: mark_down;
+    animation-fill-mode: forwards;
+    animation-duration: .325s;
+    clip-path: polygon(0 0, 100% 0, 0 0, 100% 0); }
 
 .one {
   position: absolute;
@@ -36,29 +67,20 @@
     left: 10.5px;
     transform: rotate(45deg);
     transform-origin: 3px 35px;
-    border: 2px solid white;
-    animation-name: mark_up;
-    animation-fill-mode: forwards;
-    animation-duration: .2s;
-    animation-delay: .2s;
-    clip-path: polygon(0 100%, 100% 100%, 0 100%, 100% 100%); }
+    border: 2px solid white; }
   .one::after {
     height: 17.5px;
     left: 13.5px;
     transform: rotate(-45deg);
-    transform-origin: bottom center;
-    animation-name: mark_down;
-    animation-fill-mode: forwards;
-    animation-duration: .2s;
-    clip-path: polygon(0 0, 100% 0, 0 0, 100% 0); }
+    transform-origin: bottom center; }
 
-.neg {
-  border-color: #ffb30f;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-  .neg::before, .neg::after {
+.one_to_neg {
+  border-color: #556270;
+  border-radius: 5px;
+  animation-name: square_to_circle;
+  animation-duration: .65s;
+  animation-fill-mode: forwards; }
+  .one_to_neg::before, .one_to_neg::after {
     content: '';
     position: absolute;
     background: #556270;
@@ -68,19 +90,33 @@
     opacity: 1;
     animation-name: mark_fade;
     animation-fill-mode: forwards;
-    animation-duration: .2s; }
-  .neg::before {
+    animation-duration: .325s; }
+  .one_to_neg::before {
     box-sizing: content-box;
     height: 35px;
     left: 10.5px;
     transform: rotate(45deg);
     transform-origin: 3px 35px;
     border: 2px solid white; }
-  .neg::after {
+  .one_to_neg::after {
     height: 17.5px;
     left: 13.5px;
     transform: rotate(-45deg);
     transform-origin: bottom center; }
+
+.neg {
+  border-color: #ffb30f;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.neg_to_zero {
+  border-radius: 50%;
+  border-color: #ffb30f;
+  animation-name: circle_to_square;
+  animation-duration: .65s;
+  animation-fill-mode: forwards; }
 
 @keyframes mark_down {
   100% {
@@ -93,3 +129,13 @@
 @keyframes mark_fade {
   100% {
     opacity: 0; } }
+
+@keyframes square_to_circle {
+  100% {
+    border-radius: 50%;
+    border-color: #ffb30f; } }
+
+@keyframes circle_to_square {
+  100% {
+    border-radius: 5px;
+    border-color: #556270; } }

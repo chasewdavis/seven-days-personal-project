@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import './log.css';
-import './checkbox.css';
+// import './checkbox.css';
 import './checkbox2.css';
 import axios from 'axios';
 
-export default ({ check, logSeven, allBooleans, logOpen, weeksBack}) => {
+export default ({ check, logSeven, allBooleans, logOpen, weeksBack, check_in_transition, determineCheckClass}) => {
 
     // use logOpen to provide correct class to open or close
     // the way it opens and closes just depends on the screen width
@@ -21,16 +21,23 @@ export default ({ check, logSeven, allBooleans, logOpen, weeksBack}) => {
 
     if(Array.isArray(allBooleans)){
 
-        // console.log('all Booleans: ', allBooleans);
-
         let start = 0 + weeksBack * 7;
         let stop = 7 + weeksBack * 7;
     
         showSevenDays = allBooleans.slice(start, stop);
+
+        // quickly adds new days
+        while(showSevenDays.length < 7){
+            showSevenDays.push(0);
+        }
     }
 
     if(Array.isArray(showSevenDays)){    
-        return showSevenDays.map( (e, i, arr) => {
+        return ( 
+
+            <div className='contain_seven'>
+            
+            { showSevenDays.map( (e, i, arr) => {
 
             let week = weeksBack * 1000 * 60 * 60 * 24 * 7; //covert weeks into milliseconds
 
@@ -54,12 +61,17 @@ export default ({ check, logSeven, allBooleans, logOpen, weeksBack}) => {
                         onClick={()=>check(i)} 
                         readOnly={true} 
                         type="text" 
-                        className={arr[i] ? arr[i] > 0 ? 'one triple_check' : 'neg triple_check' : 'zero triple_check'}
+                        className = {determineCheckClass(arr[i], check_in_transition, i)}
                     />
-
                 </div>
             )
-        })
+
+        })}
+
+        </div>
+    
+        )
+
     }else{
         return (
             <div></div>

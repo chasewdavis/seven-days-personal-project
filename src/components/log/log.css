@@ -1,4 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=PT+Mono");
+.contain_seven {
+  width: calc(100vw - 20px);
+  width: 100vw;
+  padding: 0 5px; }
+
 .the_day {
   position: absolute;
   left: 10px; }
@@ -28,7 +33,9 @@
   color: #556270;
   font-size: 22px;
   font-weight: bolder;
-  margin-top: 5px; }
+  margin-top: 5px;
+  width: calc(100% - 10px);
+  margin-left: 5px; }
 
 @keyframes slide_down {
   to {
@@ -42,5 +49,7 @@
   .add_log {
     display: none; }
   .log_day {
-    width: calc(100% - 10px);
-    margin-left: 5px; } }
+    width: calc(100% - 5px);
+    margin-left: 2.5px; }
+  .contain_seven {
+    padding: 0 5px; } }

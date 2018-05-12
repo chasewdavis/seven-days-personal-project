@@ -5,9 +5,9 @@
 // $gradient: linear-gradient(90deg, rgba(90, 177, 236, 0.65), rgba(90, 236, 229, 0.5) );
 
 .streaks{
-    // width: calc(100% - 20px);
-    // margin-top: 10px;
-    // margin-left: 10px;
+    width: calc(100% - 20px);
+    margin-top: 10px;
+    margin-left: 10px;
     height: 200px;
     border:5px solid $main_color;
     border-radius: 5px;

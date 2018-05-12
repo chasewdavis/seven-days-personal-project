@@ -4,15 +4,15 @@
   width: 100%;
   margin-left: 0%;
   height: auto;
-  position: relative;
-  display: grid;
-  padding: 10px;
-  grid-gap: 10px; }
+  position: relative; }
 
 .challenge_friends_link {
   display: flex;
   align-items: flex-start;
   text-decoration: none;
+  width: calc(100% - 20px);
+  margin-top: 10px;
+  margin-left: 10px;
   height: 55px; }
   .challenge_friends_link .challenge_friends_btn {
     background: linear-gradient(155deg, #6A7C89, #A8CCD5);
@@ -26,11 +26,12 @@
     position: relative; }
 
 .log_container_parent {
+  margin-top: 10px;
   overflow: hidden; }
   .log_container_parent .add_log {
     position: relative;
     background-color: white;
-    width: 100%;
+    width: calc(100% - 20px);
     height: 60px;
     border-radius: 5px;
     font-size: 30px;
@@ -58,14 +59,15 @@
     .log_container_parent .log_container .log_prior_weeks {
       display: flex;
       flex-direction: row;
-      justify-content: space-between; }
+      justify-content: space-between;
+      width: calc(100% - 20px);
+      margin-left: 10px; }
       .log_container_parent .log_container .log_prior_weeks button {
         height: 50px;
         background-color: white;
         border: none;
         cursor: pointer;
         width: calc(50% - 2.5px);
-        margin-top: 5px;
         border: none;
         color: #556270;
         font-size: 1.1rem; }
@@ -93,6 +95,23 @@
   overflow: hidden;
   height: 440px; }
 
+.animate_log {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  height: 390px;
+  width: calc(100% * 3);
+  overflow: hidden;
+  margin-left: -100%; }
+
+.slide_left {
+  transition: all .5s;
+  margin-left: -200%; }
+
+.slide_right {
+  transition: all .5s;
+  margin-left: 0; }
+
 .hide_me {
   display: none; }
 
@@ -116,13 +135,10 @@
     top: 200px;
     z-index: 5;
     overflow: hidden;
-    box-shadow: 0 0 45px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
     padding: 0 0 5px 0; }
     .log_container_parent .log_container .log_header {
       display: block; }
-    .log_container_parent .log_container .log_prior_weeks {
-      padding: 0 5px; }
   .appear {
     animation-name: appear;
     animation-duration: .25s;
@@ -143,7 +159,7 @@
     margin-left: 20%;
     min-height: calc(100vh - 60px);
     position: relative;
-    padding: 0 10px 10px 10px; } }
+    margin-top: -10px; } }
 
 @keyframes appear {
   100% {

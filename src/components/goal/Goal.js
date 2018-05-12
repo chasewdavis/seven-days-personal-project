@@ -64,6 +64,10 @@ class Goal extends Component {
             logFormIsClosing: false,
             disableLogButton: false,
             weeksBack: 0,
+            slide_log: 'center',
+            week_in_transition: false,
+            check_in_transition: -1,
+            check_callBack_returned: true
         }
         this.returnTitle = this.returnTitle.bind(this);
         this.updateStreaks = this.updateStreaks.bind(this);
@@ -98,7 +102,6 @@ class Goal extends Component {
             const best = this.countBestStreak(array); 
             const current = this.countCurrentStreak(array);
             const rate = this.successRateTotal(array);
-            console.log('rate is... ',rate);
             this.setState({
                 currentstreak:current, 
                 beststreak:best,
@@ -570,50 +573,83 @@ class Goal extends Component {
     }
 
     check(day){
-    
-        // var temp = this.state.logSeven;
-        // consider how many weeks back
-
-        let start = 0 + 7 * this.state.weeksBack;
-        let stop = 7 + 7 * this.state.weeksBack;
-        let temp = this.state.allBooleans.slice(start, stop);
         
-        // sure there are less verbose ways to say this but this is very easy to read
-        if(temp[day]===0){
-            temp[day] = 1;
-        }else if (temp[day]===1){
-            temp[day] = -1;
-        }else if (temp[day]===-1){
-            temp[day] = 0;
-        }
+        // to avoid double clicking ugliness
+        if(this.state.check_in_transition === -1 && this.state.check_callBack_returned){
 
-        // this.setState({logSeven:temp});
+            console.log('check day: ', day);
+            // var temp = this.state.logSeven;
+            // consider how many weeks back
 
-        let begin = this.state.allBooleans.slice(0, start);
-        let end = this.state.allBooleans.slice(stop);
+            let start = 0 + 7 * this.state.weeksBack;
+            let stop = 7 + 7 * this.state.weeksBack;
+            let seven = this.state.allBooleans.slice(start, stop);
+            
+            // sure there are less verbose ways to say this but this is very easy to read
+            if(seven[day]===0){
+                seven[day] = 1;
+            }else if (seven[day]===1){
+                seven[day] = -1;
+            }else if (seven[day]===-1){
+                seven[day] = 0;
+            }
 
-        let merged = [ ...begin, ...temp, ...end];
+            // this.setState({logSeven:temp});
 
-        // for immediate feedback
-        this.setState({allBooleans:merged});
+            let begin = this.state.allBooleans.slice(0, start);
+            let end = this.state.allBooleans.slice(stop);
 
-        axios.post(`/api/changebool/${this.props.match.params.id}`, {day:day,weeksBack:this.state.weeksBack}).then(res=>{
+            let merged = [ ...begin, ...seven, ...end];
+
+            // for immediate feedback
+            this.setState(
+                { allBooleans:merged, check_in_transition: day, check_callBack_returned: false }, 
+                () => setTimeout( () => this.setState({check_in_transition: -1}), 650) // time tied to css
+            );
+
+            // animation must be done and promise returned in order to call function again
+            axios.post(`/api/changebool/${this.props.match.params.id}`, { day:day, weeksBack:this.state.weeksBack })
+            .then( res => {
+                this.setState({check_callBack_returned: true})
             this.updateStreaks(res.data);
-        })
+            })
+
+        }
 
     }
 
-    changeWeek(val){
-        let temp = this.state.weeksBack + val;
-        this.setState({weeksBack: temp});
-        // console.log('all booleans are: ', this.state.allBooleans);
-        let daysToAdd = 7 + (( this.state.weeksBack + val ) * 7 ) - this.state.allBooleans.length;
+    // no need to bind class, not using 'this' keyword
+    determineCheckClass(day, transitionIndex, index){
+        if(day === -1){
+            return transitionIndex === index ? 'triple_check one_to_neg' : 'triple_check neg';
+        }else if(day === 0){
+            return transitionIndex === index ? 'triple_check neg_to_zero' : 'triple_check zero';
+        }else if(day === 1){
+            return transitionIndex === index ? 'triple_check zero_to_one' : 'triple_check one';
+        }
+    }
 
-        console.log('days to add, ', daysToAdd);
-        if(daysToAdd > 0){
-            axios.post(`/api/addPreviousDays/${this.props.match.params.id}`, {daysToAdd}).then(res => {
-                this.updateStreaks(res.data);
-            })
+    changeWeek(val){
+
+        // no double clicking
+        if(!this.state.week_in_transition){
+
+            let temp = this.state.weeksBack + val;
+            // console.log('all booleans are: ', this.state.allBooleans);
+            let daysToAdd = 7 + (( this.state.weeksBack + val ) * 7 ) - this.state.allBooleans.length;
+
+            // quickly animate logs
+            this.setState(
+                { slide_log: val > 0 ? 'right' : 'left' , week_in_transition: true },
+                () => setTimeout( () => this.setState({weeksBack: temp, week_in_transition: false, slide_log:'center'}), 500 ) // connected with css animation time
+            ); 
+
+            if(daysToAdd > 0){
+                axios.post(`/api/addPreviousDays/${this.props.match.params.id}`, {daysToAdd}).then(res => {
+                    this.updateStreaks(res.data);
+                })
+            }
+
         }
     }
 
@@ -663,7 +699,11 @@ class Goal extends Component {
 
                             {/* functional component creates list based on logSeven */}
                             {/* <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} /> */}
-                            <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} />
+                            <div className={this.state.slide_log === 'right' ? 'slide_right animate_log' : this.state.slide_log === 'left' ? 'slide_left animate_log' : 'center animate_log'}>
+                                <Log weeksBack={this.state.weeksBack + 1} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} determineCheckClass={this.determineCheckClass}/>
+                                <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} check_in_transition={this.state.check_in_transition} determineCheckClass={this.determineCheckClass}/>
+                                <Log weeksBack={this.state.weeksBack - 1} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} determineCheckClass={this.determineCheckClass}/>
+                            </div>
 
                             <div className='log_prior_weeks'>
                                 <button onClick={() => this.changeWeek(1)}>previous week</button>
@@ -683,14 +723,33 @@ class Goal extends Component {
                         <button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button>
                     </Link>
                     
+<<<<<<< HEAD
+                    <Challengers 
+                        best={this.countBestStreak} 
+                        current={this.countCurrentStreak} 
+                        sent={this.state.sent} 
+                        original={this.state.originalgoal} 
+                        id={this.props.match.params.id}
+                    />
+                    
+                    {/* Combine Descripton and Settings into single component in future refactors */}
+=======
                     <Challengers best={this.countBestStreak} current={this.countCurrentStreak} sent={this.state.sent} original={this.state.originalgoal} id={this.props.match.params.id}/>
         
+>>>>>>> a3d0c500865c6e13874226016846b925ae86b8a3
                     <div>
 
                         {
                             this.state.sent || this.state.originalgoal
                         ? 
-                            <Description deleteGoal={this.deleteGoal} handleRemoveGoal={this.handleRemoveGoal} removeGoalFalse={this.removeGoalFalse} name={this.state.goalname} days={this.state.daysoutofseven} type={this.state.goodhabit}/> 
+                            <Description 
+                                deleteGoal={this.deleteGoal} 
+                                handleRemoveGoal={this.handleRemoveGoal} 
+                                removeGoalFalse={this.removeGoalFalse} 
+                                name={this.state.goalname} 
+                                days={this.state.daysoutofseven} 
+                                type={this.state.goodhabit}
+                            /> 
                         : 
                             settings 
                         } 
