@@ -1,51 +1,29 @@
 import React,{Component} from 'react';
-import './successRate.css'
+import Right from '../../svg/arrow-right';
+import Left from '../../svg/arrow-left.js';
 
-export default class SuccessRate extends Component {
+export default ({successRate, timeFrame, handleRateChange}) => {
+    return(
+        <div className='grid'>
 
-    constructor(props){
-        super(props);
+            <div className='title'>
+                Success Rate
+            </div>
 
-        this.state = {
-            current: 0,
-            stopAt: 0
-        }
-    }
-
-    //experimenting with an upward moving percentage that stops at desired percentage
-
-    // closure(current){
-    //     console.log(current)
-    //     this.setState({current:current})
-    // }
-
-    componentWillReceiveProps(newProps){
-        // console.log('newProps are...', newProps)
-
-        const current = Math.floor(newProps.total * 100)
-
-        this.setState({current:current})
-
-        // const stopAt = Math.round(newProps.total * 100);
-        // this.setState({stopAt:stopAt})
-
-        // const half = Math.floor(stopAt * .6);
-
-        // for(let i = half ; i <= stopAt; i++ ){
-        //     setTimeout( () => this.closure(i), (i - half) * 50)
-        // }
-    }
-
-    render(){
-        return(
-            <div className='streaks rates'>
-                <div className='header'>
-                    Success Rate
+            <div className='rate'>
+                
+                <div className='banner'>
+                    {timeFrame ? `PAST ${timeFrame} DAYS` : `OVERALL`}
                 </div>
-                <div className='percentage'>
-                    {this.state.current}%
+                <div className='content'>
+                    <button onClick={() => handleRateChange(-1)}><Left/></button>
+                    <div>
+                        {successRate}%
+                    </div>
+                    <button onClick={() => handleRateChange(1)}><Right/></button>
                 </div>
             </div>
-        )
-    }
+
+        </div>
+    )
 }

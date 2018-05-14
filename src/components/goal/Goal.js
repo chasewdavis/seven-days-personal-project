@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import _ from 'lodash';
 import Log from '../log/Log.js';
 import Streak from '../streak/Streak.js';
 import Nav from '../nav/Nav.js';
@@ -10,8 +11,10 @@ import {Link} from 'react-router-dom';
 import Description from '../description/Description.js';
 import SuccessRate from '../successRate/SuccessRate.js';
 
+// css
 import './goal.css';
 import './settings.css';
+import './streakAndRate.css';
 
 // dynamic svgs 
 import Gear from '../../svg/gear.js';
@@ -48,15 +51,10 @@ class Goal extends Component {
             goodhabit: null,
             currentstreak: null,
             beststreak: null,
-            successRateTotal:null,
-            successRateMonth:null,
-            successRateWeek:null,
+            successRateTimeFrame: 0,
+            successRate:null,
             forceAnUpdate: null,
-
-            logSeven: null, 
-            //should just store all boolean not just last 7
             allBooleans: null,
-
             logOpen:false,
             sent: null,
             originalgoal: null,
@@ -78,6 +76,7 @@ class Goal extends Component {
         this.removeGoalFalse = this.removeGoalFalse.bind(this);
         this.openLogForm = this.openLogForm.bind(this);
         this.check = this.check.bind(this);
+        this.handleRateChange = this.handleRateChange.bind(this);
     }
 
     componentWillUnmount(){
@@ -101,15 +100,12 @@ class Goal extends Component {
             // console.log('array from get all bools after mapping', array)
             const best = this.countBestStreak(array); 
             const current = this.countCurrentStreak(array);
-            const rate = this.successRateTotal(array);
+            const rate = this.calcSuccessRate(array, this.state.successRateTimeFrame);
             this.setState({
                 currentstreak:current, 
                 beststreak:best,
-
-                logSeven: array.slice(0,7),
-                allBooleans: array, // will be replacing logSeven w/ allBooleans
-
-                successRateTotal: rate
+                allBooleans: array,
+                successRate: rate
             }); //updates state
         })
     }
@@ -134,7 +130,7 @@ class Goal extends Component {
         booleans = booleans.map(e=>e.successful);
 
         // for success rate
-        let rate = this.successRateTotal(booleans);
+        let rate = this.calcSuccessRate(booleans, this.state.successRateTimeFrame);
 
         // for streaks
         const best = this.countBestStreak(booleans);
@@ -143,9 +139,8 @@ class Goal extends Component {
         this.setState({
             currentstreak:current, 
             beststreak:best,
-            logSeven: booleans.slice(0,7),
             allBooleans: booleans,
-            successRateTotal: rate
+            successRate: rate
         });
 
     }
@@ -183,13 +178,51 @@ class Goal extends Component {
         return array.reduce((a,c)=>a>c?a:c);
     }
 
-    successRateTotal(arr){
-        let num = 0;
-        let den = 0;
-        arr.forEach( e => e ? num++ : den++ )
-        let rate = num/(num+den);
-        // this.setState({successRateTotal:rate})
-        return rate;
+    calcSuccessRate(arr, timeFrame){
+        // start counting at the first successfull day;
+        // console.log('arr from calcSuccessRate: ', arr);
+        // console.log('timeFrame from calcSuccessRate: ', timeFrame);
+        let numerator = 0;
+        let denominator = 1;
+
+        if(timeFrame === 0 ){
+            arr = _.dropRightWhile( arr, day => !day );
+            numerator = arr.reduce( (a,c) => Math.abs(a) + Math.abs(c) );
+            denominator = arr.length;
+        }else{
+            numerator = arr.slice(0,timeFrame).reduce( (a,c) => Math.abs(a) + Math.abs(c) )
+            denominator = timeFrame;
+        }
+
+        return Math.round( ( numerator / denominator ) * 100 );
+
+    }
+
+    handleRateChange(val){
+
+        // add any options you'd like
+        let options = [0, 7, 30];
+
+        let opt = this.state.successRateTimeFrame;
+
+        let index = options.indexOf(opt) + val;
+
+        if(index === -1){
+            opt = options[options.length - 1];
+        } else if (index === options.length){
+            opt = options[0];
+        } else {
+            opt = options[index];
+        }
+
+        console.log('index:', index);
+        console.log('val', val);
+
+        this.setState({
+            successRateTimeFrame: opt,
+            successRate: this.calcSuccessRate(this.state.allBooleans, opt)
+        });
+
     }
 
     returnTitle(){
@@ -241,6 +274,8 @@ class Goal extends Component {
         let user_selects_back = this.state.daysoutofseven;
 
         this.setState({daysoutofseven:num}, () => {
+
+            // this is gross, needs DRY er syntax
 
             document.querySelectorAll('button.num_btn').forEach(e=>e.classList.remove('edit_day_toggle'))
             
@@ -577,8 +612,6 @@ class Goal extends Component {
         // to avoid double clicking ugliness
         if(this.state.check_in_transition === -1 && this.state.check_callBack_returned){
 
-            console.log('check day: ', day);
-            // var temp = this.state.logSeven;
             // consider how many weeks back
 
             let start = 0 + 7 * this.state.weeksBack;
@@ -593,8 +626,6 @@ class Goal extends Component {
             }else if (seven[day]===-1){
                 seven[day] = 0;
             }
-
-            // this.setState({logSeven:temp});
 
             let begin = this.state.allBooleans.slice(0, start);
             let end = this.state.allBooleans.slice(stop);
@@ -697,8 +728,7 @@ class Goal extends Component {
                             {/* small screen only */}
                             {/* <button onClick={()=>this.openLogForm()} className='add_log'>+ Log</button> */}
 
-                            {/* functional component creates list based on logSeven */}
-                            {/* <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} logSeven={this.state.logSeven} /> */}
+                            {/* functional component creates list based on allBooleans */}
                             <div className={this.state.slide_log === 'right' ? 'slide_right animate_log' : this.state.slide_log === 'left' ? 'slide_left animate_log' : 'center animate_log'}>
                                 <Log weeksBack={this.state.weeksBack + 1} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} determineCheckClass={this.determineCheckClass}/>
                                 <Log weeksBack={this.state.weeksBack} check={this.check} logOpen={this.state.logOpen} allBooleans={this.state.allBooleans} check_in_transition={this.state.check_in_transition} determineCheckClass={this.determineCheckClass}/>
@@ -715,9 +745,10 @@ class Goal extends Component {
                         </div>
                     </div>
                     
-                    <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
-
-                    <SuccessRate total={this.state.successRateTotal} month={true} week={true}/>
+                    <div className='streakAndRate'>
+                        <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
+                        <SuccessRate handleRateChange={(val) => this.handleRateChange(val)} successRate={this.state.successRate} timeFrame={this.state.successRateTimeFrame}/>
+                    </div>
 
                     <Link className='challenge_friends_link' to={`/search/${this.props.match.params.id}`}>
                         <button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button>

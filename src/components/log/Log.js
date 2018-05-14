@@ -4,11 +4,10 @@ import './log.css';
 import './checkbox2.css';
 import axios from 'axios';
 
-export default ({ check, logSeven, allBooleans, logOpen, weeksBack, check_in_transition, determineCheckClass}) => {
+export default ({ check, allBooleans, logOpen, weeksBack, check_in_transition, determineCheckClass}) => {
 
     // use logOpen to provide correct class to open or close
     // the way it opens and closes just depends on the screen width
-    // console.log('logSeven is...', logSeven);
 
     var time = new Date().getTime(); // todays time in milliseconds
     const weekdays = ['Sun.','Mon.','Tue.','Wed.','Thur.','Fri.','Sat.'];
