@@ -97,7 +97,6 @@ class Goal extends Component {
 
         axios.get(`/api/getallbools/${this.props.match.params.id}`).then(res2=>{
             const array = res2.data.map(e=>e.successful);
-            // console.log('array from get all bools after mapping', array)
             const best = this.countBestStreak(array); 
             const current = this.countCurrentStreak(array);
             const rate = this.calcSuccessRate(array, this.state.successRateTimeFrame);
@@ -112,7 +111,6 @@ class Goal extends Component {
 
     setGoal(){
         axios.get(`/api/goal/${this.props.match.params.id}`).then((res)=>{
-            // console.log('the res is....... ',res.data)
             this.setState({
                 goalname: res.data[0].goalname,
                 daysoutofseven: res.data[0].daysoutofseven,
@@ -180,15 +178,15 @@ class Goal extends Component {
 
     calcSuccessRate(arr, timeFrame){
         // start counting at the first successfull day;
-        // console.log('arr from calcSuccessRate: ', arr);
-        // console.log('timeFrame from calcSuccessRate: ', timeFrame);
         let numerator = 0;
         let denominator = 1;
 
         if(timeFrame === 0 ){
             arr = _.dropRightWhile( arr, day => !day );
-            numerator = arr.reduce( (a,c) => Math.abs(a) + Math.abs(c) );
-            denominator = arr.length;
+            if(arr.length){
+                numerator = arr.reduce( (a,c) => Math.abs(a) + Math.abs(c) );
+                denominator = arr.length
+            }
         }else{
             numerator = arr.slice(0,timeFrame).reduce( (a,c) => Math.abs(a) + Math.abs(c) )
             denominator = timeFrame;
@@ -215,9 +213,6 @@ class Goal extends Component {
             opt = options[index];
         }
 
-        console.log('index:', index);
-        console.log('val', val);
-
         this.setState({
             successRateTimeFrame: opt,
             successRate: this.calcSuccessRate(this.state.allBooleans, opt)
@@ -234,11 +229,9 @@ class Goal extends Component {
     }
 
     setNewName(){
-        // console.log(this.state.goalnametemp)
         const goal = this.state.goalnametemp;
         axios.patch(`api/renameGoal/${this.props.match.params.id}`, { goal } )
         .then(res => {
-            // console.log('the response from database is... ', res.data[0].goalname)
             this.setState({goalname:res.data[0].goalname})
         });
     }
@@ -298,7 +291,6 @@ class Goal extends Component {
         });
         
         axios.patch(`api/renumberGoal/${this.props.match.params.id}`, {number:num})
-        // .then(res=>console.log(res))
 
     }
 
@@ -350,7 +342,6 @@ class Goal extends Component {
     goodvsBadHandler(boolean){
 
         axios.patch(`api/resetBoolType/${this.props.match.params.id}`, {boolean: boolean})
-        // .then(res=>console.log(res))
 
         document.querySelector('button.selected').classList.remove('selected')
 
@@ -463,7 +454,6 @@ class Goal extends Component {
         if(removeGoal){
             axios.delete(`/api/deleteGoal/${this.props.match.params.id}`)
             .then(res => {    
-                // console.log(res) 
                 this.props.history.push('/dashboard')
                 }
             )
@@ -471,14 +461,12 @@ class Goal extends Component {
     }
 
     handleDescriptionChange(val){
-        // console.log(val)
         this.setState({description:val})
     }
 
     changeDescription(){
         if(this.state.description){
             axios.patch(`/api/addNewDescription/${this.props.match.params.id}`, {description: this.state.description})
-            // .then(res=>console.log(res))
         }
     }
 
@@ -666,7 +654,6 @@ class Goal extends Component {
         if(!this.state.week_in_transition){
 
             let temp = this.state.weeksBack + val;
-            // console.log('all booleans are: ', this.state.allBooleans);
             let daysToAdd = 7 + (( this.state.weeksBack + val ) * 7 ) - this.state.allBooleans.length;
 
             // quickly animate logs

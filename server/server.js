@@ -13,7 +13,7 @@ app.use((req, res, next)=>{
     next();
 })
 
-app.use(express.static(`${__dirname}/../build`))  // for deployment
+// app.use(express.static(`${__dirname}/../build`))  // for deployment
 
 app.use(bodyParser.json());
 app.use(session({
@@ -59,10 +59,10 @@ passport.use(new Auth0Strategy({
 app.get('/auth', passport.authenticate('auth0'));
 
 app.get('/auth/callback', passport.authenticate('auth0',{
-    successRedirect: '/#/dashboard',
-    failureRedirect: '/#/welcome'
-    // successRedirect: 'http://localhost:3000/#/dashboard',
-    // failureRedirect: 'http://localhost:3000/#/'
+    // successRedirect: '/#/dashboard',
+    // failureRedirect: '/#/welcome'
+    successRedirect: 'http://localhost:3000/#/dashboard',
+    failureRedirect: 'http://localhost:3000/#/'
 }))
 app.get('/auth/me', (req,res) => {
     // console.log('from app.get/auth/me ',req.user)
@@ -73,9 +73,9 @@ app.get('/auth/me', (req,res) => {
 })
 
 app.get('/auth/logout', (req, res) => {
-    req.logOut();
-    res.redirect(302, '/#/')
-    // res.redirect('http://localhost:3000/#/')
+    // req.logOut();
+    // res.redirect(302, '/#/')
+    res.redirect('http://localhost:3000/#/')
 })
 
 passport.serializeUser( function( user, done ){
@@ -121,10 +121,10 @@ app.post('/api/addPreviousDays/:id', controller.addPreviousDays)
 app.delete('/api/deleteGoal/:id', controller.deleteGoal)
 app.delete('/api/declineChallenge/:id', controller.declineChallenge)
 
-const path = require('path');
-app.get('*', (req, res)=>{
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-})
+// const path = require('path');
+// app.get('*', (req, res)=>{
+//   res.sendFile(path.join(__dirname, '../build/index.html'));
+// })
 
-const PORT = 8010;
+const PORT = 3005;
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT} :)`))
