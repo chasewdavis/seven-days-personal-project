@@ -33,5 +33,6 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "main": "server/server.js"
+  "main": "server/server.js",
+  "proxy": "http://localhost:8010/"
 }
