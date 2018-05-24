@@ -22,7 +22,7 @@ export default ({ allDays }) => {
             data: dailyAvgs,
             backgroundColor: '#829BA5'
         }],
-        labels: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        labels: ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays']
     }
 
     let options = {
@@ -35,13 +35,21 @@ export default ({ allDays }) => {
             yAxes: [{
                 ticks: {
                     suggestedMin: 0,
-                    suggestedMax: 100
+                    suggestedMax: 100,
+                    callback: (val) => {
+                        return val+'%';
+                    }
                 }
             }]
         },
         legend: {
             display: false
-        }
+        },
+
+        tooltips: {enabled: false},
+
+        hover: {mode: null},
+        
     }
     
     return (
