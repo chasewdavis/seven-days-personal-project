@@ -15,7 +15,7 @@ export default ({current, best}) => {
                         current
                     </div>
                     <div className='content'>
-                        {current}
+                        {current || 0}
                     </div>
                 </div>
 
@@ -24,7 +24,7 @@ export default ({current, best}) => {
                         best
                     </div>
                     <div className='content'>
-                        {best}
+                        {best || 0}
                     </div>
                 </div>
 

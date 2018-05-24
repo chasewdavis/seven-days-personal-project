@@ -10,6 +10,7 @@ import Search from '../search/Search.js';
 import {Link} from 'react-router-dom';
 import Description from '../description/Description.js';
 import SuccessRate from '../successRate/SuccessRate.js';
+import Chart from '../charts/chart.js';
 
 // css
 import './goal.css';
@@ -736,6 +737,8 @@ class Goal extends Component {
                         <Streak current={this.state.currentstreak} best={this.state.beststreak}/>
                         <SuccessRate handleRateChange={(val) => this.handleRateChange(val)} successRate={this.state.successRate} timeFrame={this.state.successRateTimeFrame}/>
                     </div>
+
+                    <Chart allDays={this.state.allBooleans}/>
 
                     <Link className='challenge_friends_link' to={`/search/${this.props.match.params.id}`}>
                         <button className='challenge_friends_btn'>Challenge Friends<div id='right'><Right/></div></button>
