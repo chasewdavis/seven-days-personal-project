@@ -36,7 +36,7 @@
     "eject": "react-scripts eject"
   },
   "main": "server/server.js",
-  "proxy": "http://localhost:3005/",
+  "proxy": "http://localhost:8010/",
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.2.0"
